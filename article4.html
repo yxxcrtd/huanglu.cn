@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>IntelliJ IDEA Community 基本设置</h2>
+                <p>1，添加 JDK：File -> Project Structure -> ProjectStructure  -> SDKs</p>
+
+<p>2，修改字体：Editor -> Font</p>
+
+<p>3，控制台字体：Editor -> Color Scheme -> Console Font</p>
+
+<p>4，import 同一个包超过5个不显示*：Editor -> Code Style -> Java -> Imports -> Class count to use import with '*': 改成：50</p>
+
+<p>5，自动编译：Build, Execution, Deployment -> Compiler ->  勾选Make project automatically</p>
+
+<p>6，鼠标移上提示注释或文档：Editor -> General -> Show quick documentation on mouse move Delay (ms) 500</p>
+
+<p>7，自动 Import：General -> Auto Import ，Java项都打勾</p>
+
+<p>8，Inport 不折叠：General -> Code Folding -> Imports</p>
+
+<p>9，提示不区分大小写：Editor -> General -> Code Completion -> Match case: All letters</p>
+
+<p>10，设置自动编译：Build, Execution, Deployment -> Compiler -> Make project automatically</p>
+
+<p>11，过滤不显示的后缀：Editor -> File Types 添加一个后缀即可，如：*.iml;</p>
+
+<p>12，去掉参数的提示：Editor -> Inlay Hints -> Parameter hints -> Show parameter hints for</p>
+
+<p>13，显示滚动条：Editor -> General -> Soft Wraps -> Use soft wraps in editor</p>
+
+<p>14，更换默认的Terminal：/bin/bash -> /bin/zsh</p>
+
+<p>15，修改 ifn inn ：Editor -> Live Templates -> other ...</p>
+
+<p>16，浏览器预览：Tools -> Web Browsers</p>
+
+<p>17，启动错误：OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended，解决方法：Build ... -> Debugger -> Async Stack Traces -> 去掉勾选：Instrumenting agent ...</p>
+
+<p>
+    18，去除 Method is never used： Editor -> Inspectons -> Unused declaration
+</p>
+
+<p>
+    19，自动生成 serialVersionUID：Editor -> Inspectons -> Java -> Serialization issues -> 将 Serialzable class without ‘serialVersionUID’ 打上勾；（类要： implements Serializable，然后将光标放到类名上，按 atl＋enter 键，就会提示生成serialVersionUID了。）
+</p>
+                <h4>2020-02-04 21:20:47</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

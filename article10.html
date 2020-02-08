@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Tomcat 基础</h2>
+                <p class="title">
+    一，下载与安装
+</p>
+
+<p>
+1，<a href="http://tomcat.apache.org" target="_blank">官网</a>下载：wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.12/bin/apache-tomcat-8.5.12.tar.gz
+</p>
+
+<p>
+2，校验：md5sum apache-tomcat-8.5.12.tar.gz，看看显示的md5是不是与官方的一样
+</p>
+
+<p>
+3，解压：tar zxvf apache-tomcat-8.5.12.tar.gz
+</p>
+
+<p>
+4，移动：mv apache-tomcat-8.5.12/* /home/Tomcat/
+</p>
+
+<br />
+<p class="title">
+二，配置最简洁的server.xml
+</p>
+
+<div class="code">
+    <p>&lt;?xml version='1.0' encoding='utf-8'?&gt;</p>
+<p>&lt;Server port="8005" shutdown="SHUTDOWN"&gt;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" /&gt;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Service name="Catalina"&gt;</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" URIEncoding="UTF-8" /&gt;</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Engine name="Catalina" defaultHost="localhost"&gt;</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Host name="localhost" appBase="" unpackWARs="true" autoDeploy="true"&gt;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Context path="" docBase="/home/Workspace/project/WebContent" reloadable="false" /&gt;</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Host&gt;</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Engine&gt;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Service&gt;</p>
+<p>&lt;/Server&gt;</p>
+</div>
+
+<br />
+<p class="title">
+三，启动服务
+</p>
+
+<p>
+    1，临时启动：/home/Tomcat/bin/startup.sh
+</p>
+
+<p>
+    2，作为服务启动：nohup /home/Tomcat/bin/startup.sh &
+</p>
+
+<p>
+    3，重启电脑自动启动：在  /etc/rc.local 中加入：/home/Tomcat/bin/startup.sh
+</p>
+                <h4>2020-01-31 20:58:29</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+    </body>
+</html>

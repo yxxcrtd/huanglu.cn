@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Redis 基础</h2>
+                <p class="title">
+    一，前置：
+</p>
+
+<p>
+    1，官网：<a href="https://redis.io" target="_blank">https://redis.io</a>
+</p>
+
+<p>
+    2，命令参考：<a href="http://redisdoc.com" target="_blank">http://redisdoc.com</a>
+</p>
+
+<p>
+    3，在线测试：<a href="http://try.redis.io" target="_blank">http://try.redis.io</a>
+</p>
+
+
+<br />
+<p class="title">
+    二，Linux CentOS 6 下的安装
+</p>
+
+<p>1，下载：wget http://download.redis.io/releases/redis-3.2.8.tar.gz</p>
+<p>2，解压：tar zxvf redis-3.2.8.tar.gz</p>
+<p>3，进入：cd redis-3.2.8/deps</p>
+<p>4，编译：make geohash-int hiredis jemalloc linenoise lua</p>
+<p>5，安装：cd ..  make && make install</p>
+<p>6，单独启动：/home/Redis/src/redis-server，此时在控制台能看到启动信息</p>
+<p>7，修改：vim redis.conf</p>
+<p>8，启动：/home/Redis/src/redis-server /home/Redis/redis.conf  &</p>
+<p>9，访问：/home/Redis/src/redis-cli -h IP -p 6380，有中文的话加上：--raw</p>
+<p>10，服务自启动：</p>
+        <p class="indent">1，cp redis.conf /etc</p>
+        <p class="indent">2，vim /etc/redis.conf，将守护进程：daemonize no 改成：daemonize yes</p>
+        <p class="indent">3，vim /etc/rc.local，添加：/home/Redis/src/redis-server /etc/redis.conf</p>
+<p>11，添加密码：</p>
+        <p class="indent">1，编辑：vim /etc/redis.conf，打开：requirepass，并添加字符串密码，没有任何引号</p>
+        <p class="indent">2，重启服务</p>
+        <p class="indent">3，redis-cli -h 114.255.78.181 -p 6666</p>
+        <p class="indent">4，auth 刚才的密码</p>
+<p>12，监控1：查看日志：slowlog get 5</p>
+<p>13，监控2：monitor</p>
+<br />
+
+
+<p class="title">三，Linux CentOS 7 下的安装</p>
+<p>1，wget  http://download.redis.io/releases/redis-5.0.5.tar.gz</p>
+<p>2，mkdir /usr/local/redis</p>
+<p>3，tar -zxvf redis-5.0.5.tar.gz -C /usr/local/redis</p>
+<p>4，cd /usr/local/redis/redis-5.0.5</p>
+<p>5，make</p>
+<p>6，make PREFIX=/usr/local/redis install</p>
+<p>7，cp  /usr/local/redis/redis-5.0.5/redis.conf   /usr/local/redis/bin</p>
+<p>8，vi /usr/local/redis/bin/redis.conf</p>
+<p>9，启动：/home/redis/src/redis-server /home/redis/redis.conf &</p>
+<p>10，修改密码要修改复制后的 redis.conf，不是安装目录下的配置文件</p>
+<p>11，把daemonize 设置为yes, 把redis启动设置为后台启动</p>
+<br />
+
+
+<p class="title">
+    四，Mac 下 Redis 的安装
+</p>
+<p>1，安装：brew install redis</p>
+<p>2，启动：redis-server &</p>
+<p>3，访问：redis-cli</p>
+<p>4，关闭：redis-cli shutdown</p>
+
+<br />
+
+
+<p class="title">
+    五，基本操作
+</p>
+
+<p>1，设置：set a 123</p>
+<p>2，获取：get a，显示：123</p>
+<p>3，多值设置：mset a1 1 a2 2 a3 3</p>
+<p>4，多值获取：mget a1 a2 a3，显示：1 2 3</p>
+<p>5，追加：append a 456，get a，显示：123456</p>
+<p>6，自增：incr  a，get a，显示：123457</p>
+<p>7，查看当前分区中的记录数：dbsize</p>
+<p>8，删除当前分区中所有的记录数：flushdb</p>
+<p>9，清除整个Redis数据（任意分区下）：flushall</p>
+<p>10，显示当前分区下所有的key：keys *（不建议使用，最好以导出文件的形式查看：redis-cli -h ‘IP地址‘  keys * > keys.txt）</p>
+                <h4>2020-02-07 20:05:06</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

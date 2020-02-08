@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>使用 Undertow 替换 Tomcat</h2>
+                <p class="title">
+    一，pom.xml 的配置
+</p>
+
+<p>
+    <a href="images/article/article13.01.png" data-fancybox>
+        <img src="images/article/article13.01.png" width="800" />
+    </a>
+</p>
+
+<br />
+
+<p class="title">
+    二，application.yml 的配置（默认可以不用加）
+</p>
+
+<div class="code">
+    <p>
+        server:
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;undertow:
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;io-threads: 32   <span class="comment"># 设置 IO 线程数，它主要执行非阻塞的任务，它们会负责多个连接，默认设置每个 CPU 核心有一个线程。不要设置过大，如果过大，启动项日会报错：打开文件数过多</span>
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;worker-threads: 256   <span class="comment"># 阳塞任务线程数，当执行类似 Servlet 请求阻塞 IO 操作，Undertow 会从这个线程池中取得线程。它的值设置取决于系统线程执行任务的阻塞系数，默认值：IO 线程数 * 8</span>
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;direct-buffers: true   <span class="comment"># 是否分配直接内存（NIO 直接分配的是堆外内存）。取决于JVM 最大可用内存大小：（long maxMemory = Runtime.getRuntime().maxMemory();），小于 64MB 默认为 false，其余为 true</span>
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buffer-size: 1024    <span class="comment"># 每块 buffer 的空间大小，空间越小利用越充分，不要设置太大，以免影响其他应用，合适即可。最大可用内存 < 64MB：512 字节。6MB <= 最大可用内存 <128MB：1024 字节。128MB < 最大可用内存：1024 * 16 - 20 字节</span>
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buffers-per-region: 1024    <span class="comment"># 每个区分配的buffer数量 , 所以pool的大小是buffer-size * buffers-per-region</span>
+    </p>
+
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accesslog:
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enabled: true
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dir: /home/log
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pattern: common
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prefix: undertow-log.
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;suffix: log
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate: true
+    </p>
+</div>
+                <h4>2020-02-02 13:43:50</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

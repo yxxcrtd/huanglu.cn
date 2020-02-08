@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Docker 基础</h2>
+                <p class="title">一，Docker 两大概念</p>
+<p>1，镜像：是一个只读的模板，可以用来创建容器；</p>
+<p>2，容器：就像一个简易版的Linux环境；用容器运行应用。可以被启动、开始、停止和删除。每个容器即可隔离，也可相互通信；</p>
+<br />
+
+
+<p class="title">二，Linux CentOS 6 的安装</p>
+<p>1，升级内核：rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</p>
+<p>2，安装内核：rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6</p>
+<p>3，安装Docker：yum -y install docker-io</p>
+<p>4，开启服务：service docker start</p>
+<p>5，开机自启动：chkconfig docker on</p>
+<br />
+
+
+
+<p class="title">三，Linux CentOS 7 的安装</p>
+<p>1，</p>
+<p>2，</p>
+<p>3，</p>
+<p>4，</p>
+<p>5，</p>
+<br />
+
+
+
+<p class="title">四，Mac 下的安装</p>
+<p>1，brew install docker</p>
+<p>2，brew cask install dockertoolbox（Docker工具集，包含：Client、Machine、Compose、Kitematic、VirtualBox）</p>
+<p>3，brew cask install caskroom/cask/docker-toolbox（如果上面的找不到，就用这行命令）</p>
+<p>4，brew cask install virtualbox-extension-pack</p>
+<p>5，docker-machine create --driver virtualbox dev</p>
+<p>6，docker-machine env dev</p>
+<p>7，eval $(docker-machine env dev)</p>
+<p>8，检查：docker-machine env default</p>
+<br />
+
+
+
+<p class="title">五，镜像</p>
+<p>1，搜索镜像：docker search centos （加上参数：--no-trunc 可以显示完整的描述）</p>
+<p>2，获取镜像：docker pull centos:latest（如果不指定，默认是latest标签，centos5、centos6、centos7、latest）</p>
+<p>3，查看镜像：docker images（显示当前系统中的所有镜像）</p>
+<p>4，镜像详情：docker inspect '镜像ID'（读取其中一个属性：docker inspect '镜像ID' -f {{".Architecture"}} 550）</p>
+<p>5，删除镜像：docker rmi '镜像ID' / docker rmi ichika:latest</p>
+<br />
+
+
+<p class="title">六，容器</p>
+<p>1，启动容器（挂载文件）：docker run -i -t （-v /root:/root） '镜像ID' /bin/bash</p>
+<p>2，退出容器：exit</p>
+<p>3，停止容器：docker stop / start '容器ID'</p>
+<p>4，所有容器：docker ps -a</p>
+<p>5，正在运行：docker ps</p>
+<p>6，容器导出：docker save -o /home/centos.tar '镜像ID'</p>
+<p>7，容器导入：docker load < /home/centos.tar</p>
+<p>8，删除容器：docker rm '容器ID'</p>
+<br />
+
+
+<p class="title">七，运行</p>
+<p>1，创建自己的镜像：docker commit ‘镜像ID‘ yxx/java:0.1</p>
+<p>2，启动自己创建的镜像：docker run -d -p 8080:8080 --name java yxx/java:1 /home/run.sh</p>
+<p>3，访问：http://127.0.0.1:8080</p>
+<p>4，Redis：docker run -d -p 6379:6379 'Redis镜像ID'</p>
+<br />
+
+
+<p class="title">八，安装 Oracle</p>
+<p>1，安装：docker pull wnameless/oracle-xe-11g</p>
+<p>2，启动：docker run -d -p 49160:22 -p 49161:1521 wnameless/oracle-xe-11g（或者 'Oracle镜像ID'）</p>
+<p>3，进入容器：ssh root@localhost -p 49160（SID是：xe；密码：admin）</p>
+<p>4，普通用户登录数据库：sqlplus "system/oracle"</p>
+<p>5，超级用户登录数据库：sqlplus "sys/oracle as sysdba"</p>
+<br />
+
+
+<p class="title">九，安装 PostgreSQL 数据库</p>
+<p>1，docker pull postgres:latest</p>
+<p>2，docker run --name master -p 5555:5432 -e POSTGRES_PASSWORD=123456 -d postgres</p>
+<br />
+
+
+<p class="title">十，Docker 里面编辑文件</p>
+<p>1，apt-get update</p>
+<p>2，apt-get install vim</p>
+<br />
+
+
+<p class="title">十一，问题1: 通过 docker version 检查出：Cannot connect to the Docker daemon. Is ‘docker -d’ running on this host?</p>
+<div class="code">
+<p>1，重启Docker主机：docker-machine restart && eval "$(docker-machine env default)" && docker-machine env</p>
+<p>2，查看Docker主机：docker-machine ls</p>
+</div>
+<br />
+
+
+<p class="title">十二，问题2: com.spotify.docker.client.shaded.javax.ws.rs.ProcessingException: java.io.IOException: No such file or directory</p>
+<div class="code">
+<p>docker-machine restart && eval "$(docker-machine env default)" && docker-machine env</p>
+</div>
+<br />
+
+
+<p class="title">十三，问题3：删除相同 image id 的方法</p>
+<div class="code">
+<p>docker rmi image:tag，出现 Untagged: *** ，即OK</p>
+</div>
+<br />
+
+
+<p class="title">十四，问题4：使用 Dockerfile 无法生成 docker images（在使用 mvn clean package docker:build，控制台提示： 信息: I/O exception (java.io.IOException) caught when processing request to {}->unix://localhost:80: No such file or directory）</p>
+<div class="code">
+<p>1，docker-machine env</p>
+<p>2，eval $(docker-machine env)</p>
+</div>
+<br />
+
+
+<p class="title">十五，Docker Hub</p>
+<p>1，<a href="https://hub.docker.com" target="_blank">https://hub.docker.com</a></p>
+<p>2，y…d</p>
+<p>3，C…1</p>
+                <h4>2020-02-08 11:12:48</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

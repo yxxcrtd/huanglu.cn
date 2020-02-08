@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>MongoDB 基础</h2>
+                <p class="title">
+一，Linux CentOS 下 MongoDB 的安装
+</p>
+
+<p>1，下载：wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.2.tgz</p>
+
+<p>2，解压：tar -zxvf mongodb-linux-x86_64-amazon-3.4.2.tgz</p>
+
+<p>3，移动：mv mongodb-linux-x86_64-amazon-3.4.2 /home/mongodb</p>
+
+<p>4，添加：export PATH=/home/mongodb/bin:$PATH</p>
+
+<p>5，数据：mkdir -p /home/mongodb/data</p>
+
+<p>6，建立配置文件：mongo.conf</p>
+<div class="code">
+    <p>port = 27027</p>
+    <p>dbpath = /home/mongodb/data</p>
+    <p>logpath = /home/mongodb/mongo.log</p>
+    <p>pidfilepath = /home/mongodb/mongo.pid</p>
+    <p>logappend = true # 日志是追加，默认是覆盖</p>
+    <p>bind_ip = 127.0.0.1</p>
+</div >
+
+<p>7，启动：/home/mongodb/bin/mongod -f /home/mongodb/bin/mongo.conf —fork</p>
+
+<p>8，服务自启动：echo /home/mongodb/bin/mongod -f /home/mongodb/bin/mongo.conf —fork >> /etc/rc.local</p>
+
+<p>9，连接：/home/mongodb/bin/mongo localhost:27027需要指定集合的话，再加上：/test</p>
+
+<p>10，连接：mongo</p>
+<br />
+
+
+
+<p class="title">
+    二，Mac 下 安装 MongoDB
+</p>
+
+<p>1，查看：brew info mongodb</p>
+
+<p>2，安装：brew install mongodb</p>
+
+<p>3，配置：vim /usr/local/etc/mongo.conf，修改 data 路径和日志路径</p>
+
+<p>4，服务：brew services start/stop/restart mogodb</p>
+
+<p>5，启动：mongo</p>
+
+<p>6，使用：show dbs</p>
+
+<p>7，下载客户端：Robomongo</p>
+
+<br />
+
+
+
+<p class="title">
+三，MongoDB 使用
+</p>
+
+<p>
+    <table>
+        <caption>MySQL 与 MongoDB 的对比参考</caption>
+        <tr>
+            <td>对比</td>
+            <td>MySQL</td>
+            <td>MongoDB</td>
+        </tr>
+        <tr>
+            <td>数据库</td>
+            <td>database</td>
+            <td>db</td>
+        </tr>
+        <tr>
+            <td>表</td>
+            <td>table</td>
+            <td>collection</td>
+        </tr>
+        <tr>
+            <td>行</td>
+            <td>row</td>
+            <td>document</td>
+        </tr>
+        <tr>
+            <td>列</td>
+            <td>column</td>
+            <td>field</td>
+        </tr>
+        <tr>
+            <td>主键</td>
+            <td>指定主键：primary key</td>
+            <td>自动生成的内置主键：_id : ObjectId(“**“)</td>
+        </tr>
+    </table>
+</p>
+
+<p>1，查看数据库列表：show dbs，没有数据的不显示</p>
+
+<p>2，显示当前数据库：db</p>
+
+<p>3，使用数据库：use local，如果不存在，就会创建一个</p>
+
+<p>4，删除数据库：db.dropDatabase()</p>
+
+<p>5，显示当前数据库的所有集合：show collections</p>
+
+<p>6，删除一个集合：db.user.drop()</p>
+
+<p>7，写数据1：db.user.insert({ a : ‘中文123’, “name” : “zhangsan”})，不存在则会创建</p>
+
+<p>8，写数据2：db.user.save({ a : ‘中文123’, “name” : “zhangsan”})</p>
+
+<p>9，删数据：db.user.remove({ a2 : 2 })</p>
+
+<p>10，读数据：db.user.find()</p>
+
+<p>11，里面关闭数据库：use admin、db.shutdownServer()</p>
+
+<p>12，命令方式关闭数据库：/home/mongodb/bin/mongod —shutdown</p>
+
+<p>13，不用使用 kill -9 pid 关闭数据库，会报错、数据丢失、不能启动……</p>
+
+<p>14，查询当前表的统计信息：use local、db.stats()</p>
+
+<p>15，查询连接机器：db.getMongo()</p>
+
+<p>16，退出命令行：exit</p>
+
+<p>17，打开用户界面：/home/mongodb/bin/mongod （—dbpath=/data/db） —rest ，访问：http://localhost:28017</p>
+
+<p>18，创建用户：use admin -> db.createUser( { user : “root”, pwd : “123456”, roles : [ { role: “userAdminAnyDatabase”, db: “admin” } ] } )</p>
+
+<p>19，查看用户：show users、db.system.users.find()</p>
+<br />
+
+
+<p class="title">
+四，MongoDB 的开发
+</p>
+
+<p>
+    1，配置文件：
+</p>
+
+<div class="code">
+    <p>
+        <p>mongodb.replica-set = 127.0.0.1:27018</p>
+        <p>mongodb.connections-per-host = 100</p>
+        <p>mongodb.threads-allowed-to-block-for-connection-multiplier = 50</p>
+        <p>mongodb.maxWaitTime = 120000</p>
+        <p>mongodb.connectTimeout = 3000</p>
+        <p>mongodb.socketTimeout = 0</p>
+        <p>mongodb.socketKeepAlive = true</p>
+        <p>mongodb.database = user</p>
+    </p>
+</div>
+
+<p>
+    2，Java 代码：
+</p>
+
+<div class="code">
+    <p>
+        <p>import com.mongodb.DB;</p>
+        <p>import org.springframework.data.mongodb.core.MongoTemplate;</p>
+        
+        <p>@Resource</p>
+        <p>private MongoTemplate mongoTemplate;</p>
+
+        <p>DB db = mongoTemplate.getDb();</p>
+        <p>System.out.println(“===========” + db.getStats());</p>
+
+        <p>// 准备数据：</p>
+        <p>BasicDBObject object = new BasicDBObject();</p>
+        <p>object.put(“a1”, 1);</p>
+        <p>object.put(“a2”, 2);</p>
+
+        <p>// collection 方式保存：</p>
+        <p>DBCollection collection = mongoTemplate.getCollection(“user”);</p>
+        <p>collection.insert(object);</p>
+
+        <p>mongoTemplate 方式保存：（推荐）</p>
+        <p>mongoTemplate.save(object, “user”);</p>
+    </p>
+</div>
+                <h4>2020-02-07 17:43:33</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

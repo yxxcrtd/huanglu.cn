@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Linux 基础</h2>
+                <p class="title">一，基础</p>
+<p>1，全程使用英文安装。也可以将操作系统的默认语言改成英文：vim /etc/sysconfig/i18n：LANG=”en_US.UTF-8”</p>
+<p>2，更新系统：yum -y update</p>
+<p>3，</p>
+<p>4，</p>
+<p>5，</p>
+<br />
+
+
+<p class="title">二，修改默认的22端口</p>
+<p>1，修改：vim /etc/ssh/sshd_config，将 22 改成 10987</p>
+<p>2，重启服务：service sshd restart</p>
+<p>3，更改防火墙规则中的22为新端口：vim /etc/sysconfig/iptables</p>
+<p>4，重启防火墙规则：service iptables restart</p>
+<p>5，远程：ssh root@192.168.0.123 -p 10987</p>
+<br />
+
+
+<p class="title">三，同步时间</p>
+<p>1，rm -rf /etc/localtime</p>
+<p>2，ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</p>
+<p>3，查看是否安装：rpm -q ntp</p>
+<p>4，如果没有信息，则需要安装：yum -y install ntp</p>
+<p>5，查看服务状态：service ntpd status</p>
+<p>6，先停止：service ntpd stop</p>
+<p>7，同步：ntpdate time.windows.com && hwclock -w ／ ntpdate time.nist.gov</p>
+<p>8，验证：date</p>
+<p>9，启动服务：service ntpd start</p>
+<br />
+
+
+<p class="title">四，安装 LibreOffice</p>
+<p>1，下载：wget
+http://download.documentfoundation.org/libreoffice/stable/5.2.0/rpm/x86_64/LibreOffice_5.2.0_Linux_x86-64_rpm.tar.gz</p>
+<p>2，解压：tar -xvf LibO。。。</p>
+<p>3，进入：cd LibO。。。</p>
+<p>4，安装：rpm -Uvh RPMS/.rpm</p>
+<p>5，卸载：yum -y remove libreoffice</p>
+<br />
+
+
+<p class="title">五，iBus 输入法设置</p>
+<p>1，打开：System -> Preferences -> Input Method</p>
+<p>2，ibus preferences -> font and style -> show language panel -> always，此时就会打开输入法的条，有设置</p>
+<br />
+
+
+<p class="title">六，设置系统自动登录</p>
+<p>1，vim /etc/gdm/custom.conf</p>
+<p>2，在[daemon]和[security]中间添加：</p>
+<div class="code">
+    <p>AutomaticLoginEnable=true</p>
+    <p>AutomaticLogin=root（当前登录用户）</p>
+    <p>TimedLoginEnable=true</p>
+    <p>TimedLogin=123456（当前登录密码）</p>
+</div>
+<p>3，重启。</p>
+<br />
+
+
+<p class="title">七，挂载盘阵、存储、HBA光纤存储等</p>
+<p>1，格式化：mkfs.ext3/4 /dev/sdb1</p>
+<p>2，挂载：mount /dev/sdb1 /root/new</p>
+<p>3，查询磁盘的UUID：blkid（blkid -o list）</p>
+<p>4，如果显示：/dev/sdb is apparently in use by the system; will not make a filesystem here!，是因为当前盘被dm服务占用，先查询：dmsetup status，然后：dmsetup remove_all，再 mkfs.ext3/4 …</p>
+<br />
+
+
+<p class="title">八，配置防火墙</p>
+<p>1，检查：/etc/init.d/iptables status，如果出现很多信息，则表示防火墙是开启状态</p>
+<p>2，开放22端口：/sbin/iptables -I INPUT -p tcp —dport 22 -j ACCEPT</p>
+<p>3，开放80端口：/sbin/iptables -I INPUT -p tcp —dport 80 -j ACCEPT</p>
+<p>4，保存：/etc/init.d/iptables save</p>
+<p>5，实在不行就关闭防火墙：/etc/init.d/iptables stop</p>
+<p>6，开机自启动：chkconfig —level 345 iptables on</p>
+<p>7，加入系统服务：service iptables save</p>
+<p>8，永久关闭防火墙：chkconfig iptables off</p>
+<br />
+
+
+<p class="title">九，安装字体</p>
+<p>1，移动字体：mv /root/Monaco_Linux.ttf /usr/share/fonts</p>
+<p>2，为 X 环境建立字体文件索引：mkfontscale</p>
+<p>3，从一个字体文件目录中创建 fonts.dir 文件：mkfontdir</p>
+<p>4，fc-cache -fv</p>
+<br />
+
+
+<p class="title">十，打开的文件过多/ Too many open files</p>
+<p>1，Check: ulimit -n, if show 1024…</p>
+<p>2，vim /etc/security/limits.conf</p>
+<p>3，在# 之后添加：* - nofile 1006154</p>
+<p>4，如果上面的解决不了：修改/etc/pam.d/login，添加：session required /lib/security/pam_limits.so</p>
+<br />
+
+
+<p class="title">十一，重置 root 密码：</p>
+<p>1，开机，启动，Esc</p>
+<p>2，e</p>
+<p>3，e，出现：<rhgb quiet，先输入一个空格，再输入数字1，回车</p>
+<p>4，b，系统会重新启动，输入：passwd root</p>
+<p>5，输入两次密码</p>
+<p>6，出现：passwd: all authentication tokens updated successfully. 说明密码修改成功。</p>
+<p>7，重启：shutdown -r now</p>
+
+<br />
+
+
+<p class="title">十二，出现：repair filesystem模式的修复方法：</p>
+<p>1，第一种情况：因非正常关机引起的磁盘分区问题导致不能正常进入系统</p>
+<div class="code">
+<p>方法1：fsck /dev/hdaX；reboot</p>
+<p>方法2：fsck，后面全是：y 回车 ...</p>
+</div>
+<p>2，第二种情况：因需要挂载存储或磁盘阵列修改/etc/fstab文件而引起的不能正常进入系统</p>
+<div class="code">
+<p>方法：vim /etc/fstab，把文件的权限修改成可读写：mount -o remount,rw /</p>
+</div>
+<p>3，备注：不推荐修改fstab，推荐：vim /etc/profile /etc/rc.local</p>
+
+<br />
+
+
+<p class="title">十三，单用户模式的解决：usermod -U root</p>
+<p>1，在启动菜单中输入：a</p>
+<p>2，进入后输入：空格+single</p>
+<p>3，即可出现：终端</p>
+<br />
+
+
+<p class="title">十四，附常用命令：</p>
+<p>1，检查操作系统位数：getconf LONG_BIT / arch / uname -m</p>
+<p>2，检查硬盘分区大小：fdisk -l / df -lh</p>
+<p>3，查看环境变量：env / printenv</p>
+<p>4，查看内存使用情况：free -m</p>
+<p>5，查看硬件信息：1，ls /proc；2，cat /proc/meminfo 或 grep a /proc/meminfo</p>
+<p>6，显示历史记录：history</p>
+<p>7，清屏：clear</p>
+<p>8，登录：login</p>
+<p>9，注销：logout / exit</p>
+<p>10，关机：shutdown -h now / init 0 / halt</p>
+<p>11，重启：reboot / init 1</p>
+<p>12，断电源：poweroff</p>
+<p>13，更改当前用户密码：passwd</p>
+<p>14，显示当前用户名：whoami / logname</p>
+<p>15，显示当前时间：date / cal</p>
+<p>16，显示文件目录：du Desktop/</p>
+<p>17，显示文件列表：ls -a</p>
+<p>18，显示当前路径：pwd</p>
+<p>19，创建文件夹：mkdir</p>
+<p>20，删除文件夹：rmdir</p>
+<p>21，复制文件：cp -vf（显示进度）</p>
+<p>22，删除文件或目录：rm</p>
+<p>23，移动文件：mv</p>
+<p>24，修改权限：chmod （给文件夹及其所有子文件夹授权：chmod -R 777 aaa）</p>
+<p>25，文件查找：find</p>
+<p>26，显示文件内容：cat /home/Tomcat/bin/server.xml</p>
+<p>27，分屏显示文件内容：more（或：less） /home/Workspace/Groups/index.py</p>
+<p>28，计算器：bc</p>
+<p>29，安装软件：yum install xxx</p>
+<p>30，删除软件：yum remove xxx</p>
+<p>31，清除缓冲和旧的包：yum clean</p>
+<p>32，清理全部缓存的安装文件以节省空间：yum clean all</p>
+<p>33，系统升级或更新：yum -y update</p>
+<p>34，大规模的版本升级,与yum update不同的是,连旧的淘汰的包也升级：yum upgrade，yum check-update</p>
+<p>35，清除暂存中rpm包文件：yum clean packages</p>
+<p>36，清除暂存中rpm头文件：yum clearn headers</p>
+<p>37，列出资源库中特定的可以安装或更新以及已经安装的rpm包：yum list firefox* / yum info firefox*</p>
+<p>38，查询磁盘的UUID：blkid</p>
+                <h4>2020-02-07 20:45:14</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

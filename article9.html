@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>GitLab 的安装与配置</h2>
+                <p class="title">
+一，Linux CentOS 6 安装 GitLab（参考官网：<a href="https://about.gitlab.com/install/#centos-6" target="_blank">https://about.gitlab.com/install/#centos-6</a>）
+</p>
+
+<p>1，安装依赖：yum -y install curl openssh-server openssh-clients postfix cronie</p>
+<p>2，启动邮件服务：service postfix start</p>
+<p>3，邮件服务开机启动：chkconfig postfix on</p>
+<p>4，打开 http 和 ssh：lokkit -s http -s ssh</p>
+<p>5，远程下载 GitLab：curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | bash</p>
+<p>6，安装：yum -y install gitlab-ce</p>
+<p>7，编译：gitlab-ctl reconfigure（安装目录在：/var/opt/gitlab）</p>
+<p>8，设置外网访问：vim /etc/gitlab/gitlab.rb，修改：external_url '192.168.1.8:8081'</p>
+<p>9，服务的启动或停止：gitlab-ctl status/stop/start</p>
+<br />
+
+<p class="title">
+二，Linux CentOS 7 安装 GitLab（参考官网：<a href="https://about.gitlab.com/install/#centos-7" target="_blank">https://about.gitlab.com/install/#centos-7</a>）
+</p>
+<p>1，yum install -y curl policycoreutils-python openssh-server</p>
+<p>2，systemctl enable sshd</p>
+<p>3，systemctl start sshd</p>
+<p>4，firewall-cmd --permanent --add-service=http</p>
+<p>5，firewall-cmd --permanent --add-service=https</p>
+<p>6，systemctl reload firewalld</p>
+<p>7，yum -y install postfix</p>
+<p>8，systemctl enable postfix</p>
+<p>9，systemctl start postfix</p>
+<p>10，curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash</p>
+<p>11，yum -y install gitlab-ee</p>
+<p>12，修改访问地址：vim /etc/gitlab/gitlab.rb</p>
+<p>13，编译：gitlab-ctl reconfigure</p>
+<p>14，访问</p>
+<p>15，如果使用外部数据库，则打开下面的注释并修改：</p>
+<div class="code">
+    <p>gitlab_rails['db_adapter'] = "postgresql"</p>
+    <p>gitlab_rails['db_encoding'] = "utf8"</p>
+    <p>gitlab_rails['db_database'] = "postgres"</p>
+    <p>gitlab_rails['db_username'] = "postgres"</p>
+    <p>gitlab_rails['db_password'] = "***"</p>
+    <p>gitlab_rails['db_host'] = "127.0.0.1"</p>
+    <p>gitlab_rails['db_port'] = 15432</p>
+</div>
+<p>16，检查修改配置是否有效，在 reconfigure 之后查看：/opt/gitlab/embedded/service/gitlab-rails/config/database.yml</p>
+<p>17，如果出现错误：execute[/opt/gitlab/embedded/bin/initdb -D /var/opt/gitlab/postgresql/data -E UTF8] (postgresql::enable line 80</p>
+<div class="code">
+    <p>export LC_CTYPE=en_US.UTF-8</p>
+    <p>export LC_ALL=en_US.UTF-8</p>
+</div>
+<br />
+
+
+
+<p class="title">
+三，服务端的 GitLab 的配置
+</p>
+<p>1，访问：http://localhost（8080端口不能被占用，否则会出现502....，修改方法：打开下面的注释：</p>
+<p>2，unicorn['listen'] = '192.168.1.8'</p>
+<p>3，unicorn['port'] = 8081</p>
+<p>4，第一次登录会让你重置root密码（默认是：5iveL!fe）</p>
+<p>5，创建项目：点右上角的+，New project，先建一个组，选 Private，最后项目路径：http://192.168.1.8:8081/mygroup/myproject</p>
+<p>6，创建用户：test</p>
+<p>7，回到项目首页，点右上角的工具图标，选择 Memver上，给用户赋予访问的权限，角色选：Master</p>
+<p>8，禁用 80 端口：打开 nginx 的注释：nginx['enable'] = false，修改后授权：chmod -R 755 /var/opt/gitlab/gitlab-rails</p>
+<br />
+
+<p class="title">
+四，本地配置
+</p>
+
+<p>1，下载 SourceTree：<a href="https://www.sourcetreeapp.com" target="_blank">https://www.sourcetreeapp.com</a></p>
+<p>2，安装 SourceTree：需要有 Atlassia 的账户</p>
+<p>3，在本地生成公钥和私钥：打开 SourceTree 右上角的终端：ssh-keygen -t rsa -C "test@gmail.com"，全部回车</p>
+<p>4，将 cat ~/.ssh/id_rsa.pub 中的内容拷贝到 GitLab 的 Profile Settings -> SSH Keys 中，点一下 Title，保存</p>
+<p>5，测试：ssh -T -p 22 git@192.168.1.8，出现： Welcome to GitLab, test！，说明你已经有访问 GitLab 的权限</p>
+<p>6，在 SourceTree 中配置连接 GitLab，下载代码，提交 Git 仓库</p>
+<p>7，如果 GitLab 服务器上的 22 端口不能使用，则需要在本地的 .ssh 文件中添加一个 config 文件，内容是：</p>
+<div class="code">
+   <p> Host 192.168.1.8</p>
+   <p> Hostname 192.168.1.8</p>
+   <p> Port 10222</p>
+</div>
+<br />
+
+<p class="title">
+五，Mac 下安装 SourceTree
+</p>
+
+<p>1，brew cask install sourcetree</p>
+<br />
+
+<p class="title">
+六，GitLab 的备份（TODO）
+</p>
+
+<p>
+<p>1，完整备份：gitlab-rake gitlab:backup:create，会在/var/opt/gitlab/backups目录下创建一个139***_gitlab_backup.tar的完整备份；</p>
+<p>2，可以修改备份路径：vim /etc/gitlab/gitlab.rb 中的 gitlab_rails['backup_path'] = '/home/backups'</p>
+<p>3，自动备份：crontab -e，添加：0 1 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create</p>
+<br />
+
+<p class="title">
+七，GitLab 的恢复（TODO）
+</p>
+
+<p>1，停止数据服务1：gitlab-ctl stop unicorn</p>
+<p>2，停止数据服务2：gitlab-ctl stop sidekiq</p>
+<p>3，恢复：gitlab-rake gitlab:backup:restore BACKUP=139*** （这里的139***是之前备份的时间戳）</p>
+<p>4，恢复服务：gitlab-ctl start</p>
+                <h4>2020-02-06 20:22:51</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

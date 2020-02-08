@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Git 基础</h2>
+                <p class="title">
+一，Linux CentOS 下安装 Git
+</p>
+
+<p>1，安装依赖：yum -y install gcc perl-ExtUtils-MakeMaker curl-devel expat-devel gettext-devel openssl-devel zlib-devel</p>
+
+<p>2，下载：wget https://www.kernel.org/pub/software/scm/git/git-2.10.1.tar.gz</p>
+
+<p>3，解压：tar zxvf git-2.10.1.tar.gz</p>
+
+<p>4，进入：cd git-2.10.1</p>
+
+<p>5，编译：make prefix=/home/Git all</p>
+
+<p>6，安装：make prefix=/home/Git install</p>
+
+<p>7，添加环境变量：echo "export PATH=$PATH:/home/Git/bin" >> /etc/bashrc（在此文件上加一个：:/root/bin:/home/Git/bin）</p>
+
+<p>8，使环境变量生效：source /etc/bashrc</p>
+
+<p>9，验证：git --version，出现：git version 2.10.1，表示安装成功！(/home/Git/bin/git)</p>
+<br />
+
+<p class="title">
+二，Mac 下安装 Git
+</p>
+
+<p>1，brew install git</p>
+
+<p>2，验证：git --version，出现：git version 2.10.1，表示安装成功！</p>
+
+
+<br />
+
+
+<p class="title">
+    三，删除文件夹下的所有 .git 文件
+</p>
+<p>
+find . -name ".git"| xargs rm -Rf
+</p>
+
+<br />
+
+
+
+<p class="title">
+    四，升级后无法git，/usr/bin/git
+</p>
+<p>
+终端执行：xcode-select --install
+</p>
+
+<br />
+
+
+
+<p class="title">
+    五，在用户文件夹下 定义一个全局的 Git 忽略文件：.gitignore_global
+</p>
+
+<div class="code">
+    <p>
+        *~
+    </p>
+    <p>
+        .DS_Store
+    </p>
+    <p>
+        _CodeGenerateController.java
+    </p>
+    <p>
+        src/main/webapp/WEB-INF/ftl/_code
+    </p>
+    <p>
+        ......
+    </p>
+</div>
+
+<br />
+
+
+
+
+<p class="title">
+    六，用户文件夹下的 Git 配置文件：.gitconfig
+</p>
+<p>
+    <a href="images/article/article8.01.png" data-fancybox>
+        <img src="images/article/article8.01.png" width="800" />
+    </a>
+</p>
+
+<br />
+
+
+
+
+
+<p class="title">
+七，用户文件夹下的 Git 配置文件：.gitflow_export
+</p>
+<p>
+    export FLAGS_GETOPT_CMD=/Applications/Sourcetree.app/Contents/Resources/bin/getopt
+</p>
+                <h4>2020-02-06 20:43:37</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

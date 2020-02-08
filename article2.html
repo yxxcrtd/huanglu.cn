@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>JDK</h2>
+                <p class="title">一，Linux 下安装 JDK</p>
+<p>1，检查：rpm -qa | grep java (or rpm -qa | grep jdk)</p>
+<p>2，删除：yum -y remove java-*</p>
+<p>3，下载：http://www.oracle.com/technetwork/java/javase/downloads/index.html（历史版本：http://www.oracle.com/technetwork/java/archive-139210.html）</p>
+<p>4，解压：tar zxvf jdk-*</p>
+<p>5，移动：mv jdk1.8.0_101/ /home/JDK</p>
+<p>6，配置：vim /etc/profile，追加：</p>
+<div class="code">
+    <p>export JAVA_HOME=/home/JDK</p>
+    <p>export PATH=$PATH:$JAVA_HOME/bin</p>
+    <p>export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+</div >
+<p>7，生效：source /etc/profile</p>
+<p>8，验证：java -version 或 javac -version</p>
+<br/>
+
+<p class="title">二，Windows 下安装 JDK</p>
+<div class="code">
+    <p>JAVA_HOME    D:\JDK8</p>
+    <p>CLASSPATH    .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</p>
+    <p>PATH               %JAVA_HOME%\bin;</p>
+</div>
+<br/>
+
+<p class="title">三，Mac 下安装 JDK</p>
+<p>1，安装 java8：brew cask install java8</p>
+<p>2，安装最新版：brew cask install java</p>
+<p>3，设置环境变量：vim .bash_profile 或 vim .zshrc</p>
+<div class="code">
+    <p>export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home</p>
+    <p>export CLASSPATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"</p>
+    <p>export PATH="$JAVA_HOME/bin:$PATH"</p>
+</div>
+                <h4>2020-01-31 20:58:09</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+    </body>
+</html>

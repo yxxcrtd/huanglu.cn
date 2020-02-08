@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Maven & Nexus</h2>
+                <p class="title">
+    一，Linux 下 Maven 安装
+</p>
+<p>
+    1，下载：wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.zip
+</p>
+<p>
+    2，解压：unzip apache-maven-3.6.1-bin.zip
+</p>
+<p>
+    3，配置：vim /etc/profile，追加：
+</p>
+
+<div class="code">
+<p>
+    export MAVEN_HOME=/home/apache-maven-3.6.1
+</p>
+<p>
+    export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
+</p>
+</div>
+
+<p>
+    4，生效：source /etc/profile
+</p>
+<p>
+    5，验证：mvn -v
+</p>
+
+<br />
+
+
+
+<p class="title">
+    二，Mac 下 Maven 的安装 1
+</p>
+<p>
+    1，下载 bin.zip 格式，<a href="http://maven.apache.org/download.cgi" target="_blank">http://maven.apache.org/download.cgi</a>
+</p>
+<p>
+    2，将下载后的 Maven 文件夹拷贝到某目录
+</p>
+<p>
+    3，配置环境变量：vim .zshrc
+</p>
+
+<div class="code">
+<p>
+    export M2_HOME=/Users/young/apache-maven-3.6.3
+</p>
+<p>
+    export PATH=$PATH:$M2_HOME/bin
+</p>
+</div>
+
+<p>
+    4，验证：mvn -v
+</p>
+
+<br />
+
+<p class="title">
+    二，Mac 下 Maven 的安装 2
+</p>
+<p>
+    1，下载：brew install maven
+</p>
+<p>
+    2，配置文件：vim /usr/local/Cellar/maven/3.5.0/libexec/conf/settings.xml
+</p>
+<br />
+
+
+
+<p class="title">
+    四，Maven 的基本配置
+</p>
+
+<p>
+    1，修改maven仓库的存储位置，添加：&lt;localRepository&gt;/Users/young/repo&lt;/localRepository&gt;
+</p>
+
+<p>
+    2，修改 Maven 仓库镜像：
+</p>
+
+<div class="code">
+    <p>
+        &lt;mirror&gt;
+    </p>
+    <p>
+        &lt;id&gt;alimaven&lt;/id&gt;
+    </p>
+    <p>
+        &lt;name&gt;aliyun maven&lt;/name&gt;
+    </p>
+    <p>
+        &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+    </p>
+    <p>
+        &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+    </p>
+    <p>
+        &lt;/mirror&gt;
+    </p>
+</div>
+
+<br />
+
+
+<p class="title">
+    五，Maven 的使用
+</p>
+<p>
+    1，mvn clean  删除 target 目录
+</p>
+<p>
+    2，mvn compile   编译整个项目
+</p>
+<p>
+    3，mvn  install  生成 jar  包
+</p>
+<p>
+    4，mvn clean source:jar package  生成源代码
+</p>
+<p>
+    5，mvn test 跑单元测试
+</p>
+<p>
+    6，mvn deploy 打包应用
+</p>
+<p>
+    7，mvn site 生成文档站点
+</p>
+<p>
+    8，忽略测试和文档1：mvn package -D maven.test.skip=true -D maven.javadoc.skip=true
+</p>
+<p>
+    9，忽略测试和文档2：mvn package -DskipTests -DskipDocs
+</p>
+<br />
+
+
+<p class="title">
+    六，Linux 下 Nexus 安装
+</p>
+<p>
+    1，下载：wget www.sonatype.org/downloads/nexus-latest-bundle.tar.gz
+</p>
+<p>
+    2，解压：tar zxvf nexus-latest-bundle.tar.gz
+</p>
+<p>
+    3，移动1：mv /root/nexus-2.13.0-01/* /home/Nexus
+</p>
+<p>
+    4，移动2：mv /root/sonatype-work /home/
+</p>
+<p>
+    5，进入：cd /home/Nexus/bin
+</p>
+<p>
+    6，用户：export RUN_AS_USER=root
+</p>
+<p>
+    7，启动：./nexus start
+</p>
+<p>
+    8，访问：http://127.0.0.1:8081/nexus（admin/admin123）
+</p>
+<p>
+    9，设置：左侧的Repositories -> ......
+</p>
+                <h4>2020-02-07 17:55:06</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

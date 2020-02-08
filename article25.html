@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>MySQL 基础</h2>
+                <p class="title">一，Linux CentOS 6 下的安装</p>
+<p>1，安装：yum -y install mysql mysql-server mysql-devel</p>
+<p>2，修改字符集：vim /etc/my.cnf，在[mysqld]中添加：default-character-set=utf8</p>
+<p>3，设置开机启动：chkconfig mysqld on</p>
+<p>4，启动服务：/etc/rc.d/init.d/mysqld start（service mysqld status / start / stop）</p>
+<p>5，检验字符集：show variables like 'character_set_%';   show variables like 'collation_%';</p>
+<p>6，设置 root 密码：mysql -u root，设置密码：set password for root@localhost=password('123456');</p>
+<br />
+
+
+<p class="title">二，Linux CentOS 7 下的安装</p>
+<p>1，</p>
+<p>2，</p>
+<p>3，</p>
+<p>4，</p>
+<p>5，</p>
+<br />
+
+
+<p class="title">三，Mac 下的安装</p>
+<p>1，安装：brew install mysql</p>
+<p>2，启动：brew services start mysql</p>
+<p>3，配置：mysql_secure_installation（设置密码等）</p>
+<p>4，登录：mysql -uroot -p</p>
+<br />
+
+
+<p class="title">四， rpm 方式安装</p>
+<p>1，先检查自带的 mysql：yum list installed | grep mysql</p>
+<p>2，卸载：yum -y remove mysql-libs.x86-64</p>
+<p>3，下载：rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm</p>
+<p>4，查看下载的源：yum repolist all | grep mysql</p>
+<p>5，先安装 yum 管理工具，再关闭不需要的源：yum -y install yum-utils</p>
+<p>6，关闭5.5的源：yum-config-manager --disable mysql55-community</p>
+<p>7，关闭5.6的源：yum-config-manager --disable mysql56-community</p>
+<p>8，打开5.7的源：yum-config-manager --enable mysql57-community-dmr</p>
+<p>9，安装：yum -y install mysql-community-server</p>
+<p>10，启动：service mysqld start，出现：Initializing MySQL database: [OK]共3个，表示初始化数据库成功</p>
+<p>11，如果出现错误1：[Warning] TIMESTAMP with implicit DEFAULT value is deprecated...，vim /etc/my.cnf，添加：explicit_defaults_for_timestamp=true</p>
+<p>12，如果出现错误2：[ERROR] --initialize specified but the data directory has files in it. Aborting...，rm -rf /var/lib/mysql/*</p>
+<p>13，只要服务启动成功后（其实就是初始化数据库），再停止服务：service mysqld stop</p>
+<p>14，进入安全模式：mysqld_safe --skip-grant-tables& - mysql - use mysql</p>
+<p>15，重新打开一个终端，进入数据库：mysql -u root，进入mysql数据库，修改密码：UPDATE user SET authentication_string=password("123456") WHERE user="root";flush privileges;</p>
+<p>16，退出数据库，再次登录：mysql -u root -p</p>
+<p>17，再次设置密码：SET PASSWORD=PASSWORD('123456');</p>
+<p>18，重启服务：service mysqld restart</p>
+<br />
+
+
+
+<p class="title">五，源代码方式安装</p>
+<p>1，下载：wget http://cdn.mysql.com/Downloads/MySQL-5.7/mysql-5.7.13.tar.gz</p>
+<p>2，先检查：rpm -qa | grep mysql</p>
+<p>3，如果有就删除：yum -y remove mysql...*</p>
+<p>4，安装依赖：yum -y install make gcc-c++ cmake bison-devel ncurses-devel</p>
+<p>5，解压：tar xvf mysql-5.7.13.tar.gz</p>
+<p>6，进去：cd mysql-5.7.13</p>
+<p>7，CMAKE：cmake -DCMAKE_INSTALL_PREFIX=/root/mysql-5.7.13 -DMYSQL_DATADIR=/mysqlData/data  -DSYSCONFDIR=/usr/local/mysql  -DMYSQL_USER=mysql -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_MEMORY_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock -DMYSQL_TCP_PORT=3306 -DENABLED_LOCAL_INFILE=1 -DENABLE_DOWNLOADS=1 -DWITH_PARTITION_STORAGE_ENGINE=1 -DEXTRA_CHARSETS=all -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_DEBUG=0 -DMYSQL_MAINTAINER_MODE=0 -DWITH_SSL:STRING=bundled -DWITH_ZLIB:STRING=bundled  -DWITH_BOOST=boost</p>
+<p>8，编译：make</p>
+<p>9，编译安装：make install</p>
+<p>10，检查是否有mysql用户：cat /etc/passwd</p>
+<p>11，检查是否有mysql用户组：cat /etc/group</p>
+<p>12，如果没有就创建：groupadd mysql、useradd -g mysql mysql</p>
+<p>13，修改权限：chown -R mysql:mysql /home/MySQL</p>
+<p>14，进入/home/MySQL，执行初始化配置脚本并创建系统自带的数据库和表：scripts/mysql_install_db --basedir=/home/MySQL --datadir=/home/MySQL/data --user=mysql</p>
+<p>15，拷贝mysql服务到init.d目录：cp support-files/mysql.server /etc/init.d/mysql</p>
+<p>16，设置开机启动：chkconfig mysqld on</p>
+<p>17，开启服务：/etc/rc.d/init.d/mysqld start（service mysqld start、service msyqld status、service mysqld stop）</p>
+<p>18，设置root密码：mysql -u root，设置密码：set password for root@localhost=password('123456');</p>
+<p>19，添加远程登录：grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;flush privileges;</p>
+<p>20，设置环境变量：</p>
+<div class="code">
+    <p>1：编辑环境变量：vim /etc/profile</p>
+    <p>2：直接在JDK的PATH后添加，即：export PATH=$PATH:$JAVA_HOME/bin:/home/MySQL/bin:$PATH</p>
+    <p>3：让环境变量生效：source /etc/profile</p>
+</div>
+<br />
+
+
+
+<p class="title">六，备份与还原</p>
+<p>1，备份：mysqldump -h127.0.0.1 -u root -p mysql > /root/Desktop/db.sql;</p>
+<p>2，还原：source /root/Desktop/db.sql;</p>
+<br />
+
+
+
+<p class="title">七，忘记密码</p>
+<p>1，关闭服务：service mysqld stop</p>
+<p>2，进入安全模式：mysqld_safe --user=root --skip-grant-tables</p>
+<p>3，进入数据库：msyql -u root -p</p>
+<p>4，进入mysql库：use mysql</p>
+<p>5，重置密码：update user set password=password("123456") where user="root";</p>
+<p>6，flush： flush privileges;</p>
+<br />
+
+
+
+<p class="title">八，让MySQL不区分大小写</p>
+<p>1，检查：show variables like "%case%"; lower_case_table_names = 0 区分；1/2 不区分（1-Windows；2-Mac）</p>
+<p>2，设置：vim /etc/my.cnf，添加：lower_case_table_names=1</p>
+<br />
+
+
+
+<p class="title">九，设置远程登录</p>
+<p>1，grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;</p>
+<p>2，flush privileges;</p>
+<br />
+
+
+
+<p class="title">十，创建数据库</p>
+<p>1，CREATE DATABASE jira DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci</p>
+<p>2，验证：show create database jira; 如果出现utf8mb4，OK。</p>
+<br />
+
+
+
+<p class="title">十一，MySQL 5.6 修改密码</p>
+<p>1，update user set password=password(‘123456’) where user=’root’;</p>
+<p>2，flush privileges;</p>
+                <h4>2020-02-08 10:27:43</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Jenkins 基础</h2>
+                <p class="title">一，Linux CentOS 6 下安装 Jenkins</p>
+<p>1，下载仓库：wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</p>
+<p>2，安装仓库：rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key</p>
+<p>3，安装：yum -y install jenkins</p>
+<p>4，启动服务：systemctl start/stop/restart jenkins.service 或者：/etc/init.d/jenkins start</p>
+<p>5，服务自启动：chkconfig jenkins on</p>
+<p>6，修改配置：vim /etc/sysconfig/jenkins</p>
+<br />
+
+
+<p class="title">二，Linux CentOS 7 下安装 Jenkins</p>
+<p>1，</p>
+<p>2，</p>
+<p>3，</p>
+<p>4，</p>
+<p>5，</p>
+<br />
+
+
+<p class="title">三，Mac 下安装 Jenkins</p>
+<p>1，brew install jenkins</p>
+<p>2，brew services start jenkins 或者直接 jenkins</p>
+<p>3，输入：http://localhost:8080，即可访问</p>
+<p>4，密码：cat /root/.jenkins/secrets/initialAdminPassword或：cat /var/lib/jenkins/secrets/initialAdminPassword</p>
+<p>5，日志位置： tailf /var/log/jenkins/jenkins.log </p>
+<br />
+
+
+<p class="title">四，Jenkins 运行</p>
+<p>1，启动一：service jenkins start --httpPort=8081</p>
+<p>2，启动二：java -jar /usr/lib/jenkins/jenkins.war --httpPort=8081</p>
+<br />
+
+
+<p class="title">五，Jenkins 配置</p>
+<p>1，第一次访问要解锁：密码在启动日志中、或：/root/.jenkins/secrets/initialAdminPassword</p>
+<p>2，在 Customize Jenkins 中选择：手动安装插件</p>
+<p>3，设置：管理员的账户、密码和邮件地址</p>
+<p>4，配置：系统管理 -> Global Tool Configuration -> 配置 JDK 和 Maven</p>
+<br />
+
+
+<p class="title">六，Jenkins 使用</p>
+<p>基础1，关联本地的JDK 和 Maven</p>
+<p>基础2，安装插件：Git、Gitlab、Gitlab Hook等</p>
+<p>1，创建一个 Maven 风格的项目</p>
+<p>2，填写项目名称</p>
+<p>3，丢弃旧的构建，3个参数必须都要写，否则无效：选 Log Rotation ；保持构建的天数：30；保持构建的最大个数：30。</p>
+<p>4，源码管理 -> 选Git；填写 Repository URL；选择授权；下面的Branches to build 默认是：*/master</p>
+<p>5，构建触发器：Build when a change is pushed to GitLab. GitLab webhook URL: http://1.2.3.4:15436/project/project_name</p>
+<p>6，Build -> 1，pom.xml；2，clean package -Dmaven.test.skip -e -U</p>
+<p>7，Post Steps -> Run regardles of build result </p>
+<p>8，配置 SSH：在首页点 Credentials，进去点 Update，Scope 选 Global (…) ，用户名：邮件地址，Private Key 来自 cat ~/.ssh/id_rsa</p>
+<p>9，构建触发器打开勾子（hook），GitHub hook trigger for GITScm polling</p>
+<p>10，构建设置 -> E-mail Notification，输入email地址</p>
+<br />
+
+
+<p class="title">七，Jenkins 配置邮件</p>
+<p>1，首页 -> 系统管理 -> 系统设置 -> 邮件通知</p>
+<p>2，SMTP服务器 -> smtp.qq.com</p>
+<p>3，用户默认邮件后缀 -> @qq.com</p>
+<p>4，使用SMTP认证</p>
+<p>5，用户名 -> 123456789@qq.com</p>
+<p>6，密码 -> …….</p>
+<p>7，使用SSL协议 -> 钩上</p>
+<p>8，SMTP端口 -> 465</p>
+<p>9，Reply-To Address -> 123456789@qq.com</p>
+<p>10，字符集 -> UTF-8</p>
+<br />
+
+
+<p class="title">八，Jenkins 问题</p>
+<p>1，无法登录的时候，修改系统账户下的 .jenkins/config.xml，将useSecurity 设为false</p>
+<p>2，设置登录的配置</p>
+<p>
+    <a href="images/article/article23.01.png" data-fancybox>
+        <img src="images/article/article23.01.png" width="800" />
+    </a>
+</p>
+<p>3，设置国内镜像：Plugin Manager  -> Advanced  -> Update Site  -> https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json</p>
+<p>4，如果说Java 的编辑级别太低，是之前没有删除低版本的Java</p>
+<p>5，如果启动的时候显示：Jenkins bash: /usr/bin/java: No such file or directory，建一个软连接：ln -s /home/JDK8/bin/java /usr/bin/java（检查软链接有没有生效： which java）</p>
+                <h4>2020-02-07 19:56:41</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

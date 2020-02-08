@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>安装Mac下的包安装工具 Homebrew</h2>
+                <p>1，终端执行：/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”（该命令在官网获取：<a href="https://brew.sh" target="_blank">https://brew.sh</a>）</p>
+
+<p>2，安装 brew 增强，步骤1：brew tap phinze/cask</p>
+
+<p>3，安装 brew 增强，步骤2：brew install brew-cask</p>
+
+<p>4，查看安装版本：brew -v，出现：Homebrew 1.1.10 ...，表示安装成功！</p>
+
+<p>5，软件更新：brew update && brew upgrade && brew cask upgrade && brew cleanup（建议加到终端的启动项中，这样能保证软件最新和清除安装后的文件包，保持系统最新。）</p>
+
+<p>6，查找软件：brew search 或 info ‘需要安装的软件*’</p>
+
+<p>7，更新软件：brew upgrade 或 reinstall redis</p>
+
+<p>8，卸载软件：brew uninstall / remove ‘…’</p>
+
+<p>9，查询已安装的软件：brew 或 brew cask list</p>
+
+<p>10，清理安装包：brew cleanup</p>
+
+<p>11，查看更新：brew outdated && brew cask outdated</p>
+
+<p>12，不建议修改 Homebrew 的国内源，一样的慢！</p>
+
+<div class="code">
+
+    <p>安装微信：brew cask install electronic-wechat（非官方版，最好通过 App Store 安装）</p>
+
+    <p>安装 QQ：brew cask install qq</p>
+
+    <p>安装 Java：brew cask install java</p>
+
+    <p>安装 Tomcat：brew install tomcat</p>
+
+    <p>安装 Git：brew install git</p>
+
+    <p>安装 Github 客户端：brew cask install github-desktop</p>
+
+    <p>安装 PostgreSQL 数据库：brew install postgresql</p>
+
+    <p>安装 PostgreSQL 客户端：brew cask install psequel</p>
+
+    <p>安装 Redis：brew install redis</p>
+
+    <p>安装 Redis 客户端：brew cask install rdm</p>
+
+    <p>安装数据库客户端：brew cask install dbeaver-community</p>
+
+    <p>安装 SVN：brew install subversion</p>
+
+    <p>安装 Intellij-IDEA 免费的社区版：brew cask install intellij-idea-ce</p>
+
+    <p>安装 Firefox 浏览器：brew cask install firefox</p>
+
+    <p>安装微信开发者工具：brew cask install wechatwebdevtools</p>
+
+    <p>安装图片压缩工具：brew cask install imageoptim</p>
+
+    <p>安装 Postman：brew cask install postman（也可以使用终端模拟：curl -H "Content-Type:application/json" -X POST -d '{"user":"admin", "passwd":"123456"}' http://127.0.0.1:9200/posts/post/1）</p>
+
+    <p>安装无损图片压缩工具：brew cask install imageoptim</p>
+
+    <p>安装视频压缩工具：brew cask install handbrake</p>
+
+    <p>安装TF写卡工具：brew cask install balenaetcher</p>
+
+    <p>安装数据恢复工具：brew cask install testdisk（使用步骤1：sudo su -；使用步骤2：testdisk）</p>
+
+    <p>VPN：brew cask install viscosity （TODO 无法连接 ！！！）</p>
+</div>
+                <h4>2020-02-07 18:34:41</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

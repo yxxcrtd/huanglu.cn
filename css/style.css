@@ -1,0 +1,206 @@
+@CHARSET "UTF-8";
+
+html body {
+    width: 100%;
+    margin: 0;
+    font: normal 14px/1.618 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC', 'EucrosiaUPC', sans-serif;
+    word-wrap: break-word;
+    word-break: break-word;
+    background-color: #f9f9f9;
+}
+
+a {
+    color: #797c80;
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover, .current {
+    color: #18191a;
+    font-weight: 600;
+    text-decoration: none;
+}
+a:visited {
+
+}
+
+ul {
+    list-style: none;
+}
+
+h2, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* 块及元素在所有版本的浏览器中生效，H5默认 */
+header, nav, section, footer, aside, article, figure {
+    display: block;
+}
+
+/* 所有居中的div */
+nav, footer, #culture, article {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* 顶部 */
+header {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+
+    /* 固定顶部 */
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0; /* 控制 position: fixed不居中 */
+    right: 0; /* 控制 position: fixed不居中 */
+    box-shadow: 0 0 5px 0 rgba(114,144,179,.06);
+    background-color: #f9f9f9;
+}
+
+#logo {
+    float: left;
+    width: 300px;
+    height: 60px;
+    background: url("../images/logo.png") no-repeat scroll 0 50% / 170px 38px;
+}
+nav ul {
+    float: right;
+}
+nav ul li {
+    float: left;
+    width: 100px;
+    text-align: right;
+}
+
+#slider {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+article {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+/* 添加一个与 articleList 重复的 categoryList 是为了点击分类的时候不使用 public.js 中的 $("#articleList").load */
+#articleList, #articleDetail, #categoryList {
+    float: left;
+    width: 75%;
+}
+#articleList li, #categoryList li {
+    height: 200px;
+}
+#articleList li, #articleDetail, #categoryList li {
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #fff; /* 让每个 li 显示成一块 */
+}
+#articleDetail h2, #articleDetail h4 {
+    margin: 30px;
+}
+#articleDetail p, #articleDetail .code {
+    margin: 20px 30px;
+}
+#articleDetail .title {
+    font-size: 16px;
+    font-weight: 500;
+}
+#articleDetail .code {
+    background-color: #000;
+    color: #0f0;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 1px 0;
+}
+#articleDetail .indent {
+    text-indent: 2em;
+}
+#articleDetail .code .comment {
+    color: #797c80;
+}
+
+
+/* 文章详情中的表格简单样式 */
+table {
+    border-collapse: collapse;
+    margin-left: 60px;
+    width: 500px;
+}
+table tr td {
+    border: 1px solid #797c80;
+}
+
+
+.articleBlockLeft {
+    float: left;
+    line-height: 200px; /* 左边的图片居中 */
+    margin-right: 20px;
+}
+.articleBlockLeft img {
+    vertical-align: middle; /* 左边的图片居中 */
+}
+
+.articleBlockRight {
+    float: left;
+    width: 580px; /* 900 - 260 - 20 - 20 - 20 */
+    height: 160px; /* 200 - 20 - 20 */
+    padding: 20px;
+    position: relative;
+}
+.articleBlockRight a, #articleDetail h2 {
+    font-size: 19px;
+    font-weight: 500;
+}
+.articleBlockRight h3, #articleDetail h3 {
+    font-size: 16px;
+    font-weight: 300;
+    color: #797c80;
+}
+.articleBlockRight h4 {
+    position: absolute;
+    bottom: 0;
+}
+
+.articleBlockRight h4, #articleDetail h4 {
+    font-size: 12px;
+    font-weight: 400;
+    color: #aaaeb3;
+}
+
+
+#articleAside {
+    float: left;
+    width: 25%;
+    color: #797c80;
+}
+
+#articleAside div {
+    padding-bottom: 15px;
+}
+#articleAside p {
+    margin-left: 50px;
+}
+
+#articleAside h2 {
+    margin-left: 50px;
+}
+
+
+
+
+
+#culture {
+    margin-bottom: 20px;
+    height: 200px;
+    background-color: #797c80;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+	color: #797c80;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>PostgreSQL 基础</h2>
+                <p class="title">
+    一，Linux CentOS 7 安装 PostgreSQL 数据库
+</p>
+
+<p>1，安装yum库：rpm -ivh https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm （rpm的寻找地址：https://yum.postgresql.org/repopackages.php）</p>
+<p>2，查看：yum list postgres*</p>
+<p>3，安装：yum -y install postgresql11-server.x86_64 postgresql11-contrib.x86_64</p>
+<p>4，初始化数据库：/usr/pgsql-11/bin/postgresql-11-setup initdb （位置：/var/lib/pgsql/11/data/）</p>
+<p>5，数据库服务：systemctl start / enable / restart / status postgresql-11.service</p>
+<p>6，进入数据库：su - postgres -> psql -p 15432</p>
+<p>7，修改 postgres 密码：\password postgres（退出：\q）</p>
+<p>8，修改配置1：vim /var/lib/pgsql/11/data/postgresql.conf，修改：listen_addresses = '*或固定IP' 和 port = 5432</p>
+<p>9，修改配置2：vim /var/lib/pgsql/11/data/pg_hba.conf，在ipv4下添加：host    all             all             0.0.0.0/0        md5</p>
+<p>10，如果出现数据库连接的，修改：vim /var/lib/pgsql/11/data/pg_hba.conf，将上面第9条中的md5上面的 ident修改为：trust</p>
+
+<br />
+
+
+
+<p class="title">
+    二，Mac 安装 PostgreSQL 数据库
+</p>
+<p>1，安装：brew install postgresql，安装之后默认服务是启动的，无需启动，启动方法：brew services start/stop/restart postgresql</p>
+<p>2，查看版本：pg_ctl -V</p>
+<p>3，登录终端：（当前用户就是超级用户，类似默认的：postgres）：psql -U young -h localhost -d postgres -p 15432</p>
+<p>4，修改密码：\password（localhost-young-123456-postgres；localhost-home-123456-home）</p>
+<p>5，安装位置：/usr/local/var/postgres</p>
+<p>6，配置文件：/usr/local/var/postgres/postgresql.conf</p>
+<p>7，/usr/local/var/postgres start</p>
+<p>8，退出终端：\q</p>
+
+<br />
+
+
+<p class="title">
+    三，PostgreSQL 数据库 的备份
+</p>
+<div class="code">
+    <p>
+        /usr/pgsql-10/bin/pg_dump -h 1.2.3.4 -p 9839 -U pgis pgis > 181.bak
+    </p>
+</div>
+<br />
+
+
+<p class="title">
+    四，基础查询
+</p>
+
+<p>1，数据库版本：select version(); 输出：”PostgreSQL 8.4.0, compiled by Visual C++ build 1400, 32-bit” </p>
+<p>2，当前日期：select current_date; 输出：”2020-02-07” </p>
+<p>3，当前时间：select now(); 输出：”2009-11-28 21:49:18.125+08” </p>
+<p>4，当前星期：select date_part('dow', date 'now'); 输出：”6” (今天是星期六) </p>
+<p>5，当前小时：select date_part('hour', timestamp 'now'); 输出：”21” </p>
+<p>6，当前分钟：select date_part('minutes', timestamp 'now'); 输出：”49” </p>
+<p>7，当前秒：select date_part('seconds', timestamp 'now'); 输出：”18.125” </p>
+<p>8，时间差：select age(current_date, '2009-11-01'); 输出：”27 days” </p>
+<p>9，查看当前数据库的连接：select count(1) from pg_stat_activity; </p>
+<p>10，字符串替换：select replace('wabbit_season', 'it', 'ithunting'); 输出：”wabbit_hunting_season” </p>
+<p>11，字符串截取：select substr('wabbit_duck_season', 7, 11); 输出：”_duck_seaso” </p>
+<p>12，前一周的周五：select current_date - cast(extract(dow from current_timestamp) as int2) - 2;  </p>
+                <h4>2020-02-07 10:50:28</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
