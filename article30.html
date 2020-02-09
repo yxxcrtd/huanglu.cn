@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>SkyWalking 基础</h2>
+                <p class="title">一，Linux centOS 7 / RedHat 7 下安装 SkyWalking </p>
+<p>1，下载：http://mirrors.tuna.tsinghua.edu.cn/apache/skywalking/6.4.0/apache-skywalking-apm-6.4.0.tar.gz</p>
+<p>2，解压：tar -xvf apache-skywalking-apm-6.4.0.tar</p>
+<p>3，进入解压后的文件：cd apache-skywalking-apm-bin/</p>
+<p>4，修改配置：vim config/application.yml</p>
+<p>5，注释 storage 中的 h2 部分：在每行开头添加一个：#</p>
+<p>6，打开 storage 中的 elasticsearch 部分：去掉每行之前的：#</p>
+<p>7，在 storage 中的 elasticsearch 下面的 homeSpace 后面的双引号内添加与 ElasticSearch 中对应的 myskywalking：nameSpace: ${SW_NAMESPACE:”myskywalking"} </p>
+<p>8，保存并退出：:wq!</p>
+<p>9，临时启动：./bin/startup.sh</p>
+<p>10，作为服务启动：sh ./bin/startup.sh -d</p>
+<p>11，访问：http://192.168.90.82:8080</p>
+<p>12，如果无法访问，则需要到 logs 目录下查看具体的日志</p>
+<br />
+
+
+<p class="title">二，Mac 安装 SkyWalking</p>
+<p>1，GitHub 地址：https://github.com/apache/skywalking</p>
+<p>2，下载zip 或 tar.gz 格式：http://skywalking.apache.org/downloads/</p>
+<p>3，修改配置：vim config/application.yml</p>
+<div class="code">
+    <p>1，注释 h2 的 storage 部分</p>
+    <p>2，打开 elasticsearch 的 storage 部分</p>
+    <p>3，在 nameSpace: ${SW_NAMESPACE:"myskywalking"} ，这里的 myskywalking 是 ElasticSearch 中的 cluster_name，具体配置：vim /usr/local/etc/elasticsearch/elasticsearch.yml 中的：cluster.name: myskywalking</p>
+</div>
+<p>4，启动：./bin/startup.sh</p>
+<p>5，访问：http://localhost:8080</p>
+<br />
+
+
+
+<p class="title">三，IDEA 中 配置：SkyWalking</p>
+<p>1，将下载的 apache-skywalking-apm-bin 中的agent 复制到 IDEA 中的一个 Module 中，如图：</p>
+<p>
+    <a href="images/article/article30.01.png" data-fancybox>
+        <img src="images/article/article30.01.png" width="800" />
+    </a>
+</p>
+<p>2，在 run -> Edit Configurations … 配置 VM options：</p>
+<p>
+    <a href="images/article/article30.02.png" data-fancybox>
+        <img src="images/article/article30.02.png" width="800" />
+    </a>
+</p>
+<p>3，具体内容如下：</p>
+<div class="code">
+    <p>-javaagent:/Users/young/Workspaces/spring-cloud/microservice-skywalking/agent/skywalking-agent.jar</p>
+    <p>-Dskywalking.agent.service_name=microservice-user-consumer</p>
+    <p>-Dskywalking.collector.backend_service=localhost:11800</p>
+</div>
+<p>4，注释：</p>
+<div class="code">
+    <p>-javaagent：用于指定探针路径</p>
+    <p>-Dskywalking.agent.service_name：用于重写 agent/config/agent.config 配置文件中的服务名</p>
+    <p>-Dskywalking.collector.backend_service：用于重写 agent/config/agent.config 配置文件中的服务地址</p>
+</div>
+<br />
+
+
+
+<p class="title">四，Java 命令行启动方式</p>
+<div class="code">
+<p>java -javaagent:/path/to/skywalking-agent/skywalking-agent.jar -Dskywalking.agent.service_name=nacos-provider -Dskywalking.collector.backend_service=localhost:11800 -jar yourApp.jar</p>
+</div>
+
+<br />
+
+
+
+<p class="title">五，Tomcat 方式部署配置</p>
+<p>1，修改 Tomcat 配置文件：vim /bin/catalina.sh</p>
+<p>2，在文件的第一行添加下面两行：</p>
+<div class="code">
+     <p>CATALINA_OPTS="$CATALINA_OPTS -javaagent:/home/apache-skywalking-apm-bin/skywalking-agent.jar”;</p>
+     <p> export CATALINA_OPTS</p>
+</div>
+
+<br />
+
+
+<p class="title">六，jar 方式启动</p>
+<div class="code">
+     <p>nohup java -javaagent:/home/apache-skywalking-apm-bin/agent/skywalking-agent.jar -jar eureka-server-0.0.1-SNAPSHOT.jar &</p>
+</div>
+
+<br />
+
+
+<p class="title">七，配置文件详解 /config/agent.config（参考：<a href="https://github.com/apache/skywalking/blob/master/docs/en/setup/service-agent/java-agent/README.md" target="_blank">https://github.com/apache/skywalking/blob/master/docs/en/setup/service-agent/java-agent/README.md</a>）</p>
+
+<p>
+    <a href="images/article/article30.03.png" data-fancybox>
+        <img src="images/article/article30.03.png" width="800" />
+    </a>
+</p>
+                <h4>2020-02-09 18:58:58</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
