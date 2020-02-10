@@ -40,7 +40,12 @@
 <p>9，访问：http://192.168.90.82:5601</p>
 <p>10，配置步骤1：打开 Management，点 Kibana 的 Index Patterns，然后：Create index pattern，在 index-name-* 的文本框中输入：test*</p>
 <p>11，Net Step，在 下拉框中选择：@timestamp，Create index pattern。</p>
-<p>12，配置步骤2：打开 Discover，在左边 * 的下拉框中选择 zhongzhai*，然后在上面的 >_ 后面输入您要查找的关键字。</p>
+<p>12，配置步骤2：打开 Discover，在左边 * 的下拉框中选择 zhongzhai*，然后在上面的 >_ 后面输入您要查找的关键字，查询结果如下：</p>
+<p>
+    <a href="images/article/article29.01.png" data-fancybox>
+        <img src="images/article/article29.01.png" width="800" />
+    </a>
+</p>
 <br />
 
 
@@ -50,7 +55,34 @@
 <p>3，临时启动：kibana</p>
 <p>4，后台启动：brew services start kibana</p>
 <p>5，访问：http://localhost:5601</p>
-                <h4>2020-02-09 18:18:26</h4>
+<br />
+
+
+<p class="title">三，整合 Spring Cloud</p>
+<p>1，在需要添加日志的 Module 中的 spring-boot-starter-web 中排除自带的日志框架logback，配置如下：</p>
+<p>
+    <a href="images/article/article29.02.png" data-fancybox>
+        <img src="images/article/article29.02.png" width="800" />
+    </a>
+</p>
+
+<p>2，在 resources 目录下的 log4j2.xml 中添加 Socket 节点：</p>
+<p>
+    <a href="images/article/article29.03.png" data-fancybox>
+        <img src="images/article/article29.03.png" width="800" />
+    </a>
+</p>
+
+<p>3，在需要打印日志的代码中，使用：</p>
+<div class="code">
+    <p>import org.apache.logging.log4j.LogManager;</p>
+    <p>import org.apache.logging.log4j.Logger;</p>
+    <br />
+    <p>private Logger logger = LogManager.getLogger(TestController.class);</p>
+    <br />
+    <p>logger.info(“这里是需要输出的日志......");</p>
+</div>
+                <h4>2020-02-10 13:09:37</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>

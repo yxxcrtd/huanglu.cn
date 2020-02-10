@@ -45,6 +45,9 @@
     <p>1，添加用户：groupadd elsearch</p>
     <p>2，设置密码：useradd elsearch -g elsearch -p 123456</p>
     <p>3，更改 Elasticsearch 的所属用户及组：sudo chown -R elsearch:elsearch /home/elasticsearch-6.8.4/bin/elasticsearch</p>
+    <p>4，启动：su elsearch</p>
+    <p>5，启动：sh /home/elasticsearch-6.8.4/bin/elasticsearch -d</p>
+    <p>6，验证：curl localhost:9200或浏览器打开：http://192.168.90.82:9200</p>
 </div>
 <br />
 
@@ -81,7 +84,7 @@
 <div class="code">
     <p>  修改：因为不支持SecComp，所以修改如上面：1.8 和 1.9</p>
 </div>
-                <h4>2020-02-08 21:27:45</h4>
+                <h4>2020-02-10 12:56:51</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>

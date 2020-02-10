@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Spring boot 发布到 Docker</h2>
+                <p class="title">一，服务端 修改 Docker 配置文件</p>
+<p>1，添加文件：vim /lib/systemd/system/docker.service，内容如下：</p>
+<div class="code">
+    <p>ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:15437 -H unix:///var/run/docker.sock</p>
+</div>
+<p>2，systemctl daemon-reload</p>
+<p>3，systemctl restart docker.service</p>
+<br />
+
+<p class="title">二，IDEA 连接远程 Docker</p>
+<p>1，在 IDEA 中安装 Docker 插件：Docker</p>
+<p>2，IDEA 重启后，修改 TCP socket：tcp://1.2.3.4:15437</p>
+<p>3，删除 Certificates folder：后面文本框中的内容</p>
+<p>4，出现：Connection successufl 即可</p>
+<br />
+
+<p class="title">三，Spring Boot 项目中增加 maven 插件（即在 pom.xml 添加一个 build）</p>
+<div class="code">
+    <p>&lt;plugin&gt;</p>
+
+    <p class="indent">&lt;groupId&gt;com.spotify&lt;/groupId&gt;</p>
+    <p class="indent">&lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;&lt;!--https://github.com/spotify/docker-maven-plugin--&gt;</p>
+    <p class="indent">&lt;version>1.2.1&lt;/version&gt;</p>
+
+
+    <p class="indent">&lt;configuration&gt;</p>
+    <p class="indent">&lt;imageName&gt;${project.artifactId}&lt;/imageName&gt;</p>
+    <p class="indent">&lt;forceTags&gt;true&lt;/forceTags&gt;</p>
+    <p class="indent"> &lt;imageTags&gt;</p>
+    <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;imageTag&gt;${project.version}&lt;/imageTag&gt;</p>
+    <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;imageTag&gt;latest&lt;/imageTag&gt;</p>
+    <p class="indent">&lt;/imageTags&gt;</p>
+    <p class="indent">&lt;dockerDirectory&gt;src/main/docker&lt;/dockerDirectory&gt;</p>
+    <p class="indent">&lt;dockerHost&gt;http://1.2.3.4:15437&lt;/dockerHost&gt;</p>
+    <p class="indent">&lt;resources&gt;</p>
+    <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;resource&gt;</p>
+    <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;targetPath&gt;/&lt;/targetPath&gt;</p>
+    <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;directory&gt;${project.build.directory}&lt;/directory&gt;</p>
+    <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;include&gt;${project.build.finalName}.jar&lt;/include&gt;</p>
+    <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/resource&gt;</p>
+    <p class="indent">&lt;/resources&gt;</p>
+    <p class="indent">&lt;/configuration&gt;</p>
+
+    <p>&lt;/plugin&gt;</p>
+</div>
+<br />
+
+<p class="title">四，在src/main目录下创建docker目录，并创建Dockerfile文件</p>
+<div class="code">
+    <p>FROM java:8</p>
+    <p>ADD *.jar app.jar</p>
+    <p>EXPOSE 15451</p>
+    <p>ENTRYPOINT ["java","-jar","/app.jar"]</p>
+</div>
+<br />
+
+<p class="title">五，发布。在 Spring Boot 的终端执行：</p>
+<div class="code">
+    <p>mvn clean package docker:build</p>
+</div>
+<br />
+
+<p class="title">六，在 Linux 终端运行：</p>
+<div class="code">
+    <p>docker run ‘镜像ID’</p>
+    <p>docker run -d -p 15451:15451 ‘镜像ID’ -t</p>
+</div>
+                <h4>2020-02-09 21:26:44</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

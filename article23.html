@@ -64,7 +64,7 @@
 
 <p class="title">五，Jenkins 配置</p>
 <p>1，第一次访问要解锁：密码在启动日志中、或：/root/.jenkins/secrets/initialAdminPassword</p>
-<p>2，在 Customize Jenkins 中选择：手动安装插件</p>
+<p>2，在 Customize Jenkins 中选择：不安装任何插件</p>
 <p>3，设置：管理员的账户、密码和邮件地址</p>
 <p>4，配置：系统管理 -> Global Tool Configuration -> 配置 JDK 和 Maven</p>
 <br />
@@ -73,6 +73,8 @@
 <p class="title">六，Jenkins 使用</p>
 <p>基础1，关联本地的JDK 和 Maven</p>
 <p>基础2，安装插件：Git、Gitlab、Gitlab Hook等</p>
+<p>基础3，安装 Maven 插件：Jenkins -> Manage Jenkins -> Manage Plugins -> Maven Integration plugin</p>
+<p>基础4，安装 SVN 插件：Jenkins -> Manage Jenkins -> Manage Plugins -> Subversion Plug-in</p>
 <p>1，创建一个 Maven 风格的项目</p>
 <p>2，填写项目名称</p>
 <p>3，丢弃旧的构建，3个参数必须都要写，否则无效：选 Log Rotation ；保持构建的天数：30；保持构建的最大个数：30。</p>
@@ -86,7 +88,21 @@
 <br />
 
 
-<p class="title">七，Jenkins 配置邮件</p>
+<p class="title">七，配置项目</p>
+<p>1，Source Code Management，选择 Subversion ，在 Repository URL 中数代码仓库地址，然后添加：Credentials，返回选择你的 svn 账户</p>
+<p>2，Build Triggers 中勾选 Poll SCM，输入：H/5 * * * * ，5分钟自动构建一次</p>
+<p>3，Build 中，Root POM 是：pom.xml，Goals and options 是：clean package -Dmaven.test.skip -e -U</p>
+<p>4，Post Steps 选择 Execute shell，Command中内容为：</p>
+<div class="code">
+    <p>BUILD_ID=DONTKILLME</p>
+    <p>/bin/bash /home/deploy.sh</p>
+</div>
+<p>5，Build Settings 勾选：E-mail Notification，并输入构建失败发送的邮箱地址</p>
+<p>6，Save </p>
+<br />
+
+
+<p class="title">八，Jenkins 配置邮件</p>
 <p>1，首页 -> 系统管理 -> 系统设置 -> 邮件通知</p>
 <p>2，SMTP服务器 -> smtp.qq.com</p>
 <p>3，用户默认邮件后缀 -> @qq.com</p>
@@ -100,7 +116,7 @@
 <br />
 
 
-<p class="title">八，Jenkins 问题</p>
+<p class="title">九，Jenkins 问题</p>
 <p>1，无法登录的时候，修改系统账户下的 .jenkins/config.xml，将useSecurity 设为false</p>
 <p>2，设置登录的配置</p>
 <p>
@@ -111,7 +127,31 @@
 <p>3，设置国内镜像：Plugin Manager  -> Advanced  -> Update Site  -> https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json</p>
 <p>4，如果说Java 的编辑级别太低，是之前没有删除低版本的Java</p>
 <p>5，如果启动的时候显示：Jenkins bash: /usr/bin/java: No such file or directory，建一个软连接：ln -s /home/JDK8/bin/java /usr/bin/java（检查软链接有没有生效： which java）</p>
-                <h4>2020-02-07 19:56:41</h4>
+<br />
+
+
+<p class="title">十，deploy.sh 文件：</p>
+<div class="code">
+<p>#!/bin/bash</p>
+
+<p>JAVA_HOME=/home/JDK</p>
+<p>PATH=$PATH:$HOME/bin</p>
+<p>export JAVA_HOME=/home/JDK</p>
+<p>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p>export PATH=$JAVA_HOME/bin:$PATH</p>
+
+<p>source_path='/var/lib/jenkins/workspace/zhongzhai'</p>
+
+
+<p>jar_eureka=eureka-server-0.0.1-SNAPSHOT.jar</p>
+<p>id_eureka=`ps -ef | grep $jar_eureka | awk '{print $2}' | xargs kill -9`</p>
+<p>echo -------------------------- Start $jar_eureka ...</p>
+<p>/usr/bin/nohup java -jar $source_path/eureka-server/target/$jar_eureka >/dev/null 2>&1 &</p>
+<p>sleep 5</p>
+<p>echo "SUCCESS"</p>
+<p>echo ""</p>
+</div>
+                <h4>2020-02-10 14:19:19</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
