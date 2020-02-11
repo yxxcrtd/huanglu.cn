@@ -57,19 +57,20 @@
 <p>5，安装：cd ..  make && make install</p>
 <p>6，单独启动：/home/Redis/src/redis-server，此时在控制台能看到启动信息</p>
 <p>7，修改：vim redis.conf</p>
-<p>8，启动：/home/Redis/src/redis-server /home/Redis/redis.conf  &</p>
-<p>9，访问：/home/Redis/src/redis-cli -h IP -p 6380，有中文的话加上：--raw</p>
-<p>10，服务自启动：</p>
+<p>8，临时启动：/home/Redis/src/redis-server /home/Redis/redis.conf</p>
+<p>9，作为服务启动：/home/Redis/src/redis-server /home/Redis/redis.conf  &</p>
+<p>10，访问：/home/Redis/src/redis-cli -h IP -p 6380，有中文的话加上：--raw</p>
+<p>11，服务自启动：</p>
         <p class="indent">1，cp redis.conf /etc</p>
         <p class="indent">2，vim /etc/redis.conf，将守护进程：daemonize no 改成：daemonize yes</p>
         <p class="indent">3，vim /etc/rc.local，添加：/home/Redis/src/redis-server /etc/redis.conf</p>
-<p>11，添加密码：</p>
-        <p class="indent">1，编辑：vim /etc/redis.conf，打开：requirepass，并添加字符串密码，没有任何引号</p>
-        <p class="indent">2，重启服务</p>
-        <p class="indent">3，redis-cli -h 114.255.78.181 -p 6666</p>
-        <p class="indent">4，auth 刚才的密码</p>
-<p>12，监控1：查看日志：slowlog get 5</p>
-<p>13，监控2：monitor</p>
+<p>12，修改基本配置：vim redis.conf：</p>
+        <p class="indent">1，修改端口号：port 6379</p>
+        <p class="indent">2，注释本机绑定：#bind 127.0.0.1</p>
+        <p class="indent">3，关闭保护模式：protected-mode no</p>
+        <p class="indent">4，添加密码：打开注视：requirepass，并添加密码字符串，不需要引号</p>
+<p>13，监控1：查看日志：slowlog get 5</p>
+<p>14，监控2：monitor</p>
 <br />
 
 
@@ -113,7 +114,7 @@
 <p>8，删除当前分区中所有的记录数：flushdb</p>
 <p>9，清除整个Redis数据（任意分区下）：flushall</p>
 <p>10，显示当前分区下所有的key：keys *（不建议使用，最好以导出文件的形式查看：redis-cli -h ‘IP地址‘  keys * > keys.txt）</p>
-                <h4>2020-02-07 20:05:06</h4>
+                <h4>2020-02-10 21:03:19</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
