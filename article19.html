@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="robots" content="all" />
-        <meta name="keywords" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
-        <meta name="description" content="黄麓、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
@@ -201,7 +201,14 @@
 <p>
     9，设置：左侧的Repositories -> ......
 </p>
-                <h4>2020-02-07 17:55:06</h4>
+<br />
+
+
+<p class="title">七，Maven 仓库中安装 jar 包</p>
+<p>1，mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=7.0 -Dpackaging=jar -Dfile=/Users/young/Desktop/ojdbc7.jar</p>
+<p>2，注意1：-Dversion=7.0这里的7.0要与dependency中的version对应；</p>
+<p>3，注意2：jar的路径，下载后放着任意路径，maven自动会安装到它自己的本地仓库中</p>
+                <h4>2020-02-12 19:55:38</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
