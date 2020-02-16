@@ -32,18 +32,14 @@
 <p>1，下载仓库：wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</p>
 <p>2，安装仓库：rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key</p>
 <p>3，安装：yum -y install jenkins</p>
-<p>4，启动服务：systemctl start/stop/restart jenkins.service 或者：/etc/init.d/jenkins start</p>
+<p>4，启动服务：/etc/init.d/jenkins start</p>
 <p>5，服务自启动：chkconfig jenkins on</p>
 <p>6，修改配置：vim /etc/sysconfig/jenkins</p>
 <br />
 
 
 <p class="title">二，Linux CentOS 7 下安装 Jenkins</p>
-<p>1，</p>
-<p>2，</p>
-<p>3，</p>
-<p>4，</p>
-<p>5，</p>
+<p>1，启动服务：systemctl start/stop/restart jenkins.service</p>
 <br />
 
 
@@ -51,7 +47,7 @@
 <p>1，brew install jenkins</p>
 <p>2，brew services start jenkins 或者直接 jenkins</p>
 <p>3，输入：http://localhost:8080，即可访问</p>
-<p>4，密码：cat /root/.jenkins/secrets/initialAdminPassword或：cat /var/lib/jenkins/secrets/initialAdminPassword</p>
+<p>4，密码：cat /root/.jenkins/secrets/initialAdminPassword 或：cat /var/lib/jenkins/secrets/initialAdminPassword</p>
 <p>5，日志位置： tailf /var/log/jenkins/jenkins.log </p>
 <br />
 
@@ -117,7 +113,7 @@
 
 
 <p class="title">九，Jenkins 问题</p>
-<p>1，无法登录的时候，修改系统账户下的 .jenkins/config.xml，将useSecurity 设为false</p>
+<p>1，无法登录的时候，修改系统账户下的 .jenkins/config.xml（如果没有的话，则在：/var/lib/jenkins/config.xml），将useSecurity 设为false</p>
 <p>2，设置登录的配置</p>
 <p>
     <a href="images/article/article23.01.png" data-fancybox>
@@ -151,7 +147,7 @@
 <p>echo "SUCCESS"</p>
 <p>echo ""</p>
 </div>
-                <h4>2020-02-10 14:19:19</h4>
+                <h4>2020-02-16 19:52:24</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
