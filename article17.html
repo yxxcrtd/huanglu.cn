@@ -195,32 +195,15 @@
 
 <br />
 
-<p class="title">
-    五，免密远程：
-</p>
-
-<p>
-    1，将本地的公钥拷贝到目标机器的根下：scp ~/.ssh/id_rsa.pub root@192.168.1.2:~/
-</p>
-
-<p>
-    2，远程：ssh root@192.168.1.2
-</p>
-
-<p>
-    3，将你的公钥追加到目标机器的.ssh文件夹（如果没有.ssh目录，要先创建）中：cat id_rsa.pub >> .ssh/authorized_keys
-</p>
-
-<p>
-    4，删除上传的公钥：rm -rf id_rsa.pub
-</p>
-
-<p>
-    5，修改端口后：ssh root@192.168.1.2 -p 新端口（默认22不用写）
-</p>
-
-
+<p class="title">五，免密远程：</p>
+<p>1，先要保证 .ssh 下有：id_rsa.pub。如果没有：ssh-keygen -t rsa -C "邮箱地址"，全部回车。</p>
+<p>2，将本地的公钥拷贝到目标机器的根下：scp ~/.ssh/id_rsa.pub root@192.168.1.2:~/</p>
+<p>3，远程：ssh root@192.168.1.2</p>
+<p>4，将你的公钥追加到目标机器的.ssh文件夹（如果没有.ssh目录，要先创建）中：cat id_rsa.pub >> .ssh/authorized_keys</p>
+<p>5，删除上传的公钥：rm -rf id_rsa.pub</p>
+<p>6，修改端口后：ssh root@192.168.1.2 -p 新端口（默认22不用写）</p>
 <br />
+
 
 <p class="title">
     六，远程服务器出现没有文件或目录：
@@ -254,7 +237,7 @@
 <p>
     2，smtp.gmail.com    TLS 587  / SSL 465
 </p>
-                <h4>2020-02-07 17:34:48</h4>
+                <h4>2020-03-06 21:13:45</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
