@@ -7,6 +7,7 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -26,12 +27,12 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Jira & Confluence</h2>
+                <h2>Atlassian - Jira & Confluence</h2>
                 <p class="title">一，Jira</p>
 
-<p>1，下载：wget https://downloads.atlassian.com/software/jira/downloads/atlassian-jira-software-7.2.2-x64.bin</p>
-<p>2，授权：chmod 755 atlassian-jira-software-7.2.2-x64.bin</p>
-<p>3，安装：./atlassian-jira-software-7.2.2-x64.bin</p>
+<p>1，下载：wget https://downloads.atlassian.com/software/jira/downloads/atlassian-jira-software-8.7.1-x64.bin（到<a href="https://www.atlassian.com/software/jira/download" target="_blank">官网</a>找最新版本）</p>
+<p>2，授权：chmod 755 atlassian-jira-software-8.7.1-x64.bin</p>
+<p>3，安装：./atlassian-jira-software-8.7.1-x64.bin</p>
 <p>4，先关闭： /opt/atlassian/jira/bin/shutdown.sh</p>
 <p>5，配置：vim /opt/atlassian/jira/conf/server.xml</p>
 <p>6，启动：/opt/atlassian/jira/bin/startup.sh</p>
@@ -39,6 +40,7 @@
 <p>8，使用 PostgreSQL 的时候会出现：Cannot add user, all the user directories are read-only，将 lib 下的 postgres jar包换了即可</p>
 <p>9，中文：https://translations.atlassian.com/dashboard/download?lang=zh_CN#/JIRA%20Core/7.2.1</p>
 <p>10，授key：有链接能生成 lincense</p>
+<p>11，登录 Atlassian：<a href="www.atlassian.com" target="_blank">www.atlassian.com</a></p>
 <br />
 
 <p class="title">二，Confluence</p>
@@ -51,7 +53,7 @@
 <p>6，授权key：有链接能生成 lincense</p>
 <p>7，不要用最新的postgres的jar，因为  Confluence 是 java7 编译的</p>
 <p>8，重置：rm -rf /var/atlassian/application-data/confluence</p>
-                <h4>2020-01-31 21:34:40</h4>
+                <h4>2020-03-10 09:25:27</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
@@ -68,5 +70,6 @@
 
         <script src="js/jquery-3.4.1.js"></script>
         <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>
