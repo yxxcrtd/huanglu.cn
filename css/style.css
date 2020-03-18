@@ -29,6 +29,12 @@ h2, ul {
     padding: 0;
 }
 
+.red {
+	color: #f00 !important;
+}
+
+
+
 /* 块及元素在所有版本的浏览器中生效，H5默认 */
 header, nav, section, footer, aside, article, figure {
     display: block;

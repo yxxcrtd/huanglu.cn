@@ -171,36 +171,16 @@
 <br />
 
 
-<p class="title">
-    六，Linux 下 Nexus 安装
-</p>
-<p>
-    1，下载：wget www.sonatype.org/downloads/nexus-latest-bundle.tar.gz
-</p>
-<p>
-    2，解压：tar zxvf nexus-latest-bundle.tar.gz
-</p>
-<p>
-    3，移动1：mv /root/nexus-2.13.0-01/* /home/Nexus
-</p>
-<p>
-    4，移动2：mv /root/sonatype-work /home/
-</p>
-<p>
-    5，进入：cd /home/Nexus/bin
-</p>
-<p>
-    6，用户：export RUN_AS_USER=root
-</p>
-<p>
-    7，启动：./nexus start
-</p>
-<p>
-    8，访问：http://127.0.0.1:8081/nexus（admin/admin123）
-</p>
-<p>
-    9，设置：左侧的Repositories -> ......
-</p>
+<p class="title">六，Linux 下 Nexus 安装</p>
+<p>1，下载：wget www.sonatype.org/downloads/nexus-latest-bundle.tar.gz</p>
+<p>2，解压：tar zxvf nexus-latest-bundle.tar.gz</p>
+<p>3，移动1：mv /root/nexus-2.13.0-01/* /home/Nexus</p>
+<p>4，移动2：mv /root/sonatype-work /home/</p>
+<p>5，进入：cd /home/Nexus/bin</p>
+<p>6，用户：export RUN_AS_USER=root</p>
+<p>7，启动：./nexus start</p>
+<p>8，访问：http://127.0.0.1:8081/nexus（admin/admin123）</p>
+<p>9，设置：左侧的Repositories -> ......</p>
 <br />
 
 
@@ -209,7 +189,14 @@
 <p>2，注意1：-Dversion=7.0这里的7.0要与dependency中的version对应；</p>
 <p>3，注意2：jar的路径，下载后放着任意路径，maven自动会安装到它自己的本地仓库中</p>
 <p>4，也可以直接从服务器上下载：scp -r root@1.2.3.4:/home/repo/com/ibm/db2 /Users/young/repo/com/ibm</p>
-                <h4>2020-03-03 10:06:58</h4>
+<br />
+
+
+<p class="title">八，IDEA 中某个Module 上传到 Nexus 私服</p>
+<p>1，终端进入 Module 下：cd </p>
+<p>2，<span class="red">mvn clean deploy -DskipTests</span></p>
+<p>3，验证：在：http://1.2.3.4:8081/#browse/browse/components:maven-public 中搜索刚刚上传的 jar 包</p>
+                <h4>2020-03-18 16:05:34</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
