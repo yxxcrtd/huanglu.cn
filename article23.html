@@ -87,7 +87,13 @@
 <p class="title">七，配置项目</p>
 <p>1，Source Code Management，选择 Subversion ，在 Repository URL 中数代码仓库地址，然后添加：Credentials，返回选择你的 svn 账户</p>
 <p>2，Build Triggers 中勾选 Poll SCM，输入：H/5 * * * * ，5分钟自动构建一次</p>
-<p>3，Build 中，Root POM 是：pom.xml，Goals and options 是：clean package -Dmaven.test.skip -e -U</p>
+<p>3，Build 中，Root POM 是：pom.xml，Goals and options 是：<span class="red">clean package -Dmaven.test.skip -e -U -X</span><br />
+-e：如果构建出现异常，则会打印完整的 stack trace，以方便分析错误原因；<br />
+-U：强制更新 SNAPSHOT 类型的插件或依赖库(否则maven一天只会更新一次 SNAPSHOT 依赖);；<br />
+-X：设置 Maven 的日志级别，打印调试信息；<br />
+-ff：遇到构建失败直接退出；<br />
+-B：让 Maven 使用批处理模式构建项目，能够避免一些需要人工参与与交互而造成的刮起；
+</p>
 <p>4，Post Steps 选择 Execute shell，Command中内容为：</p>
 <div class="code">
     <p>BUILD_ID=DONTKILLME</p>
@@ -158,7 +164,7 @@
 
 <p>注释1，>/dev/null 的作用是将它前面的命令标准输出丢弃，而标准错误输出还是在屏幕上。 一般来说 标准输出 和 标准错误输出 都是屏幕，因此错误信息还是会在屏幕上输出。这时可以用：command >/dev/null 2>&1 这样标准输出与标准错误输出都会被丢弃。1：表示标准输出，2：表示标准错误输出，2>&1：表示将标准错误输出重定向到标准输出。 >：表示输出重定向，如果 command > /usr/log 那其会覆盖log中原来的记录。可以使用 >> 输出重定向来向文件尾部追加输出记录。
 </p>
-                <h4>2020-03-06 18:42:19</h4>
+                <h4>2020-03-20 09:42:03</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
