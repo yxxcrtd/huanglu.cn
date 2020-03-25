@@ -28,28 +28,13 @@
         <article>
             <div id="articleDetail">
                 <h2>Redis 基础</h2>
-                <p class="title">
-    一，前置：
-</p>
-
-<p>
-    1，官网：<a href="https://redis.io" target="_blank">https://redis.io</a>
-</p>
-
-<p>
-    2，命令参考：<a href="http://redisdoc.com" target="_blank">http://redisdoc.com</a>
-</p>
-
-<p>
-    3，在线测试：<a href="http://try.redis.io" target="_blank">http://try.redis.io</a>
-</p>
-
-
+                <p class="title">一，前置：</p>
+<p>1，官网：<a href="https://redis.io" target="_blank">https://redis.io</a></p>
+<p>2，命令参考：<a href="http://redisdoc.com" target="_blank">http://redisdoc.com</a></p>
+<p>3，在线测试：<a href="http://try.redis.io" target="_blank">http://try.redis.io</a></p>
 <br />
-<p class="title">
-    二，Linux CentOS 6 下的安装
-</p>
 
+<p class="title">二，Linux CentOS 6 下的安装</p>
 <p>1，下载：wget http://download.redis.io/releases/redis-3.2.8.tar.gz</p>
 <p>2，解压：tar zxvf redis-3.2.8.tar.gz</p>
 <p>3，进入：cd redis-3.2.8/deps</p>
@@ -73,7 +58,6 @@
 <p>14，监控2：monitor</p>
 <br />
 
-
 <p class="title">三，Linux CentOS 7 下的安装</p>
 <p>1，wget  http://download.redis.io/releases/redis-5.0.8.tar.gz</p>
 <p>2，mkdir /usr/local/redis</p>
@@ -88,22 +72,15 @@
 <p>11，把daemonize 设置为yes, 把redis启动设置为后台启动</p>
 <br />
 
-
-<p class="title">
-    四，Mac 下 Redis 的安装
-</p>
+<p class="title">四，Mac 下 Redis 的安装</p>
 <p>1，安装：brew install redis</p>
 <p>2，启动：redis-server &</p>
 <p>3，访问：redis-cli</p>
 <p>4，关闭：redis-cli shutdown</p>
-
 <br />
 
 
-<p class="title">
-    五，基本操作
-</p>
-
+<p class="title">五，基本操作</p>
 <p>1，设置：set a 123</p>
 <p>2，获取：get a，显示：123</p>
 <p>3，多值设置：mset a1 1 a2 2 a3 3</p>
@@ -114,7 +91,10 @@
 <p>8，删除当前分区中所有的记录数：flushdb</p>
 <p>9，清除整个Redis数据（任意分区下）：flushall</p>
 <p>10，显示当前分区下所有的key：keys *（不建议使用，最好以导出文件的形式查看：redis-cli -h ‘IP地址‘  keys * > keys.txt）</p>
-                <h4>2020-03-17 14:21:48</h4>
+<p>11，选择某一个数据库：select 2</p>
+<p>12，查看历史命令：<span class='red'>cat ~/.rediscli_history</span></p>
+<p>13，显示信息和统计：info</p>
+                <h4>2020-03-25 09:42:31</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>

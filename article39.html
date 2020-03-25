@@ -7,6 +7,7 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -25,30 +26,34 @@
         </header>
 
         <article>
-            <div id="categoryList">
-                <ul>
-                <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article39.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article39.html">Redis 模糊搜索</a></h2>
-                    <h3>Redis 对于设计好的数据，查询速度是数据库的 N 倍！</h3>
-                    <h4>2020-03-25 10:29:29</h4>
-                </div>
-            </li>
-            <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article11.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article11.html">Redis 基础</a></h2>
-                    <h3>Redis - REmote DIctionary Server，即：远程字典服务，Redis 是一个开源的key-value内存数据库，也就是基于Key-Value模式Memcached + Database Persistence。</h3>
-                    <h4>2020-03-25 09:42:31</h4>
-                </div>
-            </li>
-</ul>            </div>
+            <div id="articleDetail">
+                <h2>Redis 模糊搜索</h2>
+                <p class="title">一，Zadd 将一个或多个成员元素及其分数值加入到有序集当中</p>
+<div class="code">
+    <p>1，zadd students 3 c 1 a 4 d 5 e 2 b</p>
+    <p>2，zadd students 77 "600001-{'a1':'aaaa'}"</p>
+    <p>3，zadd students 55 "600439-{'a55':'aaaa12345'}"</p>
+    <p>4，zadd students 88 "300001-{'b2':'bb222bb'}"</p>
+    <p>5，zadd students 66 "300001-{'c3':'ccc123'}"</p>
+</div>
+<br />
 
+<p class="title">二，Redis Desktop Manager 中查看插入的数据</p>
+<p>
+    <a href="images/article/article39.01.png" data-fancybox>
+        <img src="images/article/article39.01.png" width="800" />
+    </a>
+</p>
+<br />
+
+<p class="title">三，查询</p>
+<p>
+    <a href="images/article/article39.02.png" data-fancybox>
+        <img src="images/article/article39.02.png" width="800" />
+    </a>
+</p>
+                <h4>2020-03-25 10:29:29</h4>
+            </div>
             <div id="articleAside">
                 <div id="newest"></div>
                 <div id="category"></div>
@@ -64,5 +69,6 @@
 
         <script src="js/jquery-3.4.1.js"></script>
         <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>
