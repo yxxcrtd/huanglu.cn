@@ -28,78 +28,27 @@
         <article>
             <div id="articleDetail">
                 <h2>Mac 基础</h2>
-                <p class="title">
-    一，常用命令：
-</p>
-
-<p>
-    1，查看文件大小：du -sh *
-</p>
-
-<p>
-    2，下载：curl -L -O http://…….tar.gz（解压：tar -vxf …….tar.gz）
-</p>
-
-<p>
-    3，上传单个文件到服务器：scp test.html root@1.2.3.4:/home
-</p>
-
-<p>
-    4，上传整个目录到服务器：scp -r test root@1.2.3.4:/home
-</p>
-
-<p>
-    5，从服务器下载单个文件：scp root@1.2.3.4:/home/test.html /Users/young/Desktop
-</p>
-
-<p>
-    6，从服务器下载整个目录：scp -r root@1.2.3.4:/home/ /Users/young/Desktop
-</p>
-
-<p>
-   7， 将 bash 终端切换为：zsh：chsh -s /bin/zsh；切换回 bash：chsh -s /bin/bash
-</p>
-
-<p>
-   8， Mac 允许打开第三方的 app：sudo spctl --master-disable
-</p>
-
-<p>
-    9，在 Finder 中显示文件的全路径：defaults write com.apple.finder _FXShowPosixPathInTitle -bool TRUE;killall Finder
-</p>
-
-<p>
-    10，在 Finder 中隐藏文件的全路径：defaults delete com.apple.finder _FXShowPosixPathInTitle;killall Finder
-</p>
-
-<p>
-    11，重置 Safari 浏览器：rm ~/Library/Preferences/com.apple.Safari.plist
-</p>
-
-<p>
-    12，重置 IntelliJ IDEA：rm -rf /Users/young/Library/Preferences/IntelliJIdea2019.3 && /Users/young/Library/Caches/IntelliJIdea2019.3
-</p>
-
-<p>
-    13，添加访问共享：Finder中，Commond + K，输入：smb://192.168.0.8/share
-</p>
-
+                <p class="title">一，常用命令：</p>
+<p>1，查看文件大小：du -sh *</p>
+<p>2，下载：curl -L -O http://…….tar.gz（解压：tar -vxf …….tar.gz）</p>
+<p>3，上传单个文件到服务器：scp test.html root@1.2.3.4:/home</p>
+<p>4，上传整个目录到服务器：scp -r test root@1.2.3.4:/home</p>
+<p>5，从服务器下载单个文件：scp root@1.2.3.4:/home/test.html /Users/young/Desktop</p>
+<p>6，从服务器下载整个目录：scp -r root@1.2.3.4:/home/ /Users/young/Desktop</p>
+<p>7， 将 bash 终端切换为：zsh：chsh -s /bin/zsh；切换回 bash：chsh -s /bin/bash</p>
+<p>8， Mac 允许打开第三方的 app：sudo spctl --master-disable</p>
+<p>9，在 Finder 中显示文件的全路径：defaults write com.apple.finder _FXShowPosixPathInTitle -bool TRUE;killall Finder</p>
+<p>10，在 Finder 中隐藏文件的全路径：defaults delete com.apple.finder _FXShowPosixPathInTitle;killall Finder</p>
+<p>11，重置 Safari 浏览器：rm ~/Library/Preferences/com.apple.Safari.plist</p>
+<p>12，重置 IntelliJ IDEA：rm -rf /Users/young/Library/Preferences/IntelliJIdea2019.3 && /Users/young/Library/Caches/IntelliJIdea2019.3</p>
+<p>13，添加访问共享：Finder中，Commond + K，输入：smb://192.168.0.8/share</p>
 <br />
 
 
-<p class="title">
-    二，SFTP 文件上传
-</p>
-<p>
-    1，先在本地ls能看到的文件夹
-</p>
-<p>
-    2，进入目标：sftp root@139.198.15.189:/home/file/legongzhulian.com
-</p>
-<p>
-    3，将本地的文件夹拷贝到目标：put -r legongzhulian.com/.
-</p>
-
+<p class="title">二，SFTP 文件上传</p>
+<p>1，先在本地ls能看到的文件夹</p>
+<p>2，进入目标：sftp root@139.198.15.189:/home/file/legongzhulian.com</p>
+<p>3，将本地的文件夹拷贝到目标：put -r legongzhulian.com/.</p>
 <br />
 
 
@@ -184,7 +133,7 @@
 
 
 <p>
-    3，编辑：sudo pfctl -ef /etc/pf-tomcat.conf，输入管理员密码后，出现下面的提示信息就表示80端口映射成功了！
+    3，编辑：<span class='red'>sudo pfctl -ef /etc/pf-tomcat.conf</span>，输入管理员密码后，出现下面的提示信息就表示80端口映射成功了！
 </p>
 
 <p>
@@ -221,23 +170,19 @@
 <p>
     （如果不行：在 /etc/locale.conf 追加：LC_CTYPE="zh_CN.UTF-8"）
 </p>
-
-
-
-
 <br />
 
-<p class="title">
-    七，配置 Gmail
-</p>
+<p class="title">七，配置 Gmail</p>
+<p>1，pop.gmail.com    SSL    995</p>
+<p>2，smtp.gmail.com    TLS 587  / SSL 465</p>
+<br />
 
-<p>
-    1，pop.gmail.com    SSL    995
-</p>
-<p>
-    2，smtp.gmail.com    TLS 587  / SSL 465
-</p>
-                <h4>2020-03-06 21:13:45</h4>
+
+<p class="title">八，系统升级后，APP无法打开</p>
+<p>出现错误：“IntelliJ IDEA CE.app” is damaged and can’t be opened. You should move it to the Trash.</p>
+<p>方法1：sudo spctl --master-disable 或 sudo spctl --master-enable</p>
+<p>方法2：sudo xattr -cr /Applications/IntelliJ\ IDEA\ CE.app（输入完Applications/后，输入In 按 tab 健后即可出来）</p>
+                <h4>2020-03-25 15:22:01</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
