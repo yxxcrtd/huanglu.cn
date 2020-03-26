@@ -198,7 +198,17 @@ http://download.documentfoundation.org/libreoffice/stable/5.2.0/rpm/x86_64/Libre
 <p>36，清除暂存中rpm头文件：yum clearn headers</p>
 <p>37，列出资源库中特定的可以安装或更新以及已经安装的rpm包：yum list firefox* / yum info firefox*</p>
 <p>38，查询磁盘的UUID：blkid</p>
-                <h4>2020-02-18 17:23:05</h4>
+<br />
+
+
+<p class="title">十五，rpm 使用（Redhat Package Manager）</p>
+<p>1，增加一个新的 rpm 源：rpm -ivh 包的全路径：rpm -ivh https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm</p>
+<p>2，查询：rpm -qa | grep pgdg（pgdg 是包名的缩写）</p>
+<p>3，删除：rpm -e pgdg-redhat-repo-42.0-8.noarch（在出现错误的情况下使用）</p>
+<p>4，查看已经安装的rpm：rpm -qa</p>
+<p>5，查看指定安装的rpm：rpm -qa | grep postgresql</p>
+<br />
+                <h4>2020-03-26 10:47:14</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
