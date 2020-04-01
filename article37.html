@@ -40,10 +40,13 @@
 <p>1，切换用户：su - db2inst1</p>
 <p>2，显示所有连接：db2 list application</p>
 <p>3，强制关闭实例上的应用程序：db2 force application all</p>
-<p>4，备份：db2 backup db CPV1403 to /home/db2inst1/db2inst1/</p>
-<p>5，还原：db2 restore db WFLS from /home/db2-bak-20200117 taken at 20200117160802 into PZPT</p>
+<p>4，备份：db2 backup db pzpt to /home/tag</p>
+<p>5，备份成功后显示：Backup successful. The timestamp for this backup image is : 20200401160847</p>
+<p>6，在文件中中ll显示：PZPT.0.db2inst1.DBPART000.20200401160847.001</p>
+<p>7，还原：db2 restore db pzpt from /home/tag taken at 20200401160847 into pzpt321（pzpt321是自定义的数据库名称）</p>
+<p>8，还原成功后显示：DB20000I  The RESTORE DATABASE command completed successfully.</p>
 <br />
-                <h4>2020-03-19 16:49:02</h4>
+                <h4>2020-04-01 16:22:20</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
