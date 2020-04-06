@@ -28,37 +28,17 @@
         <article>
             <div id="articleDetail">
                 <h2>Maven & Nexus</h2>
-                <p class="title">
-    一，Linux 下 Maven 安装
-</p>
-<p>
-    1，下载：wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.zip
-</p>
-<p>
-    2，解压：unzip apache-maven-3.6.1-bin.zip
-</p>
-<p>
-    3，配置：vim /etc/profile，追加：
-</p>
-
+                <p class="title">一，Linux 下 Maven 安装</p>
+<p>1，下载：wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip</p>
+<p>2，解压：unzip apache-maven-3.6.3-bin.zip</p>
+<p>3，配置：vim /etc/profile，追加：</p>
 <div class="code">
-<p>
-    export MAVEN_HOME=/home/apache-maven-3.6.1
-</p>
-<p>
-    export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
-</p>
+<p>export MAVEN_HOME=/home/apache-maven-3.6.3</p>
+<p>export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin</p>
 </div>
-
-<p>
-    4，生效：source /etc/profile
-</p>
-<p>
-    5，验证：mvn -v
-</p>
-
+<p>4，生效：source /etc/profile</p>
+<p>5，验证：mvn -v</p>
 <br />
-
 
 
 <p class="title">
@@ -196,7 +176,7 @@
 <p>1，终端进入 Module 下：cd </p>
 <p>2，<span class="red">mvn clean source:jar deploy -DskipTests</span></p>
 <p>3，验证：在：http://1.2.3.4:8081/#browse/browse/components:maven-public 中搜索刚刚上传的 jar 包</p>
-                <h4>2020-03-25 16:37:22</h4>
+                <h4>2020-04-02 21:23:14</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
