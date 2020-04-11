@@ -71,17 +71,10 @@
 </p>
 
 <div class="code">
-<p>
-    1，登录服务器：ssh root@10.0.0.182
-</p>
-
-<p>
-    2，vim /etc/ssh/sshd_config，修改：PasswordAuthentication no 为：PasswordAuthentication yes
-</p>
-
-<p>
-    3，重启sshd服务：/etc/init.d/sshd restart
-</p>
+<p>1，登录服务器：ssh root@10.0.0.182</p>
+<p>2，vim /etc/ssh/sshd_config，修改：PasswordAuthentication no 为：PasswordAuthentication yes</p>
+<p>3，重启sshd服务：/etc/init.d/sshd restart</p>
+<p>4，CentOS7的重启方法：systemctl  restart sshd.service</p>
 </div>
 
 <p>
@@ -150,7 +143,8 @@
 <p>3，远程：ssh root@192.168.1.2</p>
 <p>4，将你的公钥追加到目标机器的.ssh文件夹（如果没有.ssh目录，要先创建）中：cat id_rsa.pub >> .ssh/authorized_keys</p>
 <p>5，删除上传的公钥：rm -rf id_rsa.pub</p>
-<p>6，修改端口后：ssh root@192.168.1.2 -p 新端口（默认22不用写）</p>
+<p>6，修改端口后：<span class="red">ssh root@192.168.1.2 -p 新端口（默认22不用写）</span></p>
+<p>6，scp有端口：<span class="red">scp -P 15451  ~/.ssh/id_rsa.pub root@192.168.1.2:~/（-大写的P，必须紧跟在 scp 后面）</span></p>
 <br />
 
 
@@ -182,7 +176,7 @@
 <p>出现错误：“IntelliJ IDEA CE.app” is damaged and can’t be opened. You should move it to the Trash.</p>
 <p>方法1：sudo spctl --master-disable 或 sudo spctl --master-enable</p>
 <p>方法2：sudo xattr -cr /Applications/IntelliJ\ IDEA\ CE.app（输入完Applications/后，输入In 按 tab 健后即可出来）</p>
-                <h4>2020-03-25 15:22:01</h4>
+                <h4>2020-04-09 09:20:30</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>

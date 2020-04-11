@@ -32,121 +32,57 @@
     一，Linux 下的安装依赖
 </p>
 <div class="code">
-    <p>
-        yum -y install pcre-devel openssl openssl-devel libssl-dev gcc-c++
-    </p>
+    <p>yum -y install pcre-devel openssl openssl-devel libssl-dev gcc-c++</p>
 </div>
 <br />
 
 
-<p class="title">
-    二，安装 pcre，让 Nginx 支持 Rewrite 功能
-</p>
+<p class="title">二，安装 pcre，让 Nginx 支持 Rewrite 功能</p>
 <div class="code">
-    <p>
-        0，pcre 地址：<a href="https://sourceforge.net/projects/pcre/" target="_blank">https://sourceforge.net/projects/pcre/</a>
-    </p>
-    <p>
-        1，下载：wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz
-    </p>
-    <p>
-        2，解压：tar zxvf pcre-8.36.tar.gz
-    </p>
-    <p>
-        3，进入：cd pcre-8.36
-    </p>
-    <p>
-        4，配置：./configure
-    </p>
-    <p>
-        5，编译：make
-    </p>
-    <p>
-        6，安装：make install
-    </p>
-    <p>
-        7，验证：pcre-config --version，会出现：8.36，表示安装成功！
-    </p>
+    <p>0，pcre 地址：<a href="https://sourceforge.net/projects/pcre/" target="_blank">https://sourceforge.net/projects/pcre/</a></p>
+    <p>1，下载：wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.44.tar.gz</p>
+    <p>2，解压：tar zxvf pcre-8.44.tar.gz</p>
+    <p>3，进入：cd pcre-8.44</p>
+    <p>4，配置：./configure</p>
+    <p>5，编译：make</p>
+    <p>6，安装：make install</p>
+    <p>7，验证：pcre-config --version，会出现：8.44，表示安装成功！</p>
 </div>
 <br />
 
 
-<p class="title">
-    三，安装 Nginx
-</p>
+<p class="title">三，安装 Nginx</p>
 <div class="code">
-    <p>
-        1，下载：wget http://nginx.org/download/nginx-1.10.2.tar.gz
-    </p>
-    <p>
-        2，解压：tar zxvf nginx-1.10.2.tar.gz
-    </p>
-    <p>
-        3，进入：cd nginx-1.10.2
-    </p>
-    <p>
-        4，配置：./configure（可以加上：--with-http_stub_status_module --with-http_ssl_module --with-pcre=/usr/local/src/pcre-8.36）
-    </p>
-    <p>
-        5，编译：make
-    </p>
-    <p>
-        6，安装：make install
-    </p>
-    <p>
-        7，验证：/usr/local/nginx/sbin/nginx -t，出现：nginx: ... syntax is ok ... test is successful ，表示安装成功！
-    </p>
+    <p>1，下载：wget http://nginx.org/download/nginx-1.16.1.tar.gz</p>
+    <p>2，解压：tar zxvf nginx-1.16.1.tar.gz</p>
+    <p>3，进入：cd nginx-1.16.1</p>
+    <p>4，配置：./configure（可以加上：--with-http_stub_status_module --with-http_ssl_module --with-pcre=/usr/local/src/pcre-8.44）</p>
+    <p>5，编译：make</p>
+    <p>6，安装：make install</p>
+    <p>7，验证：/usr/local/nginx/sbin/nginx -t，出现：nginx: ... syntax is ok ... test is successful ，表示安装成功！</p>
 </div>
 <br />
 
 
-<p class="title">
-    四，CentOS 7 安装 Nginx
-</p>
+<p class="title">四，CentOS 7 安装 Nginx</p>
 <div class="code">
-    <p>
-        1，添加 yum 源：rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-    </p>
-    <p>
-        2，安装：yum -y install nginx
-    </p>
-    <p>
-        3，启动：systemctl start nginx
-    </p>
-    <p>
-       4，开机自启动：systemctl enable nginx
-    </p>
-    <p>
-        5，重启服务：systemctl restart nginx
-    </p>
-    <p>
-        6，重新加载配置：systemctl reload nginx
-    </p>
-    <p>
-        7，配置文件：配置文件：/etc/nginx/nginx.conf
-    </p>
-    <p>
-        8，默认配置文件：/etc/nginx/conf.d/default.conf
-    </p>
+    <p>1，添加 yum 源：rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</p>
+    <p>2，安装：yum -y install nginx</p>
+    <p>3，启动：systemctl start nginx</p>
+    <p>4，开机自启动：systemctl enable nginx</p>
+    <p>5，重启服务：systemctl restart nginx</p>
+    <p>6，重新加载配置：systemctl reload nginx</p>
+    <p>7，配置文件：配置文件：/etc/nginx/nginx.conf</p>
+    <p>8，默认配置文件：/etc/nginx/conf.d/default.conf</p>
 </div>
 <br />
 
 
-<p class="title">
-    五，配置
-</p>
-<p>
-    1，启动：/usr/local/nginx/sbin/nginx
-</p>
-<p>
-    2，关闭：/usr/local/nginx/sbin/nginx -s stop
-</p>
-<p>
-    3，加入系统服务：vim /etc/rc.local，添加：/usr/local/nginx/sbin/nginx
-</p>
-<p>
-    4，在 /usr/local/nginx/conf 中创建：gzip.conf
-</p>
+<p class="title">五，配置</p>
+<p>1，启动：/usr/local/nginx/sbin/nginx</p>
+<p>2，关闭：/usr/local/nginx/sbin/nginx -s stop</p>
+<p>3，加入系统服务：vim /etc/rc.local，添加：/usr/local/nginx/sbin/nginx</p>
+<p>4，在 /usr/local/nginx/conf 中创建：gzip.conf</p>
 <div class="code">
     <p>
         gzip on;
@@ -223,7 +159,7 @@
         <img src="images/article/article12.01.png" width="800" />
     </a>
 </p>
-                <h4>2020-02-06 19:53:29</h4>
+                <h4>2020-04-09 14:09:35</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
