@@ -27,19 +27,31 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Redis 序列化</h2>
-                <p class="title">一，Redis 为什么需要序列化</p>
-<p>1，序列化：把对象转化为可传输的字节序列过程称为序列化。</p>
-<p>2，反序列化：把字节序列还原为对象的过程称为反序列化。</p>
-<p>3，默认没有序列化的 rdm 视图：</p>
+                <h2>SpringBoot 整合 Redis</h2>
+                <p class="title">一，在 SpringBoot 中配置 Redis 只需要 3 步：</p>
+<p>1，添加 Maven 依赖</p>
 <p>
-    <a href="images/article/article41.01.png" data-fancybox>
-        <img src="images/article/article41.01.png" width="800" />
+    <a href="images/article/article43.01.png" data-fancybox>
+        <img src="images/article/article43.01.png" width="800" />
+    </a>
+</p>
+
+<p>2，在 application.yml 文件中增加 Redis 连接参数</p>
+<p>
+    <a href="images/article/article43.02.png" data-fancybox>
+        <img src="images/article/article43.02.png" width="800" />
+    </a>
+</p>
+
+<p>3，使用 RedisTemplate 或 StringRedisTemplate 操作 Redis </p>
+<p>
+    <a href="images/article/article43.03.png" data-fancybox>
+        <img src="images/article/article43.03.png" width="800" />
     </a>
 </p>
 
 <br />
-                <h4>2020-04-13 08:50:00</h4>
+                <h4>2020-04-13 21:31:54</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
