@@ -53,23 +53,19 @@
         <p class="indent">1，修改端口号：port 6379</p>
         <p class="indent">2，注释本机绑定：#bind 127.0.0.1</p>
         <p class="indent">3，关闭保护模式：protected-mode no</p>
-        <p class="indent">4，添加密码：打开注视：requirepass，并添加密码字符串，不需要引号</p>
+        <p class="indent">4，添加密码：打开注释：requirepass，并添加密码字符串，不需要引号</p>
 <p>13，监控1：查看日志：slowlog get 5</p>
 <p>14，监控2：monitor</p>
 <br />
 
 <p class="title">三，Linux CentOS 7 下的安装</p>
 <p>1，wget  http://download.redis.io/releases/redis-5.0.8.tar.gz</p>
-<p>2，mkdir /usr/local/redis</p>
-<p>3，tar -zxvf redis-5.0.8.tar.gz -C /usr/local/redis</p>
-<p>4，cd /usr/local/redis/redis-5.0.8</p>
-<p>5，make</p>
-<p>6，make PREFIX=/usr/local/redis install</p>
-<p>7，cp  /usr/local/redis/redis-5.0.8/redis.conf   /usr/local/redis/bin</p>
-<p>8，vi /usr/local/redis/bin/redis.conf</p>
-<p>9，启动：/home/redis/src/redis-server /home/redis/redis.conf &</p>
-<p>10，修改密码要修改复制后的 redis.conf，不是安装目录下的配置文件</p>
-<p>11，把daemonize 设置为yes, 把redis启动设置为后台启动</p>
+<p>2，tar -zxvf redis-5.0.8.tar.gz</p>
+<p>3，cd redis-5.0.8</p>
+<p>4，make</p>
+<p>5，make install</p>
+<p>6，修改配置文件：vim redis.conf</p>
+<p>7，加入系统服务：vim /etc/rc.local，添加：/home/redis-5.0.8/src/redis-server /home/redis-5.0.8/redis.conf &</p>
 <br />
 
 <p class="title">四，Mac 下 Redis 的安装</p>
@@ -94,7 +90,7 @@
 <p>11，选择某一个数据库：select 2</p>
 <p>12，查看历史命令：<span class='red'>cat ~/.rediscli_history</span></p>
 <p>13，显示信息和统计：info</p>
-                <h4>2020-03-25 09:42:31</h4>
+                <h4>2020-04-14 21:08:15</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>

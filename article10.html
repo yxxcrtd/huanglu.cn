@@ -7,6 +7,7 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -66,24 +67,16 @@
     <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Service&gt;</p>
 <p>&lt;/Server&gt;</p>
 </div>
-
 <br />
-<p class="title">
-三，启动服务
-</p>
 
-<p>
-    1，临时启动：/home/Tomcat/bin/startup.sh
-</p>
+<p class="title">三，启动服务</p>
+<p>1，临时启动：/home/Tomcat/bin/startup.sh</p>
+<p>2，作为服务启动：nohup /home/Tomcat/bin/startup.sh &</p>
+<p>3，重启电脑自动启动：在  /etc/rc.local 中加入：/home/Tomcat/bin/startup.sh</p><br />
 
-<p>
-    2，作为服务启动：nohup /home/Tomcat/bin/startup.sh &
-</p>
-
-<p>
-    3，重启电脑自动启动：在  /etc/rc.local 中加入：/home/Tomcat/bin/startup.sh
-</p>
-                <h4>2020-01-31 20:58:29</h4>
+<p class="title">四，IDEA 中配置 启动内存</p>
+<p>1，顶部菜单：Run -> Debug Configurations -> VM options 中填写：<span class="red">-Xms2048m -Xmx2048m -XX:MaxNewSize=1024m -XX:MaxPermSize=1024m</span></p>
+                <h4>2020-04-14 11:27:59</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
@@ -100,5 +93,6 @@
 
         <script src="js/jquery-3.4.1.js"></script>
         <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>
