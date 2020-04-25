@@ -38,12 +38,37 @@
 <br />
 
 
-<p class="title">二，Linux CentOS 7 下的安装</p>
-<p>1，</p>
-<p>2，</p>
-<p>3，</p>
-<p>4，</p>
-<p>5，</p>
+<p class="title">二，Linux CentOS 6.5 下的安装 5.7.22</p>
+<p>1，到 MySQL官网下载页面：https://www.mysql.com/downloads/，下面找到：MySQL Community Server</p>
+<p>2，选择：Archives</p>
+<p>3，选择：Product Version：5.7.22</p>
+<p>4，选择：Operating System：Linux Generic</p>
+<p>5，选择：OS Version：Linux - Generic (glibc 2.12) (x86, 64-bit)</p>
+<p>6，下载：mysql-5.7.22-linux-glibc2.12-x86_64.tar.gz</p>
+<p>7，创建 mysql 组：groupadd mysql</p>
+<p>8，创建用户：useradd -r -g mysql mysql（-r 表示 mysql 用户是一个系统用户，不能登录）</p>
+<p>9，解压到：/usr/local：tar zxvf mysql-5.7.22-linux-glibc2.12-x86_64.tar.gz<span class="red"> -C /usr/local</span></p>
+<p>10，cd /usr/local</p>
+<p>11，重命名：mv mysql-5.7.22-linux-glibc2.12-x86_64/ mysql</p>
+<p>12，cd mysql</p>
+<p>13，创建 mysql-files 数据目录：mkdir -p /usr/local/mysql/mysql-files</p>
+<p>14，授权：chown -R mysql:mysql /usr/local/mysql/mysql-files/</p>
+<p>15，再授权：chmod 750 /usr/local/mysql/mysql-files/</p>
+<p>16，初始化数据库：bin/mysqld --initialize --user=mysql，注意最后一行：[Note] A temporary password is generated for root@localhost: <span class="red">YR()u=uy/6-X（这是 root 的默认密码）</span></p>
+<p>17，生成 RSA 私钥：bin/mysql_ssl_rsa_setup</p>
+<p>18，bin/mysqld_safe --user=mysql &</p>
+<p>19，使用 service 服务控制 mysql：cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql</p>
+<p>20，授权：chmod +x /etc/init.d/mysql</p>
+<p>21，增加开机服务：chkconfig --add mysql（查看方法：chkconfig --list mysql）</p>
+<p>22，使用 service 方式启动服务：service mysql start</p>
+<p>23，进入数据库：cd bin，./mysql -u root -p，会出现错误：ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)</p>
+<p>24，从根下寻找：mysql.sock：find / -name mysql.sock</p>
+<p>25，把查找的结果软连接到/tmp目录下：ln -s /var/lib/mysql/mysql.sock /tmp</p>
+<p>26，再次登录：./mysql -u root -p，输入上面 root 的临时密码</p>
+<p>27，修改 root 密码：alter user 'root'@'localhost' identified by '123456';</p>
+<p>28，设置可以远程连接：grant all privileges on *.* to root@'%' identified by '123456';</p>
+<p>29，刷新：flush privileges;</p>
+<p>30，查看：select host, user from mysql.user;</p>
 <br />
 
 
@@ -150,7 +175,7 @@
 <p class="title">十一，MySQL 5.6 修改密码</p>
 <p>1，update user set password=password(‘123456’) where user=’root’;</p>
 <p>2，flush privileges;</p>
-                <h4>2020-02-08 10:27:43</h4>
+                <h4>2020-04-24 15:08:09</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
