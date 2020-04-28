@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Nexus 基础</h2>
+                <p class="title">一，Linux 下 Nexus 2 安装</p>
+<p>1，下载：wget www.sonatype.org/downloads/nexus-latest-bundle.tar.gz</p>
+<p>2，解压：tar zxvf nexus-latest-bundle.tar.gz</p>
+<p>3，移动1：mv /root/nexus-2.13.0-01/* /home/Nexus</p>
+<p>4，移动2：mv /root/sonatype-work /home/</p>
+<p>5，进入：cd /home/Nexus/bin</p>
+<p>6，用户：export RUN_AS_USER=root</p>
+<p>7，启动：./nexus start</p>
+<p>8，访问：http://127.0.0.1:8081/nexus（admin/admin123）</p>
+<p>9，设置：左侧的Repositories -> ......</p>
+<br />
+
+
+<p class="title">二，Linux CentOS 6 下 Nexus 3 安装</p>
+<p>1，下载：www.sonatype.org/downloads 下载：latest-unix.tar.gz</p>
+<p>2，解压到 /usr/local：tar zxvf latest-unix.tar.gz -C /usr/local/</p>
+<p>3，进入 /usr/local：cd  /usr/local</p>
+<p>4，重命名：mv nexus-3.17.0-01/ nexus</p>
+<p>5，在环境变量中添加：vim /etc/profile（添加后：source /etc/profile）</p>
+<div class="code">
+    <p>export RUN_AS_USER=root</p>
+    <p>export PATH=$RUN_AS_USER:$PATH</p>
+</div>
+<p>6，修改端口：vim /usr/local/nexus/nexus-3.17.0-01/etc/nexus-default.properties</p>
+<p>7，添加用户：vim /usr/local/nexus/nexus-3.17.0-01/bin/nexus，将 run_as_user='' 修改为：run_as_user='root'</p>
+<p>8，启动：/usr/local/nexus/nexus-3.17.0-01/bin/nexus start &</p>
+<p>9，访问：http://127.0.0.1:8081/nexus（用户：admin，密码在：cat /usr/local/nexus/sonatype-work/nexus3/admin.password）</p>
+<br />
+
+
+<p class="title">三，Maven 仓库中安装 jar 包</p>
+<p>1，mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=7.0 -Dpackaging=jar -Dfile=/Users/young/Desktop/ojdbc7.jar</p>
+<p>2，注意1：-Dversion=7.0这里的7.0要与dependency中的version对应；</p>
+<p>3，注意2：jar的路径，下载后放着任意路径，maven自动会安装到它自己的本地仓库中</p>
+<p>4，也可以直接从服务器上下载：scp -r root@1.2.3.4:/home/repo/com/ibm/db2 /Users/young/repo/com/ibm</p>
+<br />
+
+
+<p class="title">四，IDEA 中某个Module 上传到 Nexus 私服</p>
+<p>1，终端进入 Module 下：cd </p>
+<p>2，<span class="red">mvn clean source:jar deploy -DskipTests</span></p>
+<p>3，验证：在：http://1.2.3.4:8081/#browse/browse/components:maven-public 中搜索刚刚上传的 jar 包</p>
+                <h4>2020-04-28 08:59:58</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+                <div id="donate">
+                    <h2>Donate</h2>
+                    <p>If this article could help you, please donate me a cup of coffee.</p>
+                    <p><img src="images/wechat.png"></p>
+                </div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
