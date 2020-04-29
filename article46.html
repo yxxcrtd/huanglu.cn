@@ -7,6 +7,7 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -25,30 +26,17 @@
         </header>
 
         <article>
-            <div id="categoryList">
-                <ul>
-                <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article46.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article46.html">PostgreSQL 使用</a></h2>
-                    <h3>实际业务中的使用</h3>
-                    <h4>2020-04-29 08:57:18</h4>
-                </div>
-            </li>
-            <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article22.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article22.html">PostgreSQL 基础</a></h2>
-                    <h3>The World's Most Advanced Open Source Relational Database！</h3>
-                    <h4>2020-03-28 16:21:42</h4>
-                </div>
-            </li>
-</ul>            </div>
-
+            <div id="articleDetail">
+                <h2>PostgreSQL 使用</h2>
+                <p class="title">一，系统出现： FATAL: remaining connection slots are reserved for non-replication superuser connections</p>
+<p>1，先检查连接数：在操作系统里：ps -ef | grep postgres，会出现很多的 postgres 进程，可以逐个 kill</p>
+<p>2，检查数据库默认的最大连接数：show max_connections;  默认是：100，根据实际业务改大，然后重启数据库服务；</p>
+<p>3，检查超级用户的连接数：show superuser_reserved_connections;</p>
+<p>4，使用 postgres 用户登录客户端查看数据库连接情况：select * from pg_stat_activity;</p>
+<p>5，可以使用 SQL 关闭某个连接：SELECT pg_terminate_backend(2428) FROM pg_stat_activity;</p>
+<br />
+                <h4>2020-04-29 08:57:18</h4>
+            </div>
             <div id="articleAside">
                 <div id="newest"></div>
                 <div id="category"></div>
@@ -64,5 +52,6 @@
 
         <script src="js/jquery-3.4.1.js"></script>
         <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>
