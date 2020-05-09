@@ -29,8 +29,8 @@
             <div id="articleDetail">
                 <h2>Jenkins 基础</h2>
                 <p class="title">一，Linux CentOS 6 下安装 Jenkins</p>
-<p>1，下载仓库：wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</p>
-<p>2，安装仓库：rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key</p>
+<p>1，下载repo仓库：wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo<span class="red">（如果无法下载：则添加：--no-check-certificate）</span></p>
+<p>2，导入公钥：rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key</p>
 <p>3，安装：yum -y install jenkins</p>
 <p>4，启动服务：/etc/init.d/jenkins start</p>
 <p>5，服务自启动：chkconfig jenkins on</p>
@@ -164,7 +164,7 @@
 
 <p>注释1，>/dev/null 的作用是将它前面的命令标准输出丢弃，而标准错误输出还是在屏幕上。 一般来说 标准输出 和 标准错误输出 都是屏幕，因此错误信息还是会在屏幕上输出。这时可以用：command >/dev/null 2>&1 这样标准输出与标准错误输出都会被丢弃。1：表示标准输出，2：表示标准错误输出，2>&1：表示将标准错误输出重定向到标准输出。 >：表示输出重定向，如果 command > /usr/log 那其会覆盖log中原来的记录。可以使用 >> 输出重定向来向文件尾部追加输出记录。
 </p>
-                <h4>2020-03-21 15:45:39</h4>
+                <h4>2020-05-07 14:36:39</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>

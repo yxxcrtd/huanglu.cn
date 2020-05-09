@@ -39,8 +39,15 @@
 <p>5，远程下载 GitLab：curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | bash</p>
 <p>6，安装：yum -y install gitlab-ce</p>
 <p>7，编译：gitlab-ctl reconfigure（安装目录在：/var/opt/gitlab）</p>
-<p>8，设置外网访问：vim /etc/gitlab/gitlab.rb，修改：external_url '192.168.1.8:8081'</p>
-<p>9，服务的启动或停止：gitlab-ctl status/stop/start</p>
+<p>8，设置外网访问：vim /etc/gitlab/gitlab.rb，修改：external_url '192.168.1.8:8081'（只需改这一个）</p>
+<p>9，修改端口和域名：vim /var/opt/gitlab/nginx/conf/gitlab-http.conf</p>
+<p>
+    <a href="images/article/article9.01.png" data-fancybox>
+        <img src="images/article/article9.01.png" width="800" />
+    </a>
+</p>
+<p>10，修改了配置一定要重新编译：gitlab-ctl reconfigure</p>
+<p>11，服务的状态、启动、停止或重启：gitlab-ctl status/stop/start/restart</p>
 <br />
 
 <p class="title">
@@ -136,7 +143,7 @@
 <p>2，停止数据服务2：gitlab-ctl stop sidekiq</p>
 <p>3，恢复：gitlab-rake gitlab:backup:restore BACKUP=139*** （这里的139***是之前备份的时间戳）</p>
 <p>4，恢复服务：gitlab-ctl start</p>
-                <h4>2020-02-06 20:22:51</h4>
+                <h4>2020-05-08 14:32:43</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>

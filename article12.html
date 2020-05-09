@@ -28,9 +28,7 @@
         <article>
             <div id="articleDetail">
                 <h2>Nginx 基础</h2>
-                <p class="title">
-    一，Linux 下的安装依赖
-</p>
+                <p class="title">一，Linux 下的安装依赖</p>
 <div class="code">
     <p>yum -y install pcre-devel openssl openssl-devel libssl-dev gcc-c++</p>
 </div>
@@ -79,87 +77,45 @@
 
 
 <p class="title">五，配置</p>
-<p>1，启动：/usr/local/nginx/sbin/nginx</p>
-<p>2，关闭：/usr/local/nginx/sbin/nginx -s stop</p>
-<p>3，加入系统服务：vim /etc/rc.local，添加：/usr/local/nginx/sbin/nginx</p>
-<p>4，在 /usr/local/nginx/conf 中创建：gzip.conf</p>
+<p>1，启动服务：/usr/local/nginx/sbin/nginx</p>
+<p>2，关闭服务：/usr/local/nginx/sbin/nginx -s stop</p>
+<p>3，重启服务：/usr/local/nginx/sbin/nginx -s reload</p>
+<p>4，加入系统服务：vim /etc/rc.local，添加：/usr/local/nginx/sbin/nginx</p>
+<p>5，在 /usr/local/nginx/conf 中创建：gzip.conf</p>
 <div class="code">
-    <p>
-        gzip on;
-    </p>
-    <p>
-        gzip_min_length 1k;
-    </p>
-    <p>
-        gzip_buffers 4 16k;
-    </p>
-    <p>
-        gzip_types text/plain text/css application/x-javascript;
-    </p>
-    <p>
-        output_buffers 1 64k;
-    </p>
-    <p>
-        postpone_output 1460;
-    </p>
+    <p>gzip on;</p>
+    <p>gzip_min_length 1k;</p>
+    <p>gzip_buffers 4 16k;</p>
+    <p>gzip_types text/plain text/css application/x-javascript;</p>
+    <p>output_buffers 1 64k;</p>
+    <p>postpone_output 1460;</p>
 </div>
-<p>
-    5，在 /usr/local/nginx/conf 中创建：proxy.conf
-</p>
+<p>6，在 /usr/local/nginx/conf 中创建：proxy.conf</p>
 <div class="code">
-    <p>
-        proxy_redirect off;
-    </p>
-    <p>
-        proxy_set_header Host $host;
-    </p>
-    <p>
-        proxy_set_header X-Real-IP $remote_addr;
-    </p>
-    <p>
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    </p>
-    <p>
-        client_max_body_size 10m; #文件上传大小限制
-    </p>
-    <p>
-        client_body_buffer_size 256k;
-    </p>
-    <p>
-        proxy_connect_timeout 300;
-    </p>
-    <p>
-        proxy_send_timeout 300;
-    </p>
-    <p>
-        proxy_read_timeout 300;
-    </p>
-    <p>
-        proxy_buffer_size 16k;
-    </p>
-    <p>
-        proxy_buffers 4 32k;
-    </p>
-    <p>
-        proxy_busy_buffers_size 64k;
-    </p>
-    <p>
-        proxy_temp_file_write_size 64k;
-    </p>
+    <p>proxy_redirect off;</p>
+    <p>proxy_set_header Host $host;</p>
+    <p>proxy_set_header X-Real-IP $remote_addr;</p>
+    <p>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</p>
+    <p>client_max_body_size 10m; #文件上传大小限制</p>
+    <p>client_body_buffer_size 256k;</p>
+    <p>proxy_connect_timeout 300;</p>
+    <p>proxy_send_timeout 300;</p>
+    <p>proxy_read_timeout 300;</p>
+    <p>proxy_buffer_size 16k;</p>
+    <p>proxy_buffers 4 32k;</p>
+    <p>proxy_busy_buffers_size 64k;</p>
+    <p>proxy_temp_file_write_size 64k;</p>
 </div>
-
 <br />
 
 
-<p class="title">
-    六，最精简的 nginx.conf
-</p>
+<p class="title">六，最精简的 nginx.conf</p>
 <p>
     <a href="images/article/article12.01.png" data-fancybox>
         <img src="images/article/article12.01.png" width="800" />
     </a>
 </p>
-                <h4>2020-04-09 14:09:35</h4>
+                <h4>2020-05-08 05:34:54</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
