@@ -38,8 +38,10 @@
 <br />
 
 
-<p class="title">二，Linux CentOS 7 下安装 Jenkins</p>
-<p>1，启动服务：systemctl start/stop/restart jenkins.service</p>
+<p class="title">二，Linux CentOS 7 下使用 rpm 方式安装 Jenkins</p>
+<p>1，到<a href="http://pkg.jenkins-ci.org/redhat-stable/" target="_blank">官网</a>下载最新的 rpm 包：wget http://pkg.jenkins-ci.org/redhat-stable/jenkins-2.222.3-1.1.noarch.rpm</p>
+<p>2，安装：rpm -ivh jenkins-2.222.3-1.1.noarch.rpm</p>
+<p>3，服务：systemctl <span class="red">start/stop/restart/status</span> jenkins.service</p>
 <br />
 
 
@@ -164,7 +166,7 @@
 
 <p>注释1，>/dev/null 的作用是将它前面的命令标准输出丢弃，而标准错误输出还是在屏幕上。 一般来说 标准输出 和 标准错误输出 都是屏幕，因此错误信息还是会在屏幕上输出。这时可以用：command >/dev/null 2>&1 这样标准输出与标准错误输出都会被丢弃。1：表示标准输出，2：表示标准错误输出，2>&1：表示将标准错误输出重定向到标准输出。 >：表示输出重定向，如果 command > /usr/log 那其会覆盖log中原来的记录。可以使用 >> 输出重定向来向文件尾部追加输出记录。
 </p>
-                <h4>2020-05-07 14:36:39</h4>
+                <h4>2020-05-11 21:42:34</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
