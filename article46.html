@@ -35,7 +35,31 @@
 <p>4，使用 postgres 用户登录客户端查看数据库连接情况：select * from pg_stat_activity;</p>
 <p>5，可以使用 SQL 关闭某个连接：SELECT pg_terminate_backend(2428) FROM pg_stat_activity;</p>
 <br />
-                <h4>2020-04-29 08:57:18</h4>
+
+
+<p class="title">二，主键子增序列从某一个固定值开始递增</p>
+<p>1，建表语句：</p>
+<div class="code">
+    <p>user_id                  serial                  not null,</p>
+</div>
+<p>2，主键定义：</p>
+<div class="code">
+    <p>@Id</p>
+    <p>@GeneratedValue(strategy = GenerationType.IDENTITY)</p>
+    <p>private Long userId;</p>
+</div>
+<p>3，数据库中设置 Sequence：</p>
+<div class="code">
+    <p>select setval('t_user_id_seq', 10000, false);</p>
+</div>
+<p>4，Sequence 函数：</p>
+<p>
+    <a href="images/article/article46.01.png" data-fancybox>
+        <img src="images/article/article46.01.png" width="800" />
+    </a>
+</p>
+<br />
+                <h4>2020-05-12 07:49:36</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
