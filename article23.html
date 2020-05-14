@@ -40,8 +40,26 @@
 
 <p class="title">二，Linux CentOS 7 下使用 rpm 方式安装 Jenkins</p>
 <p>1，到<a href="http://pkg.jenkins-ci.org/redhat-stable/" target="_blank">官网</a>下载最新的 rpm 包：wget http://pkg.jenkins-ci.org/redhat-stable/jenkins-2.222.3-1.1.noarch.rpm</p>
-<p>2，安装：rpm -ivh jenkins-2.222.3-1.1.noarch.rpm</p>
-<p>3，服务：systemctl <span class="red">start/stop/restart/status</span> jenkins.service</p>
+<p>2，安装：rpm -ivh jenkins-2.222.3-1.1.noarch.rpm<br />
+（指定安装目录：rpm -ivh <span class="red">--prefix=/home/jenkins</span> jenkins-2.222.3-1.1.noarch.rpm <span class="red">TODO</span>）<br />
+-i：install - 安装<br />
+-v：verbose - 显示更详细的信息<br />
+-h：hash - 显示安装进度<br />
+出现两个 100% 才是安装成功
+</p>
+<p>3，服务：systemctl <span class="red">start/stop/restart/status</span> jenkins</p>
+<p>4，卸载：rpm -e jenkins（-e：erase）</p>
+<p>5，检查是否卸载成功：rpm -ql jenkins，会出现：package jenkins is not installed</p>
+<p>6，清理 jenkins 残留1：rm -rf /var/cache/jenkins</p>
+<p>7，清理 jenkins 残留2：rm -rf /var/lib/jenkins/</p>
+<p>8，当发现安装在默认路径下/var/lib/jenkins的磁盘不够用的话：</p>
+<div class="code">
+    <p>1，停服务：systemctl stop jenkins</p>
+    <p>2，移动：mv /var/lib/jenkins/ /home/</p>
+    <p>3，做软链接：ln -sf /home/jenkins /var/lib/jenkins</p>
+    <p>4，启服务：systemctl start jenkins</p>
+    <p>5，检查：systemctl status jenkins</p>
+</div>
 <br />
 
 
@@ -166,7 +184,7 @@
 
 <p>注释1，>/dev/null 的作用是将它前面的命令标准输出丢弃，而标准错误输出还是在屏幕上。 一般来说 标准输出 和 标准错误输出 都是屏幕，因此错误信息还是会在屏幕上输出。这时可以用：command >/dev/null 2>&1 这样标准输出与标准错误输出都会被丢弃。1：表示标准输出，2：表示标准错误输出，2>&1：表示将标准错误输出重定向到标准输出。 >：表示输出重定向，如果 command > /usr/log 那其会覆盖log中原来的记录。可以使用 >> 输出重定向来向文件尾部追加输出记录。
 </p>
-                <h4>2020-05-11 21:42:34</h4>
+                <h4>2020-05-15 07:52:38</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>

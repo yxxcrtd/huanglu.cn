@@ -112,11 +112,12 @@ article {
     font-weight: 500;
 }
 #articleDetail .code {
-    background-color: #000;
-    color: #0f0;
+    background-color: #0e1e25;
+    color: #B8FFB8;
     font-size: 15px;
-    font-weight: 500;
     padding: 1px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 #articleDetail .indent {
     text-indent: 2em;
