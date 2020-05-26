@@ -27,23 +27,22 @@
 
         <article>
             <div id="articleDetail">
-                <h2>解决 GitHub 授权的问题</h2>
-                <p>
-    1，检查 SSH keys，如果之前有的话，最好都删除，再将本地的 id_rsa.pub 重新上传上去
-</p>
+                <h2>About GitHub</h2>
+                <p class="title">一，解决 GitHub 授权的问题</p>
+<p>1，检查 SSH keys，如果之前有的话，最好都删除，再将本地的 id_rsa.pub 重新上传上去</p>
+<p>2，测试：ssh -T git@github.com，出现：Hi 用户名! You've successfully authenticated, but GitHub does not provide shell access. 表示成功了！</p>
+<p>3，现在使用 SourceTree 测试</p>
+<p>4，或者使用命令：git clone git@github.com: 用户名/******.git</p>
+<br />
 
-<p>
-    2，测试：ssh -T git@github.com，出现：Hi 用户名! You've successfully authenticated, but GitHub does not provide shell access. 表示成功了！
-</p>
 
-<p>
-    3，现在使用 SourceTree 测试
-</p>
-
-<p>
-    4，或者使用命令：git clone git@github.com: 用户名/******.git
-</p>
-                <h4>2020-02-04 19:33:13</h4>
+<p class="title">二，Please make sure you have the correct access rights and the repository exists.</p>
+<p>1，删除 .ssh 文件夹</p>
+<p>2，重新生成密钥和公钥：ssh-keygen -t rsa -C "邮箱"，全部回车</p>
+<p>3，拷贝 id_rsa.pub 内容到 GitHub 的 SSH keys</p>
+<p>4，测试：ssh -T git@github.com</p>
+<br />
+                <h4>2020-05-26 08:23:12</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
