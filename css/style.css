@@ -58,7 +58,7 @@ header {
     top: 0;
     left: 0; /* 控制 position: fixed不居中 */
     right: 0; /* 控制 position: fixed不居中 */
-    box-shadow: 0 0 5px 0 rgba(114,144,179,.06);
+    box-shadow: 0 0 5px 0 rgba(114,144,179,.28);
     background-color: #f9f9f9;
 }
 
