@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Docker 基础</h2>
+                <p class="title">一，Mac 下启动 docker 工具的发展</p>
+<p>1，最开始使用 boot2docker</p>
+<p>2，再到 Docker Toolbox</p>
+<p>3，最近新出的 Docker for Mac</p>
+<br />
+
+
+<p class="title">二，Mac 上安装 Docker 的最新方法：</p>
+<p>1，直接安装：brew cask install docker</p>
+<p>2，下载安装：https://hub.docker.com/editions/community/docker-ce-desktop-mac</p>
+<p>3，镜像加速：Perferences... -> Daemon -> Registry mirrors -> + -> http://hub-mirror.c.163.com，使用：docker info 验证</p>
+<p>4，<a href="https://hub.docker.com" target="https://hub.docker.com">https://hub.docker.com</a>（yxxcrtd/C1）</p>
+<br />
+
+
+<p class="title">三，Docker 基本操作</p>
+<p>1，先要停止正在运行的容器：docker stop ‘容器id’</p>
+<p>2，删除容器：docker rm 17c8d8b559a3</p>
+<p>3，删除所有容器：docker rm `docker ps -a -q`</p>
+<p>4，删除所有镜像：docker rmi `docker images -q`（可能删不干净的话，加上 -f）</p>
+<p>5，进入容器：docker run -i -t postgres bash</p>
+<br />
+
+
+<p class="title">四，安装 MySQL</p>
+<p>1，下载：docker pull mysql</p>
+<p>2，运行：docker run --name mysql -p 13306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql</p>
+<p>3，执行：docker exec -it mysql bash</p>
+<p>4，登录：mysql -h 127.0.0.1 -u root -p</p>
+<br />
+
+
+
+
+
+
+使用 docker 启动容器出行：device or resource busy
+
+1， 查看没有umount的路径：cat /proc/mounts | grep "mapper/docker" | awk '{print $2}'
+2，依次unmount：umount /var/lib/docker/devicemapper/mnt/a1e1298d51e2b1fbf222d475e25bd5593eb53edeaac8b8093b91ac9251489208
+3，service docker restart
+4，docker start ‘容器ID’
+
+
+Nginx
+ pure 8.41
+
+  nginx-1.12.1
+
+
+'nginx: [emerg] could not build server_names_hash, you should increase server_names_hash_bucket_size: 32
+在nginx的配置文件的http段中增加如下配置：server_names_hash_bucket_size 64;
+
+
+
+
+
+
+
+Docker 运行 Jenkins
+
+下载：docker pull jenkins
+
+启动：docker run -d -t --name=jenkins -p 15436:8080 -v /tmp/jenkins/:/var/jenkins jenkins
+
+找密码：docker inspect jenkins （找到类似：/var/lib/docker/volumes/ff60。。。。。。/_data）
+
+密码：cat /var/lib/docker/volumes/ff60690。。。d67/_data/secrets/initialAdminPassword
+
+运行：http://139.198.2.158:15436
+
+插件：选择右边的手动选择安装插件
+
+选择None，不安装插件，等进入系统后再安装；
+                <h4>2020-06-20 09:14:56</h4>
+            </div>
+            <div id="articleAside">
+                <div id="newest"></div>
+                <div id="category"></div>
+                <div id="donate">
+                    <h2>Donate</h2>
+                    <p>If this article could help you, please donate me a cup of coffee.</p>
+                    <p><img src="images/wechat.png"></p>
+                </div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
