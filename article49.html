@@ -29,17 +29,22 @@
             <div id="articleDetail">
                 <h2>Docker 基础</h2>
                 <p class="title">一，Mac 下启动 docker 工具的发展</p>
-<p>1，最开始使用 boot2docker</p>
-<p>2，再到 Docker Toolbox</p>
-<p>3，最近新出的 Docker for Mac</p>
+<p>1，最开始使用：boot2docker</p>
+<p>2，再到：Docker Toolbox</p>
+<p>3，目前最新： Docker Desktop for Mac</p>
 <br />
 
 
-<p class="title">二，Mac 上安装 Docker 的最新方法：</p>
-<p>1，直接安装：brew cask install docker</p>
-<p>2，下载安装：https://hub.docker.com/editions/community/docker-ce-desktop-mac</p>
-<p>3，镜像加速：Perferences... -> Daemon -> Registry mirrors -> + -> http://hub-mirror.c.163.com，使用：docker info 验证</p>
-<p>4，<a href="https://hub.docker.com" target="https://hub.docker.com">https://hub.docker.com</a>（yxxcrtd/C1）</p>
+<p class="title">二，Mac 上安装 Docker Desktop 的最新方法：</p>
+<p>1，直接安装：brew cask install docker（也可以下载安装：https://hub.docker.com/editions/community/docker-ce-desktop-mac）</p>
+<div class="code">
+    <p>brew cask install docker</p>
+</div>
+<p>2，镜像加速（慢的时候修改）：Perferences... -> Daemon -> Registry mirrors -> + -> http://hub-mirror.c.163.com，使用：docker info 验证</p>
+<p>3，<a href="https://hub.docker.com" target="https://hub.docker.com">https://hub.docker.com</a>（yxxcrtd/C1）</p>
+<p>4，下载之后在应用中打开：Docker，顶部就有 Docker 图标，最好登录下，里面有教程等</p>
+<p>5，终端测试：docker run -dp 80:80 docker/getting-started</p>
+<p>6，浏览器测试：http://localhost，自动跳转到：http://localhost/tutorial</p>
 <br />
 
 
@@ -102,7 +107,7 @@ Docker 运行 Jenkins
 插件：选择右边的手动选择安装插件
 
 选择None，不安装插件，等进入系统后再安装；
-                <h4>2020-06-20 09:14:56</h4>
+                <h4>2020-06-21 11:25:13</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
