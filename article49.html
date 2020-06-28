@@ -48,6 +48,23 @@
 <br />
 
 
+登录 aliyun.com，搜素：容器镜像服务，提示：您还没有开通服务，请点击确定后设置Registry登录密码，点击：前往开通，设置Registry登录密码（C1），设置完了，进入：https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors，左侧：镜像加速器。。。
+
+在任务栏点击 Docker Desktop 应用图标 -> Perferences，在左侧导航菜单选择 Docker Engine，在右侧输入栏编辑 json 文件。将
+
+https://dxvyjtmi.mirror.aliyuncs.com加到"registry-mirrors"的数组里，点击 Apply & Restart按钮，等待Docker重启并应用配置的镜像加速器。
+编辑的 json文件如下：（配置文件参考：https://docs.docker.com/engine/reference/commandline/dockerd/）
+{
+  "debug": true,
+  "experimental": false,
+  "registry-mirrors": ["https://dxvyjtmi.mirror.aliyuncs.com"]
+}
+
+
+
+
+
+
 <p class="title">三，Docker 基本操作</p>
 <p>1，先要停止正在运行的容器：docker stop ‘容器id’</p>
 <p>2，删除容器：docker rm 17c8d8b559a3</p>
@@ -107,7 +124,7 @@ Docker 运行 Jenkins
 插件：选择右边的手动选择安装插件
 
 选择None，不安装插件，等进入系统后再安装；
-                <h4>2020-06-21 11:25:13</h4>
+                <h4>2020-06-27 20:07:28</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
