@@ -141,7 +141,7 @@ table tr td {
 .articleBlockLeft {
     float: left;
     line-height: 200px; /* 左边的图片居中 */
-    margin-right: 20px;
+    margin: 0 10px;
 }
 .articleBlockLeft img {
     vertical-align: middle; /* 左边的图片居中 */
@@ -154,7 +154,7 @@ table tr td {
     transition: transform .5s ease;
 }
 .articleBlockLeft img:hover {
-    transform: scale(1.1); /* 鼠标移上的时候图片会放大显示 */
+    transform: scale(1.05); /* 鼠标移上的时候图片会放大显示 */
 }
 
 .articleBlockRight {
