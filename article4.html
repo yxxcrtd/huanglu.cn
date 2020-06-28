@@ -62,24 +62,26 @@
 
 <p>17，启动错误：OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended，解决方法：Build ... -> Debugger -> Async Stack Traces -> 去掉勾选：Instrumenting agent ...</p>
 
-<p>
-    18，去除 Method is never used： Editor -> Inspectons -> Unused declaration
-</p>
+<p>18，去除 Method is never used： Editor -> Inspectons -> Unused declaration</p>
 
-<p>
-    19，自动生成 serialVersionUID：Editor -> Inspectons -> Java -> Serialization issues -> 将 Serialzable class without ‘serialVersionUID’ 打上勾；（类要： implements Serializable，然后将光标放到类名上，按 atl＋enter 键，就会提示生成serialVersionUID了。）
-</p>
+<p>19，自动生成 serialVersionUID：Editor -> Inspectons -> Java -> Serialization issues -> 将 Serialzable class without ‘serialVersionUID’ 打上勾；（类要： implements Serializable，然后将光标放到类名上，按 atl＋enter 键，就会提示生成serialVersionUID了。）</p>
 
 <p>20，svn 关闭或打开 Update Project ：Version Control -> Confirmation -> When files are created （Add silently 是打开；Do not add 是关闭）</p>
 
-
-<p>21，修改每次新建项目后的 jar 下载到 .m2 目录下：Appearance & Behavior -> Path Variables -> 修改：MAVEN_REPOSITORY </p>
+<p>21，修改每次新建项目后的 jar 下载到 .m2 目录下：Appearance & Behavior -> Path Variables -> 修改：MAVEN_REPOSITORY</p>
 
 <p>22，IDEA 没有代码提示或报错提示：菜单栏  -> File  -> 去掉 Power Save Mode 的勾选</p>
 
 <p>23，IDEA 去掉拼写检查，或者添加自定义的单词：Editor -> Spelling  -> Accepted Words</p>
-<p>23，关闭左侧文件后面跟随的创建时间、文件大小和修改时间：菜单上 View -> Appearance  -> Details in Tree View</p>
-                <h4>2020-04-29 21:23:30</h4>
+
+<p>24，关闭左侧文件后面跟随的创建时间、文件大小和修改时间：菜单上 View -> Appearance  -> Details in Tree View</p>
+
+<p>25，IDEA 控制台取消行数限制：将安装目录 bin 下的 idea.properties 文件中 idea.cycle.buffer.size=1024 改成：disabled，重启。</p>
+
+<p></p>
+<p></p>
+<p></p>
+                <h4>2020-06-28 20:58:05</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
