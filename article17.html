@@ -134,10 +134,9 @@
         <img src="images/article/article17.01.png" width="500" />
     </a>
 </p>
-
 <br />
 
-<p class="title">五，免密远程：</p>
+<p class="title">五，免密远程一：</p>
 <p>1，先要保证 .ssh 下有：id_rsa.pub。如果没有：ssh-keygen -t rsa -C "邮箱地址"，全部回车。</p>
 <p>2，将本地的公钥拷贝到目标机器的根下：scp ~/.ssh/id_rsa.pub root@192.168.1.2:~/</p>
 <p>3，远程：ssh root@192.168.1.2</p>
@@ -147,38 +146,39 @@
 <p>6，scp有端口：<span class="red">scp -P 15451  ~/.ssh/id_rsa.pub root@192.168.1.2:~/（-大写的P，必须紧跟在 scp 后面）</span></p>
 <br />
 
-
-<p class="title">
-    六，远程服务器出现没有文件或目录：
-</p>
-
-<p>
-    错误信息：setlocale: LC_CTYPE: cannot change locale (UTF-8): 没有那个文件或目录
-</p>
-<p>
-    解决方法：vim /etc/sysconfig/i18n
-</p>
-<p>
-    追加：LC_ALL="zh_CN.UTF-8" 
-</p>
-<p>
-    （如果不行：在 /etc/locale.conf 追加：LC_CTYPE="zh_CN.UTF-8"）
-</p>
+<p class="title">六，免密远程二（推荐）：</p>
+<p>1，生成密钥：</p>
+<div class="code">
+    <p>ssh-keygen</p>
+</div>
+<p>2，将本地的公钥拷贝到目标服务器（1，要接受访问；2，要输入密码）：</p>
+<div class="code">
+    <p>ssh-copy-id root@192.168.1.2</p>
+</div>
 <br />
 
-<p class="title">七，配置 Gmail</p>
+
+<p class="title">七，远程服务器出现没有文件或目录：</p>
+<p>错误信息：setlocale: LC_CTYPE: cannot change locale (UTF-8): 没有那个文件或目录</p>
+<p>解决方法：vim /etc/sysconfig/i18n</p>
+<p>追加：LC_ALL="zh_CN.UTF-8" </p>
+<p>（如果不行：在 /etc/locale.conf 追加：LC_CTYPE="zh_CN.UTF-8"）</p>
+<br />
+
+
+<p class="title">八，配置 Gmail</p>
 <p>1，pop.gmail.com    SSL    995</p>
 <p>2，smtp.gmail.com    TLS 587  / SSL 465</p>
 <br />
 
 
-<p class="title">八，系统升级后，APP无法打开</p>
+<p class="title">九，系统升级后，APP无法打开</p>
 <p>出现错误：“IntelliJ IDEA CE.app” is damaged and can’t be opened. You should move it to the Trash.</p>
 <p>方法1：sudo spctl --master-disable 或 sudo spctl --master-enable</p>
 <p>方法2：sudo xattr -cr /Applications/IntelliJ\ IDEA\ CE.app（输入完Applications/后，输入In 按 tab 健后即可出来）</p>
 <br />
 
-<p class="title">九，Mac 系统的临时目录（相当于 Windows 的 %temp%）</p>
+<p class="title">十，Mac 系统的临时目录（相当于 Windows 的 %temp%）</p>
 
 <p>
     <a href="images/article/article17.02.png" data-fancybox>
@@ -186,7 +186,7 @@
     </a>
 </p>
 <br />
-                <h4>2020-05-21 13:58:57</h4>
+                <h4>2020-06-29 08:12:19</h4>
             </div>
             <div id="articleAside">
                 <div id="newest"></div>
