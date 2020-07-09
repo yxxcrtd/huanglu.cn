@@ -7,6 +7,7 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>书香黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -25,30 +26,43 @@
         </header>
 
         <article>
-            <div id="categoryList">
-                <ul>
-                <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article17.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article17.html">Mac 基础</a></h2>
-                    <h3>Mac 环境下的 Java 开发</h3>
-                    <h4>2020-07-07 21:42:00</h4>
-                </div>
-            </li>
-            <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article3.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article3.html">安装Mac下的包安装工具 Homebrew</a></h2>
-                    <h3>“要安装，请拖动此图标......”不会再出现了。现在使用 brew 或 brew cask 可以直接安装 macOS 应用程序、字体和插件以及其他非开源软件。</h3>
-                    <h4>2020-04-24 09:27:38</h4>
-                </div>
-            </li>
-</ul>            </div>
+            <div id="articleDetail">
+                <h2>IDEA 远程调试</h2>
+                <p class="title">一，在本地配置 IDEA</p>
+<p>1，菜单栏 Run -> Edit Configurations</p>
+<p>2，添加一个：Remote</p>
+<p>3，修改 IP 地址、修改端口号</p>
+<p>4，拷贝命令行参数：<span class="red">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</span></p>
+<p>
+    <a href="images/article/article50.01.png" data-fancybox>
+        <img src="images/article/article50.01.png" width="800" />
+    </a>
+</p>
+<br />
 
+
+<p class="title">二，在服务端启动：远程服务</p>
+<div class="code">
+    <p>java -jar <span class="red">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</span> /Users/young/Workspaces/home/target/home-0.0.1-SNAPSHOT.jar</p>
+</div>
+<br />
+
+
+<p class="title">三，在本地启动 IDEA</p>
+<p>1，控制台只输出一行：</p>
+<div class="code">
+    <p>Connected to the target VM, address: '192.168.3.203:5005', transport: 'socket'</p>
+</div>
+<br />
+
+
+<p class="title">四，本地浏览器访问</p>
+<div class="code">
+    <p>http://192.168.3.203:5005</p>
+</div>
+<br />
+                <h4>2020-07-09 21:20:21</h4>
+            </div>
             <div id="articleAside">
                 <div id="newest"></div>
                 <div id="category"></div>
@@ -64,5 +78,6 @@
 
         <script src="js/jquery-3.5.1.js"></script>
         <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>
