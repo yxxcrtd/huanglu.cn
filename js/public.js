@@ -9,5 +9,6 @@ $(function() {
 
 	$("#articleList").load("articleList.html");
 	$("#category").load("category.html");
+
 });
 

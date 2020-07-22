@@ -189,6 +189,9 @@ table tr td {
     float: left;
     width: 25%;
     color: #797c80;
+
+    top: 60px;
+    position: relative;
 }
 
 #articleAside div {
@@ -203,6 +206,11 @@ table tr td {
     margin-left: 50px;
 }
 
+#category {
+    position: fixed;
+    _position: absolute;
+    top: 100px;
+}
 
 
 
