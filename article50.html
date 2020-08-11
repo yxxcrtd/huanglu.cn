@@ -31,7 +31,7 @@
                 <p class="title">一，在本地配置 IDEA</p>
 <p>1，菜单栏 Run -> Edit Configurations</p>
 <p>2，添加一个：Remote</p>
-<p>3，修改 IP 地址、修改端口号</p>
+<p>3，<span class="red">修改 IP 地址</span>、端口号可以用默认的 5005</p>
 <p>4，拷贝命令行参数：<span class="red">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</span></p>
 <p>
     <a href="images/article/article50.01.png" data-fancybox>
@@ -43,13 +43,13 @@
 
 <p class="title">二，在服务端启动：远程服务</p>
 <div class="code">
-    <p>java -jar <span class="red">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</span> /Users/young/Workspaces/home/target/home-0.0.1-SNAPSHOT.jar</p>
+    <p>java -jar <span class="red">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</span> /home/test.jar</p>
 </div>
 <br />
 
 
 <p class="title">三，在本地启动 IDEA</p>
-<p>1，控制台只输出一行：</p>
+<p>1，点 远程的 Unnamed 的 调试 按钮，控制台只输出一行：（如果有错误，在左下角会有错误提示）</p>
 <div class="code">
     <p>Connected to the target VM, address: '192.168.3.203:5005', transport: 'socket'</p>
 </div>
@@ -59,9 +59,11 @@
 <p class="title">四，本地浏览器访问</p>
 <div class="code">
     <p>http://192.168.3.203:5005</p>
+    <p>1，如果服务端的 jar 包有端口，则继续用之前的端口</p>
+    <p>2，没有的话，则用 5005</p>
 </div>
 <br />
-                <h4>2020-07-09 21:20:21</h4>
+                <h4>2020-08-11 14:27:58</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

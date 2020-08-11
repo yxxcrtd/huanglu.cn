@@ -83,7 +83,7 @@ nav ul li {
 }
 
 article {
-    margin-top: 100px;
+    margin-top: 70px;
     margin-bottom: 20px;
     overflow: hidden;
 }
@@ -209,7 +209,7 @@ table tr td {
 #category {
     position: fixed;
     _position: absolute;
-    top: 100px;
+    top: 60px;
 }
 
 
