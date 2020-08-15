@@ -7,6 +7,7 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>书香黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -25,30 +26,28 @@
         </header>
 
         <article>
-            <div id="categoryList">
-                <ul>
-                <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article52.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article52.html">All Windows in here</a></h2>
-                    <h3>Windows 的一些积累在这里备份</h3>
-                    <h4>2020-08-14 10:44:34</h4>
-                </div>
-            </li>
-            <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article1.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article1.html">爱子七不责</a></h2>
-                    <h3>中国有句俗语讲：“可怜天下父母心”，父母“望子成龙、望女成凤”的心情每个人都理解，但是教育子女需要讲究方式方法，古人就总结出育子“七不责”。为人父母的你怎么可以不知道！！</h3>
-                    <h4>2020-08-14 09:04:56</h4>
-                </div>
-            </li>
-</ul>            </div>
+            <div id="articleDetail">
+                <h2>IDEA 设置同步到 Github</h2>
+                <p class="title">一，在 GitHub 配置</p>
+<p>1，在 GitHub 上新建一个空的仓库：mac-idea-settings</p>
+<p>2，复制整个仓库的地址备用：https://github.com/yxxcrtd/mac-idea-settings</p>
+<br />
 
+
+<p class="title">二，在 GitHub 生成 access token</p>
+<p>1，登录 GitHub </p>
+<p>2，在右上角点个人头像选择 Settings</p>
+<p>3，在左边找到：Developer settings</p>
+<p>4，Personal access tokens</p>
+<p>5，Generate new token</p>
+<p>6，需要输入 Github 密码</p>
+<p>7，填写一个 token 的目的</p>
+<p>8，接着勾选：repo、admin:repo_hook、delete_repo</p>
+<p>9，点击：Generate token</p>
+<p>10，最后拷贝生成的 token</p>
+<br />
+                <h4>2020-08-14 13:59:17</h4>
+            </div>
             <div id="articleAside">
                 <div id="category"></div>
             </div>
@@ -58,5 +57,6 @@
 
         <script src="js/jquery-3.5.1.js"></script>
         <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>

@@ -7,6 +7,7 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>书香黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -25,30 +26,27 @@
         </header>
 
         <article>
-            <div id="categoryList">
-                <ul>
-                <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article52.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article52.html">All Windows in here</a></h2>
-                    <h3>Windows 的一些积累在这里备份</h3>
-                    <h4>2020-08-14 10:44:34</h4>
-                </div>
-            </li>
-            <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article1.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article1.html">爱子七不责</a></h2>
-                    <h3>中国有句俗语讲：“可怜天下父母心”，父母“望子成龙、望女成凤”的心情每个人都理解，但是教育子女需要讲究方式方法，古人就总结出育子“七不责”。为人父母的你怎么可以不知道！！</h3>
-                    <h4>2020-08-14 09:04:56</h4>
-                </div>
-            </li>
-</ul>            </div>
+            <div id="articleDetail">
+                <h2>All Windows in here</h2>
+                <p class="title">一，Windows 10 下载地址：</p>
+<p>1，使用与 Windows 相关的操作系统、Office 的国内镜像地址：<a href="https://msdn.itellyou.cn" target="_blank">https://msdn.itellyou.cn</a><div class="code"><p>https://msdn.itellyou.cn</p></div></p>
+<p>2，下载：操作系统 -> Windows 10 Enterprise LTSC 2019
+    <div class="code"><p>ed2k://|file|cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso|4478906368|E7C526499308841A4A6D116C857DB669|/</p></div>
+</p>
+<br />
 
+
+<p class="title">二，激活：</p>
+<p>
+    1，使用管理员权限打开 cmd，然后依次执行下面的4步：
+    <div class="code"><p>1，slmgr -ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D</p></div>
+    <div class="code"><p>2，slmgr -skms kms.03k.org</p></div>
+    <div class="code"><p>3，slmgr -ato</p></div>
+    <div class="code"><p>4，slmgr -dlv</p></div>
+</p>
+<br />
+                <h4>2020-08-14 10:44:34</h4>
+            </div>
             <div id="articleAside">
                 <div id="category"></div>
             </div>
@@ -58,5 +56,6 @@
 
         <script src="js/jquery-3.5.1.js"></script>
         <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>
