@@ -43,17 +43,17 @@
 <p>3，强制关闭所有数据库实例：<div class="code"><p>db2 force application all</p></div></p>
 <p>
     4，<span class="red">快速</span>执行下面的备份命令，否则数据库会自动重连：
-    <div class="code"><p>db2 backup db pzpt to /home/tag</p></div>
+    <div class="code"><p>db2 backup db pzpt to /home/backup</p></div>
     <p>备份成功后会显示：Backup successful. The timestamp for this backup image is : 20200401160847</p>
 </p>
 <br />
 
 
 <p class="title">三，还原</p>
-<p>1，找到备份文件并显示：<div class="code"><p>11</p><p>会显示：PZPT.0.db2inst1.DBPART000.<span class="red">20200401160847</span>.001</p></div></p>
+<p>1，找到备份文件并显示：<div class="code"><p>11 <br />会显示：PZPT.0.db2inst1.DBPART000.<span class="red">20200401160847</span>.001</p></div></p>
 <p>
     2，还原：
-    <div class="code"><p>db2 restore db pzpt from /home/tag taken at <span class="red">20200401160847</span> into pzpt321</p></div>
+    <div class="code"><p>db2 restore db pzpt from /home/backup taken at <span class="red">20200401160847</span> into pzpt321</p></div>
     <p>&nbsp;&nbsp;1)，<span class="red">20200401160847</span> 是要还原的文件</p>
     <p>&nbsp;&nbsp;2)，pzpt321 是新库名称</p>
     <p>&nbsp;&nbsp;3)，还原成功后会显示：DB20000I  The RESTORE DATABASE command completed successfully.</p>
@@ -80,48 +80,39 @@
 <br />
 
 
-<p class="title">四，删除数据库</p>
+<p class="title">五，定时全量备份数据库</p>
 <p>
-    1，接触激活：
-    <div class="code"><p>db2 deactivate database test</p></div>
-    <p>成功会显示：DB20000I  The DEACTIVATE DATABASE command completed successfully.</p>
+    1，在登录用户的目录下创建备份的shell脚本：backup.sh，内容如下：
+    <div class="code">
+        <p>
+
+#!/bin/sh <br />
+su - db2inst1 &lt;&lt;EOF <br />
+db2 force application all <br />
+db2 backup db RBDB to /home/backup <br />
+if [ $? -ne 0 ]; <br />
+then <br />
+   &nbsp;&nbsp;&nbsp;&nbsp;echo 'Ooops ...' <br />
+else <br />
+   &nbsp;&nbsp;&nbsp;&nbsp;echo 'Backup Successful!' <br />
+fi <br />
+EOF <br />
+
 </p>
-<p>
-    2，退出数据库：
-    <div class="code"><p>db2 terminate</p></div>
-    <p>成功会显示：DB20000I  The TERMINATE command completed successfully.</p>
+    </div>
 </p>
+
 <p>
-    3，删除数据库：
-    <div class="code"><p>db2 drop db test</p></div>
-    <p>成功会显示：DB20000I  The DROP DATABASE command completed successfully.</p>
+    2，将 shell 脚本加入到系统的定时任务中，在终端执行：<span class="red">crontab -e</span>，每天凌晨1点执行 shell 脚本
+    <div class="code"><p>0 1 * * * /root/backup.sh</p></div>
+</p>
+
+<p>
+    3，重启系统的定时任务，在终端执行：
+    <div class="code"><p>service crond restart</p></div>
 </p>
 <br />
-
-
-
-
-服务器：192.168.70.232
-
-1，在登录用户的目录下创建备份的shell脚本：backup.sh，内容如下：
-#!/bin/sh
-su - db2inst1 <<EOF
-db2 force application all
-db2 backup db RBDB to /home/backup
-if [ $? -ne 0 ];
-then
-   echo 'Ooops ...'
-else
-   echo 'Backup Successful!'
-fi
-EOF
-
-
-2，将 shell 脚本加入到系统的定时任务中，在终端执行：crontab -e，输入：0 11 * * * /root/backup.sh（每天11点执行 shell 脚本）
-
-
-3，重启系统的定时任务，在终端执行：service crond restart
-                <h4>2020-08-14 17:23:38</h4>
+                <h4>2020-08-16 22:00:48</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
