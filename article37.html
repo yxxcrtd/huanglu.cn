@@ -87,6 +87,10 @@
         <p>
 
 #!/bin/sh <br />
+ <br />
+# Delete 30 days before <br />
+find /home/backup/ -mtime +30 -name "*.001" -exec rm -rf {} \; <br /> <br />
+
 su - db2inst1 &lt;&lt;EOF <br />
 db2 force application all <br />
 db2 backup db RBDB to /home/backup <br />
@@ -112,7 +116,7 @@ EOF <br />
     <div class="code"><p>service crond restart</p></div>
 </p>
 <br />
-                <h4>2020-08-16 22:00:48</h4>
+                <h4>2020-08-19 13:44:37</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
