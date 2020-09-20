@@ -116,7 +116,33 @@ EOF <br />
     <div class="code"><p>service crond restart</p></div>
 </p>
 <br />
-                <h4>2020-08-19 13:44:37</h4>
+
+
+<p class="title">六，定时删除数据库备份文件</p>
+<p>
+    1，在登录用户的目录下创建定时删除备份的shell脚本：delbackup.sh，内容如下：
+    <div class="code">
+        <p>
+
+#!/bin/sh <br />
+ <br />
+find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
+
+</p>
+    </div>
+</p>
+
+<p>
+    2，将 shell 脚本加入到系统的定时任务中，在终端执行：<span class="red">crontab -e</span>，每天凌晨2点执行 shell 脚本
+    <div class="code"><p>0 2 * * * /home/delbackup.sh</p></div>
+</p>
+
+<p>
+    3，重启系统的定时任务，在终端执行：
+    <div class="code"><p>service crond restart</p></div>
+</p>
+<br />
+                <h4>2020-09-07 09:17:15</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
