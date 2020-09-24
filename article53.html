@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Red Hat 更新 CentOS 源</h2>
+                <p class="title">一，检查已经安装的 yum</p>
+<div class="code">
+    <p>rpm -qa | grep yum</p>
+</div>
+<br />
+
+
+<p class="title">二，卸载 RedHat 自带的 yum 软件包</p>
+<div class="code">
+    <p>
+    rpm -e yum-3.4.3-118.el7.noarch --nodeps<br />
+    ......<br /><br />
+    或者直接卸载全部：rpm -qa | grep yum | xargs rpm -e --nodeps
+    </p>
+</div>
+<br />
+
+
+<p class="title">三，到 163 镜像站寻找源 <a href="http://mirrors.163.com/centos/7/os/x86_64/Packages/" targer="_blank">http://mirrors.163.com/centos/7/os/x86_64/Packages/</a></p>
+<div class="code">
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-3.4.3-132.el7.centos.0.1.noarch.rpm</span></p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-metadata-parser-1.1.4-10.el7.x86_64.rpm</span></p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-utils-1.1.31-34.el7.noarch.rpm</span></p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-updateonboot-1.1.31-34.el7.noarch.rpm</span></p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-plugin-fastestmirror-1.1.31-34.el7.noarch.rpm</span></p>
+</div>
+<br />
+
+
+<p class="title">四，安装 yum 软件包</p>
+<div class="code">
+    <p>rpm -ivh yum-*</p>
+</div>
+<br />
+
+
+<p class="title">五，配置 yum 源</p>
+<div class="code">
+    <p>1，先备份：mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak</p>
+    <p>2，替换：vim /etc/yum.repos.d/CentOS-Base.repo
+
+<br />[base]
+<br />name=CentOS-$7 - Base - 163.com
+<br />#mirrorlist=http://mirrorlist.centos.org/?release=$7&arch=$basearch&repo=os
+<br />baseurl=http://mirrors.163.com/centos/7/os/$basearch/
+<br />gpgcheck=1
+<br />gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-7
+<br />
+
+<br />#released updates
+<br />[updates]
+<br />name=CentOS-$7 - Updates - 163.com
+<br />#mirrorlist=http://mirrorlist.centos.org/?release=$7&arch=$basearch&repo=updates
+<br />baseurl=http://mirrors.163.com/centos/7/updates/$basearch/
+<br />gpgcheck=1
+<br />gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-7
+<br />
+
+<br />#additional packages that may be useful
+<br />[extras]
+<br />name=CentOS-$7 - Extras - 163.com
+<br />#mirrorlist=http://mirrorlist.centos.org/?release=$7&arch=$basearch&repo=extras
+<br />baseurl=http://mirrors.163.com/centos/7/extras/$basearch/
+<br />gpgcheck=1
+<br />gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-7
+<br />
+
+<br />#additional packages that extend functionality of existing packages
+<br />[centosplus]
+<br />name=CentOS-$7 - Plus - 163.com
+<br />baseurl=http://mirrors.163.com/centos/7/centosplus/$basearch/
+<br />gpgcheck=1
+<br />enabled=0
+<br />gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-7
+    </p>
+</div>
+<br />
+
+<p class="title">六，清除 yum 缓存（需要定期执行）</p>
+<div class="code">
+    <p>yum clean all</p>
+</div>
+<br />
+
+<p class="title">七，把服务器的包信息缓存到本地</p>
+<div class="code">
+    <p>yum makecache</p>
+</div>
+<br />
+
+<p class="title">八，可以更新了！</p>
+<div class="code">
+    <p>yum -y update</p>
+    <p>如果有无法更新的包：yum -y update <span class="red">--nogpgcheck</span></p>
+</div>
+<br />
+                <h4>2020-09-23 13:48:48</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
