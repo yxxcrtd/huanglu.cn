@@ -27,52 +27,39 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Docker 可视化管理工具 - Portainer & DockerUI</h2>
-                <p class="title">一，Portainer 的安装</p>
-<div class="code">
-    <p>1，下载镜像：docker pull docker.io/portainer/portainer</p>
+                <h2>Jar 包部署到 Docker</h2>
+                <div class="code">
+    <p>1，将 jar 包放到指定目录</p>
 </div>
 
 <div class="code">
-    <p>2，启动：docker run -d -p 9000:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock --name prtainer-test portainer/portainer</p>
+    <p>
+        2，在 jar 包同级目录创建 <span class="red">Dockfile</span>，vim Dockfile<br />
+
+FROM java:8<br />
+MAINTAINER yxx<br />
+ADD tams.jar demo.jar<br />
+EXPOSE 8080<br />
+ENTRYPOINT ["java", "-jar", "demo.jar"]<br />
+
+
+    </p>
 </div>
 
 <div class="code">
-    <p>3，访问：http://192.168.1.2:9000</p>
-</div>
-<br />
-
-
-<p class="title">二，Portainer 汉化</p>
-<div class="code">
-    <p>1，新建文件夹：/home/docker/public</p>
-</div>
-<div class="code">
-    <p>2，将下载的 Portainer-CN 解压，放到 public 下（css、fonts、images、js 和 index.html）</p>
-</div>
-<div class="code">
-    <p>3，启动：docker run -d -p 9001:9000 --restart=always --name prtainer -v /var/run/docker.sock:/var/run/docker.sock  -v /home/docker:/data -v /home/docker/public:/public portainer/portainer</p>
-</div>
-<div class="code">
-    <p>4，访问：http://192.168.1.2:9001</p>
-</div>
-<br />
-
-
-<p class="title">三，DockerUI 的安装</p>
-<div class="code">
-    <p>1，下载镜像：docker pull uifd/ui-for-docker</p>
+    <p>3，构建镜像：docker build -t project/tams .（注意：最后有一个点；project/tams 是构建之后的镜像名称，可以加版本号）</p>
 </div>
 
-<div class="code">
-    <p>2，启动：docker run -it -d --name docker-web -p 9002:9000 -v /var/run/docker.sock:/var/run/docker.sock docker.io/uifd/ui-for-docker</p>
-</div>
 
 <div class="code">
-    <p>3，访问：http://192.168.1.2:9002</p>
+    <p>4，运行镜像：docker run -e TZ="Asia/Shanghai" -d --restart=always --name tams -p 8081:8080  project/tams</p>
 </div>
-<br />
-                <h4>2020-09-25 20:22:28</h4>
+
+
+<div class="code">
+    <p>5，查看日志：docker logs --tail  300 -f  tams</p>
+</div>
+                <h4>2020-09-25 21:05:32</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

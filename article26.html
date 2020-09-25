@@ -77,14 +77,15 @@
 
 
 <p class="title">六，容器</p>
-<p>1，启动容器（挂载文件）：docker run -i -t （-v /root:/root） '镜像ID' /bin/bash</p>
-<p>2，退出容器：exit</p>
-<p>3，停止容器：docker stop / start '容器ID'</p>
-<p>4，所有容器：docker ps -a</p>
-<p>5，正在运行：docker ps</p>
-<p>6，容器导出：docker save -o /home/centos.tar '镜像ID'</p>
-<p>7，容器导入：docker load < /home/centos.tar</p>
-<p>8，删除容器：docker rm '容器ID'</p>
+<p>1，启动容器（挂载文件）：docker run -i -t （-v /root:/root） '容器ID' /bin/bash</p>
+<p>2，进入容器：docker exec -it '容器ID' /bin/bash</p>
+<p>3，退出容器：exit</p>
+<p>4，停止容器：docker stop / start '容器ID'</p>
+<p>5，所有容器：docker ps -a</p>
+<p>6，正在运行：docker ps</p>
+<p>7，容器导出：docker save -o /home/centos.tar '容器ID'</p>
+<p>8，容器导入：docker load < /home/centos.tar</p>
+<p>9，删除容器：docker rm '容器ID'</p>
 <br />
 
 
@@ -151,7 +152,7 @@
 <p>1，<a href="https://hub.docker.com" target="_blank">https://hub.docker.com</a></p>
 <p>2，y…d</p>
 <p>3，C…1</p>
-                <h4>2020-09-22 09:09:38</h4>
+                <h4>2020-09-25 21:05:57</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
