@@ -29,7 +29,7 @@
             <div id="articleDetail">
                 <h2>Docker 基础</h2>
                 <p class="title">一，Docker 两大概念</p>
-<p>1，镜像：是一个只读的模板，可以用来创建容器；</p>
+<p>1，镜像：是一个只读的模板，用来创建N个容器；</p>
 <p>2，容器：就像一个简易版的Linux环境；用容器运行应用。可以被启动、开始、停止和删除。每个容器即可隔离，也可相互通信；</p>
 <br />
 
@@ -44,7 +44,6 @@
 <br />
 
 
-
 <p class="title">三，Linux CentOS 7 的安装</p>
 <p>1，安装依赖的包：yum install -y yum-utils device-mapper-persistent-data lvm2</p>
 <p>2，安装repository：yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</p>
@@ -54,7 +53,7 @@
 <br />
 
 
-<p class="title">四，Mac 下的安装</p>
+<p class="title">四，Mac 下的安装（@Deprecated）</p>
 <p>1，brew install docker</p>
 <p>2，brew cask install dockertoolbox（Docker工具集，包含：Client、Machine、Compose、Kitematic、VirtualBox）</p>
 <p>3，brew cask install caskroom/cask/docker-toolbox（如果上面的找不到，就用这行命令）</p>
@@ -72,7 +71,8 @@
 <p>2，获取镜像：docker pull centos:latest（如果不指定，默认是latest标签，centos5、centos6、centos7、latest）</p>
 <p>3，查看镜像：docker images（显示当前系统中的所有镜像）</p>
 <p>4，镜像详情：docker inspect '镜像ID'（读取其中一个属性：docker inspect '镜像ID' -f {{".Architecture"}} 550）</p>
-<p>5，删除镜像：docker rmi '镜像ID' / docker rmi ichika:latest</p>
+<p>5，删除镜像：docker rmi '镜像ID' / docker rmi centos:latest</p>
+<p>6，删除所有镜像：docker rmi `docker images -q`（可能删不干净的话，加上 -f）</p>
 <br />
 
 
@@ -86,10 +86,11 @@
 <p>7，容器导出：docker save -o /home/centos.tar '容器ID'</p>
 <p>8，容器导入：docker load < /home/centos.tar</p>
 <p>9，删除容器：docker rm '容器ID'</p>
+<p>3，删除所有容器：docker rm `docker ps -a -q`</p>
 <br />
 
 
-<p class="title">七，运行</p>
+<p class="title">七，运行镜像</p>
 <p>1，创建自己的镜像：docker commit ‘镜像ID‘ yxx/java:0.1</p>
 <p>2，启动自己创建的镜像：docker run -d -p 8080:8080 --name java yxx/java:1 /home/run.sh</p>
 <p>3，访问：http://127.0.0.1:8080</p>
@@ -112,13 +113,30 @@
 <br />
 
 
-<p class="title">十，Docker 里面编辑文件</p>
+<p class="title">十，安装 MySQL</p>
+<p>1，下载：docker pull mysql</p>
+<p>2，运行：docker run --name mysql -p 13306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql</p>
+<p>3，执行：docker exec -it mysql bash</p>
+<p>4，登录：mysql -h 127.0.0.1 -u root -p</p>
+<br />
+
+
+<p class="title">十一，安装 Jenkins</p>
+<p>1，下载：docker pull jenkins</p>
+<p>2，启动：docker run -d -t --name=jenkins -p 15436:8080 -v /tmp/jenkins/:/var/jenkins jenkins</p>
+<p>3，找密码：docker inspect jenkins （找到类似：/var/lib/docker/volumes/ff60。。。。。。/_data）</p>
+<p>4，显示密码：cat /var/lib/docker/volumes/ff60690。。。d67/_data/secrets/initialAdminPassword</p>
+<p>5，运行：http://139.198.2.158:15436</p>
+<br />
+
+
+<p class="title">十二，Docker 里面编辑文件</p>
 <p>1，apt-get update</p>
 <p>2，apt-get install vim</p>
 <br />
 
 
-<p class="title">十一，问题1: 通过 docker version 检查出：Cannot connect to the Docker daemon. Is ‘docker -d’ running on this host?</p>
+<p class="title">十三，问题1: 通过 docker version 检查出：Cannot connect to the Docker daemon. Is ‘docker -d’ running on this host?</p>
 <div class="code">
 <p>1，重启Docker主机：docker-machine restart && eval "$(docker-machine env default)" && docker-machine env</p>
 <p>2，查看Docker主机：docker-machine ls</p>
@@ -126,44 +144,27 @@
 <br />
 
 
-<p class="title">十二，问题2: com.spotify.docker.client.shaded.javax.ws.rs.ProcessingException: java.io.IOException: No such file or directory</p>
+<p class="title">十四，问题2: com.spotify.docker.client.shaded.javax.ws.rs.ProcessingException: java.io.IOException: No such file or directory</p>
 <div class="code">
 <p>docker-machine restart && eval "$(docker-machine env default)" && docker-machine env</p>
 </div>
 <br />
 
 
-<p class="title">十三，问题3：删除相同 image id 的方法</p>
+<p class="title">十五，问题3：删除相同 image id 的方法</p>
 <div class="code">
 <p>docker rmi image:tag，出现 Untagged: *** ，即OK</p>
 </div>
 <br />
 
 
-<p class="title">十四，问题4：使用 Dockerfile 无法生成 docker images（在使用 mvn clean package docker:build，控制台提示： 信息: I/O exception (java.io.IOException) caught when processing request to {}->unix://localhost:80: No such file or directory）</p>
+<p class="title">十六，问题4：使用 Dockerfile 无法生成 docker images（在使用 mvn clean package docker:build，控制台提示： 信息: I/O exception (java.io.IOException) caught when processing request to {}->unix://localhost:80: No such file or directory）</p>
 <div class="code">
 <p>1，docker-machine env</p>
 <p>2，eval $(docker-machine env)</p>
 </div>
 <br />
-
-
-<p class="title">十五，Docker Hub</p>
-<p>1，<a href="https://hub.docker.com" target="_blank">https://hub.docker.com</a></p>
-<p>2，y…d</p>
-<p>3，C…1</p>
-
-
-十六，镜像加速
-
-sudo tee /home/docker/daemon.json <<-'EOF'
-{
-  "registry-mirrors": ["https://<span class="red">替换自己的</span>.mirror.aliyuncs.com"]
-}
-EOF
-systemctl daemon-reload
-systemctl restart docker
-                <h4>2020-09-29 09:05:17</h4>
+                <h4>2020-09-30 05:49:08</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
