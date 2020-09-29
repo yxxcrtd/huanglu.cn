@@ -27,39 +27,11 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Jar 包部署到 Docker</h2>
-                <div class="code">
-    <p>1，将 jar 包放到指定目录</p>
-</div>
+                <h2>Docker 安装 Eureka</h2>
+                docker pull springcloud/eureka
 
-<div class="code">
-    <p>
-        2，在 jar 包同级目录创建 <span class="red">Dockfile</span>，vim Dockfile<br />
-
-FROM java:8<br />
-MAINTAINER yxx<br />
-ADD tams.jar demo.jar<br />
-EXPOSE 8080<br />
-ENTRYPOINT ["java", "-jar", "demo.jar"]<br />
-RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br />
-RUN echo "Asia/Shanghai" >/etc/timezone<br />
-    </p>
-</div>
-
-<div class="code">
-    <p>3，构建镜像：docker build -t project/tams .（注意：最后有一个点；project/tams 是构建之后的镜像名称，可以加版本号）</p>
-</div>
-
-
-<div class="code">
-    <p>4，运行镜像：docker run -e TZ="Asia/Shanghai" -d --restart=always --name tams -p 8081:8080  project/tams</p>
-</div>
-
-
-<div class="code">
-    <p>5，查看日志：docker logs --tail  300 -f  tams</p>
-</div>
-                <h4>2020-09-27 08:50:45</h4>
+docker run -d -p 8761:8761 springcloud/eureka --restart=always --name=eureka
+                <h4>2020-09-28 18:10:26</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

@@ -27,27 +27,36 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Mac 下 Docker 基础</h2>
-                <p class="title">一，Mac 下启动 docker 工具的发展</p>
-<p>1，最开始使用：boot2docker</p>
-<p>2，再到：Docker Toolbox</p>
-<p>3，目前最新： Docker Desktop for Mac</p>
-<br />
-
-
-<p class="title">二，Mac 上安装 Docker Desktop 的最新方法：</p>
-<p>1，直接安装：brew cask install docker（也可以下载安装：https://hub.docker.com/editions/community/docker-ce-desktop-mac）</p>
+                <h2>Docker & Kubernetes（k8s）基础</h2>
+                <p class="title">一，安装 Docker Desktop</p>
+<p>1，Mac 下用 brew 安装，也可以下载安装：<a href="https://www.docker.com/products/docker-desktop" target="_blank">https://www.docker.com/products/docker-desktop</a></p>
 <div class="code">
     <p>brew cask install docker</p>
 </div>
-<p>2，镜像加速（慢的时候修改）：Perferences... -> Daemon -> Registry mirrors -> + -> http://hub-mirror.c.163.com，使用：docker info 验证</p>
-<p>3，<a href="https://hub.docker.com" target="https://hub.docker.com">https://hub.docker.com</a>（yxxcrtd/C1）</p>
-<p>4，下载之后在应用中打开：Docker，顶部就有 Docker 图标，最好登录下，里面有教程等</p>
-<p>5，终端测试：docker run -dp 80:80 docker/getting-started</p>
-<p>6，浏览器测试：http://localhost，自动跳转到：http://localhost/tutorial</p>
+
+<p>2，安装后打开：Docker，就能看到 Docker 图标（最好登录 <a href="https://hub.docker.com" target="https://hub.docker.com">Docker Hub（yxxcrtd/C1）</a>，里面有教程等）</p>
+
+<p>3，终端测试：docker run -dp 80:80 docker/getting-started</p>
+<p>4，浏览器测试：http://localhost，自动跳转到：http://localhost/tutorial</p>
 <br />
 
 
+<p class="title">二，镜像加速</p>
+
+
+<p>1，Mac 下用 brew 安装，也可以下载安装：<a href="https://www.docker.com/products/docker-desktop" target="_blank">https://www.docker.com/products/docker-desktop</a></p>
+<div class="code">
+    <p>brew cask install docker</p>
+</div>
+
+<p>2，安装后打开：Docker，就能看到 Docker 图标（最好登录 <a href="https://hub.docker.com" target="https://hub.docker.com">Docker Hub（yxxcrtd/C1）</a>，里面有教程等）</p>
+
+<p>3，终端测试：docker run -dp 80:80 docker/getting-started</p>
+<p>4，浏览器测试：http://localhost，自动跳转到：http://localhost/tutorial</p>
+<br />
+
+
+<p>2，镜像加速（慢的时候修改）：Perferences... -> Daemon -> Registry mirrors -> + -> http://hub-mirror.c.163.com，使用：docker info 验证</p>
 登录 aliyun.com，搜素：容器镜像服务，提示：您还没有开通服务，请点击确定后设置Registry登录密码，点击：前往开通，设置Registry登录密码（C1），设置完了，进入：https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors，左侧：镜像加速器。。。
 
 在任务栏点击 Docker Desktop 应用图标 -> Perferences，在左侧导航菜单选择 Docker Engine，在右侧输入栏编辑 json 文件。将
@@ -124,7 +133,7 @@ Docker 运行 Jenkins
 插件：选择右边的手动选择安装插件
 
 选择None，不安装插件，等进入系统后再安装；
-                <h4>2020-09-23 13:56:59</h4>
+                <h4>2020-09-29 21:57:50</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

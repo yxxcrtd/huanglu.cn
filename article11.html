@@ -76,6 +76,14 @@
 <br />
 
 
+<p class="title">五，Docker 中安装 Redis</p>
+<p>1，安装：docker pull redis</p>
+<p>2，启动：docker run --name redis -p 6379:6379 --restart=always -d redis redis-server --appendonly yes --requirepass "123456"</p>
+<p>3，进入容器：docker exec -it "容器ID" /bin/bash</p>
+<br />
+
+
+
 <p class="title">五，基本操作</p>
 <p>1，设置：set a 123</p>
 <p>2，获取：get a，显示：123</p>
@@ -90,7 +98,7 @@
 <p>11，选择某一个数据库：select 2</p>
 <p>12，查看历史命令：<span class='red'>cat ~/.rediscli_history</span></p>
 <p>13，显示信息和统计：info</p>
-                <h4>2020-04-14 21:08:15</h4>
+                <h4>2020-09-28 09:06:27</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

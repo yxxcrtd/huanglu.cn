@@ -152,7 +152,18 @@
 <p>1，<a href="https://hub.docker.com" target="_blank">https://hub.docker.com</a></p>
 <p>2，y…d</p>
 <p>3，C…1</p>
-                <h4>2020-09-25 21:05:57</h4>
+
+
+十六，镜像加速
+
+sudo tee /home/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://<span class="red">替换自己的</span>.mirror.aliyuncs.com"]
+}
+EOF
+systemctl daemon-reload
+systemctl restart docker
+                <h4>2020-09-29 09:05:17</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
