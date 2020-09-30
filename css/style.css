@@ -33,6 +33,10 @@ h2, ul {
 	color: #f00 !important;
 }
 
+.green {
+	color: #0f0 !important;
+}
+
 
 
 /* 块及元素在所有版本的浏览器中生效，H5默认 */
