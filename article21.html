@@ -28,34 +28,18 @@
         <article>
             <div id="articleDetail">
                 <h2>Docker 下安装 Nacos</h2>
-                <p>
-    1，Nacos 官网：<a href="https://nacos.io/zh-cn/" target="_blank">https://nacos.io/zh-cn/</a>
-</p>
-
+                <p class="title">一，Docker 下 Nacos 安装与启动</p>
+<p>1，Nacos 官网：<a href="https://nacos.io/zh-cn/" target="_blank">https://nacos.io/zh-cn/</a></p>
+<p>2，下载与启动：</p>
 <p>
-    2，下载：docker pull nacos/nacos-server
+    <div class="code">
+        <p>docker run --env MODE=standalone --name nacos -dp 8848:8848 nacos/nacos-server</p>
+        <p><span class="comment">原始方法：docker pull nacos/nacos-server</span></p>
+    </div>
 </p>
-
-<p>
-    3，检查：docker inspect fbf2aa0a0435
-</p>
-
-<p>
-    4，进入：docker exec -it ‘容器ID’ bash
-</p>
-
-<p>
-    5，创建容器：docker run --env MODE=standalone --name nacos -d -p 15434:8848 nacos/nacos-server
-</p>
-
-<p>
-    6，启动容器：docker start '容器ID'
-</p>
-
-<p>
-    7，访问：http://1.2.3.4:15434/nacos/
-</p>
-                <h4>2020-02-06 20:01:41</h4>
+<p>3，访问：http://192.168.1.2:8848/nacos/</p>
+<br />
+                <h4>2020-10-10 08:41:19</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
