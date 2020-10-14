@@ -42,8 +42,8 @@
 <p class="title">二，镜像加速</p>
 <p>1，访问阿里云官网：<a href="https://www.aliyun.com" target="_blank">https://www.aliyun.com</a></p>
 <p>2，登录（没有账户要注册）后搜索：容器镜像服务 （实际地址是：https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors），一般第一条搜索结果中点：立即开通，然后在左侧找：镜像加速器，里面有各种操作系统的操作文档。</p>
-<p>3，拷贝自己的加速器地址：https://<span class="red">xxxxxx</span>.mirror.aliyuncs.com</p>
-<p>4，回到 Docker Desktop 应用图标 -> Perferences，在左侧导航菜单选择 Docker Engine，将刚才复制的加速器地址配置到 json 文件："registry-mirrors": ["https://xxxxxx.mirror.aliyuncs.com"]，如下图：</p>
+<p>3，拷贝自己的加速器地址：https://dxvyjtmi.mirror.aliyuncs.com</p>
+<p>4，回到 Docker Desktop 应用图标 -> Perferences，在左侧导航菜单选择 Docker Engine，将刚才复制的加速器地址配置到 json 文件："registry-mirrors": ["https://dxvyjtmi.mirror.aliyuncs.com"]，如下图：</p>
 <p>
     <a href="images/article/article49.01.png" data-fancybox>
         <img src="images/article/article49.01.png" width="800" />
@@ -131,7 +131,7 @@
 
 <p>11，访问 Kubernetes 控制台：</p>
 <div class="code">
-    <p><a href="http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/" target="_blank">http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</a></p>
+    <p>http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</p>
     <p><span class="comment">配置控制台访问令牌，并将最后生成的 Token 拷贝到 Kubernetes 控制台登录页面</span></p>
     <p>TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')</p>
     <p>kubectl config set-credentials docker-for-desktop --token="${TOKEN}"</p>
@@ -147,9 +147,19 @@
         <img src="images/article/article49.08.png" width="800" />
     </a>
 </p>
-
 <br />
-                <h4>2020-09-30 20:05:31</h4>
+
+
+<p class="title">四，更新 Docker Desktop 后 Kubernetes 无法启动的问题</p>
+<p>1，在 Docker Desktop 的 Dashboard 中的 Troubleshoot 中使用 Clean / Purge data 清除所有的配置和数据，然后重复上面的第二步和第三步！</p>
+<p>
+    <a href="images/article/article49.09.png" data-fancybox>
+        <img src="images/article/article49.09.png" width="800" />
+    </a>
+</p>
+<p>2，注意第三步中的第2点：<span class="red">切换到 Docker Desktop 安装的 Kubernetes 版本号 的代码分支</span>，然后 git clone 或下载仓库文件</p>
+<br />
+                <h4>2020-10-13 11:23:23</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
