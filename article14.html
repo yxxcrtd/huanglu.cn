@@ -28,46 +28,26 @@
         <article>
             <div id="articleDetail">
                 <h2>Nginx 升级到 Tengine</h2>
-                <p>
-    1，下载：wget -c http://tengine.taobao.org/download/tengine-1.2.1.tar.gz
-</p>
+                <p>1，下载：wget -c http://tengine.taobao.org/download/tengine-1.2.1.tar.gz</p>
 
-<p>
-    2，解压：tar -zxvf tengine-1.2.1.tar.gz
-</p>
+<p>2，解压：tar -zxvf tengine-1.2.1.tar.gz</p>
 
-<p>
-    3，进入：cd tengine-1.2.1
-</p>
+<p>3，进入：cd tengine-1.2.1</p>
 
-<p>
-    4，配置：./configure --prefix=/usr/local/nginx --without-http_autoindex_module --without-http_geo_module --without-http_map_module --without-http_browser_module --with-http_stub_status_module --with-http_realip_module --with-pcre=/root/pcre-8.36（注意：这里先下载并解压安装pcre）
-</p>
+<p>4，配置：./configure --prefix=/usr/local/nginx --without-http_autoindex_module --without-http_geo_module --without-http_map_module --without-http_browser_module --with-http_stub_status_module --with-http_realip_module --with-pcre=/root/pcre-8.36（注意：这里先下载并解压安装pcre）</p>
 
-<p>
-    5，编译：make
-</p>
+<p>5，编译：make</p>
 
-<p>
-    6，安装：make install
-</p>
+<p>6，安装：make install</p>
 
-<p>
-    7，拷贝：cp -r objs/nginx /usr/local/nginx/sbin/nginx
-</p>
+<p>7，拷贝：cp -r objs/nginx /usr/local/nginx/sbin/nginx</p>
 
-<p>
-    8，验证：/usr/local/nginx/sbin/nginx -t
-</p>
+<p>8，验证：/usr/local/nginx/sbin/nginx -t</p>
 
-<p>
-    9，重启服务：service nginx restart
-</p>
+<p>9，重启服务：service nginx restart</p>
 
-<p>
-    10，检查版本：/usr/local/nginx/sbin/nginx -V，第一行应该会出现：Tengine version: Tengine/1.2.1 (nginx/1.2.5)  ...
-</p>
-                <h4>2020-02-02 19:46:16</h4>
+<p>10，检查版本：/usr/local/nginx/sbin/nginx -V，第一行应该会出现：Tengine version: Tengine/1.2.1 (nginx/1.2.5)  ...</p>
+                <h4>2020-11-10 20:07:38</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
