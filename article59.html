@@ -29,27 +29,32 @@
             <div id="articleDetail">
                 <h2>Docker 安装 Redis</h2>
                 <p class="title">一，Docker 安装 Redis</p>
-<p>
-1，安装：
-<div class="code">
-    <p>docker pull redis</p>
-</div>
+<p>1，安装：
+    <div class="code">
+        <p>docker pull redis</p>
+    </div>
 </p>
 
 <p>2，启动：
-<div class="code">
-    <p>docker run --name redis -p 6379:6379 --restart=always -d redis redis-server --appendonly yes --requirepass "123456"</p>
-</div>
+    <div class="code">
+        <p>docker run --name redis -p 6379:6379 --restart=always -d redis redis-server --appendonly yes --requirepass "123456"</p>
+    </div>
 </p>
 
 <p>3，进入容器：
-<div class="code">
-    <p>docker exec -it "容器ID" /bin/bash</p>
-</div>
+    <div class="code">
+        <p>docker exec -it "容器ID" /bin/bash</p>
+    </div>
+</p>
+
+<p>4，启动第<span class="red">N</span>个：
+    <div class="code">
+        <p>docker run --name redis -p <span class="red">6380</span>:6379 --restart=always -d redis redis-server --appendonly yes --requirepass "123456"</p>
+    </div>
 </p>
 
 <br />
-                <h4>2020-11-13 17:19:21</h4>
+                <h4>2020-11-15 11:51:15</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
