@@ -125,7 +125,7 @@
 <br />
 
 
-<p class="title">八，Jenkins 配置邮件</p>
+<p class="title">八，Jenkins 配置 QQ 邮箱</p>
 <p>0，先要配置：System Admin e-mail address，里面要写发送者的 Email 地址</p>
 <p>1，首页 -> 系统管理 -> 系统配置 -> 邮件通知</p>
 <p>2，SMTP服务器 -> smtp.qq.com</p>
@@ -145,7 +145,27 @@
 <br />
 
 
-<p class="title">九，Jenkins 问题</p>
+<p class="title">九，Jenkins 配置 其他邮箱</p>
+<p>1，首页 -> Manage Jenkins -> Configure System -> Jenkins Location -> System Admin e-mail address -> 填写发送者的 Email 地址</p>
+<p>2，E-mail Notification -> SMTP server -> smtp.exmail.qq.com</p>
+<p>3，E-mail Notification -> Default user e-mail suffix -> @gmail.com</p>
+<p>4，E-mail Notification -> 勾选 Use SMTP Authentication</p>
+<p>5，E-mail Notification -> User Name -> xxxxxx</p>
+<p>6，E-mail Notification -> Password -> ******</p>
+<p>7，E-mail Notification -> Use TLS -> 勾选</p>
+<p>8，E-mail Notification -> SMTP Port -> 25</p>
+<p>9，E-mail Notification -> Reply-To Address -> 与第1步相同</p>
+<p>10，E-mail Notification -> Charset -> UTF-8</p>
+<p>11，E-mail Notification -> 勾选 Test configuration by sending test e-mail  -> 填写接收的邮件地址</p>
+<p>
+    <a href="images/article/article23.00.png" data-fancybox>
+        <img src="images/article/article23.00.png" width="800" />
+    </a>
+</p>
+<br />
+
+
+<p class="title">十，Jenkins 问题</p>
 <p>1，无法登录的时候，修改系统账户下的 .jenkins/config.xml（如果没有的话，则在：/var/lib/jenkins/config.xml），将useSecurity 设为false</p>
 <p>2，设置登录的配置</p>
 <p>
@@ -185,7 +205,7 @@
 
 <p>注释1，>/dev/null 的作用是将它前面的命令标准输出丢弃，而标准错误输出还是在屏幕上。 一般来说 标准输出 和 标准错误输出 都是屏幕，因此错误信息还是会在屏幕上输出。这时可以用：command >/dev/null 2>&1 这样标准输出与标准错误输出都会被丢弃。1：表示标准输出，2：表示标准错误输出，2>&1：表示将标准错误输出重定向到标准输出。 >：表示输出重定向，如果 command > /usr/log 那其会覆盖log中原来的记录。可以使用 >> 输出重定向来向文件尾部追加输出记录。
 </p>
-                <h4>2020-11-12 05:33:43</h4>
+                <h4>2020-11-15 21:46:40</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

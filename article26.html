@@ -45,12 +45,29 @@
 
 
 <p class="title">三，Linux CentOS 7 的安装</p>
-<p>1，安装依赖的包：yum install -y yum-utils device-mapper-persistent-data lvm2</p>
-<p>2，安装repository：yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</p>
-<p>3，安装：yum makecache fast</p>
-<p>4，安装：yum -y install docker-ce</p>
-<p>5，启动：systemctl start docker.service（start / stop / enable / status）</p>
+<p>1，安装依赖的包：<div class="code"><p>yum install -y yum-utils device-mapper-persistent-data lvm2</p></div></p>
+<p>2，安装repository：<div class="code"><p>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</p></div></p>
+<p>3，安装：<div class="code"><p>yum makecache fast</p></div></p>
+<p>4，安装：<div class="code"><p>yum -y install docker-ce</p></div></p>
+<p>5，启动：<div class="code"><p>systemctl start docker.service（start / stop / enable / status）</p></div></p>
+<p>6，服务自启动：<div class="code"><p>systemctl enable docker.service</p></div></p>
+<p>7，查看状态：<div class="code"><p>systemctl status docker</p></div></p>
+<p>8，修改docker存储路径：
+    <div class="code">
+        <p>1，增加配置文件：vim /etc/docker/daemon.json</p>
+        <p>2，添加如下内容：</p>
+        <p>{</p>
+        <p class="indent">"registry-mirrors": ["https://dxvyjtmi.mirror.aliyuncs.com"],</p>
+        <p class="indent">"data-root": "/home/docker"</p>
+        <p>}</p>
+        <p>3，重启：systemctl restart docker.service</p>
+    </div>
+</p>
 <br />
+
+
+
+
 
 
 <p class="title">四，Mac 下的安装（@Deprecated）</p>
@@ -136,6 +153,13 @@
 <br />
 
 
+<p class="title">十三，问题1: 通过 docker images 检查出：Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</p>
+<div class="code">
+<p>1，重启 Docker 服务：systemctl start docker.service</p>
+</div>
+<br />
+
+
 <p class="title">十三，问题1: 通过 docker version 检查出：Cannot connect to the Docker daemon. Is ‘docker -d’ running on this host?</p>
 <div class="code">
 <p>1，重启Docker主机：docker-machine restart && eval "$(docker-machine env default)" && docker-machine env</p>
@@ -164,7 +188,7 @@
 <p>2，eval $(docker-machine env)</p>
 </div>
 <br />
-                <h4>2020-11-12 05:37:07</h4>
+                <h4>2020-11-16 19:34:16</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

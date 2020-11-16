@@ -7,6 +7,7 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>书香黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -25,20 +26,23 @@
         </header>
 
         <article>
-            <div id="categoryList">
-                <ul>
-                <li>
-                <div class="articleBlockLeft">
-                    <img src="images/article/article60.png" width="260">
-                </div>
-                <div class="articleBlockRight">
-                    <h2><a href="article60.html">微信小程序开发</a></h2>
-                    <h3>微信小程序开发</h3>
-                    <h4>2020-11-16 19:07:29</h4>
-                </div>
-            </li>
-</ul>            </div>
+            <div id="articleDetail">
+                <h2>树莓派</h2>
+                <p class="title">一，准备</p>
+<p>1，购买：树莓派，<a href="https://www.raspberrypi.org" target="_blank">官网</a>、<a href="http://www.52pi.net" target="_blank">中文站</a></p>
+<p>2，购买：TF 卡（需要速度快的 Classic 10 +）</p>
+<p>3，下载系统，地址：http://director.downloads.raspberrypi.org/raspbian_full/images/raspbian_full-2019-06-24/2019-06-20-raspbian-buster-full.zip</p>
+<p>4，安装写卡工具：<div class="code"><p>brew cask install balenaetcher</p></div></p>
+<p>5，装卡 -> 接电 -> 开机</p>
+<br />
 
+
+<p class="title">二，使用</p>
+<p>1，更新系统：<div class="code"><p>sudo apt-get update</p></div></p>
+<p>2，安装远程工具：<div class="code"><p>brew cask install vnc-viewer</p></div></p>
+<br />
+                <h4>2020-11-16 20:36:15</h4>
+            </div>
             <div id="articleAside">
                 <div id="category"></div>
             </div>
@@ -48,5 +52,6 @@
 
         <script src="js/jquery-3.5.1.js"></script>
         <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>
