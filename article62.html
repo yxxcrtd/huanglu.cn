@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Java ffmpeg 高清视频开发</h2>
+                yum -y install epel-release
+rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+yum install ffmpeg ffmpeg-devel -y
+ffmpeg -version
+
+转换：ffmpeg -i movie.mov -vcodec copy -acodec copy out.mp4
+压缩：ffmpeg -i out.mp4 -b 6000k out.compress.mp4
+
+压缩用到的参数：
+-i 输入文件的路径或者url；
+-s 设置输出文件的分辨率,wxh；
+-b:v 输出文件的码率，一般500k左右即可，人眼看不到明显的闪烁，这个是与视频大小最直接相关的；
+
+
+
+
+
+  /**
+  * 某个字符串是否包含在另一个字符串中
+  * 
+  * @param obj - 需要检测的对象
+  * @param strin - 需要检测的字符串
+  * @return
+  */
+  public static boolean isContainsString(String obj, String string) {
+   HashMap<String, String> existMap = new HashMap<String, String>();
+   // 注意两点：1，使用英文的逗号分割；2，逗号后面不能有空格
+   existMap.put("video", "avi,mpg,wmv,3gp,mov,mp4,asf,asx,flv,hlv,f4v,m4v,mpeg,mpeg4,mpe,mkv,rm,rmvb");
+   existMap.put("ffmpeg", "avi,mpg,wmv,3gp,mov,mp4,asf,asx,flv,hlv,f4v,m4v,mpeg,mpeg4,mpe");
+   existMap.put("mencoder", "mkv,rm,rmvb");
+   existMap.put("play", "mp4,flv,hlv,f4v,m4v");
+   if (Arrays.<String> asList(existMap.get(obj).split(",")).contains(string)) {
+    return true;
+   }
+   return false;
+  }
+  
+  
+  /**
+  * 生成视频截图
+  * 
+  * @param configPath - 视频配置路径
+  * @param ffmpegRoot - ffmpeg视频转换工具的绝对路径，for windows
+  * @param destString - 最终的文件全路径
+  * @param prefix - 文件前缀
+  */
+  public static void interceptorVideo(String configPath, String ffmpegRoot, String destString, String prefix) {
+   String os = System.getProperty("os.name");
+   String picture = "";
+   if (os.contains("Linux")) {
+    picture = new StringBuffer().append("ffmpeg -itsoffset 4 -i \"").append(destString).append("\" -vcodec png -vframes 1 -an -f rawvideo -ss 10 -s 120x100 -y \"").append(configPath).append(File.separator).append(prefix).append(".png\"").toString();
+   } else if(os.contains("Windows")) {
+    picture = new StringBuffer().append(ffmpegRoot).append(" -itsoffset 4 -i \"").append(destString).append("\" -vcodec png -vframes 1 -an -f rawvideo -ss 10 -s 120x100 -y \"").append(configPath).append(File.separator).append(prefix).append(".png\"").toString();
+   }
+   processHandler(picture);
+  }
+
+  /**
+  * 视频转换
+  * 
+  * @param type - 视频类型
+  * @param root - 视频转换工具的绝对路径，for windows
+  * @param sourceVideo - 视频的原始全路径
+  * @param configPath - 视频配置路径
+  * @param prefix - 视频前缀
+  */
+  public static void convertVideo(String type, String root, String sourceVideo, String configPath, String prefix) {
+   String os = System.getProperty("os.name");
+   String video = "";
+
+   if (os.contains("Linux")) {
+    if ("ffmpeg".equals(type)) {
+     video = new StringBuffer().append("ffmpeg -i \"").append(sourceVideo).append("\" -subq 9 -me_range 32 -g 250 -i_qfactor 1.3 -b_qfactor 1.4 \"").append(configPath).append(File.separator).append(prefix).append(".m4v\"").toString();
+    }
+    if ("mencoder".equals(type)) {
+     video = new StringBuffer().append("mencoder \"").append(sourceVideo).append("\" -of lavf -oac mp3lame -lameopts abr:br=56 -ovc lavc -lavcopts vcodec=flv:vbitrate=1000:mbd=2:mv0:trell:v4mv:cbp:last_pred=3:dia=4:cmp=6:vb_strategy=1 -vf scale=320:240 -ofps 12 -srate 22050 -o \"").append(configPath).append(File.separator).append(prefix).append(".flv\"").toString();
+    }
+   } else if(os.contains("Windows")) {
+    if ("ffmpeg".equals(type)) {
+     video = new StringBuffer().append(root).append(" -i \"").append(sourceVideo).append("\" -subq 9 -me_range 32 -g 250 -i_qfactor 1.3 -b_qfactor 1.4 \"").append(configPath).append(File.separator).append(prefix).append(".m4v\"").toString();
+    }
+    if ("mencoder".equals(type)) {
+     video = new StringBuffer().append(root).append(" \"").append(sourceVideo).append("\" -of lavf -oac mp3lame -lameopts abr:br=56 -ovc lavc -lavcopts vcodec=flv:vbitrate=1000:mbd=2:mv0:trell:v4mv:o=mpv_flags=+cbp_rd:last_pred=3:dia=4:cmp=6:vb_strategy=1 -vf scale=320:240 -ofps 12 -srate 22050 -o \"").append(configPath).append(File.separator).append(prefix).append(".flv\"").toString();
+    }
+   }
+   System.out.println(video);
+   processHandler(video);
+  }
+  
+  /**
+  * 执行
+  * 
+  * @param s - 将要被执行的字符串
+  */
+  private static void processHandler(String s) {
+   String os = System.getProperty("os.name");
+   Process process = null;
+   try {
+    if (os.contains("Linux")) {
+     // 进程睡眠的时候，使用 sh -c，将自定义 CMD 行作为其参数
+     process = Runtime.getRuntime().exec(new String[] { "sh", "-c", s });
+    } else if(os.contains("Windows")) {
+     process = Runtime.getRuntime().exec(s);
+    }
+    StreamGobbler errorGobbler = new StreamGobbler(process.getErrorStream(), "INFO");
+    errorGobbler.start();
+    StreamGobbler outGobbler = new StreamGobbler(process.getInputStream(), "STDOUT");
+    outGobbler.start();
+    // 使用Runtime.getRuntime().exec()会开启一个子进程，如果当前线程想等待该子进程执行完毕之后再继续往下执行，可以根据业务需要调用：java.lang.Process.waitFor()
+    //process.waitFor();
+    
+    // 另一种方法
+    // BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+    // while (null != bufferedReader.readLine());
+   } catch (Exception e) {
+    System.out.println("进程执行失败！");
+    e.printStackTrace();
+   }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+
+一，普通视频转换：
+视频转换：ffmpeg -i "/root/test.avi" -sameq -ab 56 -ar 22050 -qscale 8 -r 15 -s 400*300 "/root/test.flv"
+视频截图：ffmpeg -i "/root/test.flv" -y -f image2 -ss 8 -t 0.001 -s 200*150 "/root/test.jpg"
+-sameq：使用和源同样的质量
+-ab 56：（音频数据流量，一般选择32、64、96、128）
+-ar 22050：（声音的采样频率，好像PSP只能支持24000Hz）
+-qscale 8：取值范围：0.01-255，越小质量越好。（实际不要超过50，否则很模糊！）
+-r 29.97：桢速率（可以改，确认非标准桢率会导致音画不同步，所以只能设定为15或者29.97）画面部分，选其一
+-s 320x240：指定输出分辨率，注意片源一定要是16:9的不然会变形
+-y：如果有同名的文件，则生成的输出文件不经提示直接覆盖
+
+
+二，高清视频转换：
+视频转换：ffmpeg -i "/root/test.avi" -subq 9 -me_range 32 -g 250 -i_qfactor 1.3 -b_qfactor 1.4 "/root/test.m4v"
+(没有加：-vcodec libx264，是因为m4v默认就是H264编码。如果生成其他格式，如mkv，则需手动添加此参数，如：ffmpeg -i "视频文件" -threads 2 -bufsize 700000k -vcodec libx264 -cqp 28 -coder 1 -refs 3 -me_method umh -subq 9 -me_range 32 -g 250 -i_qfactor 1.3 -b_qfactor 1.4 test.mkv)
+视频截图：ffmpeg -itsoffset 4 -i "/root/test.avi" -vcodec png -vframes 1 -an -f rawvideo -ss 3 -s 120x100 -y "/root/test.png"
+bufsize：影响速度
+cqp：影响质量 0-31,越小最终文件越小
+coder(0,1)：设置1启用cabac算法
+refs：参考帧，缺省6，越小文件越小
+-subq 1-9：default 6
+-me_range：32
+-g：-keyint default 250 (1-250)
+-i_qfactor 1.3：Qscale difference between I-frames and P-frames.
+-b_qfactor 1.4：Qscale difference between P-frames and B-frames
+
+
+黄麓美MV歌曲.mpg
+
+截图：
+ffmpeg.exe -itsoffset 4 -i "D:\Workspaces\www.huanglu.cn\WebContent\upload\zoujinchaohu1.flv" -vcodec png -vframes 1 -an -f rawvideo -ss 20 -s 320x240 -y "D:\1.png"
+
+
+
+
+
+
+
+
+
+
+Linux 安装步骤：
+
+常见的视频封装格式：
+AVI, MKV, MPE, MPG, MPEG
+MP4, WMV, MOV, 3GP
+M2V, M1V, M4V, OGM
+RM, RMS, RMM, RMVB, IFO
+SWF, FLV, F4V
+ASF, PMF, XMB, DIVX, PART
+DAT, VOB, M2TS, TS, PS
+H264/x264 + AAC 组合的文件体积最小，清晰度最高。力推：MKV或MP4。
+
+一，普通视频转换：
+视频转换：ffmpeg -i "/root/test.avi" -sameq -ab 56 -ar 22050 -qscale 8 -r 15 -s 400*300 "/root/test.flv"
+视频截图：ffmpeg -i "/root/test.flv" -y -f image2 -ss 8 -t 0.001 -s 200*150 "/root/test.jpg"
+-sameq：使用和源同样的质量
+-ab 56：（音频数据流量，一般选择32、64、96、128）
+-ar 22050：（声音的采样频率，好像PSP只能支持24000Hz）
+-qscale 8：取值范围：0.01-255，越小质量越好。（实际不要超过50，否则很模糊！）
+-r 29.97：桢速率（可以改，确认非标准桢率会导致音画不同步，所以只能设定为15或者29.97）画面部分，选其一
+-s 320x240：指定输出分辨率，注意片源一定要是16:9的不然会变形
+-y：如果有同名的文件，则生成的输出文件不经提示直接覆盖
+
+
+二，高清视频转换：
+视频转换：ffmpeg -i "/root/test.avi" -subq 9 -me_range 32 -g 250 -i_qfactor 1.3 -b_qfactor 1.4 "/root/test.m4v"
+(没有加：-vcodec libx264，是因为m4v默认就是H264编码。如果生成其他格式，如mkv，则需手动添加此参数，如：ffmpeg -i "视频文件" -threads 2 -bufsize 700000k -vcodec libx264 -cqp 28 -coder 1 -refs 3 -me_method umh -subq 9 -me_range 32 -g 250 -i_qfactor 1.3 -b_qfactor 1.4 test.mkv)
+视频截图：ffmpeg -itsoffset 4 -i "/root/test.avi" -vcodec png -vframes 1 -an -f rawvideo -ss 3 -s 120x100 -y "/root/test.png"
+bufsize：影响速度
+cqp：影响质量 0-31,越小最终文件越小
+coder(0,1)：设置1启用cabac算法
+refs：参考帧，缺省6，越小文件越小
+-subq 1-9：default 6
+-me_range：32
+-g：-keyint default 250 (1-250)
+-i_qfactor 1.3：Qscale difference between I-frames and P-frames.
+-b_qfactor 1.4：Qscale difference between P-frames and B-frames
+
+
+三，配置 ffmpeg 环境的方法一：
+1，安装依赖：yum -y install gcc gcc+ gcc-c++ autoconf automake libtool
+2，下载软件包：
+wget http://liba52.sourceforge.net/files/a52dec-0.7.4.tar.gz
+wget http://downloads.sourceforge.net/faac/faad2-2.6.1.tar.gz
+wget http://downloads.sourceforge.net/faac/faac-1.26.tar.gz
+wget http://nchc.dl.sourceforge.net/sourceforge/lame/lame-3.97.tar.gz
+wget http://www.tortall.net/projects/yasm/releases/yasm-0.7.0.tar.gz
+wget ftp://ftp.videolan.org:21//pub/videolan/x264/snapshots/x264-snapshot-20090107-2245.tar.bz2
+wget http://downloads.xvid.org/downloads/xvidcore-1.1.3.tar.gz
+wget http://down1.chinaunix.net/distfiles/libdts-0.0.2.tar.gz
+3，解压：
+for i in *.tar.gz; do tar -xzvf "$i"; done
+for i in *.tar.bz2; do tar -xjvf "$i"; done
+4，编译安装：
+a52dec: ./configure --enable-shared=PKGS && make && make install
+faac & faad2: ./bootstrap && ./configure && make && make install
+xvidcore: cd build/generic; ./configure && make && make install
+lame & yasm: ./configure && make && make install
+libdts-0.0.2 & x264-snapshot-20090107-2245: ./configure --enable-mp4-output --enable-shared --enable-pthread && make && make install
+5，问题：
+错误：make: *** [libx264.so.65] Error 1
+解决：
+1，yum install zlib-devel
+2，http://sourceforge.net/projects/gpac/files/GPAC/GPAC%200.4.5/gpac-0.4.5.tar.gz/download
+3，http://sourceforge.net/projects/gpac/files/GPAC%20extra%20libs/GPAC%20extra%20libs%200.4.5/gpac_extra_libs-0.4.5.tar.gz/download
+4，tar -zxf gpac-0.4.5.tar.gz
+5，tar -zxf gpac_extra_libs-0.4.5.tar.gz
+6，cd gpac_extra_libs
+7，cp -r * ../gpac/extra_lib
+8，cd ../gpac
+9，chmod +x configure
+10，./configure
+11，make lib
+12，make apps
+13，make install-lib
+14，make install
+15，cp bin/gcc/libgpac.so /usr/lib
+6，安装：yum install httpd httpd-devel subversion mod_dav_svn mod_auth_mysql
+7，从svn中获取：svn export svn://svn.mplayerhq.hu/ffmpeg/trunkffmpeg
+8，编译安装：cd ffmpeg: ./configure && make && make install
+9，检验：ffmpeg -formats
+
+
+四，配置 ffmpeg和mencoder 环境的方法二：
+1，vi /etc/yum.repos.d/dag.repo，添加：
+[dag]  
+name=Dag RPM Repository for Red Hat Enterprise Linux  
+baseurl=http://apt.sw.be/redhat/el\$releasever/en/\$basearch/dag
+gpgcheck=0  
+enabled=1
+2，yum install ffmpeg ffmpeg-devel
+3，yum install ffmpeg ffmpeg-devel mencoder mplayer flvtool2 lame ffmpeg-php
+4，rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+5，yum install schroedinger
+6，yum install a52dec
+7，yum install ffmpeg
+8，yum install mencoder
+
+
+五，配置 ffmpeg和mencoder 环境的方法三：
+1，rpm -Uhv http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+2，yum install libgcc gcc gcc-c++ libstdc++ libstdc++-devel compat-glibc compat-libstdc++-33 libevent libevent-devel
+3，yum install ffmpeg ffmpeg-devel mplayer mencoder flvtool2 yamdi
+示例：mencoder "/root/1.mkv" -o "/root/1.flv" -of lavf -oac mp3lame -lameopts abr:br=56 -ovc lavc -lavcopts vcodec=flv:vbitrate=1000:mbd=2:mv0:trell:v4mv:cbp:last_pred=3:dia=4:cmp=6:vb_strategy=1 -vf scale=320:240 -ofps 12 -srate 22050
+
+
+六，安装 ffmpeg 方法四：
+1，yum -y install gcc gcc+ gcc-c++ autoconf automake libtool
+2，rpm -Uhv http://apt.sw.be/redhat/el5/en/i386/rpmforge/RPMS/rpmforge-release-0.3.6-1.el5.rf.i386.rpm
+3，yum -y install ffmpeg ffmpeg-devel
+
+
+七，配置 ffmpeg 环境：
+1，yum install yum-priorities
+2，rpm -Uhv http://apt.sw.be/redhat/el5/en/i386/rpmforge/RPMS/rpmforge-release-0.3.6-1.el5.rf.i386.rpm
+3，yum update
+4，yum check-update
+5，yum install vlc
+
+
+八，卸载：
+1，下载的是：ffmpeg-2.0.1.tar.gz
+2，解压：tar zxvf ffmpeg-2.0.1.tar.gz
+3，配置：./configure
+4，编译：make
+5，安装：make install
+6，反编译：make clean
+7，卸载：make uninstall
+                <h4>2020-11-17 14:23:37</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

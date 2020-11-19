@@ -178,7 +178,14 @@ http://download.documentfoundation.org/libreoffice/stable/5.2.0/rpm/x86_64/Libre
 <p>16，显示文件目录：du Desktop/</p>
 <p>17，显示文件列表：ls -a</p>
 <p>18，显示当前路径：pwd</p>
-<p>19，创建文件夹：mkdir</p>
+<p>19，创建文件夹：
+    <div class="code">
+        <p>1，创建单个文件夹：mkdir</p>
+        <p>2，创建多个文件夹：mkdir test1 test2 test3</p>
+        <p>3，创建递归文件夹：mkdir test1/test2/test3 -pv -m 777（-v 显示创建过程；-m 授权）</p>
+        <p>4，创建一级文件夹和多个子文件夹：mkdir -pv test/{test1,test2,test3}</p>
+    </div>
+</p>
 <p>20，删除文件夹：rmdir</p>
 <p>21，复制文件：cp -vf（显示进度）</p>
 <p>22，删除文件或目录：rm</p>
@@ -208,7 +215,7 @@ http://download.documentfoundation.org/libreoffice/stable/5.2.0/rpm/x86_64/Libre
 <p>4，查看已经安装的rpm：rpm -qa</p>
 <p>5，查看指定安装的rpm：rpm -qa | grep postgresql</p>
 <br />
-                <h4>2020-11-12 05:35:04</h4>
+                <h4>2020-11-19 09:38:16</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

@@ -27,34 +27,26 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Docker 安装 Redis</h2>
-                <p class="title">一，Docker 安装 Redis</p>
-<p>1，安装：
-    <div class="code">
-        <p>docker pull redis</p>
-    </div>
-</p>
-
-<p>2，启动：
-    <div class="code">
-        <p>docker run --name redis -p 6379:6379 --restart=always -d redis redis-server --appendonly yes --requirepass "123456"</p>
-    </div>
-</p>
-
-<p>3，启动第<span class="red">N</span>个：
-    <div class="code">
-        <p>docker run --name <span class="red">redis6380</span> -p <span class="red">6380</span>:6379 --restart=always -d redis redis-server --appendonly yes --requirepass "123456"</p>
-    </div>
-</p>
-
-<p>4，进入容器：
-    <div class="code">
-        <p>docker exec -it "容器ID" /bin/bash</p>
-    </div>
-</p>
-
+                <h2>Docker 安装 Nginx</h2>
+                <p class="title">一，Docker 下载镜像</p>
+<p><div class="code"><p>docker pull nginx</p></div></p>
 <br />
-                <h4>2020-11-17 14:29:15</h4>
+
+<p class="title">二，在宿主机上创建 Nginx 配置需要的4个文件夹和 nginx.conf 文件</p>
+<p><div class="code"><p>mkdir -pv /home/docker/nginx/{conf,conf.d,html,log} -m 777</p></div></p>
+<br />
+
+<p class="title">三，使用 Docker 启动 Nginx</p>
+<p>
+    <div class="code">
+        <p>docker run --name nginx -dp 80:80 -v /home/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /home/docker/nginx/log:/var/log/nginx -v /home/docker/nginx/html:<span class="red">/etc/nginx/html/</span> nginx</p>
+        <p><span class="comment">注意1：--name nginx 使用的镜像名称</span></p>
+        <p><span class="comment">注意2：最后的 nginx 是容器名称</span></p>
+        <p><span class="comment">注意3：静态文件夹映射的地址不是：/usr/share/nginx/html/</span></p>
+    </div>
+</p>
+<br />
+                <h4>2020-11-19 11:06:30</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
