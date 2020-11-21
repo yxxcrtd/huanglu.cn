@@ -36,6 +36,13 @@
 <p>5，服务自启动：chkconfig jenkins on</p>
 <p>6，修改配置：vim /etc/sysconfig/jenkins（比如：修改端口等）</p>
 <p>7，如果在更新过程中无法安装 jenkins，添加参数：yum -y update <span class="red">--nogpgcheck</span></p>
+<p>8，服务：service jenkins <span class="red">start/stop/restart/status</span></p>
+<p>9，修改 Jenkins 的默认用户，避免权限问题：
+    <div class="code">
+        <p>JENKINS_USER="root"</p>
+        <p>JENKINS_GROUP="root"</p>
+    </div>
+</p>
 <br />
 
 
@@ -205,7 +212,7 @@
 
 <p>注释1，>/dev/null 的作用是将它前面的命令标准输出丢弃，而标准错误输出还是在屏幕上。 一般来说 标准输出 和 标准错误输出 都是屏幕，因此错误信息还是会在屏幕上输出。这时可以用：command >/dev/null 2>&1 这样标准输出与标准错误输出都会被丢弃。1：表示标准输出，2：表示标准错误输出，2>&1：表示将标准错误输出重定向到标准输出。 >：表示输出重定向，如果 command > /usr/log 那其会覆盖log中原来的记录。可以使用 >> 输出重定向来向文件尾部追加输出记录。
 </p>
-                <h4>2020-11-15 21:46:40</h4>
+                <h4>2020-11-20 15:50:38</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
