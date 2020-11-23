@@ -30,19 +30,29 @@
                 <h2>About GitHub</h2>
                 <p class="title">一，解决 GitHub 授权的问题</p>
 <p>1，检查 SSH keys，如果之前有的话，最好都删除，再将本地的 id_rsa.pub 重新上传上去</p>
-<p>2，测试：ssh -T git@github.com，出现：Hi 用户名! You've successfully authenticated, but GitHub does not provide shell access. 表示成功了！</p>
+<p>2，测试：
+    <div class="code">
+        <p>ssh -T git@github.com</p>
+        <p>出现：<span class="red">Hi 用户名!</span> You've successfully authenticated, but GitHub does not provide shell access. 表示成功了！</p>
+    </div>
+</p>
 <p>3，现在使用 SourceTree 测试</p>
-<p>4，或者使用命令：git clone git@github.com: 用户名/******.git</p>
+<p>4，或者使用命令：<div class="code"><p>git clone git@github.com: 用户名/******.git</p></div></p>
 <br />
 
 
 <p class="title">二，Please make sure you have the correct access rights and the repository exists.</p>
 <p>1，删除 .ssh 文件夹</p>
-<p>2，重新生成密钥和公钥：ssh-keygen -t rsa -C "邮箱"，全部回车</p>
+<p>2，重新生成密钥和公钥：
+    <div class="code">
+        <p>ssh-keygen -t rsa -C "邮箱"，全部回车</p>
+        <p>ssh-keygen</p>
+    </div>
+</p>
 <p>3，拷贝 id_rsa.pub 内容到 GitHub 的 SSH keys</p>
-<p>4，测试：ssh -T git@github.com</p>
+<p>4，测试：<div class="code"><p>ssh -T git@github.com</p></div></p>
 <br />
-                <h4>2020-11-10 20:09:03</h4>
+                <h4>2020-11-23 20:08:47</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

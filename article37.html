@@ -50,13 +50,17 @@
 
 
 <p class="title">三，还原</p>
-<p>1，找到备份文件并显示：<div class="code"><p>11 <br />会显示：PZPT.0.db2inst1.DBPART000.<span class="red">20200401160847</span>.001</p></div></p>
+<p>1，找到备份文件并显示：<div class="code"><p>显示所有文件：ll <br />会显示：PZPT.0.db2inst1.DBPART000.<span class="red">20200401160847</span>.001</p></div></p>
 <p>
     2，还原：
-    <div class="code"><p>db2 restore db pzpt from /home/backup taken at <span class="red">20200401160847</span> into pzpt321</p></div>
-    <p>&nbsp;&nbsp;1)，<span class="red">20200401160847</span> 是要还原的文件</p>
-    <p>&nbsp;&nbsp;2)，pzpt321 是新库名称</p>
-    <p>&nbsp;&nbsp;3)，还原成功后会显示：DB20000I  The RESTORE DATABASE command completed successfully.</p>
+    <div class="code">
+        <p>db2 restore db pzpt from /home/backup taken at <span class="red">20200401160847</span> into pzpt321</p>
+        <p>注意1：必须在数据库用户下：su - db2inst1</p>
+        <p>注意2：db2用户必须要有数据库恢复文件的权限：chmod 777 /home/backup -R</p>
+        <p>注意3：其中的 <span class="red">20200401160847</span> 是要还原的数据库文件</p>
+        <p>注意4：pzpt321 是新库名称</p>
+        <p>注意5：还原成功后会显示：DB20000I  The RESTORE DATABASE command completed successfully.</p>
+    </div>
 </p>
 <br />
 
@@ -142,7 +146,7 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
     <div class="code"><p>service crond restart</p></div>
 </p>
 <br />
-                <h4>2020-11-12 05:56:08</h4>
+                <h4>2020-11-23 19:46:51</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

@@ -86,10 +86,7 @@
 <br />
 
 
-
-<p class="title">
-三，服务端的 GitLab 的配置
-</p>
+<p class="title">三，服务端的 GitLab 的配置</p>
 <p>1，访问：http://localhost（8080端口不能被占用，否则会出现502....，修改方法：打开下面的注释：</p>
 <p>2，unicorn['listen'] = '192.168.1.8'</p>
 <p>3，unicorn['port'] = 8081</p>
@@ -100,58 +97,20 @@
 <p>8，禁用 80 端口：打开 nginx 的注释：nginx['enable'] = false，修改后授权：chmod -R 755 /var/opt/gitlab/gitlab-rails</p>
 <br />
 
-<p class="title">
-四，本地配置
-</p>
 
-<p>1，下载 SourceTree：<a href="https://www.sourcetreeapp.com" target="_blank">https://www.sourcetreeapp.com</a></p>
-<p>2，安装 SourceTree：需要有 Atlassia 的账户</p>
-<p>3，在本地生成公钥和私钥：打开 SourceTree 右上角的终端：ssh-keygen，全部回车
-<div class="code"><p>ssh-keygen</p></div>
-</p>
-<p>4，将 cat ~/.ssh/id_rsa.pub 中的内容拷贝到 GitLab 的 Profile Settings -> SSH Keys 中，点一下 Title，保存
-<div class="code"><p>cat ~/.ssh/id_rsa.pub</p></div>
-</p>
-<p>5，授权（1，输入：yes，出现：Welcome to GitLab, @young!，说明你已经有访问 GitLab 的权限；2，默认的端口参数-p 22可以不加）
-<div class="code">
-    <p>ssh -T -p 22 git@192.168.1.8</p>
-</div>
-</p>
-<p>6，如果 GitLab 服务器上的 22 端口不能使用，则需要在本地的 .ssh 文件中添加一个 config 文件，内容如下：（上面的授权需要添加端口参数）</p>
-<div class="code">
-   <p> Host 192.168.1.8</p>
-   <p> Hostname 192.168.1.8</p>
-   <p> Port 10222</p>
-</div>
-
-<p>7，在 SourceTree 中配置连接 GitLab，下载代码</p>
-<br />
-
-<p class="title">
-五，Mac 下安装 SourceTree
-</p>
-<p><div class="code"><p>brew cask install sourcetree</p></div></p>
-<br />
-
-<p class="title">
-六，GitLab 的备份（TODO）
-</p>
-
-<p>
+<p class="title">四，GitLab 的备份（TODO）</p>
 <p>1，完整备份：gitlab-rake gitlab:backup:create，会在/var/opt/gitlab/backups目录下创建一个139***_gitlab_backup.tar的完整备份；</p>
 <p>2，可以修改备份路径：vim /etc/gitlab/gitlab.rb 中的 gitlab_rails['backup_path'] = '/home/backups'</p>
 <p>3，自动备份：crontab -e，添加：0 1 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create</p>
 <br />
 
-<p class="title">
-七，GitLab 的恢复（TODO）
-</p>
 
+<p class="title">五，GitLab 的恢复（TODO）</p>
 <p>1，停止数据服务1：gitlab-ctl stop unicorn</p>
 <p>2，停止数据服务2：gitlab-ctl stop sidekiq</p>
 <p>3，恢复：gitlab-rake gitlab:backup:restore BACKUP=139*** （这里的139***是之前备份的时间戳）</p>
 <p>4，恢复服务：gitlab-ctl start</p>
-                <h4>2020-11-17 09:23:03</h4>
+                <h4>2020-11-23 20:39:51</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
