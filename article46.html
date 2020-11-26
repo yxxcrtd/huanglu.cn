@@ -27,8 +27,46 @@
 
         <article>
             <div id="articleDetail">
-                <h2>PostgreSQL 使用</h2>
-                <p class="title">一，系统出现： FATAL: remaining connection slots are reserved for non-replication superuser connections</p>
+                <h2>Docker 安装 PostgreSQL</h2>
+                <p class="title">一，Docker 下载镜像</p>
+<p><div class="code"><p>docker pull postgres</p></div></p>
+<br />
+
+<p class="title">二，在宿主机上创建 Postgres 数据文件存储路径</p>
+<p><div class="code"><p>mkdir /home/docker/postgres/data -pv -m 777</p></div></p>
+<br />
+
+<p class="title">三，使用 Docker 启动 Postgres</p>
+<p>
+    <div class="code">
+        <p>docker run --name postgres --restart always -v /home/docker/postgres/data:/home/data -e POSTGRES_PASSWORD=123456 -d -p 5432:5432 postgres</p>
+        <p><span class="comment">注意1：run 创建并运行一个容器</span></p>
+        <p><span class="comment">注意2：--name postgres 使用的镜像名称</span></p>
+        <p><span class="comment">注意3：/home/docker/postgres/data 是宿主机上的路径；/home/data 是容器自动的路径</span></p>
+    </div>
+</p>
+<br />
+
+<p class="title">四，进入 Docker容器，创建 confluence 数据库</p>
+<p>
+    <div class="code">
+        <p>docker exec -it postgres bash</p>
+        <p>psql -U postgres</p>
+        <p>CREATE DATABASE confluence WITH OWNER postgres;</p>
+    </div>
+</p>
+<br />
+
+
+
+
+
+
+
+
+
+
+<p class="title">一，系统出现： FATAL: remaining connection slots are reserved for non-replication superuser connections</p>
 <p>1，先检查连接数：在操作系统里：ps -ef | grep postgres，会出现很多的 postgres 进程，可以逐个 kill</p>
 <p>2，检查数据库默认的最大连接数：show max_connections;  默认是：100，根据实际业务改大，然后重启数据库服务；</p>
 <p>3，检查超级用户的连接数：show superuser_reserved_connections;</p>
@@ -59,7 +97,7 @@
     </a>
 </p>
 <br />
-                <h4>2020-11-12 06:09:04</h4>
+                <h4>2020-11-27 04:41:59</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

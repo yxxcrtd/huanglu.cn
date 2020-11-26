@@ -27,8 +27,123 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Atlassian - Jira & Confluence</h2>
-                <p class="title">一，Jira</p>
+                <h2>Docker 安装 Atlassian - Jira & Confluence</h2>
+                <p class="title">一，Docker 拉取 Confluence 镜像</p>
+<p>
+    <div class="code">
+        <p>docker pull atlassian/confluence-server</p>
+        <p>参考官方文档：<a href="https://hub.docker.com/r/atlassian/confluence-server/" target="_blank">https://hub.docker.com/r/atlassian/confluence-server/</a></p>
+    </div>
+</p>
+<br />
+
+<p class="title">二，在宿主机上创建 Confluence 数据文件存储路径</p>
+<p><div class="code"><p>mkdir /home/docker/confluence -pv -m 777</p></div></p>
+<br />
+
+<p class="title">三，使用 Docker 启动 Confluence</p>
+<p>
+    <div class="code">
+        <p>docker run -v /home/docker/confluence:/var/atlassian/application-data/confluence --name=confluence --restart=always -d -p 8090:8090 atlassian/confluence-server</p>
+        <p><span class="comment">注意1：run 创建并运行一个容器</span></p>
+        <p><span class="comment">注意2：--name confluence 使用的镜像名称</span></p>
+        <p><span class="comment">注意3：/home/docker/confluence 是宿主机上的路径；/var/atlassian/application-data/confluence 是容器自动的路径</span></p>
+        <p><span class="comment">注意4：atlassian/confluence-server 使用的镜像名称</span></p>
+    </div>
+</p>
+<br />
+
+<p class="title">四，破解</p>
+<p>1，访问 http://192.168.1.2:8090，在 Get apps 中不用勾选，直接点右下角的 Next</p>
+<p>2，在 License key 中 -> 记录 Server ID</p>
+<p>3，进入 confluence 容器，查找 decoder.jar
+    <p><div class="code"><p>docker exec -it confluence /bin/bash</p></div></p>
+</p>
+<p>4，切换到 root 用户
+    <p><div class="code"><p>su -</p></div></p>
+</p>
+<p>5，查找文件
+    <p>
+        <div class="code">
+            <p>find / -name "*decoder*"</p>
+            <p><span class="comment">记录文件路径和文件名：/opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.4.1.jar</span></p>
+        </div>
+    </p>
+</p>
+<p>6，退出 confluence 容器</p>
+<p>7，将 atlassian-extras-decoder-v2-3.4.1.jar 文件从容器中复制出来
+    <p>
+        <div class="code">
+            <p>docker cp confluence:/opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.4.1.jar .</p>
+            <p><span class="comment">注意1：confluence: 是 confluence 容器名称</span></p>
+            <p><span class="comment">注意2：cp 最后有一个点，意思是拷贝到当前执行命令的所在位置</span></p>
+        </div>
+    </p>
+</p>
+
+<p>8，将复制的文件改名为：atlassian-extras-2.4.jar，并下载到 Windows
+    <p><div class="code"><p>mv atlassian-extras-decoder-v2-3.4.1.jar atlassian-extras-2.4.jar</p></div></p>
+</p>
+
+<p>9，下载破解文件 http://wiki.wuyijun.cn/download/attachments/2327034/51CTO%E4%B8%8B%E8%BD%BD-Confluence.zip</p>
+
+<p>10，解压，DOS 命令进入 iNViSiBLE 文件夹</p>
+
+<p>11，执行 java -jar confluence_keygen.jar</p>
+
+<p>12，在弹出界面中，填入 Name ，Server ID 就是步骤2中得到 ID，点击 ".gen!"，生成 Key</p>
+
+<p>13，点击 .patch！ -> 选择刚才下载的 atlassian-extras-2.4.jar  -> 显示 “jar success fully patched” 则破解成功！（如果失败，在 path 前先删除atlassian-extras-2.4.bak）</p>
+
+<p>14，拷贝生成的 Key</p>
+
+<p>15，上传到服务器，改回原来的包名：
+    <p><div class="code"><p>mv atlassian-extras-2.4.jar atlassian-extras-decoder-v2-3.4.1.jar</p></div></p>
+</p>
+
+<p>16，放回到 confluence 容器：
+    <p><div class="code"><p>docker cp atlassian-extras-decoder-v2-3.4.1.jar confluence:/opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.4.1.jar</p></div></p>
+</p>
+
+<p>17，重启 confluence 容器：
+    <p><div class="code"><p>docker restart confluence</p></div></p>
+</p>
+
+<p>18，重新打开：http://192.168.1.2:8090，输入 14步的 Key</p>
+
+<p>19，在 Set up your database 中，选择 My own database -> Next</p>
+
+<p>20，选择：PostgreSQL -> 选择：By connection string：
+    <p>
+        <div class="code">
+            <p>Database URL：jdbc:postgresql://192.168.1.2:5432/confluence</p>
+            <p>Username：postgres</p>
+            <p>Password：123456</p>
+        </div>
+    </p>
+</p>
+
+<p>21，Test connection -> Next</p>
+
+<p>22，选 Empty Site</p>
+
+<p>23，Manage Users and Group with jira</p>
+
+<p>24，填入管理员账户信息 -> Next</p>
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+<p class="title">一，Jira</p>
 <p>1，下载：wget https://downloads.atlassian.com/software/jira/downloads/atlassian-jira-software-8.7.1-x64.bin（到<a href="https://www.atlassian.com/software/jira/download" target="_blank">官网</a>找最新版本）</p>
 <p>2，授权：chmod 755 atlassian-jira-software-8.7.1-x64.bin</p>
 <p>3，安装：./atlassian-jira-software-8.7.1-x64.bin</p>
@@ -65,7 +180,7 @@
 <p>9，填写用户名：272795968@qq.com</p>
 <p>10，填写密码：QQ</p>
 <p>11，点：Test Connection，顶部如果出现：连接测试成功。表示系统级别的邮件配置成功。</p>
-                <h4>2020-11-10 18:30:53</h4>
+                <h4>2020-11-27 04:41:38</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

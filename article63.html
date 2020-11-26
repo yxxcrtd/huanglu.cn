@@ -39,14 +39,15 @@
 <p class="title">三，使用 Docker 启动 Nginx</p>
 <p>
     <div class="code">
-        <p>docker run --name nginx -dp 80:80 -v /home/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /home/docker/nginx/log:/var/log/nginx -v /home/docker/nginx/html:<span class="red">/etc/nginx/html/</span> nginx</p>
-        <p><span class="comment">注意1：--name nginx 使用的镜像名称</span></p>
-        <p><span class="comment">注意2：最后的 nginx 是容器名称</span></p>
-        <p><span class="comment">注意3：静态文件夹映射的地址不是：/usr/share/nginx/html/</span></p>
+        <p>docker run --name nginx --restart always -dp 80:80 -v /home/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /home/docker/nginx/log:/var/log/nginx -v /home/docker/nginx/html:<span class="red">/etc/nginx/html/</span> nginx</p>
+        <p><span class="comment">注意1：run 创建并运行一个容器</span></p>
+        <p><span class="comment">注意2：--name nginx 使用的镜像名称</span></p>
+        <p><span class="comment">注意3：最后的 nginx 是容器名称</span></p>
+        <p><span class="comment">注意4：静态文件夹映射的地址不是：/usr/share/nginx/html/</span></p>
     </div>
 </p>
 <br />
-                <h4>2020-11-19 11:06:30</h4>
+                <h4>2020-11-27 04:42:22</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
