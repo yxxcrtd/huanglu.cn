@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Docker 安装 SonarQube</h2>
+                <p class="title">一，配置 PostgreSQL 数据库</p>
+<p>1，创建登录的用户和角色（含密码）</p>
+<div class="code">
+    <p>DROP USER IF EXISTS sonar;</p>
+    <p>CREATE ROLE sonar WITH LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD 'sonar';</p>
+</div>
+<p>2，创建数据库</p>
+<div class="code">
+    <p>DROP DATABASE IF EXISTS sonar;</p>
+    <p>CREATE DATABASE sonar WITH OWNER = sonar ENCODING = 'UTF8' CONNECTION LIMIT = -1;</p>
+</div>
+<br />
+
+
+<p class="title">二，Docker 安装 SonarQube</p>
+
+<p>1，安装：<div class="code"><p>docker pull sonarqube:community</p></div></p>
+
+<p>2，创建映射文件夹：<div class="code"><p>mkdir -pv /home/docker/sonar/{conf,data,extensions,logs} -m 777</p></div></p>
+
+<p>3，启动 SonarQube：<div class="code"><p>docker run --name sonarqube --link postgres -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonar -p <span class="red">19000</span>:9000 -v /home/docker/sonar/data:/opt/sonarqube/data -v /home/docker/sonar/extensions:/opt/sonarqube/extensions -v /home/docker/sonar/logs:/opt/sonarqube/logs -v /home/docker/sonar/conf:/opt/sonarqube/conf -d sonarqube:community</p></div></p>
+
+<p>4，通过查看日志：
+<div class="code"><p>tailf /home/docker/sonar/logs/es.log</p></div>
+<p>发现的错误：</p>
+<div class="code"><p>max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</p></div>
+</p>
+
+<p>5，解决办法：<div class="code"><p>vim /etc/sysctl.conf</p></div></p>
+
+<p>6，在 /etc/sysctl.conf 文件最后添加一行：<div class="code"><p>vm.max_map_count=262144</p></div></p>
+
+<p>7，验证：
+    <div class="code">
+        <p>sysctl -a|grep vm.max_map_count</p>
+        <p><span class="comment">会显示：vm.max_map_count = 262144</span></p>
+    </div>
+</p>
+
+<p>8，再次启动：
+    <div class="code">
+        <p>docker start '容器ID'</p>
+        <p><span class="comment">通过查看启动日志：tailf /home/docker/sonar/logs/sonar.log，会出现：</span></p>
+        <p><span class="red">SonarQube is up</span></p>
+    </div>
+</p>
+
+<p>9，浏览器访问：
+    <div class="code">
+        <p>http://192.168.1.2:<span class="red">19000</span></p>
+        <p><span class="comment">账户：admin</span></p>
+        <p><span class="comment">密码：admin</span></p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">二，SonarQube 安装 中文语言包</p>
+<p>1，Administration -> Marketplace -> 搜索 chinese -> Install -> 浏览器中的 Restart</p>
+<br />
+
+
+<p class="title">三，配置</p>
+<p>1，</p>
+<p>2，</p>
+<p>3，</p>
+<p>4，</p>
+<p>5，</p>
+<br />
+                <h4>2020-11-27 20:00:57</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>

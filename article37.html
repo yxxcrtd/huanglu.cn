@@ -58,7 +58,7 @@
         <p>注意1：必须在数据库用户下：su - db2inst1</p>
         <p>注意2：db2用户必须要有数据库恢复文件的权限：chmod 777 /home/backup -R</p>
         <p>注意3：其中的 <span class="red">20200401160847</span> 是要还原的数据库文件</p>
-        <p>注意4：pzpt321 是新库名称</p>
+        <p>注意4：pzpt321 是新库名称（<span class="red">名称不能超过8个字符</span>）</p>
         <p>注意5：还原成功后会显示：DB20000I  The RESTORE DATABASE command completed successfully.</p>
     </div>
 </p>
@@ -146,7 +146,7 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
     <div class="code"><p>service crond restart</p></div>
 </p>
 <br />
-                <h4>2020-11-23 19:46:51</h4>
+                <h4>2020-11-27 19:15:51</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
