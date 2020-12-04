@@ -27,45 +27,27 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Docker 可视化管理工具 - Portainer & DockerUI</h2>
-                <p class="title">一，Portainer 的安装</p>
-
-<p>1，下载镜像：</p>
-<div class="code"><p>docker pull docker.io/portainer/portainer</p></div>
-
-<p>2，创建数据存储文件夹：</p>
-<div class="code"><p>mkdir /home/docker/portainer -m 777</p></div>
-
-<p>3，启动：</p>
-<div class="code"><p>docker run -d -p 9001:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/portainer:/data --name prtainer-test portainer/portainer</p></div>
-
-<p>4，访问：http://192.168.1.2:9001</p>
+                <h2>Docker 安装 Oracle 12c</h2>
+                <p class="title">一，Docker 下载镜像</p>
+<p><div class="code"><p>docker pull truevoly/oracle-12c</p></div></p>
 <br />
 
-
-<p class="title">二，Portainer 汉化</p>
-<p>1，新建文件夹：</p>
-<div class="code"><p>mkdir /home/docker/public -m 777</p></div>
-
-<p>2，将下载的 Portainer-CN 解压，放到 public 下（css、fonts、images、js 和 index.html）</p>
-
-<p>3，启动：</p>
-<div class="code"><p>docker run -d -p 9001:9000 --restart=always --name prtainer -v /var/run/docker.sock:/var/run/docker.sock  -v /home/docker:/data -v /home/docker/public:/public portainer/portainer</p></div>
-
-<p>4，访问：http://192.168.1.2:9001</p>
+<p class="title">二，启动后初始化数据库文件：</p>
+<p><div class="code"><p>docker logs -f ‘容器ID’</p></div></p>
 <br />
 
-
-<p class="title">三，DockerUI 的安装</p>
-<p>1，下载镜像：</p>
-<div class="code"><p>docker pull uifd/ui-for-docker</p></div>
-
-<p>2，启动：</p>
-<div class="code"><p>docker run -it -d --name docker-web -p 9002:9000 -v /var/run/docker.sock:/var/run/docker.sock docker.io/uifd/ui-for-docker</p></div>
-
-<p>3，访问：http://192.168.1.2:9002</p>
+<p class="title">三，进入容器</p>
+<p>
+    <div class="code">
+        <p>docker exec -it ‘容器ID’ /bin/bash</p>
+        <p>进入数据库：sqlplus system/oracle@//localhost:1521/orcl</p>
+        <p>用户名：system</p>
+        <p>密码：oracle</p>
+        <p>测试： select * from dual;</p>
+    </div>
+</p>
 <br />
-                <h4>2020-12-04 21:38:31</h4>
+                <h4>2020-12-04 21:57:50</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
