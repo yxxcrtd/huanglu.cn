@@ -37,22 +37,18 @@
 
 <p class="title">二，卸载 RedHat 自带的 yum 软件包</p>
 <div class="code">
-    <p>
-    rpm -e yum-3.4.3-118.el7.noarch --nodeps<br />
-    ......<br /><br />
-    或者直接卸载全部：rpm -qa | grep yum | xargs rpm -e --nodeps
-    </p>
+    <p>rpm -qa | grep yum | xargs rpm -e --nodeps</p>
 </div>
 <br />
 
 
-<p class="title">三，到 163 镜像站寻找源 <a href="http://mirrors.163.com/centos/7/os/x86_64/Packages/" targer="_blank">http://mirrors.163.com/centos/7/os/x86_64/Packages/</a></p>
+<p class="title">三，到 163 镜像站寻找源 <a href="http://mirrors.163.com/centos/7/os/x86_64/Packages/" target="_blank">http://mirrors.163.com/centos/7/os/x86_64/Packages/</a></p>
 <div class="code">
-    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-3.4.3-132.el7.centos.0.1.noarch.rpm</span></p>
-    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-metadata-parser-1.1.4-10.el7.x86_64.rpm</span></p>
-    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-utils-1.1.31-34.el7.noarch.rpm</span></p>
-    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-updateonboot-1.1.31-34.el7.noarch.rpm</span></p>
-    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/<span class="red">yum-plugin-fastestmirror-1.1.31-34.el7.noarch.rpm</span></p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/yum-3.4.3-168.el7.centos.noarch.rpm</p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm</p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/yum-utils-1.1.31-54.el7_8.noarch.rpm</p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/yum-updateonboot-1.1.31-54.el7_8.noarch.rpm</p>
+    <p>wget http://mirrors.163.com/centos/7/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch.rpm</p>
 </div>
 <br />
 
@@ -124,7 +120,7 @@
     <p>如果有无法更新的包：yum -y update <span class="red">--nogpgcheck</span></p>
 </div>
 <br />
-                <h4>2020-11-12 08:22:40</h4>
+                <h4>2020-12-08 10:45:39</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

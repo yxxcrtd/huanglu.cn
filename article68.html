@@ -27,37 +27,16 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Docker 安装 Oracle 12c</h2>
-                <p class="title">一，Docker 下载镜像</p>
-<p><div class="code"><p>docker pull truevoly/oracle-12c</p></div></p>
-
-
-<p class="title">二，启动：</p>
-<p><div class="code"><p>docker run --name oracle --restart=always -d -p 8080:8080 -p 1521:1521 truevoly/oracle-12c</p></div></p>
-
-
-<p class="title">三，查看容器启动日志：</p>
-<p><div class="code"><p>docker logs -f oracle</p></div></p>
-<p>
-    <a href="images/article/article67.01.png" data-fancybox>
-        <img src="images/article/article67.01.png" width="800" />
-    </a>
-</p>
-
-<p class="title">四，Ctrl + c 退出</p>
-
-<p class="title">五，进入容器</p>
-<p><div class="code"><p>docker exec -it oracle /bin/bash</p></div></p>
-
-<p class="title">六，进入数据库</p>
-<p><div class="code"><p>sqlplus system/oracle</p></div></p>
-<p>
-    <a href="images/article/article67.02.png" data-fancybox>
-        <img src="images/article/article67.02.png" width="800" />
-    </a>
-</p>
+                <h2>Docker 安装 WebLogic 12</h2>
+                <p class="title">一，安装与运行</p>
+<p>1，获取镜像：<div class="code"><p>docker pull ismaleiva90/weblogic12</p></div></p>
+<p>2，启动：<div class="code"><p>docker run --name weblogic --restart=always -e base_domain_default_password=12345678 -d -p 7001:7001 -p 7002:7002 ismaleiva90/weblogic12</p></div></p>
+<p>3，查看启动日志：<div class="code"><p>docker logs -f weblogic11g</p></div></p>
+<p>4，访问：http://192.168.1.2:7001/console</p>
+<p>5，账户：weblogic</p>
+<p>6，密码：12345678</p>
 <br />
-                <h4>2020-12-08 16:16:53</h4>
+                <h4>2020-12-09 13:53:16</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
