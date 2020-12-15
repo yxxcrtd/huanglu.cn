@@ -44,7 +44,32 @@
     </a>
 </p>
 <br />
-                <h4>2020-11-16 19:07:29</h4>
+
+
+
+<p class="title">三，几种路由比较</p>
+<p>
+    <table>
+        <tr>
+            <td>wx.navigateTo()</td>
+            <td>带历史回退，不能跳转到tabbar页面</td>
+        </tr>
+        <tr>
+            <td>wx.redirectTo()</td>
+            <td>不保留历史，跳转到另一个页面，不能返回到上一页面</td>
+        </tr>
+        <tr>
+            <td>wx.switchTab()</td>
+            <td>只跳转到tabBar页面，不带回退</td>
+        </tr>
+        <tr>
+            <td>wx.reLaunch()</td>
+            <td>即能跳转到tabBar页面，也能跳转到非tabBar页面，不带历史回退</td>
+        </tr>
+    </table>
+</p>
+<br />
+                <h4>2020-12-15 11:37:33</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

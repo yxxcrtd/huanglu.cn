@@ -27,8 +27,22 @@
 
         <article>
             <div id="articleDetail">
-                <h2>SkyWalking 基础</h2>
-                <p class="title">一，Linux centOS 7 / RedHat 7 下安装 SkyWalking </p>
+                <h2>Docker 安装 SkyWalking</h2>
+                <p class="title">一，Docker 安装 SkyWalking </p>
+<p>1，安装服务端。默认H2存储：</p>
+<div class="code"><p>docker run --name skywalking -d -p 1234:1234 -p 11800:11800 -p 12800:12800 --restart always apache/skywalking-oap-server</p></div>
+<p>2，如果出现错误：docker: Error response from daemon: driver failed programming external connectivity on endpoint skywalking</p>
+<div class="code"><p>systemctl restart docker</p></div>
+<p>3，安装管理界面：
+    <div class="code"><p>docker run --name skywalking-ui -d -p 18080:8080 --link skywalking:skywalking -e SW_OAP_ADDRESS=skywalking:12800 --restart always apache/skywalking-ui</p></div>
+</p>
+<p>4，浏览器访问：http://192.168.1.2:18080</p>
+<br />
+
+
+
+
+<p class="title">二，Linux centOS 7 / RedHat 7 下安装 SkyWalking </p>
 <p>1，下载：http://mirrors.tuna.tsinghua.edu.cn/apache/skywalking/6.4.0/apache-skywalking-apm-6.4.0.tar.gz</p>
 <p>2，解压：tar -xvf apache-skywalking-apm-6.4.0.tar</p>
 <p>3，进入解压后的文件：cd apache-skywalking-apm-bin/</p>
@@ -39,12 +53,12 @@
 <p>8，保存并退出：:wq!</p>
 <p>9，临时启动：./bin/startup.sh</p>
 <p>10，作为服务启动：sh ./bin/startup.sh -d</p>
-<p>11，访问：http://192.168.90.82:8080</p>
+<p>11，访问：http://192.168.1.2:8080</p>
 <p>12，如果无法访问，则需要到 logs 目录下查看具体的日志</p>
 <br />
 
 
-<p class="title">二，Mac 安装 SkyWalking</p>
+<p class="title">三，Mac 安装 SkyWalking</p>
 <p>1，GitHub 地址：https://github.com/apache/skywalking</p>
 <p>2，下载zip 或 tar.gz 格式：http://skywalking.apache.org/downloads/</p>
 <p>3，修改配置：vim config/application.yml</p>
@@ -59,7 +73,7 @@
 
 
 
-<p class="title">三，IDEA 中 配置：SkyWalking</p>
+<p class="title">四，IDEA 中 配置：SkyWalking</p>
 <p>1，将下载的 apache-skywalking-apm-bin 中的agent 复制到 IDEA 中的一个 Module 中，如图：</p>
 <p>
     <a href="images/article/article30.01.png" data-fancybox>
@@ -88,7 +102,7 @@
 
 
 
-<p class="title">四，Java 命令行启动方式</p>
+<p class="title">五，Java 命令行启动方式</p>
 <div class="code">
 <p>java -javaagent:/path/to/skywalking-agent/skywalking-agent.jar -Dskywalking.agent.service_name=nacos-provider -Dskywalking.collector.backend_service=localhost:11800 -jar yourApp.jar</p>
 </div>
@@ -97,7 +111,7 @@
 
 
 
-<p class="title">五，Tomcat 方式部署配置</p>
+<p class="title">六，Tomcat 方式部署配置</p>
 <p>1，修改 Tomcat 配置文件：vim /bin/catalina.sh</p>
 <p>2，在文件的第一行添加下面两行：</p>
 <div class="code">
@@ -108,22 +122,22 @@
 <br />
 
 
-<p class="title">六，jar 方式启动</p>
+<p class="title">七，jar 方式启动</p>
 <div class="code">
-     <p>nohup java -javaagent:/home/apache-skywalking-apm-bin/agent/skywalking-agent.jar -jar eureka-server-0.0.1-SNAPSHOT.jar &</p>
+     <p>nohup java -javaagent:/home/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=eureka -jar /home/eureka.jar &</p>
 </div>
-
 <br />
 
 
-<p class="title">七，配置文件详解 /config/agent.config（参考：<a href="https://github.com/apache/skywalking/blob/master/docs/en/setup/service-agent/java-agent/README.md" target="_blank">https://github.com/apache/skywalking/blob/master/docs/en/setup/service-agent/java-agent/README.md</a>）</p>
+<p class="title">八，配置文件详解 /config/agent.config（参考：<a href="https://github.com/apache/skywalking/blob/master/docs/en/setup/service-agent/java-agent/README.md" target="_blank">https://github.com/apache/skywalking/blob/master/docs/en/setup/service-agent/java-agent/README.md</a>）</p>
 
 <p>
     <a href="images/article/article30.03.png" data-fancybox>
         <img src="images/article/article30.03.png" width="800" />
     </a>
 </p>
-                <h4>2020-11-12 05:41:45</h4>
+<br />
+                <h4>2020-12-15 18:07:49</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
