@@ -28,11 +28,29 @@
         <article>
             <div id="articleDetail">
                 <h2>Nginx 基础</h2>
-                <p class="title">一，Linux 下的安装依赖</p>
+                <p class="title">一，Linux 6,7 下的安装依赖</p>
 <div class="code">
     <p>yum -y install pcre-devel openssl openssl-devel libssl-dev gcc-c++</p>
 </div>
 <br />
+
+
+<p class="title">一，Linux CentOS 8.2 安装 Nginx</p>
+<p>安装：</p>
+<div class="code">
+    <p>dnf -y install nginx</p>
+</div>
+<p>修改配置文件：</p>
+<div class="code">
+    <p>vim /etc/nginx/nginx.conf</p>
+</div>
+<p>查看其他：</p>
+<div class="code">
+    <p>systemctl status nginx</p>
+</div>
+<br />
+
+
 
 
 <p class="title">二，安装 pcre，让 Nginx 支持 Rewrite 功能</p>
@@ -115,7 +133,7 @@
         <img src="images/article/article12.01.png" width="800" />
     </a>
 </p>
-                <h4>2020-11-10 19:56:28</h4>
+                <h4>2020-12-25 22:39:03</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

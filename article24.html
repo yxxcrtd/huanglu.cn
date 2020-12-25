@@ -32,7 +32,7 @@
 <p>1，CentOS 6 全程使用英文安装。也可以将操作系统的默认语言改成英文：vim /etc/sysconfig/i18n：LANG=”en_US.UTF-8”（如果出现：Failed to set locale, defaulting to C，则：echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile）</p>
 <p>2，CentOS 6 更新系统：yum -y update</p>
 <p>3，CentOS 7 使用 U盘镜像方式安装，在启动菜单按 e，进入编辑启动选项，第一行改成：linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:<span class="red">/dev/sdb4</span> quiet（红色部分是需要替换的），ctrl + x 重启进入安装界面，安装过程中有个需要输入 1 ，然后回车，最后就是设置选项了。</p>
-<p>4，</p>
+<p>4，<span class="red">CentOS 8 中使用新一代的 rpm 软件包管理器 dnf 取代了 yum，更新系统：dnf -y update</span></p>
 <p>5，</p>
 <br />
 
@@ -215,7 +215,7 @@ http://download.documentfoundation.org/libreoffice/stable/5.2.0/rpm/x86_64/Libre
 <p>4，查看已经安装的rpm：rpm -qa</p>
 <p>5，查看指定安装的rpm：rpm -qa | grep postgresql</p>
 <br />
-                <h4>2020-11-24 20:26:10</h4>
+                <h4>2020-12-25 21:18:52</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
