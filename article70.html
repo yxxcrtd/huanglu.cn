@@ -27,15 +27,8 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Linux CentOS 8</h2>
-                <p class="title">一，Linux CentOS 8 安装</p>
-<p>1，</p>
-<p>2，</p>
-<p>3，</p>
-<br />
-
-
-<p class="title">二，Linux CentOS 8 基本操作</p>
+                <h2>Linux CentOS 8.2 新服务器配置（dnf 方式安装 Nginx + PostgreSQL 13）</h2>
+                <p class="title">一，Linux CentOS 8.2 基本操作</p>
 <p>1，更新系统</p>
 <div class="code">
     <p>dnf -y update</p>
@@ -43,19 +36,164 @@
 
 <p>2，防火墙基本操作</p>
 <div class="code">
-    <p>systemctl status/start/stop/restart firewalld</p>
+    <p>systemctl status/start/stop/restart/enable/disable/is-enabled/list-unit-files | grep/ firewalld</p>
+    <p><span class="comment">在开机时禁用服务：systemctl disable firewalld.service</span></p>
+    <p><span class="comment">查看服务是否开机启动：systemctl is-enabled firewalld.service</span></p>
+    <p><span class="comment">查看已启动的服务列表：systemctl list-unit-files | grep enabled</span></p>
+    <p><span class="comment">查看启动失败的服务列表：systemctl --failed</span></p>
 </div>
 
 <p>3，防火墙的简易操作</p>
 <div class="code">
     <p>查看防火墙状态：firewall-cmd --state</p>
-    <p>查看防火墙状态：firewall-cmd --state</p>
-    <p>查看防火墙状态：firewall-cmd --state</p>
-    <p>查看防火墙状态：firewall-cmd --state</p>
-    <p>开放80端口：firewall-cmd --zone=public --add-port=80/tcp --permanent（--permanent 表示设置为持久）</p>
+    <p>更新防火墙规则：firewall-cmd --reload</p>
+    <p>查看所有打开的端口：firewall-cmd --list-ports</p>
+    <p>查看所有允许的服务：firewall-cmd --list-services</p>
+    <p>获取所有支持的服务：firewall-cmd --get-services</p>
+    <p>永久添加80端口例外(区域public)：firewall-cmd --zone=public --add-port=80/tcp --permanent（--permanent 表示设置为持久）</p>
+    <p>永久删除80端口例外(区域public)：firewall-cmd --zone=public --remove-port=80/tcp --permanent</p>
+    <p>永久增加65001-65010例外(区域public) ：firewall-cmd  --zone=public --add-port=65001-65010/tcp --permanent</p>
+    <p>查询端口是否开放：firewall-cmd --query-port=80/tcp</p>
 </div>
 <br />
-                <h4>2020-12-25 22:01:12</h4>
+
+
+<p class="title">二，dnf 方式安装 Nginx</p>
+<p>1，安装：</p>
+<div class="code">
+    <p>dnf -y install nginx</p>
+</div>
+<p>2，修改配置文件：</p>
+<div class="code">
+    <p>vim /etc/nginx/nginx.conf</p>
+</div>
+<p>3，查看其他：</p>
+<div class="code">
+    <p>systemctl status nginx</p>
+</div>
+<br />
+
+
+
+<p class="title">三，dnf 方式安装  PostgreSQL 13</p>
+<p>1，下载并安装PostgreSQL官方yum源配置文件：</p>
+<div class="code">
+    <p>dnf -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm</p>
+</div>
+<p>2，在CentOS 8上禁用PostgreSQL AppStream存储库，RHEL 8 Linux包含其他版本的PostgreSQL：</p>
+<div class="code">
+    <p>dnf -qy module disable postgresql</p>
+</div>
+<p>3，确认启用的存储库列表：</p>
+<div class="code">
+    <p>dnf repolist</p>
+</div>
+<p>4，检查存储库中是否有PostgreSQL 13软件包：</p>
+<div class="code">
+    <p>yum search postgresql13</p>
+</div>
+<p>5，安装PostgreSQL 13软件包—服务器和客户端：（注意：程序安装目录是"/usr/pgsql-13"，程序运行目录是"/var/run/postgresql"，程序运行用户和组是"postgres:postgres"，"postgres"用户和组安装时默认创建。）</p>
+<div class="code">
+    <p>dnf -y install postgresql13 postgresql13-server</p>
+</div>
+<p>6，初始化数据库：</p>
+<div class="code">
+    <p>/usr/pgsql-13/bin/postgresql-13-setup initdb</p>
+</div>
+<p>7，启动PostgreSQL数据库：</p>
+<div class="code">
+    <p>systemctl enable --now postgresql-13</p>
+</div>
+<p>8，检查服务状态：</p>
+<div class="code">
+    <p>systemctl status postgresql-13.service</p>
+</div>
+<p>9，进入数据库用户：</p>
+<div class="code">
+    <p>su - postgres</p>
+</div>
+<p>10，更新 postgres 管理员密码：</p>
+<div class="code">
+    <p>psql -c "alter user postgres with password '123456'"</p>
+</div>
+<p>11，修改PostgreSQL的基本配置（允许访问的IP、端口、最大连接数等）：</p>
+<div class="code">
+    <p>vim /var/lib/pgsql/13/data/postgresql.conf</p>
+</div>
+<p>12，设置PostgreSQL接受远程连接：</p>
+<div class="code">
+    <p>vim /var/lib/pgsql/13/data/pg_hba.conf</p>
+    <p><span class="comment">在IPv4 local connections:下添加：host all all 0.0.0.0/0 trust</span></p>
+</div>
+<p>
+    <a href="images/article/article70.01.png" data-fancybox>
+        <img src="images/article/article70.01.png" width="800" />
+    </a>
+</p>
+<p>13，重启数据库服务（退出 postgres 用户）：</p>
+<div class="code">
+    <p>systemctl restart postgresql-13.service</p>
+</div>
+<br />
+
+
+<p class="title">四，dnf 方式安装  Jenkins </p>
+<p>1，下载repo仓库（参考<a href="http://pkg.jenkins-ci.org/redhat-stable/" target="_blank">官网</a>）：</p>
+<div class="code">
+    <p>wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo<span class="red"></span></p>
+</div>
+
+<p>2，导入公钥：</p>
+<div class="code">
+    <p>rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key</p>
+</div>
+
+<p>3，安装：</p>
+<div class="code">
+    <p>dnf -y install jenkins</p>
+</div>
+
+<p>4，修改Jenkins所属用户和端口：</p>
+<div class="code">
+    <p>vim /etc/sysconfig/jenkins</p>
+    <p><span class="comment">JENKINS_USER="root"</span></p>
+    <p><span class="comment">JENKINS_PORT="15431"</span></p>
+</div>
+
+<p>5，修改Jenkins的Java启动路径：</p>
+<div class="code">
+    <p>vim /etc/init.d/jenkins</p>
+    <p><span class="comment">在candidates中添加：/home/jdk/bin/java</span></p>
+</div>
+
+<p>6，修改Jenkins更新中心的路径：</p>
+<div class="code">
+    <p>vim /var/lib/jenkins/hudson.model.UpdateCenter.xml</p>
+    <p><span class="comment">将路径的 https 中的 s 去掉</p>
+</div>
+
+<p>7，启动Jenkins：</p>
+<div class="code">
+    <p>systemctl start jenkins.service</p>
+</div>
+
+<p>8，Jenkins服务自启动：</p>
+<div class="code">
+    <p>systemctl enable jenkins.service</p>
+</div>
+
+<p>9，查看Jenkins的管理员账号密码：</p>
+<div class="code">
+    <p>cat /var/lib/jenkins/secrets/initialAdminPassword</p>
+</div>
+
+<p>10，启动：</p>
+<div class="code">
+    <p>http://IP:端口</p>
+</div>
+
+<br />
+                <h4>2020-12-26 20:54:41</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
