@@ -27,7 +27,7 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Linux CentOS 8.2 新服务器配置（dnf 方式安装 Nginx + PostgreSQL 13）</h2>
+                <h2>Linux CentOS 8.2 新服务器配置（dnf 方式安装 Nginx + PostgreSQL 13 + Git）</h2>
                 <p class="title">一，Linux CentOS 8.2 基本操作</p>
 <p>1，更新系统</p>
 <div class="code">
@@ -125,7 +125,7 @@
     <p>vim /var/lib/pgsql/13/data/pg_hba.conf</p>
     <p><span class="comment">在IPv4 local connections:下添加：host all all 0.0.0.0/0 trust</span></p>
 </div>
-<p>
+<p style="text-align: center;">
     <a href="images/article/article70.01.png" data-fancybox>
         <img src="images/article/article70.01.png" width="800" />
     </a>
@@ -137,7 +137,7 @@
 <br />
 
 
-<p class="title">四，dnf 方式安装  Jenkins </p>
+<p class="title">四，dnf 方式安装  Jenkins</p>
 <p>1，下载repo仓库（参考<a href="http://pkg.jenkins-ci.org/redhat-stable/" target="_blank">官网</a>）：</p>
 <div class="code">
     <p>wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo<span class="red"></span></p>
@@ -192,8 +192,93 @@
     <p>http://IP:端口</p>
 </div>
 
+<p>11，Jenkins显示中文：</p>
+<div class="code">
+    <p>1，安装插件：Localization: Chinese (Simplified)</p>
+    <p>2，Jenkins 配置：Locale 填写：zh_cn，并且选中：Ignore browser preference and force this language to all users</p>
+</div>
+<p>
+    <a href="images/article/article70.03.png" data-fancybox>
+        <img src="images/article/article70.03.png" width="800" />
+    </a>
+</p>
 <br />
-                <h4>2020-12-26 20:54:41</h4>
+
+
+<p class="title">五，dnf 方式安装  Git</p>
+<p>1，安装</p>
+<div class="code">
+    <p>dnf -y install git</p>
+</div>
+
+<p>2，查看版本：</p>
+<div class="code">
+    <p>git --version</p>
+</div>
+<br />
+
+
+<p class="title">六，配置 Github</p>
+<p>1，在服务器上生成公钥和私钥：</p>
+<div class="code">
+    <p>ssh-keygen</p>
+</div>
+<p>2，
+</p>
+<p>3，SSH and GPG keys -> New SSH Key</p>
+<p>4，粘贴服务器上的 id_rsa.pub</p>
+<p>5，在服务器上测试：</p>
+<div class="code">
+    <p>ssh -T git@github.com</p>
+    <p><span class="comment">输入：yes，会出现：Hi yxxcrtd! You've successfully authenticated, but GitHub does not provide shell access.</span></p>
+</div>
+<br />
+
+
+
+GitHub 上的项目 Settings  - Webhooks - 
+Payload URL：http://120.48.8.1:15433/github-webhok（Jenkins地址 + github-webhok）
+
+
+生成Personal access tokens：
+点Github的登录头像 -> Settings  Developer settings -  Personal access tokens - Generate new token
+Note - 写一个名称
+再勾选"repo"和"admin:repo_hook"再点击底部的"Generate token"按钮，就能产生一个新的access token，复制备用
+073e155fce8e38a6c00d3f68e18a4f3bbf9a23eb
+
+到Jenkins，系统配置
+GitHub
+	添加 Github 服务器
+名称：写一个有意义的
+API URL ：保持：https://api.github.com
+凭据：添加
+截图
+
+保存后，点连接测试，会出现：Credentials verified for user yxxcrtd, rate limit: 4998
+后，保存
+
+
+
+
+
+
+
+
+
+
+
+
+<p class="title">七，配置 Jenkins</p>
+<p>1，新建一个：Freestyle project 的项目</p>
+<p>2，丢弃构建，时间越短越好</p>
+<p>3，源码管理：添加授权</p>
+<p style="text-align: center;">
+    <a href="images/article/article70.02.png" data-fancybox>
+        <img src="images/article/article70.02.png" width="800" />
+    </a>
+</p>
+<br />
+                <h4>2020-12-27 21:00:55</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
