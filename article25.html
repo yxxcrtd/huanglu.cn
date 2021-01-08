@@ -72,6 +72,37 @@
 <br />
 
 
+<p class="title">三，Linux CentOS 7.5 下的安装 8.0.22</p>
+<p>1，到 MySQL官网下载页面：<a href="https://www.mysql.com/downloads/" target="_blank">https://www.mysql.com/downloads/</a>，下面找到：MySQL Community (GPL) Downloads >>，再点击：MySQL Community Server</p>
+<p>2，Select Operating System：Red Hat Enterprise Linux / Oracle Linux</p>
+<p>3，Select OS Version：Red Hat Enterprise Linux 7 / Oracle Linux 7 （x86，64-bit）</p>
+<p>4，然后选择下面的：RPM Bundle 后面的 Download（bundle 里面有各种MySQL的依赖）。最终的下载地址，可以拷贝到服务器上 wget：<div class="code"><p>wget https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.22-1.el7.x86_64.rpm-bundle.tar</p></div></p>
+<p>5，解压：<div class="code"><p>tar -xvf mysql-8.0.22-1.el7.x86_64.rpm-bundle.tar</p></div></p>
+<p>6，清除之前的依赖、安装新依赖、client、server：
+    <div class="code">
+        <p>yum -y remove mysql-libs</p>
+        <p>rpm -ivh mysql-community-common-8.0.22-1.el7.x86_64.rpm</p>
+        <p>rpm -ivh mysql-community-libs-8.0.22-1.el7.x86_64.rpm</p>
+        <p>rpm -ivh mysql-community-client-plugins-8.0.22-1.el7.x86_64.rpm</p>
+        <p>rpm -ivh mysql-community-client-8.0.22-1.el7.x86_64.rpm</p>
+        <p>rpm -ivh mysql-community-server-8.0.22-1.el7.x86_64.rpm</p>
+    </div>
+</p>
+<p>7，查看是否安装成功：<div class="code"><p>ps -ef | grep mysql</p><p><span class="comment">会出现：root      6378 13152  0 10:16 pts/0    00:00:00 grep --color=auto mysql</span></p></div></p>
+<p>8，初始化数据库：<div class="code"><p>mysqld --initialize</p><p>如果不区分表名的大小写：mysqld --initialize</p></div></p>
+<p>9，修改权限：<div class="code"><p>chown -R mysql:mysql /var/lib/mysql/</p></div></p>
+<p>10，启动数据库：<div class="code"><p>systemctl start mysqld</p></div></p>
+<p>11，查看初始化密码：<div class="code"><p>cat /var/log/mysqld.log | grep password</p></div></p>
+<p>12，登录数据库并修改密码：<div class="code"><p>alter user 'root'@'localhost' identified by '123456'; </p></div></p>
+<p>13，重启数据库：<div class="code"><p>systemctl restart mysqld</p></div></p>
+<p>14，端口放行：<div class="code"><p>firewall-cmd --zone=public --add-port=3306/tcp --permanent</p><p>firewall-cmd --reload</p><p>验证：firewall-cmd --list-ports</p></div></p>
+<p>15，设置可以远程连接：<div class="code"><p>1，登录数据库</p><p>2，use mysql; </p><p>3，update user set host = '%'  where user ='root'; </p><p>4，flush privileges; </p></div></p>
+<br />
+
+
+
+
+
 <p class="title">三，Mac 下的安装</p>
 <p>1，安装：brew install mysql</p>
 <p>2，启动：brew services start mysql</p>
@@ -175,7 +206,7 @@
 <p class="title">十一，MySQL 5.6 修改密码</p>
 <p>1，update user set password=password(‘123456’) where user=’root’;</p>
 <p>2，flush privileges;</p>
-                <h4>2020-11-12 05:36:13</h4>
+                <h4>2021-01-08 13:18:01</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
