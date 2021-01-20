@@ -27,27 +27,25 @@
 
         <article>
             <div id="articleDetail">
-                <h2>树莓派</h2>
-                <p class="title">一，准备</p>
-<p>1，购买：树莓派，<a href="https://www.raspberrypi.org" target="_blank">官网</a>、<a href="http://www.52pi.net" target="_blank">中文站</a></p>
-<p>2，购买：TF 卡（需要速度快的 Classic 10 +）</p>
-<p>3，下载系统，地址：http://director.downloads.raspberrypi.org/raspbian_full/images/raspbian_full-2019-06-24/2019-06-20-raspbian-buster-full.zip</p>
-<p>4，安装写卡工具：<div class="code"><p>brew cask install balenaetcher</p></div></p>
-<p>5，装卡 -> 接电 -> 开机</p>
-<p>6，树莓派各版本参数对比：</p>
-<p style="text-align: center;">
-    <a href="images/article/article61.01.png" data-fancybox>
-        <img src="images/article/article61.01.png" width="800" />
-    </a>
-</p>
-<br />
+                <h2>Docker 安装 Jenkins</h2>
+                <p class="title">一，Docker 下载镜像</p>
+<p><div class="code"><p>docker pull jenkins</p></div></p>
 
 
-<p class="title">二，使用</p>
-<p>1，更新系统：<div class="code"><p>sudo apt-get update</p></div></p>
-<p>2，安装远程工具：<div class="code"><p>brew cask install vnc-viewer</p></div></p>
+<p class="title">二，创建Jenkins的data文件：</p>
+<p><div class="code"><p>mkdir -pv /home/docker/jenkins/data -m 777</p></div></p>
+
+
+<p class="title">三，启动：</p>
+<p><div class="code"><p>docker run --name <span class="red">jenkins1</span> -p <span class="red">58081</span>:8080 -p <span class="red">50001</span>:50000 -v /home/docker/jenkins/<span class="red">data1</span>:/var/jenkins_home jenkins</p></div></p>
+
+<p class="title">四，浏览器访问：</p>
+<p><div class="code"><p>http://192.168.1.2:58081</p></div></p>
+
+<p class="title">五，查看密码</p>
+<p><div class="code"><p>cat /var/jenkins_home/secrets/initialAdminPassword</p></div></p>
 <br />
-                <h4>2021-01-20 21:37:53</h4>
+                <h4>2021-01-20 21:36:58</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
