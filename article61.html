@@ -30,8 +30,8 @@
                 <h2>树莓派</h2>
                 <p class="title">一，准备</p>
 <p>1，购买：树莓派，<a href="https://www.raspberrypi.org" target="_blank">官网</a>、<a href="http://www.52pi.net" target="_blank">中文站</a></p>
-<p>2，购买：TF 卡（需要速度快的 Classic 10 +）</p>
-<p>3，下载系统，地址：http://director.downloads.raspberrypi.org/raspbian_full/images/raspbian_full-2019-06-24/2019-06-20-raspbian-buster-full.zip</p>
+<p>2，购买：TF 卡（需要速度快的 A1、A2）</p>
+<p>3，下载（修改地址中相应的版本号，或者到：http://mirrors.huaweicloud.com/centos-altarch/）：<div class="code"><p>http://mirrors.huaweicloud.com/centos-altarch/8.1.1911/isos/armhfp/CentOS-Userland-8-armv7hl-generic-GNOME-1911-sda.raw.xz</p><p>解压：xz -d CentOS-Userland-8-armv7hl-generic-GNOME-1911-sda.raw.xz</p></div></p>
 <p>4，安装写卡工具：<div class="code"><p>brew install balenaetcher</p></div></p>
 <p>5，装卡 -> 接电 -> 开机</p>
 <p>6，树莓派各版本参数对比：（3代b型E14中国版）</p>
@@ -43,16 +43,19 @@
 <br />
 
 
-<p class="title">二，使用</p>
-<p>1，更新系统：<div class="code"><p>sudo apt-get update</p></div></p>
-<p>2，安装远程工具：<div class="code"><p>brew cask install vnc-viewer</p></div></p>
+<p class="title">二，Mac 下使用 balenaEtcher 写 256G 的 TF 卡会出现错误：/dev/rdisk2: Operation not permitted</p>
+<p>1，查看磁盘的分区：<div class="code"><p>diskutil list</p></div></p>
+<p>2，擦除TF卡的分区保护：<div class="code"><p>sudo diskutil partitionDisk /dev/disk2 1 MBR "Free Space" "%noformat" 100%</p><p class="comment">确定 disk2 是 TF卡的分区</p></div></p>
+<p>3，退出TF卡：<div class="code"><p>sudo diskutil eject /dev/rdisk2</p></div></p>
+<p>4，再次使用 balenaEtcher 工具写卡</p>
 <br />
 
 
-
-
-下载：http://mirrors.huaweicloud.com/centos-altarch/8.1.1911/isos/armhfp/CentOS-Userland-8-armv7hl-generic-GNOME-1911-sda.raw.xz
-                <h4>2021-01-21 08:59:53</h4>
+<p class="title">三，使用</p>
+<p>1，更新系统：<div class="code"><p>sudo apt-get update</p></div></p>
+<p>2，安装远程工具：<div class="code"><p>brew cask install vnc-viewer</p></div></p>
+<br />
+                <h4>2021-01-21 22:25:01</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
