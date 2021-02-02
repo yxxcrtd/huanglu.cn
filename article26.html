@@ -189,7 +189,18 @@
 <p>2，eval $(docker-machine env)</p>
 </div>
 <br />
-                <h4>2020-11-18 16:37:54</h4>
+
+
+<p class="title">十七，Docker时间比主机时间少8个小时</p>
+<div class="code">
+    <p>方法1，docker cp /etc/localtime c78cd8734b87:/etc/localtime</p>
+    <p class="comment">如果报错，使用方法2。Error response from daemon: Error processing tar file(exit status 1): invalid symlink "/etc/localtime" -> "../usr/share/zoneinfo/Asia/Shanghai"</p>
+</div>
+<div class="code">
+<p>方法2，docker cp /usr/share/zoneinfo/Asia/Shanghai c78cd8734b87:/etc/localtime</p>
+</div>
+<br />
+                <h4>2021-02-02 20:17:50</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
