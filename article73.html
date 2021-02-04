@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Docker 安装 Jmeter + InfluxDB + Grafana</h2>
+                <p class="title">一，创建InfluxDB的宿主目录文件夹：</p>
+<p><div class="code"><p>mkdir -pv /home/docker/influxdb -m 777</p></div></p>
+<br />
+
+
+<p class="title">二，启动 InfluxDB：</p>
+<p><div class="code">
+<p>docker run --name influxdb -d -p 8086:8086 -v /home/docker/influxdb:/var/lib/influxdb influxdb</p></div></p>
+<br />
+
+
+<p class="title">三，进入容器并创建数据库：</p>
+<p>
+    <div class="code">
+        <p>进入容器：docker exec -it 27e66cad38f9 /bin/bash</p>
+        <p>进入数据库：/usr/bin/influx</p>
+        <p>创建数据库：create database jmeter</p>
+        <p>退出数据库：exit</p>
+        <p>退出容器：exit</p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">四，安装 Grafana</p>
+<p><div class="code"><p>docker pull grafana/grafana</p></div></p>
+<br />
+
+
+<p class="title">五，启动 Grafana</p>
+<p><div class="code"><p>docker run -d --name=grafana -p 3000:3000 grafana/grafana</p></div></p>
+<br />
+
+
+<p class="title">六，浏览器访问 Grafana</p>
+<p>
+    <div class="code">
+        <p>http://192.168.1.2:3000</p>
+        <p class="comment">账号：admin</p>
+        <p class="comment">密码：admin</p>
+    </div>
+</p>
+<br />
+                <h4>2021-02-04 21:16:21</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
