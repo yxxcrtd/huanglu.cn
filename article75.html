@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Docker 私有镜像仓库 - Registry & Harbor</h2>
+                <p class="title">一，创建需要的文件目录：</p>
+<p><div class="code"><p>mkdir /home/docker/registry -pv -m 777</p></div></p>
+<br />
+
+
+<p class="title">二，启动：</p>
+<p>
+    <div class="code">
+        <p>docker run  --detach --restart always --name registry --publish 5000:5000 --volume /home/docker/registry:/var/lib/registry --volume /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime registry</p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">三，增加防火墙端口：</p>
+<p><div class="code"><p>firewall-cmd --zone=public --add-port=5000/tcp --permanent</p></div></p>
+<br />
+
+
+<p class="title">四，安装客户端：</p>
+<p><div class="code"><p>docker run --name dockerfly -d -v /var/run/docker.sock:/var/run/docker.sock --restart always -p 2735:2735 -p 28083:28083 helyho/dockerfly</p></div></p>
+<br />
+
+
+<p class="title">五，访问：</p>
+<p><div class="code"><p>http://192.168.1.2:28083（admin/1234）</p></div></p>
+<br />
+                <h4>2021-02-05 08:33:19</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
