@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history.html">黄麓历史</a></li>
+                    <li><a href="landscape.html">黄麓风景</a></li>
+                    <li><a href="about.html" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>配置 https</h2>
+                <p class="title">一，申请 https 证书</p>
+<p>1，腾讯云上申请</p>
+<p>2，需要备案好的域名</p>
+<p>3，需要注册域名的邮箱</p>
+<br />
+
+
+<p class="title">二，在云服务器上打开443端口</p>
+<p>1，添加一个<span class="red">入站</span>规则</p>
+<p style="text-align: center;">
+    <a href="images/article/article77.01.png" data-fancybox>
+        <img src="images/article/article77.01.png" width="800" />
+    </a>
+</p>
+<br />
+
+<p class="title">三，配置 Nginx</p>
+<p>1，将 域名.crt 和 域名.key 拷贝到 服务器上固定目录，推荐Nginx配置文件的目录（以后用绝对路径引用）</p>
+<p>2，Nginx 配置文件位置：
+    <div class="code">
+        <p>6和7：/usr/local/nginx/conf/nginx.conf</p>
+        <p>8：/etc/nginx/nginx.conf</p>
+    </div>
+</p>
+<p>3，先备份 Nginx 配置文件：<div class="code"><p>cp /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx.conf.bak</p></div></p>
+<p>4，编辑 Nginx 配置文件：
+    <div class="code">
+        <p>1：打开 Nginx 配置文件：nginx.conf</p>
+        <p>2：配置 80 中的 server_name 为真实备案域名</p>
+        <p>3：打开 443 的注释</p>
+        <p>4：配置 443 中的 server_name 为真实备案域名</p>
+        <p>5：配置 ssl_certificate 中 crt 文件的绝对路径</p>
+        <p>6：配置 ssl_certificate_key 中 key 文件的绝对路径</p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">四，其他配置：</p>
+<p>1，重启 Nginx：<div class="code"><p>systemctl restart nginx</p></div></p>
+<p>2，添加防火墙规则：<div class="code"><p>firewall-cmd --zone=public --add-port=443/tcp --permanent</p></div></p>
+<br />
+                <h4>2021-03-06 11:50:18</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
