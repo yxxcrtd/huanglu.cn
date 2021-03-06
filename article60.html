@@ -69,7 +69,41 @@
     </table>
 </p>
 <br />
-                <h4>2020-12-15 11:37:33</h4>
+
+
+<p class="title">四，Navigator 几种超链接的属性</p>
+<p>
+    <table>
+        <tr>
+            <td>navigate</td>
+            <td>保留当前页面，跳转到应用内的某个页面,但不能跳转到tabbar页面</td>
+        </tr>
+        <tr>
+            <td>redirect</td>
+            <td>关闭当前页面，跳转到应用内的某个页面，但不允许跳转到tabbar页面</td>
+        </tr>
+        <tr>
+            <td>reLaunch</td>
+            <td>关闭所有页面，打开到应用内的某个页面</td>
+        </tr>
+        <tr>
+            <td>switchTab</td>
+            <td>跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面</td>
+        </tr>
+        <tr>
+            <td>navigateBack</td>
+            <td>关闭当前页面，返回上一页面或多级页面。可通过getCurrentPages()获取当前的页面栈，决定需要返回几层</td>
+        </tr>
+        <tr>
+            <td>exit</td>
+            <td>退出小程序，target="miniProgram"时生效</td>
+        </tr>
+    </table>
+    <p>跳转到tabbar页面 必须要添加属性open-type=“switchTab”</p>
+</p>
+
+<br />
+                <h4>2021-03-06 10:58:39</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
