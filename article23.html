@@ -46,7 +46,17 @@
 <br />
 
 
-<p class="title">二，Linux CentOS 7 下使用 rpm 方式安装 Jenkins</p>
+<p class="title">二，Linux CentOS 7 下安装 Jenkins</p>
+<p><div class="code"><p>wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</p></div></p>
+<p><div class="code"><p>rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</p></div></p>
+<p><div class="code"><p>yum -y install jenkins</p></div></p>
+<p><div class="code"><p>systemctl start jenkins</p></div></p>
+<p><div class="code"><p>firewall-cmd --zone=public --add-port=8080/tcp --permanent</p></div></p>
+<p><div class="code"><p>访问：http://IP:8080</p></div></p>
+<br />
+
+
+<p class="title">三，Linux CentOS 7 下使用 rpm 方式安装 Jenkins</p>
 <p>1，到<a href="http://pkg.jenkins-ci.org/redhat-stable/" target="_blank">官网</a>下载最新的 rpm 包：wget http://pkg.jenkins-ci.org/redhat-stable/jenkins-2.222.3-1.1.noarch.rpm</p>
 <p>2，安装：rpm -ivh jenkins-2.222.3-1.1.noarch.rpm<br />
 -i：install - 安装<br />
@@ -188,7 +198,7 @@
 <br />
 
 
-<p class="title">十，deploy.sh 文件：</p>
+<p class="title">十一，deploy.sh 文件：</p>
 <div class="code">
 <p>#!/bin/bash</p>
 
@@ -212,7 +222,19 @@
 
 <p>注释1，>/dev/null 的作用是将它前面的命令标准输出丢弃，而标准错误输出还是在屏幕上。 一般来说 标准输出 和 标准错误输出 都是屏幕，因此错误信息还是会在屏幕上输出。这时可以用：command >/dev/null 2>&1 这样标准输出与标准错误输出都会被丢弃。1：表示标准输出，2：表示标准错误输出，2>&1：表示将标准错误输出重定向到标准输出。 >：表示输出重定向，如果 command > /usr/log 那其会覆盖log中原来的记录。可以使用 >> 输出重定向来向文件尾部追加输出记录。
 </p>
-                <h4>2020-11-23 19:47:00</h4>
+<br />
+
+<p class="title">十二，Jenkins 服务启动出现：active（exited）的错误</p>
+<p>1，查看状态：</p><div class="code"><p>systemctl status jenkins</p></div>
+<p>
+    <a href="images/article/article23.02.png" data-fancybox>
+        <img src="images/article/article23.02.png" width="800" />
+    </a>
+</p>
+<p>2，解决：</p><div class="code"><p>chmod 777 /home/ -R <br /><span class="comment">/home 是 Jenkins 的路径</span></p></div>
+
+<br />
+                <h4>2021-03-12 20:50:00</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
