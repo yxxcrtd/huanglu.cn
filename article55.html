@@ -34,7 +34,7 @@
 
 <div class="code">
     <p>
-        2，在 jar 包同级目录创建 <span class="red">Dockfile</span>，vim Dockfile<br />
+        2，在 jar 包同级目录创建 <span class="red">Dockerfile</span>，vim Dockfile<br />
 
 FROM java:8<br />
 MAINTAINER yxx<br />
@@ -47,19 +47,20 @@ RUN echo "Asia/Shanghai" >/etc/timezone<br />
 </div>
 
 <div class="code">
-    <p>3，构建镜像：docker build -t project/tams .（注意：最后有一个点；project/tams 是构建之后的镜像名称，可以加版本号）</p>
+    <p>3，构建镜像：docker build -t tams .（注意：最后有一个点；tams 是构建之后的镜像名称，可以加版本号）</p>
 </div>
 
 
 <div class="code">
     <p>4，运行镜像：docker run -e TZ="Asia/Shanghai" -d --restart=always --name tams -p 8081:8080  project/tams</p>
+    <p>（或者：：docker run --name tams -p 8081:8080  tams）</p>
 </div>
 
 
 <div class="code">
     <p>5，查看日志：docker logs --tail  300 -f  tams</p>
 </div>
-                <h4>2020-11-12 08:23:50</h4>
+                <h4>2021-03-22 18:14:06</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
