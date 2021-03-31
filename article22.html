@@ -46,7 +46,7 @@
 <p>3，安装：yum -y install postgresql11-server.x86_64 postgresql11-contrib.x86_64</p>
 <p>4，初始化数据库：/usr/pgsql-11/bin/postgresql-11-setup initdb （位置：/var/lib/pgsql/11/data/）</p>
 <p>5，数据库服务：systemctl start / enable / restart / status postgresql-11.service</p>
-<p>6，进入数据库：su - postgres -> psql -p 15432</p>
+<p><span class="red">6，进入数据库：su - postgres -> psql -p 15432</span></p>
 <p>7，修改 postgres 密码：\password postgres（退出：\q）</p>
 <p>8，修改配置1：vim /var/lib/pgsql/11/data/postgresql.conf，修改：listen_addresses = '*或固定IP' 和 port = 5432</p>
 <p>9，修改配置2：vim /var/lib/pgsql/11/data/pg_hba.conf，在ipv4下添加：host    all             all             0.0.0.0/0        md5</p>
@@ -62,21 +62,32 @@
 <p>4，修改密码：\password（localhost-young-123456-postgres；localhost-home-123456-home）</p>
 <p>5，安装位置：/usr/local/var/postgres</p>
 <p>6，配置文件：/usr/local/var/postgres/postgresql.conf</p>
-<p>7，/usr/local/var/postgres start</p>
+<p>7，启动：/usr/local/var/postgres start</p>
 <p>8，退出终端：\q</p>
 <br />
 
 
-<p class="title">四，PostgreSQL 数据库 的备份</p>
+<p class="title">四，PostgreSQL 数据库备份</p>
 <div class="code">
-    <p>
-        /usr/pgsql-10/bin/pg_dump -h 1.2.3.4 -p 9839 -U pgis pgis > 181.bak
-    </p>
+    <p>1，进入 postgres 用户：su - postgres</p>
+    <p>2，备份：pg_dump -p 15432 -C 数据库名称 > 20210401.sql <span class="comment">（备份文件位置：/var/lib/pgsql/）</span></p>
+
+    <p><span class="comment">其他方式：/usr/pgsql-10/bin/pg_dump -h 1.2.3.4 -p 9839 -U pgis pgis > 181.bak</span></p>
 </div>
 <br />
 
 
-<p class="title">五，基础查询</p>
+<p class="title">五，PostgreSQL 数据库还原</p>
+<div class="code">
+    <p>1，进入 postgres 用户：su - postgres</p>
+    <p>2，Mac下还原Linux备份的数据库：psql -p 15432 -e zjasset < zjasset20210401.sql  <span class="comment">（先进入sql所在的文件夹）</span></p>
+</div>
+<br />
+
+
+
+
+<p class="title">六，基础查询</p>
 <p>1，数据库版本：select version(); 输出：”PostgreSQL 8.4.0, compiled by Visual C++ build 1400, 32-bit” </p>
 <p>2，当前日期：select current_date; 输出：”2020-02-07” </p>
 <p>3，当前时间：select now(); 输出：”2009-11-28 21:49:18.125+08” </p>
@@ -89,7 +100,8 @@
 <p>10，字符串替换：select replace('wabbit_season', 'it', 'ithunting'); 输出：”wabbit_hunting_season” </p>
 <p>11，字符串截取：select substr('wabbit_duck_season', 7, 11); 输出：”_duck_seaso” </p>
 <p>12，前一周的周五：select current_date - cast(extract(dow from current_timestamp) as int2) - 2;  </p>
-                <h4>2020-11-11 08:32:40</h4>
+<p>13，查看所有数据看：\l 或 select * from pg_database;</p>
+                <h4>2021-04-01 05:31:11</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
