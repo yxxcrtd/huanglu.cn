@@ -45,6 +45,9 @@
         <p>进入容器：docker exec -it 27e66cad38f9 /bin/bash</p>
         <p>进入数据库：/usr/bin/influx</p>
         <p>创建数据库：create database jmeter</p>
+        <p>显示数据库：show databases</p>
+        <p>使用数据库：use jmeter</p>
+        <p>查询：select * from jmeter;</p>
         <p>退出数据库：exit</p>
         <p>退出容器：exit</p>
     </div>
@@ -71,7 +74,63 @@
     </div>
 </p>
 <br />
-                <h4>2021-02-04 21:16:21</h4>
+
+
+<p class="title">七，Grafana 中连接 InfluxDB 数据库</p>
+<p>
+    <div class="code">
+        <p>1，左侧的 Configuration -> Data Sources -> Add data source -> InfluxDB</p>
+        <p>2，填写：HTTP URL：http://192.168.1.2:8086</p>
+        <p>3，填写：InfluxDB Details：Database：jmeter / User：admin / Password：admin</p>
+        <p>4，Save & Test</p>
+        <p>5，如果出现绿色的：Data source is working 表示连接成功！</p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">八，到 Grafana <a href="https://grafana.com/grafana/dashboards" targer="_blank">管网</a>下载展示模版</p>
+<p>
+    <div class="code">
+        <p>1，左侧的 Filter by: -> Name / Description -> 输入：jmeter -> 右侧的查询结果中找：Apache JMeter Dashboard using Core InfluxdbBackendListenerClient -> 进入 -> 右侧  -> Download JSON</p>
+        <p>2，导入：在 Grafana 首页左侧的 + Import -> Upload JSON file -> 选择刚才下载的 json 文件</p>
+        <p>3，填写：DB name 下拉中选择 InfluxDB  -> Import </p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">九，安装 JMeter</p>
+<p>
+    <div class="code">
+        <p>1，下载：wget https://mirrors.bfsu.edu.cn/apache//jmeter/binaries/apache-jmeter-5.4.1.tgz</p>
+        <p>2，解压：tar -zxvf apache-jmeter-5.4.1.tgz</p>
+        <p>3，授权：chmod 777 /home/apache-jmeter-5.4.1 -R</p>
+        <p>4，配置环境变量：vim /etc/profile</p>
+        <p>export JMETER=/home/apache-jmeter-5.4.1</p>
+        <p>export PATH=$PATH:$JAVA_HOME/bin:$JMETER/bin</p>
+        <p>5，环境变量生效：source /etc/profile</p>
+        <p>6，验证：jmeter -v</p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">十，JMeter 配置使用</p>
+<p>
+    <div class="code">
+        <p>1，下载：到 <a href="https://jmeter-plugins.org/install/Install/" target="_blank">https://jmeter-plugins.org/install/Install/</a>，下载plugins-manager.jar，放到 /lib/ext</p>
+        <p>2，JMeter 响应数据乱码：vim /jmeter/bin/jmeter.properties，将 sampleresult.default.encoding 注释打开，改成utf-8，重启 Jmeter </p>
+
+
+        <p>3，</p>
+        <p>4，</p>
+        <p>5，</p>
+        <p>6，Jenkins 安装插件：Git Parameter 和 Pipeline Utility Steps</p>
+    </div>
+</p>
+<br />
+                <h4>2021-03-31 19:21:41</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
