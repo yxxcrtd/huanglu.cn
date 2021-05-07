@@ -110,12 +110,37 @@
 </p>
 <p>2，安装到私服：
     <div class="code">
-        <p>mvn deploy:deploy-file -DgroupId=com.oracle -DartifactId= ojdbc7 -Dversion=7.0 -Dpackaging=jar -Dfile=ojdbc7.jar -Durl=http://192.168.1.2:8081/nexus/content/repositories/thirdparty/ -DrepositoryId=thirdparty</p>
+        <p>mvn deploy:deploy-file -DgroupId=org.postgresql -DartifactId=postgresql -Dversion=42.2.19 -Dpackaging=jar -Dfile=/Users/young/repository/org/postgresql/postgresql/42.2.19/postgresql-42.2.19.jar -Durl=http://192.168.1.2:8081/nexus/content/repositories/thirdparty/ -DrepositoryId=thirdparty</p>
     </div>
 </p>
-
 <br />
-                <h4>2021-05-07 05:03:50</h4>
+
+
+
+<p class="title">七，批量上传 jar 包到私服（私服服务器上的文件拷贝）</p>
+<p>1，将有包的层级目录的文件夹拷贝到服务器的某目录或本地，如：/home/repo/...</p>
+<p>2，在 repo 目录中创建一个 shell 文件（需要授权）：<div class="code"><p>touch mavenimport.sh</p></div></p>
+<p>3，mavenimport.sh 的内容如下：
+    <div class="code">
+
+<p>#!/bin/bash</p>
+<p>while getopts ":r:u:p:" opt;do</p>
+	<p class="indent">case $opt in</p>
+		<p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;r) REPO_URL="$OPTARG"</p>
+		<p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;;;</p>
+		<p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;u) USERNAME="$OPTARG"</p>
+		<p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;;;</p>
+		<p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;p) PASSWORD="$OPTARG"</p>
+		<p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;;;</p>
+	<p class="indent">esac</p>
+<p>done</p>
+
+<p>find . -type f -not -path './mavenimport\.sh*' -not -path '*/\.*' -not -path '*/\^archetype\-catalog\.xml*' -not -path '*/\^maven\-metadata\-local*\.xml' -not -path '*/\^maven\-metadata\-deployment*\.xml' | sed "s|^\./||" | xargs -I '{}' curl -u "$USERNAME:$PASSWORD" -X PUT -v -T {} ${REPO_URL}/{};</p>
+    </div>
+</p>
+<p>4，repo 下执行：<div class="code"><p>./mavenimport.sh -u admin -p admin -r http://192.168.1.2:8081/nexus/content/repositories/thirdparty/</p></div></p>
+<br />
+                <h4>2021-05-08 05:42:58</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -124,7 +149,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
