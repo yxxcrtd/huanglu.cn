@@ -47,12 +47,12 @@
 
 
 <p class="title">二，Linux CentOS 7 下安装 Jenkins</p>
-<p><div class="code"><p>wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</p></div></p>
-<p><div class="code"><p>rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</p></div></p>
-<p><div class="code"><p>yum -y install jenkins</p></div></p>
-<p><div class="code"><p>systemctl start jenkins</p></div></p>
-<p><div class="code"><p>firewall-cmd --zone=public --add-port=8080/tcp --permanent</p></div></p>
-<p><div class="code"><p>访问：http://IP:8080</p></div></p>
+<p>1，下载repo仓库：<div class="code"><p>wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</p></div></p>
+<p>2，导入公钥：<div class="code"><p>rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</p></div></p>
+<p>3，安装：<div class="code"><p>yum -y install jenkins</p></div></p>
+<p>4，启动服务：<div class="code"><p>systemctl start jenkins</p></div></p>
+<p>5，添加防火墙规则：<div class="code"><p>firewall-cmd --zone=public --add-port=8080/tcp --permanent</p></div></p>
+<p>6，访问：<div class="code"><p>http://IP:8080</p></div></p>
 <br />
 
 
@@ -80,23 +80,32 @@
 </div>
 <br />
 
-
-<p class="title">三，Mac 下安装 Jenkins</p>
-<p>1，brew install jenkins</p>
-<p>2，brew services start jenkins 或者直接 jenkins</p>
-<p>3，输入：http://localhost:8080，即可访问</p>
-<p>4，密码：cat /root/.jenkins/secrets/initialAdminPassword 或：cat /var/lib/jenkins/secrets/initialAdminPassword</p>
-<p>5，日志位置： tailf /var/log/jenkins/jenkins.log </p>
+<p class="title">三，Docker 安装 Jenkins</p>
+<p>1，下载镜像：<div class="code"><p>docker pull jenkins</p></div></p>
+<p>2，创建 Jenkins 的 data 文件：<div class="code"><p>mkdir -pv /home/docker/jenkins/data -m 777</p></div></p>
+<p>3，启动：<div class="code"><p>docker run --name <span class="red">jenkins1</span> -p <span class="red">18081</span>:8080 -p <span class="red">50001</span>:50000 -v /home/docker/jenkins/<span class="red">data1</span>:/var/jenkins_home jenkins</p></div></p>
+<p>4，访问：<div class="code"><p>http://192.168.1.2:18081</p></div></p>
+<p>5，查看密码：<div class="code"><p>cat /var/jenkins_home/secrets/initialAdminPassword</p></div></p>
 <br />
 
 
-<p class="title">四，Jenkins 运行</p>
-<p>1，启动一：service jenkins start --httpPort=8081</p>
-<p>2，启动二：java -jar /usr/lib/jenkins/jenkins.war --httpPort=8081</p>
+<p class="title">四，Mac 下安装 Jenkins</p>
+<p>1，brew 安装：<div class="code"><p>brew install jenkins</p></div></p>
+<p>2，启动：<div class="code"><p>brew services start jenkins</p><p class="comment">或</p><p>jenkins</p></div></p>
+<p>3，访问：<div class="code"><p>http://localhost:8080</p></div></p>
+<p>4，查看密码：<div class="code"><p>cat /root/.jenkins/secrets/initialAdminPassword</p><p class="comment">或</p><p>cat /var/lib/jenkins/secrets/initialAdminPassword</p></div></p>
+<p>5，查看日志：<div class="code"><p>tailf /var/log/jenkins/jenkins.log</p></div></p>
 <br />
 
 
-<p class="title">五，Jenkins 配置</p>
+
+<p class="title">五，Jenkins 运行</p>
+<p>1，启动一：<div class="code"><p>service jenkins start --httpPort=8081</p></div></p>
+<p>2，启动二：<div class="code"><p>java -jar /usr/lib/jenkins/jenkins.war --httpPort=8081</p></div></p>
+<br />
+
+
+<p class="title">六，Jenkins 配置</p>
 <p>1，第一次访问要解锁：密码在启动日志中、或：/root/.jenkins/secrets/initialAdminPassword</p>
 <p>2，在 Customize Jenkins 中选择：不安装任何插件</p>
 <p>3，设置：管理员的账户、密码和邮件地址</p>
@@ -104,7 +113,7 @@
 <br />
 
 
-<p class="title">六，Jenkins 使用</p>
+<p class="title">七，Jenkins 使用</p>
 <p>基础1，关联本地的JDK 和 Maven</p>
 <p>基础2，安装插件：Git、Gitlab、Gitlab Hook等</p>
 <p>基础3，安装 Maven 插件：Jenkins -> Manage Jenkins -> Manage Plugins -> Maven Integration plugin</p>
@@ -122,7 +131,7 @@
 <br />
 
 
-<p class="title">七，配置项目</p>
+<p class="title">八，配置项目</p>
 <p>1，Source Code Management，选择 Subversion ，在 Repository URL 中数代码仓库地址，然后添加：Credentials，返回选择你的 svn 账户</p>
 <p>2，Build Triggers 中勾选 Poll SCM，输入：H/5 * * * * ，5分钟自动构建一次</p>
 <p>3，Build 中，Root POM 是：pom.xml，Goals and options 是：<span class="red">clean package -Dmaven.test.skip -e -U -X</span><br />
@@ -142,7 +151,7 @@
 <br />
 
 
-<p class="title">八，Jenkins 配置 QQ 邮箱</p>
+<p class="title">九，Jenkins 配置 QQ 邮箱</p>
 <p>0，先要配置：System Admin e-mail address，里面要写发送者的 Email 地址</p>
 <p>1，首页 -> 系统管理 -> 系统配置 -> 邮件通知</p>
 <p>2，SMTP服务器 -> smtp.qq.com</p>
@@ -162,7 +171,7 @@
 <br />
 
 
-<p class="title">九，Jenkins 配置 其他邮箱</p>
+<p class="title">十，Jenkins 配置 其他邮箱</p>
 <p>1，首页 -> Manage Jenkins -> Configure System -> Jenkins Location -> System Admin e-mail address -> 填写发送者的 Email 地址</p>
 <p>2，E-mail Notification -> SMTP server -> smtp.exmail.qq.com</p>
 <p>3，E-mail Notification -> Default user e-mail suffix -> @gmail.com</p>
@@ -176,18 +185,18 @@
 <p>11，E-mail Notification -> 勾选 Test configuration by sending test e-mail  -> 填写接收的邮件地址</p>
 <p>
     <a href="images/article/article23.00.png" data-fancybox>
-        <img src="images/article/article23.00.png" width="835" />
+        <img src="images/article/article23.00.png" width="800" />
     </a>
 </p>
 <br />
 
 
-<p class="title">十，Jenkins 问题</p>
+<p class="title">十一，Jenkins 问题</p>
 <p>1，无法登录的时候，修改系统账户下的 .jenkins/config.xml（如果没有的话，则在：/var/lib/jenkins/config.xml），将useSecurity 设为false</p>
 <p>2，设置登录的配置</p>
 <p>
     <a href="images/article/article23.01.png" data-fancybox>
-        <img src="images/article/article23.01.png" width="835" />
+        <img src="images/article/article23.01.png" width="800" />
     </a>
 </p>
 <p>3，设置国内镜像：Plugin Manager  -> Advanced  -> Update Site  -> https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json</p>
@@ -198,7 +207,7 @@
 <br />
 
 
-<p class="title">十一，deploy.sh 文件：</p>
+<p class="title">十二，deploy.sh 文件：</p>
 <div class="code">
 <p>#!/bin/bash</p>
 
@@ -224,17 +233,17 @@
 </p>
 <br />
 
-<p class="title">十二，Jenkins 服务启动出现：active（exited）的错误</p>
+<p class="title">十三，Jenkins 服务启动出现：active（exited）的错误</p>
 <p>1，查看状态：</p><div class="code"><p>systemctl status jenkins</p></div>
 <p>
     <a href="images/article/article23.02.png" data-fancybox>
-        <img src="images/article/article23.02.png" width="835" />
+        <img src="images/article/article23.02.png" width="800" />
     </a>
 </p>
 <p>2，解决：</p><div class="code"><p>chmod 777 /home/ -R <br /><span class="comment">/home 是 Jenkins 的路径</span></p></div>
 
 <br />
-                <h4>2021-03-12 20:50:00</h4>
+                <h4>2021-05-16 08:31:09</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -243,7 +252,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
