@@ -229,9 +229,12 @@
 <p>echo ""</p>
 </div>
 
+
 <p>注释1，>/dev/null 的作用是将它前面的命令标准输出丢弃，而标准错误输出还是在屏幕上。 一般来说 标准输出 和 标准错误输出 都是屏幕，因此错误信息还是会在屏幕上输出。这时可以用：command >/dev/null 2>&1 这样标准输出与标准错误输出都会被丢弃。1：表示标准输出，2：表示标准错误输出，2>&1：表示将标准错误输出重定向到标准输出。 >：表示输出重定向，如果 command > /usr/log 那其会覆盖log中原来的记录。可以使用 >> 输出重定向来向文件尾部追加输出记录。
 </p>
 <br />
+
+
 
 <p class="title">十三，Jenkins 服务启动出现：active（exited）的错误</p>
 <p>1，查看状态：</p><div class="code"><p>systemctl status jenkins</p></div>
@@ -241,9 +244,36 @@
     </a>
 </p>
 <p>2，解决：</p><div class="code"><p>chmod 777 /home/ -R <br /><span class="comment">/home 是 Jenkins 的路径</span></p></div>
-
 <br />
-                <h4>2021-05-16 08:31:09</h4>
+
+
+
+<p class="title">十四，Jenkins 整合 GitLab 实现自动构建</p>
+<p>1，查看状态：<div class="code"><p></p></div></p>
+<p>
+    <a href="images/article/article23.02.png" data-fancybox>
+        <img src="images/article/article23.02.png" width="800" />
+    </a>
+</p>
+<p>2，解决：<div class="code"><p></p></div></p>
+<br />
+
+
+
+<p class="title">十五，Jenkins 整合 GitHub 实现自动构建</p>
+<p>1，配置 JDK：Manage Jenkins -> Global Tool Configuration -> JDK -> 1，别名任意；2，填写 JAVA_HOME ：/home/jdk（JDK在服务器上的安装路径）</p>
+<p>2，配置 Git：Manage Jenkins -> Global Tool Configuration -> Git -> 1，Name 任意；2，Path to Git executable ：git（git 在服务器上是可执行的）</p>
+<p>3，配置 Gradle：Manage Jenkins -> Global Tool Configuration -> Gradle -> 1，name 任意；2，GRADLE_HOME ：/home/gradle-6.7.1（Gradle 在服务器上的安装路径）</p>
+<p>4，新建一个项目：Maven 是：Maven project，Gradle 是：Freestyle project</p>
+<p>5，Discard old builds：Log Rotation 中 保持构建天数：1；保持构建的最大个数：1</p>
+<p>6，Git Repositories：填写 URL：git@github.com:yxxcrtd/project.git </p>
+<p>，</p>
+<p>，</p>
+<p>，</p>
+<p>，</p>
+<p>，</p>
+<br />
+                <h4>2021-05-18 05:19:38</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

@@ -45,14 +45,15 @@
 
 
 <p class="title">三，Linux CentOS 7 的安装</p>
-<p>1，安装依赖的包：<div class="code"><p>yum install -y yum-utils device-mapper-persistent-data lvm2</p></div></p>
-<p>2，安装repository：<div class="code"><p>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</p></div></p>
-<p>3，安装：<div class="code"><p>yum makecache fast</p></div></p>
-<p>4，安装：<div class="code"><p>yum -y install docker-ce</p></div></p>
-<p>5，启动：<div class="code"><p>systemctl start docker.service（start / stop / enable / status）</p></div></p>
-<p>6，服务自启动：<div class="code"><p>systemctl enable docker.service</p></div></p>
-<p>7，查看状态：<div class="code"><p>systemctl status docker</p></div></p>
-<p>8，修改docker存储路径：
+<p>1，更新系统：<div class="code"><p>yum -y update</p></div></p>
+<p>2，安装依赖的包：<div class="code"><p>yum install -y yum-utils device-mapper-persistent-data lvm2</p></div></p>
+<p>3，安装repository：<div class="code"><p>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</p></div></p>
+<p>4，安装：<div class="code"><p>yum makecache fast</p></div></p>
+<p>5，安装：<div class="code"><p>yum -y install docker-ce</p></div></p>
+<p>6，启动：<div class="code"><p>systemctl start docker.service（start / stop / enable / status）</p></div></p>
+<p>7，服务自启动：<div class="code"><p>systemctl enable docker.service</p></div></p>
+<p>8，查看状态：<div class="code"><p>systemctl status docker</p></div></p>
+<p>9，修改docker存储路径：
     <div class="code">
         <p>1，增加配置文件：vim /etc/docker/daemon.json</p>
         <p>2，添加如下内容：</p>
@@ -200,7 +201,7 @@
 <p>方法2，docker cp /usr/share/zoneinfo/Asia/Shanghai c78cd8734b87:/etc/localtime</p>
 </div>
 <br />
-                <h4>2021-02-02 20:17:50</h4>
+                <h4>2021-05-18 05:21:33</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -209,7 +210,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
