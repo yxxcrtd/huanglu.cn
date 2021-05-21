@@ -68,12 +68,14 @@
 
 
 <p class="title">四，PostgreSQL 数据库备份</p>
-<div class="code">
-    <p>1，进入 postgres 用户：su - postgres</p>
-    <p>2，备份：pg_dump -p 15432 -C 数据库名称 > 20210401.sql <span class="comment">（备份文件位置：/var/lib/pgsql/）</span></p>
-
-    <p><span class="comment">其他方式：/usr/pgsql-10/bin/pg_dump -h 1.2.3.4 -p 9839 -U pgis pgis > 181.bak</span></p>
-</div>
+<p>1，进入 postgres 用户：<div class="code"><p>su - postgres</p></div></p>
+<p>2，备份：
+    <div class="code">
+        <p>pg_dump -p 端口号 -C 数据库名称 > 备份文件名.sql</p>
+        <p><span class="comment">备份文件位置：/var/lib/pgsql/</span></p>
+    </div>
+</p>
+<p>3，其他备份方式：<div class="code"><p>/usr/pgsql-10/bin/pg_dump -h 1.2.3.4 -p 9839 -U pgis pgis > 181.bak</p></div></p>
 <br />
 
 
@@ -101,7 +103,7 @@
 <p>11，字符串截取：select substr('wabbit_duck_season', 7, 11); 输出：”_duck_seaso” </p>
 <p>12，前一周的周五：select current_date - cast(extract(dow from current_timestamp) as int2) - 2;  </p>
 <p>13，查看所有数据看：\l 或 select * from pg_database;</p>
-                <h4>2021-04-01 05:31:11</h4>
+                <h4>2021-05-21 08:51:31</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -110,7 +112,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
