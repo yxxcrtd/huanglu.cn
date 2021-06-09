@@ -28,7 +28,7 @@
         <article>
             <div id="articleDetail">
                 <h2>Git Flow 实践</h2>
-                <p class="title">一，原理图</p>
+                <p class="title">一，Git 分支模型</p>
 <p style="text-align: center;">
     <a href="images/article/article76.01.png" data-fancybox>
         <img src="images/article/article76.01.png" width="835" />
@@ -38,7 +38,7 @@
 
 <p class="title">二，SourceTree 中项目加入 Git Flow</p>
 <p>1，仓库初始化：点 SourceTree 中右上角的 Git Flow（注意第二个选项中：Development branch：develop 改成实际的 dev）-> OK</p>
-<p>2，再点右上角的 Git Flow -> Start a New Feature -> 填写 Feature 名称</p>
+<p>2，再点右上角的 Git Flow -> Start a New Feature -> 填写 Feature 名称（Feature 只与 dev 分支交互）</p>
 <p>3，Feature 完成后，先把 dev 合并到当前 Feature 分支（如果有冲突，要先解决冲突），再点右上角的 Git Flow -> 完成功能 -> 此时会合并到 dev（推荐勾选：删除当前 Feature 分支）</p>
 <br />
 
@@ -46,7 +46,13 @@
 <p class="title">三，Git Flow 在 完成功能的时候出现错误：fatal: could not read Username for 'https://gitee.com': No such file or directory</p>
 <p>1，进入命令行模式，执行：<div class="code"><p>git flow feature finish -k 功能名称</p></div></p>
 <br />
-                <h4>2021-06-02 06:00:22</h4>
+
+
+<p class="title">四，Git Flow 在 rebase（变基）的时候出现代码冲突的解决方法</p>
+<p>1，前提：基于 dev 建立 feature 分支后，dev 又与 feature 修改了同一个文件</p>
+<p>2，feature 完成功能前先将 dev 拉取到 feature -> 完成功能 -> 不勾选：删除feature分支</p>
+<br />
+                <h4>2021-06-09 21:19:09</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
