@@ -27,9 +27,68 @@
 
         <article>
             <div id="articleDetail">
-                <h2>_</h2>
-                _
-                <h4>2021-05-14 08:28:52</h4>
+                <h2>Visual Studio Code</h2>
+                <p class="title">一，Mac 下安装方法</p>
+<p>
+    <div class="code">
+        <p>brew install visual-studio-code</p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">二，安装 Open JDK 11 +</p>
+<p>1，Mac 安装最新版本的 Java：
+    <div class="code">
+        <p>brew install java</p>
+    </div>
+</p>
+<p>2，配置环境变量：<a href="http://huanglu.cn/article2" target="_blank">参考文章：JDK</a></p>
+<br />
+
+
+<p class="title">三，安装 Maven</p>
+<p><a href="http://huanglu.cn/article19" target="_blank">参考文章：Maven 基础</a></p>
+<br />
+
+
+<p class="title">四，安装 Gradle</p>
+<p><a href="http://huanglu.cn/article64" target="_blank">参考文章：Gradle 基础</a></p>
+<br />
+
+
+<p class="title">五，打开 vscode 创建一个普通的 Java Project</p>
+<p>1，安装插件：Java Extension Pack</p>
+<p>2，设置 JDK：Code -> Preferences -> Settings -> User -> Extensions -> Java -> 找到 Edit in settings.json，添加 Java 的安装地址：</p>
+    <div class="code">
+        <p>
+            <p class="indent">{</p>
+                <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;"java.home": "/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home"</p>
+            <p class="indent">}</p>
+        </p>
+    </div>
+<p>3，创建项目：command + shift + p，输入 creat  -> Create Java Project  -> 选择  -> No build tools  -> 选择存储路径  -> 输入项目名称  -> 重新打开一个窗口  -> 打开项目中 src 下的 App.java</p>
+<p>4，运行 Hello World！</p>
+<br />
+
+
+<p class="title">六，常用设置</p>
+<p>1，隐藏某些文件：Settings -> 输入：file exclude -> 当个文件是：.idea；文件夹是：**/out</p>
+<p>，</p>
+<p>，</p>
+<p>，</p>
+<br />
+
+
+<p class="title">七，配置 Maven</p>
+<p>1，设置中搜索：Java.Configuration.Maven，在 User Settings 中填写 settings.xml 的全路径</p>
+<p>，</p>
+<p>，</p>
+<p>，</p>
+<br />
+
+file exclude
+                <h4>2021-08-11 19:55:57</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

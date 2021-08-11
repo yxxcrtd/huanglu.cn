@@ -52,16 +52,28 @@
 </div>
 <br/>
 
+
 <p class="title">三，Mac 下安装 JDK</p>
-<p>1，安装 java8：brew cask install java8</p>
-<p>2，安装最新版：brew cask install java</p>
+<p>1，安装 java8 / java11：brew install java8 / java11</p>
+<p>2，安装最新版本：brew install java</p>
 <p>3，设置环境变量：vim .bash_profile 或 vim .zshrc</p>
 <div class="code">
     <p>export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home</p>
     <p>export CLASSPATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"</p>
     <p>export PATH="$JAVA_HOME/bin:$PATH"</p>
 </div>
-                <h4>2020-12-26 19:46:00</h4>
+<br/>
+
+
+<p class="title">四，Mac 下安装 OpenJDK</p>
+<p>1，安装最新版本：brew install java</p>
+<p>2，安装路径：/usr/local/opt/openjdk@11，实际位置：/usr/local/Cellar/openjdk@11</p>
+<p>3，软连接到 JavaVirtualMachines 后配置环境变量：</p>
+<div class="code">
+    <p>sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk</p>
+</div>
+<br/>
+                <h4>2021-08-10 08:42:43</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -70,7 +82,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
