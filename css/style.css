@@ -115,6 +115,8 @@ article {
     font-size: 16px;
     font-weight: 500;
 }
+
+/* 黑色代码部分 */
 #articleDetail .code {
     background-color: #0e1e25;
     color: #B8FFB8;
@@ -129,6 +131,14 @@ article {
 #articleDetail .code .comment {
     color: #797c80;
 }
+
+
+img {
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 
 
 /* 文章详情中的表格简单样式 */
