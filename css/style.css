@@ -132,9 +132,8 @@ article {
     color: #797c80;
 }
 
-
+/* 所有图片：有圆角和阴影 */
 img {
-    margin: 0 auto;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
