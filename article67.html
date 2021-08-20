@@ -57,7 +57,81 @@
     </a>
 </p>
 <br />
-                <h4>2021-08-19 08:52:16</h4>
+
+
+
+
+<p class="title">一，使用 exp 命令把数据从本地或远程数据库导出至本地或远程，生成 dmp 文件</p>
+<p>1，进入数据库服务器：<div class="code"><p>ssh root@192.168.1.2</p></div></p>
+<p>2，切换 oracle 用户：<div class="code"><p>su - oracle</p></div></p>
+<p>3，导出：
+    <div class="code">
+        <p>将<span class="red">本地</span>整个库导出到本地：exp 数据库用户名/数据库密码@orcl file=/home/oracle/temp.dmp full=y</p>
+        <p>将<span class="red">远程</span>整个库导出到本地：exp 数据库用户名/数据库密码@192.168.1.2:1521/orcl file=/home/oracle/temp.dmp full=y</p>
+        <p><span class="comment">full=y 是将整个数据库全部导出</span></p>
+        <p><span class="comment">/home/oracle 是 Oracle 的宿主目录，有写权限</span></p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">二，为新库创建表空间、建用户、用户授权</p>
+<p>1，在 Oracle 用户下，连接管理员账户：<div class="code"><p>sqlplus SYSTEM/数据库管理员密码 as sysdba</p></div></p>
+<p>2，创建表空间：<div class="code"><p>create tablespace temp_data logging datafile 'temp_data.dbf' size 512m autoextend on next 512m maxsize 5120m extent management local;</p></div></p>
+<p>3，创建用户：
+    <div class="code">
+        <p>create user temp identified by 123456 default tablespace temp_data;</p>
+        <p><span class="comment">修改密码：alter user temp identified by 123456;</span></p>
+    </div>
+</p>
+<p>4，授权：
+    <div class="code">
+        <p>grant alter session, create any synonym, create any trigger, create job, create materialized view, create procedure, create public synonym, create view, create table to <span class="red">temp</span>;</p>
+        <p>grant connect, create sequence, unlimited tablespace to <span class="red">temp</span>;</p>
+        <p>grant read, write on directory DATA_PUMP_DIR to <span class="red">temp</span>;</p>
+        <p>grant connect, resource, dba to <span class="red">temp</span>;</p>
+        <p><span class="comment">退出数据库管理员：quit 或 exit</span></p>
+        <p><span class="comment">验证授权：sqlplus temp/123456;</span></p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">三，使用 imp 命令把本地的数据库 dmp 文件导入到本地或远程的 Oracle 数据库中</p>
+<p>1，导入：
+    <div class="code">
+        <p>imp temp/123456@orcl file=/home/oracle/temp.dmp fromuser=之前exp的数据库用户 touser=temp log=/home/oracle/temp.log full=y ignore=y;</p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">四，Oracle 常见错误一：oracle.net.ns.NetException: Got minus one from a read call</p>
+<p>1，进入管理员账户：<div class="code"><p>sqlplus SYSTEM/数据库管理员密码 as sysdba</p></div></p>
+<p>2，查看 processes 参数：<div class="code"><p>show parameter processes</p></div></p>
+<p>3，查看 sessions 参数：<div class="code"><p>show parameter sessions</p></div></p>
+<p>4，修改 processes 值：<div class="code"><p>alter system set processes=3000 scope=spfile;</p></div></p>
+<p>5，修改 sessions 值：<div class="code"><p>alter system set sessions=5000 scope=spfile;</p></div></p>
+<p>6，修改 processes 和 sessions 值必须重启 Oracle 才能生效：
+    <div class="code">
+        <p>shutdown immediate;</p>
+        <p>startup;</p>
+    </div>
+</p>
+<p>7，重启后再查看 processes 和 sessions 参数</p>
+<br />
+
+
+<p class="title">五，问题二：Oracle lock</p>
+<p>
+    <div class="code">
+        <p>sqlplus SYSTEM/数据库管理员密码 as sysdba</p>
+        <p>alter user 数据库用户名 account unlock;</p>
+        <p>commit;</p>
+    </div>
+</p>
+<br />
+                <h4>2021-08-20 21:32:26</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
