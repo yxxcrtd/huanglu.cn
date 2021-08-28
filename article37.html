@@ -29,37 +29,35 @@
             <div id="articleDetail">
                 <h2>DB2 基础</h2>
                 <p class="title">一，Linux 系统下的安装</p>
-<p>1，</p>
-<p>2，</p>
-<p>3，</p>
-<p>4，</p>
-<p>5，</p>
+<p>1，TODO</p>
 <br />
 
 
 <p class="title">二，备份</p>
 <p>1，切换用户：<div class="code"><p>su - db2inst1</p></div></p>
-<p>2，显示所有的数据库连接：<div class="code"><p>db2 list application</p></div></p>
-<p>3，强制关闭所有数据库实例：<div class="code"><p>db2 force application all</p></div></p>
-<p>
-    4，<span class="red">快速</span>执行下面的备份命令，否则数据库会自动重连：
-    <div class="code"><p>db2 backup db pzpt to /home/backup</p></div>
-    <p>备份成功后会显示：Backup successful. The timestamp for this backup image is : 20200401160847</p>
+<p>2，显示所有连接数据库的客户端：<div class="code"><p>db2 list application</p></div></p>
+<p>3，显示所有激活的数据库：<div class="code"><p>db2 list active databases</p></div></p>
+<p>4，强制关闭所有数据库实例：<div class="code"><p>db2 force application all</p></div></p>
+<p>5，<span class="red">快速</span>执行下面的备份命令，否则数据库会自动重连：
+    <div class="code">
+        <p>db2 backup db dbbak to /home/backup</p>
+        <p>备份成功后会显示：Backup successful. The timestamp for this backup image is : 20200401160847</p>
+    </div>
 </p>
 <br />
 
 
 <p class="title">三，还原</p>
-<p>1，找到备份文件并显示：<div class="code"><p>显示所有文件：ll <br />会显示：PZPT.0.db2inst1.DBPART000.<span class="red">20200401160847</span>.001</p></div></p>
+<p>1，找到备份文件并显示：<div class="code"><p>显示所有文件：ll <br />会显示：DBBAK.0.db2inst1.DBPART000.<span class="red">20200401160847</span>.001</p></div></p>
 <p>
     2，还原：
     <div class="code">
-        <p>db2 restore db pzpt from /home/backup taken at <span class="red">20200401160847</span> into pzpt321</p>
-        <p>注意1：必须在数据库用户下：su - db2inst1</p>
-        <p>注意2：db2用户必须要有数据库恢复文件的权限：chmod 777 /home/backup -R</p>
-        <p>注意3：其中的 <span class="red">20200401160847</span> 是要还原的数据库文件</p>
-        <p>注意4：pzpt321 是新库名称（<span class="red">名称不能超过8个字符</span>）</p>
-        <p>注意5：还原成功后会显示：DB20000I  The RESTORE DATABASE command completed successfully.</p>
+        <p>db2 restore db dbbak from /home/backup taken at <span class="red">20200401160847</span> into dbbak01</p>
+        <p class="comment">注意1：必须在数据库用户下：su - db2inst1</p>
+        <p class="comment">注意2：db2用户必须要有数据库恢复文件的权限：chmod 777 /home/backup -R</p>
+        <p class="comment">注意3：其中的 <span class="red">20200401160847</span> 是要还原的数据库文件</p>
+        <p class="comment">注意4：dbbak01 是新库名称（<span class="red">名称不能超过8个字符</span>）</p>
+        <p class="comment">注意5：还原成功后会显示：DB20000I  The RESTORE DATABASE command completed successfully.</p>
     </div>
 </p>
 <br />
@@ -152,7 +150,25 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p>1，进入数据库：<div class="code"><p>db2 connect to '数据库名称' user '用户名' using '密码'</p></div></p>
 <p>2，显示所有表：<div class="code"><p>db2 list tables</p></div></p>
 <br />
-                <h4>2021-08-19 08:27:04</h4>
+
+
+<p class="title">九，数据库磁盘满，报错：SQL1031N  The database directory cannot be found on the indicated file system. 或 db2数据库SQL1032N  No start database manager command was issued.  SQLSTATE=<span class="red">57019</span></p>
+<p>1，在 root 下，查看数据库节点的域名配置：<div class="code"><p>cat /home/db2inst1/sqllib/db2nodes.cfg</p></div></p>
+<p>2，在 root 下，将第1步结果 0 ？0 中间的域名或hostanme（如 ？是：db2-dev）写入 hosts：<div class="code"><p>192.168.1.2	db2-dev localhost localhost.localdomain localhost4 localhost4.localdomain4</p></div></p>
+<p>3，查看当前使用的共享内存、消息队列及信号量：<div class="code"><p>ipcs -la</p></div></p>
+<p>4，清理当前使用的共享内存、消息队列及信号量：<div class="code"><p>ipclean</p></div></p>
+<p>5，启动数据库：<div class="code"><p>db2start</p><p class="comment">最好能重新下服务器</p></div></p>
+<br />
+
+
+<p class="title">十，数据库连接满，报错：待定于协议的错误代码 数据不足[ibm][db2][jcc][t4][2030][11211] ERRORCODE=-4499, SQLSTATE=08001</p>
+<p>1，查看数据库配置：<div class="code"><p>db2 get dbm cfg</p></div></p>
+<p>2，修改数据库连接：<div class="code"><p>db2 update dbm cfg using numdb 255</p></div></p>
+<p>3，强制关闭所有数据库实例：<div class="code"><p>db2 force application all</p></div></p>
+<p>4，<span class="red">快速</span>停止数据库服务：<div class="code"><p>db2stop</p></div></p>
+<p>5，启动数据库服务：<div class="code"><p>db2start</p></div></p>
+<br />
+                <h4>2021-08-28 20:53:13</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
