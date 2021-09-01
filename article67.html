@@ -76,7 +76,12 @@
 
 
 <p class="title">二，为新库创建表空间、建用户、用户授权</p>
-<p>1，在 Oracle 用户下，连接管理员账户：<div class="code"><p>sqlplus SYSTEM/数据库管理员密码 as sysdba</p></div></p>
+<p>1，在 Oracle 用户下，连接管理员账户：
+    <div class="code">
+        <p>sqlplus system/数据库管理员密码 as sysdba</p>
+        <p><span class="comment">由于 Oracle 没有库名，只有表空间。查询所有表空间：select * from v$tablespace;</span></p>
+    </div>
+</p>
 <p>2，创建表空间：<div class="code"><p>create tablespace temp_data logging datafile 'temp_data.dbf' size 512m autoextend on next 512m maxsize 5120m extent management local;</p></div></p>
 <p>3，创建用户：
     <div class="code">
@@ -125,13 +130,13 @@
 <p class="title">五，问题二：Oracle lock</p>
 <p>
     <div class="code">
-        <p>sqlplus SYSTEM/数据库管理员密码 as sysdba</p>
+        <p>sqlplus system/数据库管理员密码 as sysdba</p>
         <p>alter user 数据库用户名 account unlock;</p>
         <p>commit;</p>
     </div>
 </p>
 <br />
-                <h4>2021-08-20 21:32:26</h4>
+                <h4>2021-09-01 16:15:45</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
