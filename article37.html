@@ -29,7 +29,41 @@
             <div id="articleDetail">
                 <h2>DB2 基础</h2>
                 <p class="title">一，Linux 下安装 DB2</p>
-<p>1，TODO</p>
+<p>1，创建用户组、用户以及修改密码：
+    <div class="code">
+        <p class="comment">创建用户组：
+            <div class="code">
+                <p>groupadd  db2iadm1</p>
+                <p>groupadd db2fadm1</p>
+                <p>groupadd dasadm1</p>
+            </div>
+        </p>
+
+        <p class="comment">创建用户：
+            <div class="code">
+                <p>useradd -u 600 -g db2iadm1 -m -d /home/db2inst1 db2inst1</p>
+                <p>useradd -u 601 -g db2fadm1 -m -d /home/db2fenc1 db2fenc1</p>
+                <p> useradd -u 602 -g dasadm1 -m -d /home/dasusr1 dasusr1</p>
+            </div>
+        </p>
+
+        <p class="comment">修改密码：
+            <div class="code">
+                <p>passwd db2inst1</p>
+                <p>passwd db2fenc1</p>
+                <p>passwd dasusr1</p>
+            </div>
+        </p>
+    </div>
+</p>
+<br />
+
+
+<p>2，解压 DB2 的数据库压缩包：<div class="code"><p>tar zxvf DB2_Svr_10.5.0.1_Linux_x86-64.gz -C /home/db2inst1/</p></div></p>
+<br />
+
+
+<p>3，安装：<div class="code"><p>/home/db2inst1/server/db2_install</p></div></p>
 <br />
 
 
@@ -168,7 +202,7 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p>4，<span class="red">快速</span>停止数据库服务：<div class="code"><p>db2stop</p></div></p>
 <p>5，启动数据库服务：<div class="code"><p>db2start</p></div></p>
 <br />
-                <h4>2021-09-02 05:12:31</h4>
+                <h4>2021-09-02 05:48:56</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
