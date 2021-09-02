@@ -29,9 +29,9 @@
             <div id="articleDetail">
                 <h2>DB2 基础</h2>
                 <p class="title">一，Linux 下安装 DB2</p>
-<p>1，创建用户组、用户以及修改密码：
+<p>1，root 用户下创建用户组、用户以及修改密码：
     <div class="code">
-        <p class="comment">创建用户组：
+        <p class="comment">1.1，创建用户组：
             <div class="code">
                 <p>groupadd  db2iadm1</p>
                 <p>groupadd db2fadm1</p>
@@ -39,15 +39,15 @@
             </div>
         </p>
 
-        <p class="comment">创建用户：
+        <p class="comment">1.2，创建用户：
             <div class="code">
                 <p>useradd -u 600 -g db2iadm1 -m -d /home/db2inst1 db2inst1</p>
                 <p>useradd -u 601 -g db2fadm1 -m -d /home/db2fenc1 db2fenc1</p>
-                <p> useradd -u 602 -g dasadm1 -m -d /home/dasusr1 dasusr1</p>
+                <p>useradd -u 602 -g dasadm1 -m -d /home/dasusr1 dasusr1</p>
             </div>
         </p>
 
-        <p class="comment">修改密码：
+        <p class="comment">1.3，修改密码：
             <div class="code">
                 <p>passwd db2inst1</p>
                 <p>passwd db2fenc1</p>
@@ -63,7 +63,169 @@
 <br />
 
 
-<p>3，安装：<div class="code"><p>/home/db2inst1/server/db2_install</p></div></p>
+<p>3，安装：
+    <div class="code">
+        <p>/home/db2inst1/server/db2_install</p>
+        <p class="comment">提示安装路径：/opt/ibm/V10.5 ？[yes/no]，输入：<span class="red">yes</span></p>
+        <p class="comment">选择安装版本：输入：<span class="red">server</span></p>
+        <p class="comment">安装 DB2 pureScale 功能，输入：<span class="red">no</span></p>
+        <p class="comment">安装成功后会显示：The execution completed successfully... log ...</p>
+    </div>
+</p>
+<br />
+
+
+<p>4，注册：
+    <div class="code">
+        <p class="comment">4.1，查看是否注册：
+            <div class="code">
+                <p>/opt/ibm/db2/V10.5/adm/db2licm -l</p>
+                <p class="comment">未注册会显示：License not registered</p>
+            </div>
+        </p>
+
+        <p class="comment">4.2，注册：
+            <div class="code">
+                <p>/opt/ibm/db2/V10.5/adm/db2licm -a /root/soft/db2/license/db2aese_c10.5.lic</p>
+                <p class="comment">注册文件在解压目录，以上路径各自不一致</span></p>
+            </div>
+        </p>
+
+        <p class="comment">4.3，注册验证：
+            <div class="code">
+                <p>/opt/ibm/db2/V10.5/adm/db2licm -l</p>
+                <p class="comment">Expiry date 为：Permainent 表示注册成功！</p>
+            </div>
+        </p>
+    </div>
+</p>
+<br />
+
+
+<p>5，创建数据库实例：
+    <div class="code">
+        <p>/opt/ibm/db2/V10.5/instance/db2icrt -u db2fenc1 db2inst1</p>
+        <p class="comment">创建成功后会显示：The execution completed successfully...</p>
+        <p class="comment">查看实例端口：more /etc/services | grep db2inst1，默认的 DB2_db2inst1 实例端口号为：60006</p>
+    </div>
+</p>
+<br />
+
+
+<p>6，配置数据库服务器的 TCP/IP 通信：
+    <div class="code">
+        <p class="comment">6.1，切换 db2inst1 用户：<div class="code"><p>su - db2inst1</p></div></p>
+        <p class="comment">6.2，设置通信协议：<div class="code"><p>db2set DB2COMM=tcpip</p></div></p>
+        <p class="comment">6.3，查看通信协议：<div class="code"><p>db2set -all</p></div></p>
+        <p class="comment">6.4，更新服务器上的services文件：<div class="code"><p>cat /etc/services | grep DB2</p></div></p>
+        <p class="comment">6.5，更新数据库管理文件：<div class="code"><p>db2set -all</p></div></p>
+        <p class="comment">6.6，更新数据库管理文件：
+            <div class="code">
+                <p>db2 get dbm cfg | grep SVCENAME</p>
+                <p>db2 update dbm cfg using SVCENAME 60006</p>
+                <p class="comment">再次验证：db2 get dbm cfg | grep SVCENAME</p>
+            </div>
+        </p>
+        <p class="comment">6.7，启动数据库：<div class="code"><p>db2start</p></div></p>
+        <p class="comment">6.8，查看端口：<div class="code"><p>netstat -an | grep 60006</p><p class="comment">会显示：tcp6       0      0 :::60006                :::*                    LISTEN</p></div></p>
+    </div>
+</p>
+<br />
+
+
+<p>7，设置服务器防火墙：
+    <div class="code">
+        <p class="comment">7.1，增加防火墙规则：
+            <div class="code">
+                <p>firewall-cmd --zone=public --add-port=60006/tcp --permanent</p>
+            </div>
+        </p>
+
+        <p class="comment">7.2，重启防火墙：
+            <div class="code">
+                <p>systemctl restart firewalld</p>
+            </div>
+        </p>
+    </div>
+</p>
+<br />
+
+
+<p>8，创建数据库用户：
+    <div class="code">
+        <p class="comment">8.1，创建新用户：
+            <div class="code">
+                <p>useradd -u 603 -g db2iadm1 -m -d /home/db2inst1/ <span class="red">test</span></p>
+                <p class="comment">注意参数的大小写：</p>
+                <p class="comment">-u 设置用户ID</p>
+                <p class="comment">-g 设置用户初始所属群组</p>
+                <p class="comment">-m 自动建立用户的登入目录</p>
+                <p class="comment">-d 指定用户登入时的启始目录</p>
+            </div>
+        </p>
+
+        <p class="comment">8.2，添加用到组：
+            <div class="code">
+                <p>usermod -a -G db2fadm1 <span class="red">test</span></p>
+                <p>usermod -a -G dasadm1 <span class="red">test</span></p>
+            </div>
+        </p>
+
+        <p class="comment">8.3，修改密码：
+            <div class="code">
+                <p>passwd <span class="red">test</span></p>
+            </div>
+        </p>
+
+        <p class="comment">8.4，修改用户的访问权限：
+            <div class="code">
+                <p>chmod 777 /home/db2inst1/ -R</p>
+            </div>
+        </p>
+
+        <p class="comment">8.5，切换用户，查看有没有访问权限：
+            <div class="code">
+                <p>su - db2inst1</p>
+                <p>vim .bashrc</p>
+                <p style="text-align: center;">
+                    <a href="images/article/article37.01.png" data-fancybox>
+                        <img src="images/article/article37.01.png" width="700" />
+                    </a>
+                </p>
+            </div>
+        </p>
+    </div>
+</p>
+<br />
+
+
+<p>9，创建数据库：
+    <div class="code">
+        <p class="comment">9.1，创建数据库：
+            <div class="code">
+                <p>db2 create database <span class="red">testdb</span> automatic storage yes on '/home/db2inst1' dbpath on '/home/db2inst1' using codeset gbk territory cn collate using system pagesize 16384</p>
+            </div>
+        </p>
+
+        <p class="comment">9.2，查看所有数据库：
+            <div class="code">
+                <p>db2 list db directory</p>
+            </div>
+        </p>
+
+        <p class="comment">9.3，连接数据库：
+            <div class="code">
+                <p>db2 connect to <span class="red">testdb</span> user <span class="red">test</span> using <span class="red">123456</span></p>
+            </div>
+        </p>
+
+        <p class="comment">9.4，查看所有表：
+            <div class="code">
+                <p>db2 list tables</p>
+            </div>
+        </p>
+    </div>
+</p>
 <br />
 
 
@@ -202,7 +364,7 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p>4，<span class="red">快速</span>停止数据库服务：<div class="code"><p>db2stop</p></div></p>
 <p>5，启动数据库服务：<div class="code"><p>db2start</p></div></p>
 <br />
-                <h4>2021-09-02 05:48:56</h4>
+                <h4>2021-09-02 09:06:26</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
