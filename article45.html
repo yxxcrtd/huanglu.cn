@@ -111,6 +111,8 @@
 <p>2，安装到私服：
     <div class="code">
         <p>mvn deploy:deploy-file -DgroupId=org.postgresql -DartifactId=postgresql -Dversion=42.2.19 -Dpackaging=jar -Dfile=/Users/young/repository/org/postgresql/postgresql/42.2.19/postgresql-42.2.19.jar -Durl=http://192.168.1.2:8081/nexus/content/repositories/thirdparty/ -DrepositoryId=thirdparty</p>
+
+        <p>mvn deploy:deploy-file -DgroupId=org.postgresql -DartifactId=postgresql -Dversion=42.2.19 -Dpackaging=jar -Dfile=C:\Users\admin\Desktop\postgresql-42.2.19.jar -Durl=http://192.168.1.2:8081/nexus/content/repositories/thirdparty/ -DrepositoryId=thirdparty</p>
     </div>
 </p>
 <br />
@@ -140,7 +142,7 @@
 </p>
 <p>4，repo 下执行：<div class="code"><p>./mavenimport.sh -u admin -p admin -r http://192.168.1.2:8081/nexus/content/repositories/thirdparty/</p></div></p>
 <br />
-                <h4>2021-05-08 05:42:58</h4>
+                <h4>2021-09-05 07:02:51</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
