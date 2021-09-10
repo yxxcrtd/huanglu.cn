@@ -107,10 +107,7 @@ nt type [application/x-sh], but expected [application/java-archive]: ***/***/***
 <br />
 
 
-<p class="title">四，在 Maven 项目中定义一个外部的 settings.xml （文件名任意），用来拉取依赖的 jar 包</p>
-<p>1，定义一个 localRepository 节点，配置本地 jar 包存储路径</p>
-<p>2，定义一个 mirror 节点，并配置私服地址</p>
-<p>3，在 IDEA 中指定 settings.xml 位置</p>
+<p class="title">四，在 pom.xml 中配置当前项目或 Module  打包</p>
 <p style="text-align: center;">
     <a href="images/article/article45.02.png" data-fancybox>
         <img src="images/article/article45.02.png" width="835" />
@@ -119,11 +116,13 @@ nt type [application/x-sh], but expected [application/java-archive]: ***/***/***
 <br />
 
 
-<p class="title">五，在 IDEA 将项目打包并 deploy 到  thirdparty 库</p>
-<p>1，在 pom.xml 中添加 distributionManagement 节点（注意作用域：根下就是整个项目，某一个 Module 的话就是当前的 Module）</p>
+<p class="title">五，在 Maven 项目中定义一个外部的 settings.xml （文件名任意），用来拉取依赖的 jar 包</p>
+<p>1，定义一个 localRepository 节点，配置本地 jar 包存储路径</p>
+<p>2，定义一个 mirror 节点，并配置私服地址</p>
+<p>3，在 IDEA 中指定 settings.xml 位置</p>
 <p style="text-align: center;">
-    <a href="images/article/article45.03.png" data-fancybox>
-        <img src="images/article/article45.03.png" width="835" />
+    <a href="images/article/article45.02.png" data-fancybox>
+        <img src="images/article/article45.02.png" width="835" />
     </a>
 </p>
 <br />
@@ -173,7 +172,7 @@ nt type [application/x-sh], but expected [application/java-archive]: ***/***/***
 </p>
 <p>4，repo 下执行：<div class="code"><p>./mavenimport.sh -u admin -p admin -r http://192.168.1.2:8081/nexus/content/repositories/thirdparty/</p></div></p>
 <br />
-                <h4>2021-09-10 21:14:18</h4>
+                <h4>2021-09-10 21:49:37</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
