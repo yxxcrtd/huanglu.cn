@@ -58,6 +58,8 @@
     <p>5，编译：make</p>
     <p>6，安装：make install</p>
     <p>7，验证：/usr/local/nginx/sbin/nginx -t，出现：nginx: ... syntax is ok ... test is successful ，表示安装成功！</p>
+    <p><span class="comment">如果出现错误：/usr/local/nginx/sbin/nginx: error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory</span></p>
+    <p><span class="comment">解决方法：ln -s /lib64/libpcre.so.0.0.1 /lib64/libpcre.so.1</span></p>
 </div>
 <br />
 
@@ -112,7 +114,7 @@
 <p class="title">六，最精简的 nginx.conf</p>
 <p>
     <a href="images/article/article12.01.png" data-fancybox>
-        <img src="images/article/article12.01.png" width="835" />
+        <img src="images/article/article12.01.png" width="800" />
     </a>
 </p>
 <br />
@@ -137,7 +139,7 @@
 <p>}</p>
 </div>
 <br />
-                <h4>2021-04-06 15:00:22</h4>
+                <h4>2021-09-09 15:47:52</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -146,7 +148,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>

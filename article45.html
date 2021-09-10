@@ -28,34 +28,68 @@
         <article>
             <div id="articleDetail">
                 <h2>Nexus 基础</h2>
-                <p class="title">一，Linux 下 Nexus 2 安装</p>
-<p>1，下载：wget www.sonatype.org/downloads/nexus-latest-bundle.tar.gz</p>
-<p>2，解压：tar zxvf nexus-latest-bundle.tar.gz</p>
-<p>3，移动1：mv /root/nexus-2.13.0-01/* /home/Nexus</p>
-<p>4，移动2：mv /root/sonatype-work /home/</p>
-<p>5，进入：cd /home/Nexus/bin</p>
-<p>6，用户：export RUN_AS_USER=root</p>
-<p>7，启动：./nexus start</p>
-<p>8，访问：http://127.0.0.1:8081/nexus（admin/admin123）</p>
-<p>9，设置：左侧的Repositories -> ......</p>
-<br />
-
-
-<p class="title">二，Linux 下 Nexus 3 安装</p>
-<p>1，下载：www.sonatype.org/downloads 下载：latest-unix.tar.gz</p>
-<p>2，解压到 /usr/local：tar zxvf latest-unix.tar.gz -C /usr/local/</p>
-<p>3，进入 /usr/local：cd  /usr/local</p>
-<p>4，重命名：mv nexus-3.17.0-01/ nexus</p>
-<p>5，添加环境变量：vim /etc/profile</p>
+                <p class="title">一，Linux 下 Nexus 3 的安装</p>
+<p>1，在官网：<a href="http://www.sonatype.org/downloads" target="_blank">http://www.sonatype.org/downloads</a> 下载：https://download.sonatype.com/nexus/3/latest-unix.tar.gz</p>
+<p>2，创建安装目录和所有 jar 包的存储目录：<div class="code"><p>mkdir /home/nexus3 -m 777</p></div></p>
+<p>3，解压到目录：<div class="code"><p>tar zxvf nexus-3.34.0-01-unix.tar.gz -C /home/nexus3</p></div></p>
+<p>4，追加运行用户的环境变量：（可以跳过）</p>
 <div class="code">
+    <p>vim /etc/profile</p>
     <p>export RUN_AS_USER=root</p>
     <p>export PATH=$RUN_AS_USER:$PATH</p>
 </div>
-<p>6，修改端口：vim /usr/local/nexus/nexus-3.17.0-01/etc/nexus-default.properties</p>
-<p>7，添加用户：vim /usr/local/nexus/nexus-3.17.0-01/bin/nexus，将 run_as_user='' 修改为：run_as_user='root'</p>
-<p>8，启动：/usr/local/nexus/nexus-3.17.0-01/bin/nexus start &</p>
-<p>9，访问：http://127.0.0.1:8081/nexus（用户：admin，密码在：cat /usr/local/nexus/sonatype-work/nexus3/admin.password）</p>
+<p>5，修改运行端口（如果使用默认8081就跳过这一步）：<div class="code"><p>vim /home/nexus3/nexus-3.34.0-01/etc/nexus-default.properties</p></div></p>
+<p>6，启动服务：<div class="code"><p>/home/nexus3/nexus-3.34.0-01/bin/nexus start &</p></div></p>
+<p>7，查看启动日志：<div class="code"><p>tailf /home/nexus3/sonatype-work/nexus3/log/nexus.log</p></div></p>
+<p>8，访问：http://192.168.1.2:8081（用户：admin，密码在：cat /home/nexus3/sonatype-work/nexus3/admin.password）</p>
 <br />
+
+
+<p class="title">二，Nexus 配置</p>
+<p>1，修改密码</p>
+<p>2，删除所有默认仓库</p>
+
+<p>3，创建 proxy 库
+    <div class="code">
+        <p>1，输入名称：proxy</p>
+        <p>2，默认勾选 Online：If checked, the repository accepts incoming requests</p>
+        <p>3，Version policy：选 Mixed（可包含：release 和 SNAPSHOT）</p>
+        <p>4，Remote Storage：http://maven.aliyun.com/nexus/content/groups/public</p>
+        <p>5，Blob store：default</p>
+        <p>6，Strict Content Type Validation:  不勾选 Validate that all content uploaded to this repository is of a MIME type appropriate for the repository format</p>
+        <p><span class="comment">如果不去掉的话，deploy 会报错: </span></p>
+        <p><span class="comment">[ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy (default-deploy) on project foc-boot: Failed to deploy artifacts: Could not transfer artifact ******:jar:1.0.0-20210909.033727-1 f
+rom/to snapshots (http://192.168.1.2:8081/repository/hosted/): transfer failed for http://192.168.1.2:8081/repository/hosted/com/***/***/***/1.0.0-SNAPSHOT/***-1.0.0-20210909.033727-1.jar, status: 400 Detected conte
+nt type [application/x-sh], but expected [application/java-archive]: ***/***/***/***/1.0.0-SNAPSHOT/foc-boot-1.0.0-20210909.033727-1.jar -> [Help 1]
+</span></p>
+    </div>
+</p>
+
+<p>4，创建 hosted 库
+    <div class="code">
+        <p>1，输入名称：hosted</p>
+        <p>2，默认勾选 Online：If checked, the repository accepts incoming requests</p>
+        <p>3，Version policy：选 Mixed（可包含：release 和 SNAPSHOT）</p>
+        <p>4，Deployment policy：Allow redeploy</p>
+        <p>5，Blob store：default</p>
+        <p>6，Strict Content Type Validation:  不勾选 Validate that all content uploaded to this repository is of a MIME type appropriate for the repository format</p>
+    </div>
+</p>
+
+<p>5，创建 group 库
+    <div class="code">
+        <p>1，输入名称：public</p>
+        <p>2，默认勾选 Online：If checked, the repository accepts incoming requests</p>
+        <p>3，Version policy：选 Mixed（可包含：release 和 SNAPSHOT）</p>
+        <p>4，Blob store：default</p>
+        <p>5，Strict Content Type Validation:  不勾选 Validate that all content uploaded to this repository is of a MIME type appropriate for the repository format</p>
+        <p>6，Group：将 proxy 和 hosted 移动到右边（hosted 在上，proxy 在下）</p>
+    </div>
+</p>
+
+
+
+
 
 
 <p class="title">三，Maven 配置 Nexus 的 thirdparty 库，可 deploy jar包到私服</p>
@@ -142,7 +176,7 @@
 </p>
 <p>4，repo 下执行：<div class="code"><p>./mavenimport.sh -u admin -p admin -r http://192.168.1.2:8081/nexus/content/repositories/thirdparty/</p></div></p>
 <br />
-                <h4>2021-09-05 07:02:51</h4>
+                <h4>2021-09-10 16:40:32</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
