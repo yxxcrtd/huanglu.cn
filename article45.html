@@ -91,11 +91,18 @@ nt type [application/x-sh], but expected [application/java-archive]: ***/***/***
 
 
 
-<p class="title">三，配置 Maven 的 settings.xml 文件，用于 deploy 到私服</p>
+<p class="title">三，配置 Maven 的 settings.xml 文件，用于打包 deploy 到私服</p>
 <p style="text-align: center;">
     <a href="images/article/article45.01.png" data-fancybox>
         <img src="images/article/article45.01.png" width="835" />
     </a>
+</p>
+<p>
+    <div class="code">
+        <p class="comment">3.1，在终端打包：<div class="code"><p>mvn clean deploy -DskipTests</p></div></p>
+        <p class="comment">3.2，带上源代码：<div class="code"><p>mvn clean source:jar deploy -DskipTests</p></div></p>
+        <p class="comment">3.3，打包其他文件：<div class="code"><p>mvn deploy -f pom-parent.xml</p></div></p>
+    </div>
 </p>
 <br />
 
@@ -119,9 +126,6 @@ nt type [application/x-sh], but expected [application/java-archive]: ***/***/***
         <img src="images/article/article45.03.png" width="835" />
     </a>
 </p>
-<p>2，在终端中执行打包命令：<div class="code"><p>mvn clean deploy -DskipTests</p></div></p>
-<p>3，带上源代码：<div class="code"><p>mvn clean source:jar deploy -DskipTests</p></div></p>
-<p>4，打包其他文件：<div class="code"><p>mvn deploy -f pom-parent.xml</p></div></p>
 <br />
 
 
@@ -169,7 +173,7 @@ nt type [application/x-sh], but expected [application/java-archive]: ***/***/***
 </p>
 <p>4，repo 下执行：<div class="code"><p>./mavenimport.sh -u admin -p admin -r http://192.168.1.2:8081/nexus/content/repositories/thirdparty/</p></div></p>
 <br />
-                <h4>2021-09-10 20:56:43</h4>
+                <h4>2021-09-10 21:14:18</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
