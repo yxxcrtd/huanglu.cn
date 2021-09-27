@@ -27,9 +27,29 @@
 
         <article>
             <div id="articleDetail">
-                <h2>___</h2>
-                ___
-                <h4>2021-05-07 05:08:12</h4>
+                <h2>ZooKeeper 基础</h2>
+                <p class="title">一，安装</p>
+<p>1，下载：<a href="https://zookeeper.apache.org/releases.html" target="_blank">https://zookeeper.apache.org/releases.html</a></p>
+<p>2，解压：<div class="code"><p>tar -zxvf apache-zookeeper-3.7.0-bin.tar.gz</p></div></p>
+<p>3，进入解压目录：<div class="code"><p>cd apache-zookeeper-3.7.0-bin/</p></div></p>
+<p>4，创建数据目录：<div class="code"><p>mkdir data -m 777</p></div></p>
+<p>5，创建配置文件：
+    <div class="code">
+        <p>vim /home/apache-zookeeper-3.7.0-bin/conf/zoo.cfg
+            <div class="code">
+                <p>tickTime=2000</p>
+                <p>initLimit=10</p>
+                <p>syncLimit=5</p>
+                <p>dataDir=/home/apache-zookeeper-3.7.0-bin/data</p>
+                <p>clientPort=2181</p>
+            </div>
+        </p>
+    </div>
+</p>
+<p>6，启动服务器：<div class="code"><p>/home/apache-zookeeper-3.7.0-bin/bin/zkServer.sh start</p></div></p>
+<p>7，打开测试客户端：<div class="code"><p>/home/apache-zookeeper-3.7.0-bin/bin/zkCli.sh</p></div></p>
+<br />
+                <h4>2021-09-27 20:07:20</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -38,7 +58,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
