@@ -357,14 +357,11 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <br />
 
 
-<p class="title">十，数据库连接满，报错：待定于协议的错误代码 数据不足[ibm][db2][jcc][t4][2030][11211] ERRORCODE=-4499, SQLSTATE=08001</p>
-<p>1，查看数据库配置：<div class="code"><p>db2 get dbm cfg</p></div></p>
-<p>2，修改数据库连接：<div class="code"><p>db2 update dbm cfg using numdb 255</p></div></p>
-<p>3，强制关闭所有数据库实例：<div class="code"><p>db2 force application all</p></div></p>
-<p>4，<span class="red">快速</span>停止数据库服务：<div class="code"><p>db2stop</p></div></p>
-<p>5，启动数据库服务：<div class="code"><p>db2start</p></div></p>
+<p class="title">十，数据库超过最大的连接数200，报错：待定于协议的错误代码 数据不足[ibm][db2][jcc][t4][2030][11211] ERRORCODE=-4499, SQLSTATE=08001</p>
+<p>1，查看指定数据库配置（为了前后对比）：<div class="code"><p>db2 get db cfg for yourdb</p></div></p>
+<p>2，修改数据库连接：<div class="code"><p>db2 update db cfg for yourdb using MAXAPPLS 1000</p></div></p>
 <br />
-                <h4>2021-09-02 09:06:26</h4>
+                <h4>2021-09-28 19:43:17</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
