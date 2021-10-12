@@ -28,7 +28,16 @@
         <article>
             <div id="articleDetail">
                 <h2>JDK</h2>
-                <p class="title">一，Linux 下安装 JDK</p>
+                <p class="title">一，Windows 下安装 JDK</p>
+<div class="code">
+    <p>JAVA_HOME    D:\JDK8</p>
+    <p>CLASSPATH    .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</p>
+    <p>PATH               %JAVA_HOME%\bin;</p>
+</div>
+<br/>
+
+
+<p class="title">二，Linux 下安装 JDK</p>
 <p>1，检查：rpm -qa | grep java (or rpm -qa | grep jdk)</p>
 <p>2，删除：yum -y remove java-*</p>
 <p>3，下载：http://www.oracle.com/technetwork/java/javase/downloads/index.html（历史版本：http://www.oracle.com/technetwork/java/archive-139210.html）</p>
@@ -42,14 +51,6 @@
 </div >
 <p>7，生效：source /etc/profile</p>
 <p>8，验证：java -version 或 javac -version</p>
-<br/>
-
-<p class="title">二，Windows 下安装 JDK</p>
-<div class="code">
-    <p>JAVA_HOME    D:\JDK8</p>
-    <p>CLASSPATH    .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</p>
-    <p>PATH               %JAVA_HOME%\bin;</p>
-</div>
 <br/>
 
 
@@ -73,7 +74,7 @@
     <p>sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk</p>
 </div>
 <br/>
-                <h4>2021-08-10 08:42:43</h4>
+                <h4>2021-10-12 09:51:54</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
