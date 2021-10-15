@@ -191,7 +191,7 @@ table tr td {
     bottom: 0;
 }
 
-.articleBlockRight h4, #articleDetail h4, #articleList h4 a {
+.articleBlockRight h4, #articleDetail h4, .articleBlockRight h4 a {
     font-size: 12px;
     font-weight: 400;
     color: #aaaeb3;

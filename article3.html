@@ -27,90 +27,52 @@
 
         <article>
             <div id="articleDetail">
-                <h2>Mac 下软件管理工具 - Homebrew</h2>
-                <p>1，终端执行：/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”（该命令在官网获取：<a href="https://brew.sh" target="_blank">https://brew.sh</a>）</p>
-
-<p>2，安装 brew 增强，步骤1：brew tap phinze/cask</p>
-
-<p>3，安装 brew 增强，步骤2：brew install brew-cask</p>
-
-<p>4，查看安装版本：brew -v，出现：Homebrew 1.1.10 ...，表示安装成功！</p>
-
-<p>5，软件更新：brew update && brew upgrade && brew cask upgrade && brew cleanup（建议加到终端的启动项中，这样能保证软件最新和清除安装后的文件包，保持系统最新。）</p>
-
-<p>6，查找软件：brew search 或 info ‘需要安装的软件*’ ，或者访问 formulae ：<a href="https://formulae.brew.sh" target="_blank">https://formulae.brew.sh</a></p>
-
-<p>7，更新软件：brew upgrade 或 reinstall redis</p>
-
-<p>8，卸载软件：brew uninstall / remove ‘…’</p>
-
-<p>9，查询已安装的软件：brew 或 brew cask list</p>
-
-<p>10，清理安装包：brew cleanup</p>
-
-<p>11，查看更新：brew outdated && brew cask outdated</p>
-
-<p>12，不建议修改 Homebrew 的国内源，一样的慢！</p>
-
-<div class="code">
-
-    <p>安装微信：brew cask install electronic-wechat（非官方版，最好通过 App Store 安装）</p>
-
-    <p>安装 QQ：brew cask install qq</p>
-
-    <p>安装 Java：brew cask install java</p>
-
-    <p>安装 Tomcat：brew install tomcat</p>
-
-    <p>安装 Git：brew install git</p>
-
-    <p>安装 Github 客户端：brew cask install github-desktop</p>
-
-    <p>安装 PostgreSQL 数据库：brew install postgresql</p>
-
-    <p>安装 PostgreSQL 客户端：brew cask install psequel</p>
-
-<p>
-    安装 MySQL 客户端：brew cask install sequel-pro 或 brew cask install sequel-pro-nightly
-    <br />
-    Sequel Pro 官网：<a href="https://sequelpro.com" target="_blank">https://sequelpro.com</a>
+                <h2>树莓派</h2>
+                <p class="title">一，准备</p>
+<p>1，购买：树莓派，<a href="https://www.raspberrypi.org" target="_blank">官网</a>、<a href="http://www.52pi.net" target="_blank">中文站</a></p>
+<p>2，购买：TF 卡（需要速度快的 A1、A2）</p>
+<p>3，下载（修改地址中相应的版本号，或者到：http://mirrors.huaweicloud.com/centos-altarch/）：<div class="code"><p>CentOS 7：https://mirrors.tuna.tsinghua.edu.cn/centos-altarch/7.9.2009/isos/armhfp/CentOS-Userland-7-armv7hl-<span class="red">RaspberryPI</span>-GNOME-2009-sda.raw.xz</p>
+<p>CentOS 8：http://mirrors.huaweicloud.com/centos-altarch/8.1.1911/isos/armhfp/CentOS-Userland-8-armv7hl-<span class="red">generic</span>-GNOME-1911-sda.raw.xz</p>
+<p class="comment">1，注意 CentOS 7 和 CentOS 8 的版本差别，7是：RaspberryPI ；8是：generic，暂不推荐</p>
+<p class="comment">2，继续关注 CentOS 8 的 RaspberryPI 版本：https://mirrors.tuna.tsinghua.edu.cn/centos-altarch/8.1.1911/isos/armhfp/</p>
+<p class="comment">3，推荐安装 GNOME 版本，不推荐 mini 版本</p>
+</div></p>
+<p>4，安装写卡工具：<div class="code"><p>brew install balenaetcher</p></div></p>
+<p>5，装卡 -> 接电 -> 开机</p>
+<p>6，树莓派各版本参数对比：（3代b型E14中国版）</p>
+<p style="text-align: center;">
+    <a href="images/article/article3.01.png" data-fancybox>
+        <img src="images/article/article3.01.png" width="835" />
+    </a>
 </p>
+<br />
 
-    <p>安装 Redis：brew install redis</p>
 
-    <p>安装 Redis 客户端：brew cask install rdm</p>
+<p class="title">二，Mac 下使用 balenaEtcher 写 256G 的 TF 卡会出现错误：/dev/rdisk2: Operation not permitted</p>
+<p>1，查看磁盘列表：<div class="code"><p>diskutil list</p></div></p>
+<p>2，擦除TF卡的分区保护：<div class="code"><p>sudo diskutil partitionDisk /dev/disk2 1 MBR "Free Space" "%noformat" 100%</p><p class="comment">确定 disk2 是 TF卡的分区</p></div></p>
+<p>3，退出TF卡：<div class="code"><p>sudo diskutil eject /dev/rdisk2</p></div></p>
+<p>4，再次使用 balenaEtcher 工具写卡</p>
+<br />
 
-    <p>安装数据库客户端：brew cask install dbeaver-community</p>
 
-    <p>安装 SVN：brew install subversion</p>
-
-    <p>安装 Intellij-IDEA 免费的社区版：brew install intellij-idea-ce</p>
-
-    <p>
-        安装 VSCode：brew install visual-studio-code
-        <br />
-        <span class="comment">使用 VSCode 代替 IDEA （始于：2021-08）</span>
-    </p>
-
-    <p>安装 Firefox 浏览器：brew cask install firefox</p>
-
-    <p>安装微信开发者工具：brew cask install wechatwebdevtools</p>
-
-    <p>安装图片压缩工具：brew cask install imageoptim</p>
-
-    <p>安装 Postman：brew cask install postman（也可以使用终端模拟：curl -H "Content-Type:application/json" -X POST -d '{"user":"admin", "passwd":"123456"}' http://127.0.0.1:9200/posts/post/1）</p>
-
-    <p>安装无损图片压缩工具：brew cask install imageoptim</p>
-
-    <p>安装视频压缩工具：brew cask install handbrake</p>
-
-    <p>安装TF写卡工具：brew cask install balenaetcher</p>
-
-    <p>安装数据恢复工具：brew cask install testdisk（使用步骤1：sudo su -；使用步骤2：testdisk）</p>
-
-    <p>视频播放器：brew cask install iina</p>
+<p class="title">三，使用 Mac 格式化 TF 卡后，容量变小的恢复</p>
+<p>1，查看磁盘列表：<div class="code"><p>diskutil list</p></div></p>
+<p style="text-align: center;">
+    <a href="images/article/article3.02.png" data-fancybox>
+        <img src="images/article/article3.02.png" width="835" />
+    </a>
+</p>
+<p>2，格式化为 FAT32 格式：
+<div class="code">
+    <p>sudo diskutil eraseDisk FAT32 RASPBIAN MBRFormat /dev/<span class="red">disk2</span></p>
+    <p class="comment">RASPBIAN：名称，可以自定义，不能包含小写字母</p>
+    <p class="comment">disk2 是第一步查出来的磁盘名称，千万保证正确！</p>
 </div>
-                <h4>2021-08-23 08:55:10</h4>
+</p>
+<p>3，退出TF卡：<div class="code"><p>sudo diskutil eject /dev/rdisk2</p></div></p>
+<br />
+                <h4>2021-10-15 11:45:26</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
