@@ -28,19 +28,12 @@
         <article>
             <div id="articleDetail">
                 <h2>MongoDB 基础</h2>
-                一，Linux CentOS 下 MongoDB 的安装
-</p>
-
+                <p class="title">一，Linux CentOS 下 MongoDB 的安装</p>
 <p>1，下载：wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.2.tgz</p>
-
 <p>2，解压：tar -zxvf mongodb-linux-x86_64-amazon-3.4.2.tgz</p>
-
 <p>3，移动：mv mongodb-linux-x86_64-amazon-3.4.2 /home/mongodb</p>
-
 <p>4，添加：export PATH=/home/mongodb/bin:$PATH</p>
-
 <p>5，数据：mkdir -p /home/mongodb/data</p>
-
 <p>6，建立配置文件：mongo.conf</p>
 <div class="code">
     <p>port = 27027</p>
@@ -50,13 +43,9 @@
     <p>logappend = true # 日志是追加，默认是覆盖</p>
     <p>bind_ip = 127.0.0.1</p>
 </div >
-
 <p>7，启动：/home/mongodb/bin/mongod -f /home/mongodb/bin/mongo.conf —fork</p>
-
 <p>8，服务自启动：echo /home/mongodb/bin/mongod -f /home/mongodb/bin/mongo.conf —fork >> /etc/rc.local</p>
-
 <p>9，连接：/home/mongodb/bin/mongo localhost:27027需要指定集合的话，再加上：/test</p>
-
 <p>10，连接：mongo</p>
 <br />
 
@@ -213,7 +202,7 @@
         <p>mongoTemplate.save(object, “user”);</p>
     </p>
 </div>
-                <h4>2021-11-05 14:27:39</h4>
+                <h4>2021-11-05 15:34:27</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

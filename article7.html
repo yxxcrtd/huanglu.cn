@@ -18,17 +18,59 @@
                 <div id="logo"></div>
                 <ul>
                     <li><a href="/">首页</a></li>
-                    <li><a href="history.html">黄麓历史</a></li>
-                    <li><a href="landscape.html">黄麓风景</a></li>
-                    <li><a href="about.html" class="current">关于作者</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
                 </ul>
             </nav>
         </header>
 
         <article>
             <div id="articleDetail">
-                <h2>Docker 安装 Atlassian - Jira & Confluence</h2>
-                <p class="title">一，Docker 拉取 Confluence 镜像</p>
+                <h2>Jira & Confluence</h2>
+                <p class="title">一，Jira</p>
+<p>1，下载：wget https://downloads.atlassian.com/software/jira/downloads/atlassian-jira-software-8.7.1-x64.bin（到<a href="https://www.atlassian.com/software/jira/download" target="_blank">官网</a>找最新版本）</p>
+<p>2，授权：chmod 755 atlassian-jira-software-8.7.1-x64.bin</p>
+<p>3，安装：./atlassian-jira-software-8.7.1-x64.bin</p>
+<p>4，先关闭： /opt/atlassian/jira/bin/shutdown.sh</p>
+<p>5，配置：vim /opt/atlassian/jira/conf/server.xml</p>
+<p>6，启动：/opt/atlassian/jira/bin/startup.sh</p>
+<p>7，运行：http://localhost:7070</p>
+<p>8，使用 PostgreSQL 的时候会出现：Cannot add user, all the user directories are read-only，将 lib 下的 postgres jar包换了即可</p>
+<p>9，中文：https://translations.atlassian.com/dashboard/download?lang=zh_CN#/JIRA%20Core/7.2.1</p>
+<p>10，授key：有链接能生成 lincense</p>
+<p>11，登录 Atlassian：<a href="www.atlassian.com" target="_blank">www.atlassian.com</a></p>
+<br />
+
+
+<p class="title">二，Confluence</p>
+<p>1，下载：wget https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-5.6.6-x64.bin</p>
+<p>2，授权：chmod 755 atlassian-confluence-5.6.6-x64.bin</p>
+<p>3，安装：./atlassian-confluence-5.6.6-x64.bin</p>
+<p>4，中文：https://translations.atlassian.com/dashboard/download?lang=zh_CN#/Confluence/5.6.6</p>
+<p>5，启动：/etc/init.d/confluence restart</p>
+<p>6，授权key：有链接能生成 lincense</p>
+<p>7，不要用最新的postgres的jar，因为  Confluence 是 java7 编译的</p>
+<p>8，重置：rm -rf /var/atlassian/application-data/confluence</p>
+<br />
+
+
+<p class="title">三，Jira 配置邮件提醒</p>
+<p>1，管理员点 齿轮⚙️图标  ->  系统  ->  电邮  ->  外发邮件</p>
+<p>2，点：创建一个 SMTP 电邮服务器</p>
+<p>3，填写：名称</p>
+<p>4，填写：来自的电邮地址，一个 Email 地址</p>
+<p>5，填写：电邮前缀，Jira</p>
+<p>6，选择协议：SMTP</p>
+<p>7，填写：主机名：smtp.qq.com</p>
+<p>8，填写：SMTP 端口：25</p>
+<p>9，填写用户名：272795968@qq.com</p>
+<p>10，填写密码：QQ</p>
+<p>11，点：Test Connection，顶部如果出现：连接测试成功。表示系统级别的邮件配置成功。</p>
+<br />
+
+
+<p class="title">四，Docker 拉取 Confluence 镜像</p>
 <p>
     <div class="code">
         <p>docker pull atlassian/confluence-server</p>
@@ -124,63 +166,12 @@
 </p>
 
 <p>21，Test connection -> Next</p>
-
 <p>22，选 Empty Site</p>
-
 <p>23，Manage Users and Group with jira</p>
-
 <p>24，填入管理员账户信息 -> Next</p>
 
 <br />
-
-
-
-
-
-
-
-
-
-
-
-<p class="title">一，Jira</p>
-<p>1，下载：wget https://downloads.atlassian.com/software/jira/downloads/atlassian-jira-software-8.7.1-x64.bin（到<a href="https://www.atlassian.com/software/jira/download" target="_blank">官网</a>找最新版本）</p>
-<p>2，授权：chmod 755 atlassian-jira-software-8.7.1-x64.bin</p>
-<p>3，安装：./atlassian-jira-software-8.7.1-x64.bin</p>
-<p>4，先关闭： /opt/atlassian/jira/bin/shutdown.sh</p>
-<p>5，配置：vim /opt/atlassian/jira/conf/server.xml</p>
-<p>6，启动：/opt/atlassian/jira/bin/startup.sh</p>
-<p>7，运行：http://localhost:7070</p>
-<p>8，使用 PostgreSQL 的时候会出现：Cannot add user, all the user directories are read-only，将 lib 下的 postgres jar包换了即可</p>
-<p>9，中文：https://translations.atlassian.com/dashboard/download?lang=zh_CN#/JIRA%20Core/7.2.1</p>
-<p>10，授key：有链接能生成 lincense</p>
-<p>11，登录 Atlassian：<a href="www.atlassian.com" target="_blank">www.atlassian.com</a></p>
-<br />
-
-<p class="title">二，Confluence</p>
-<p>1，下载：wget https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-5.6.6-x64.bin</p>
-<p>2，授权：chmod 755 atlassian-confluence-5.6.6-x64.bin</p>
-<p>3，安装：./atlassian-confluence-5.6.6-x64.bin</p>
-<p>4，中文：https://translations.atlassian.com/dashboard/download?lang=zh_CN#/Confluence/5.6.6</p>
-<p>5，启动：/etc/init.d/confluence restart</p>
-<p>6，授权key：有链接能生成 lincense</p>
-<p>7，不要用最新的postgres的jar，因为  Confluence 是 java7 编译的</p>
-<p>8，重置：rm -rf /var/atlassian/application-data/confluence</p>
-<br />
-
-<p class="title">三，Jira 配置邮件提醒</p>
-<p>1，管理员点 齿轮⚙️图标  ->  系统  ->  电邮  ->  外发邮件</p>
-<p>2，点：创建一个 SMTP 电邮服务器</p>
-<p>3，填写：名称</p>
-<p>4，填写：来自的电邮地址，一个 Email 地址</p>
-<p>5，填写：电邮前缀，Jira</p>
-<p>6，选择协议：SMTP</p>
-<p>7，填写：主机名：smtp.qq.com</p>
-<p>8，填写：SMTP 端口：25</p>
-<p>9，填写用户名：272795968@qq.com</p>
-<p>10，填写密码：QQ</p>
-<p>11，点：Test Connection，顶部如果出现：连接测试成功。表示系统级别的邮件配置成功。</p>
-                <h4>2020-11-27 04:41:38</h4>
+                <h4>2021-11-05 15:30:34</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -189,7 +180,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
