@@ -7,7 +7,6 @@
         <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
         <title>书香黄麓</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
     </head>
@@ -26,19 +25,27 @@
         </header>
 
         <article>
-            <div id="articleDetail">
-                <h2>IDEA 插件 - JRebel 和 XRebel</h2>
-                <p class="title">1，在 IDEA 中安装插件：JRebel for IntelliJ（2020.1.0版本中已经添加了：XRebel）</p>
-<p>2，激活：Team URL：https://jrebel.qekang.com/06b5c57d-457b-4fb8-a69e-3fc6d83ce38d</p>
-<p>3，输入邮件地址，需要验证</p>
-<p>4，启动：Run -> Active Rebel agent is JRebel. Specify ... > 选择需要使用的插件</p>
-<br/>
-
-<p class="title">安装 XRebel</p>
-<p>1，下载：<a href="https://www.jrebel.com/products/xrebel/download" target="_blank">https://www.jrebel.com/products/xrebel/download</a></p>
-<p>2，在 VM Options 添加：-javaagent:/home/xrebel.jar（注意解压后的 jar 文件目录）</p>
-                <h4>2021-11-05 15:44:01</h4>
+            <div id="categoryList">
+                <ul>
+                <li>
+                <div class="articleBlockLeft">
+                    <a href="article11">
+                        <img src="images/article/article11.png" width="260">
+                    </a>
+                </div>
+                <div class="articleBlockRight">
+                    <h2><a href="article11">Redis 基础</a></h2>
+                    <h3>Redis - REmote DIctionary Server，即：远程字典服务，Redis 是一个开源的key-value内存数据库，也就是基于Key-Value模式Memcached + Database Persistence。</h3>
+                    <h4></h4>
+                    <h4 style="display: flex; width: 100%;">
+                        <span style="flex: 1 auto;">Posted: 2021-11-05 15:50:57</span>
+                        <span style="padding-right: 40px;"><a href="category8"></a></span>
+                    </h4>
+                </div>
+            </li>
+</ul>
             </div>
+
             <div id="articleAside">
                 <div id="category"></div>
             </div>
@@ -48,6 +55,5 @@
 
         <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
-        <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
 </html>
