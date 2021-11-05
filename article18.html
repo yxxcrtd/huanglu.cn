@@ -18,61 +18,28 @@
                 <div id="logo"></div>
                 <ul>
                     <li><a href="/">首页</a></li>
-                    <li><a href="history.html">黄麓历史</a></li>
-                    <li><a href="landscape.html">黄麓风景</a></li>
-                    <li><a href="about.html" class="current">关于作者</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
                 </ul>
             </nav>
         </header>
 
         <article>
             <div id="articleDetail">
-                <h2>Spring Boot 之 热部署 + 自刷新 （DevTools + LiveReload）</h2>
-                <p class="title">
-    一，IDEA端的设置：
-</p>
+                <h2>Spring Cloud Alibaba - Nacos</h2>
+                <p class="title">一，Docker 下 Nacos 安装与启动</p>
+<p>1，Nacos 官网：<a href="https://nacos.io/zh-cn/" target="_blank">https://nacos.io/zh-cn/</a></p>
+<p>2，下载与启动：</p>
 <p>
-    1，添加依赖：(pom.xml)
+    <div class="code">
+        <p>docker pull nacos/nacos-server</p>
+        <p>docker run --env MODE=standalone --name nacos -dp 8848:8848 nacos/nacos-server</p>
+    </div>
 </p>
-<p style="text-align: center;">
-    <a href="images/article/article18.01.png" data-fancybox>
-        <img src="images/article/article18.01.png" width="835" />
-    </a>
-</p>
-
-<p>
-    2，添加配置：(application.yml)
-</p>
-<p style="text-align: center;">
-    <a href="images/article/article18.02.png" data-fancybox>
-        <img src="images/article/article18.02.png" width="835" />
-    </a>
-</p>
-
-<p>3，IDEA 打开自动编译：Build, Execution, Deployment -> Compiler -> Make project automatically</p>
-<p>4，注册配置：Command + option + shift + / -> registry -> compiler.automake.allow.when.app.running</p>
-<p>5，IDEA 启动的时候会出现：LiveReload server is running on port 35729</p>
-
+<p>3，访问：http://localhost:8848/nacos</p>
 <br />
-
-
-<p class="title">二，浏览器端的设置：（目前 LiveReload 仅支持：Chrome、Firefox、Safari（2019年开始 Safari 已经不支持安装第三方插件了！））：</p>
-<p>1，下载插件：<a href="http://livereload.com/extensions/" target="_blank">http://livereload.com/extensions/</a></p>
-<p>2，插件检测：http://localhost:35729/livereload.js?snipver=1（打开js，说明OK。）</p>
-<br />
-
-
-<p class="title">
-    三，Enjoy：
-</p>
-<p>
-    1，修改 java 文件的时候，spring-boot 会重启（这点没有 JRebel 优秀，JRebel只是重新加载修改后的 class）
-</p>
-
-<p>
-    2，修改 js、css、images图片、freemarker文件都可以在浏览器自动刷新
-</p>
-                <h4>2020-11-10 20:11:49</h4>
+                <h4>2021-11-05 16:25:41</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -81,7 +48,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>

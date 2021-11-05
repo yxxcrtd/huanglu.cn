@@ -18,41 +18,41 @@
                 <div id="logo"></div>
                 <ul>
                     <li><a href="/">首页</a></li>
-                    <li><a href="history.html">黄麓历史</a></li>
-                    <li><a href="landscape.html">黄麓风景</a></li>
-                    <li><a href="about.html" class="current">关于作者</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
                 </ul>
             </nav>
         </header>
 
         <article>
             <div id="articleDetail">
-                <h2>微信公众号 - 基础开发</h2>
-                <p>1，申请二级域名：weixin.abc.com</p>
+                <h2>About GitHub</h2>
+                <p class="title">一，解决 GitHub 授权的问题</p>
+<p>1，检查 SSH keys，如果之前有的话，最好都删除，再将本地的 id_rsa.pub 重新上传上去</p>
+<p>2，测试：
+    <div class="code">
+        <p>ssh -T git@github.com</p>
+        <p>出现：<span class="red">Hi 用户名!</span> You've successfully authenticated, but GitHub does not provide shell access. 表示成功了！</p>
+    </div>
+</p>
+<p>3，现在使用 SourceTree 测试</p>
+<p>4，或者使用命令：<div class="code"><p>git clone git@github.com: 用户名/******.git</p></div></p>
+<br />
 
-<p>2，公众号 认证</p>
 
-<p>3，创建自定义菜单</p>
-
-<p>4，设置 - 公众号设置 - 功能设置 - JS接口安全域名 - 填写一个域名，并且将 txt 文件放到该域名下，然后能访问，这里填写的是：weixin.abc.com</p>
-
-<p>5，设置 - 公众号设置 - 功能设置 - 网页授权域名 - 填写一个域名，并且将 txt 文件放到该域名下，然后能访问，这里填写的是：weixin.abc.com</p>
-
-<p>6，设置 - 安全中心 - 修改管理员的微信号</p>
-
-<p>7，设置 - 安全中心 - 添加测试的白名单</p>
-
-<p>8，开发 - 基本配置 - 获取AppID</p>
-
-<p>9，开发 - 基本配置 - 获取AppSecret</p>
-
-<p>
-    10，开发 - 开发者工具 - web开发者工具 - 绑定开发者微信号</p>
-
-<p>11，微信支付 - 需要开通</p>
-
-<p>12，新入口：商户平台>产品中心>开发配置，配置支付授权目录：http://weixin.abc.com/wx/arrear/pay/</p>
-                <h4>2020-11-10 20:07:32</h4>
+<p class="title">二，Please make sure you have the correct access rights and the repository exists.</p>
+<p>1，删除 .ssh 文件夹</p>
+<p>2，重新生成密钥和公钥：
+    <div class="code">
+        <p>ssh-keygen -t rsa -C "邮箱"，全部回车</p>
+        <p>ssh-keygen</p>
+    </div>
+</p>
+<p>3，拷贝 id_rsa.pub 内容到 GitHub 的 SSH keys</p>
+<p>4，测试：<div class="code"><p>ssh -T git@github.com</p></div></p>
+<br />
+                <h4>2021-11-05 16:19:31</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -61,7 +61,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>

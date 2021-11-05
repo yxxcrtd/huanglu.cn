@@ -18,78 +18,26 @@
                 <div id="logo"></div>
                 <ul>
                     <li><a href="/">首页</a></li>
-                    <li><a href="history.html">黄麓历史</a></li>
-                    <li><a href="landscape.html">黄麓风景</a></li>
-                    <li><a href="about.html" class="current">关于作者</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
                 </ul>
             </nav>
         </header>
 
         <article>
             <div id="articleDetail">
-                <h2>使用 Undertow 替换 Tomcat</h2>
-                <p class="title">
-    一，pom.xml 的配置
-</p>
+                <h2>Linux 安装 FFmpeg</h2>
+                <p>1，安装依赖：yum -y install epel-release</p>
 
-<p style="text-align: center;">
-    <a href="images/article/article13.01.png" data-fancybox>
-        <img src="images/article/article13.01.png" width="835" />
-    </a>
-</p>
+<p>2，导入 rpm 库：rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</p>
 
-<br />
+<p>3，导入 rpm 库：rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</p>
 
-<p class="title">
-    二，application.yml 的配置（默认可以不用加）
-</p>
+<p>4，安装：yum -y install ffmpeg ffmpeg-devel</p>
 
-<div class="code">
-    <p>
-        server:
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;undertow:
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;io-threads: 32   <span class="comment"># 设置 IO 线程数，它主要执行非阻塞的任务，它们会负责多个连接，默认设置每个 CPU 核心有一个线程。不要设置过大，如果过大，启动项日会报错：打开文件数过多</span>
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;worker-threads: 256   <span class="comment"># 阳塞任务线程数，当执行类似 Servlet 请求阻塞 IO 操作，Undertow 会从这个线程池中取得线程。它的值设置取决于系统线程执行任务的阻塞系数，默认值：IO 线程数 * 8</span>
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;direct-buffers: true   <span class="comment"># 是否分配直接内存（NIO 直接分配的是堆外内存）。取决于JVM 最大可用内存大小：（long maxMemory = Runtime.getRuntime().maxMemory();），小于 64MB 默认为 false，其余为 true</span>
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buffer-size: 1024    <span class="comment"># 每块 buffer 的空间大小，空间越小利用越充分，不要设置太大，以免影响其他应用，合适即可。最大可用内存 < 64MB：512 字节。6MB <= 最大可用内存 <128MB：1024 字节。128MB < 最大可用内存：1024 * 16 - 20 字节</span>
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buffers-per-region: 1024    <span class="comment"># 每个区分配的buffer数量 , 所以pool的大小是buffer-size * buffers-per-region</span>
-    </p>
-
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accesslog:
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enabled: true
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dir: /home/log
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pattern: common
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prefix: undertow-log.
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;suffix: log
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate: true
-    </p>
-</div>
-                <h4>2020-11-10 19:59:53</h4>
+<p>5，验证：ffmpeg -version</p>
+                <h4>2021-11-05 16:12:20</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -98,7 +46,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>

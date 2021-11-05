@@ -18,9 +18,9 @@
                 <div id="logo"></div>
                 <ul>
                     <li><a href="/">首页</a></li>
-                    <li><a href="history.html">黄麓历史</a></li>
-                    <li><a href="landscape.html">黄麓风景</a></li>
-                    <li><a href="about.html" class="current">关于作者</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
                 </ul>
             </nav>
         </header>
@@ -139,7 +139,21 @@
 <p>}</p>
 </div>
 <br />
-                <h4>2021-09-09 15:47:52</h4>
+
+
+<p class="title">八，Nginx 升级到 Tengine：</p>
+<p>1，下载：wget -c http://tengine.taobao.org/download/tengine-1.2.1.tar.gz</p>
+<p>2，解压：tar -zxvf tengine-1.2.1.tar.gz</p>
+<p>3，进入：cd tengine-1.2.1</p>
+<p>4，配置：./configure --prefix=/usr/local/nginx --without-http_autoindex_module --without-http_geo_module --without-http_map_module --without-http_browser_module --with-http_stub_status_module --with-http_realip_module --with-pcre=/root/pcre-8.36（注意：这里先下载并解压安装pcre）</p>
+<p>5，编译：make</p>
+<p>6，安装：make install</p>
+<p>7，拷贝：cp -r objs/nginx /usr/local/nginx/sbin/nginx</p>
+<p>8，验证：/usr/local/nginx/sbin/nginx -t</p>
+<p>9，重启服务：service nginx restart</p>
+<p>10，检查版本：/usr/local/nginx/sbin/nginx -V，第一行应该会出现：Tengine version: Tengine/1.2.1 (nginx/1.2.5)  ...</p>
+<br />
+                <h4>2021-11-05 16:14:22</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

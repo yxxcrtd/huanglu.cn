@@ -18,41 +18,177 @@
                 <div id="logo"></div>
                 <ul>
                     <li><a href="/">首页</a></li>
-                    <li><a href="history.html">黄麓历史</a></li>
-                    <li><a href="landscape.html">黄麓风景</a></li>
-                    <li><a href="about.html" class="current">关于作者</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
                 </ul>
             </nav>
         </header>
 
         <article>
             <div id="articleDetail">
-                <h2>About GitHub</h2>
-                <p class="title">一，解决 GitHub 授权的问题</p>
-<p>1，检查 SSH keys，如果之前有的话，最好都删除，再将本地的 id_rsa.pub 重新上传上去</p>
-<p>2，测试：
-    <div class="code">
-        <p>ssh -T git@github.com</p>
-        <p>出现：<span class="red">Hi 用户名!</span> You've successfully authenticated, but GitHub does not provide shell access. 表示成功了！</p>
-    </div>
-</p>
-<p>3，现在使用 SourceTree 测试</p>
-<p>4，或者使用命令：<div class="code"><p>git clone git@github.com: 用户名/******.git</p></div></p>
+                <h2>Mac 基础</h2>
+                <p class="title">一，常用命令：</p>
+<p>1，查看文件大小：du -sh *</p>
+<p>2，下载：curl -L -O http://…….tar.gz（解压：tar -vxf …….tar.gz）</p>
+<p>3，上传单个文件到服务器：scp test.html root@1.2.3.4:/home</p>
+<p>4，上传整个目录到服务器：scp -r test root@1.2.3.4:/home</p>
+<p>5，从服务器下载单个文件：scp root@1.2.3.4:/home/test.html /Users/young/Desktop</p>
+<p>6，从服务器下载整个目录：scp -r root@1.2.3.4:/home/ /Users/young/Desktop</p>
+<p>7， 将 bash 终端切换为：zsh：chsh -s /bin/zsh；切换回 bash：chsh -s /bin/bash</p>
+<p>8， Mac 允许打开第三方的 app：sudo spctl --master-disable</p>
+<p>9，在 Finder 中显示文件的全路径：defaults write com.apple.finder _FXShowPosixPathInTitle -bool TRUE;killall Finder</p>
+<p>10，在 Finder 中隐藏文件的全路径：defaults delete com.apple.finder _FXShowPosixPathInTitle;killall Finder</p>
+<p>11，重置 Safari 浏览器：rm ~/Library/Preferences/com.apple.Safari.plist</p>
+<p>12，重置 IntelliJ IDEA：rm -rf /Users/young/Library/Preferences/IntelliJIdea2019.3 && /Users/young/Library/Caches/IntelliJIdea2019.3</p>
+<p>13，添加访问共享：Finder中，Commond + K，输入：smb://192.168.0.8/share</p>
+<p>14，切换root用户：sudo -i</p>
+<p>15，切换root权限：sudo su</p>
 <br />
 
 
-<p class="title">二，Please make sure you have the correct access rights and the repository exists.</p>
-<p>1，删除 .ssh 文件夹</p>
-<p>2，重新生成密钥和公钥：
-    <div class="code">
-        <p>ssh-keygen -t rsa -C "邮箱"，全部回车</p>
-        <p>ssh-keygen</p>
-    </div>
-</p>
-<p>3，拷贝 id_rsa.pub 内容到 GitHub 的 SSH keys</p>
-<p>4，测试：<div class="code"><p>ssh -T git@github.com</p></div></p>
+<p class="title">二，SFTP 文件上传</p>
+<p>1，先在本地ls能看到的文件夹</p>
+<p>2，进入目标：sftp root@139.198.15.189:/home/file/legongzhulian.com</p>
+<p>3，将本地的文件夹拷贝到目标：put -r legongzhulian.com/.</p>
 <br />
-                <h4>2020-11-23 20:08:47</h4>
+
+
+<p class="title">
+    三，scp 远程拷贝文件时的错误：
+</p>
+
+<div class="code">
+<p>
+    Warning: Permanently added '10.0.0.182' (RSA) to the list of known hosts.
+</p>
+
+<p>
+    Permission denied (publickey).
+</p>
+</div>
+
+<p>
+    解决方法：
+</p>
+
+<div class="code">
+<p>1，登录服务器：ssh root@10.0.0.182</p>
+<p>2，vim /etc/ssh/sshd_config，修改：PasswordAuthentication no 为：PasswordAuthentication yes</p>
+<p>3，重启sshd服务：/etc/init.d/sshd restart</p>
+<p>4，CentOS7的重启方法：systemctl  restart sshd.service</p>
+</div>
+
+<p>
+    原因：scp是基于ssh的拷贝服务，ssh在没有密钥登录的情况下，禁用了密码登录，故出现如上错误。
+</p>
+
+<br />
+
+
+<p class="title">
+    四，80端口占用问题：
+</p>
+
+<p>
+    方法1：关闭系统自带的Apache：sudo apachectl start / restart / stop
+</p>
+
+<p>
+    方法2：
+</p>
+
+<p>
+    1，编辑：sudo vim /etc/pf.anchors/tomcat.forwarding，输入管理员密码后，在空白的文件中添加的内容如下：（将应用的15451端口映射到80端口）
+</p>
+
+<div class="code">
+    <p>
+        rdr pass on lo0 inet proto tcp from any to 127.0.0.1 port 80 -> 127.0.0.1 port 15431
+    </p>
+
+    <p>
+        rdr pass on lo0 inet proto tcp from any to localhost port 80 -> localhost port 15431
+    </p>
+</div>
+
+<p>
+    2，编辑：sudo vim /etc/pf-tomcat.conf，输入管理员密码后，在空白的文件中添加的内容如下：（映射文件）
+</p>
+
+<div class="code">
+    <p>
+       rdr-anchor "forwarding"
+    </p>
+
+    <p>
+        load anchor "forwarding"from "/etc/pf.anchors/tomcat.forwarding"
+    </p>
+</div>
+
+
+<p>
+    3，编辑：<span class='red'>sudo pfctl -ef /etc/pf-tomcat.conf</span>，输入管理员密码后，出现下面的提示信息就表示80端口映射成功了！
+</p>
+
+<p>
+    <a href="images/article/article17.01.png" data-fancybox>
+        <img src="images/article/article17.01.png" width="500" />
+    </a>
+</p>
+<br />
+
+<p class="title">五，免密远程一：</p>
+<p>1，先要保证 .ssh 下有：id_rsa.pub。如果没有：ssh-keygen -t rsa -C "邮箱地址"，全部回车。</p>
+<p>2，将本地的公钥拷贝到目标机器的根下：scp ~/.ssh/id_rsa.pub root@192.168.1.2:~/</p>
+<p>3，远程：ssh root@192.168.1.2</p>
+<p>4，将你的公钥追加到目标机器的.ssh文件夹（如果没有.ssh目录，要先创建）中：cat id_rsa.pub >> .ssh/authorized_keys</p>
+<p>5，删除上传的公钥：rm -rf id_rsa.pub</p>
+<p>6，修改端口后：<span class="red">ssh root@192.168.1.2 -p 新端口（默认22不用写）</span></p>
+<p>6，scp有端口：<span class="red">scp -P 15451  ~/.ssh/id_rsa.pub root@192.168.1.2:~/（-大写的P，必须紧跟在 scp 后面）</span></p>
+<br />
+
+<p class="title">六，免密远程二（推荐）：</p>
+<p>1，生成密钥：</p>
+<div class="code">
+    <p>ssh-keygen</p>
+</div>
+<p>2，将本地的公钥拷贝到目标服务器（1，要接受访问；2，要输入密码）：</p>
+<div class="code">
+    <p>ssh-copy-id root@192.168.1.2</p>
+</div>
+<br />
+
+
+<p class="title">七，远程服务器出现没有文件或目录：</p>
+<p>错误信息：setlocale: LC_CTYPE: cannot change locale (UTF-8): 没有那个文件或目录</p>
+<p>解决方法：vim /etc/sysconfig/i18n</p>
+<p>追加：LC_ALL="zh_CN.UTF-8" </p>
+<p>（如果不行：在 /etc/locale.conf 追加：LC_CTYPE="zh_CN.UTF-8"）</p>
+<br />
+
+
+<p class="title">八，配置 Gmail</p>
+<p>1，pop.gmail.com    SSL    995</p>
+<p>2，smtp.gmail.com    TLS 587  / SSL 465</p>
+<br />
+
+
+<p class="title">九，系统升级后，APP无法打开</p>
+<p>出现错误：“IntelliJ IDEA CE.app” is damaged and can’t be opened. You should move it to the Trash.</p>
+<p>方法1：sudo spctl --master-disable 或 sudo spctl --master-enable</p>
+<p>方法2：sudo xattr -cr /Applications/IntelliJ\ IDEA\ CE.app（输入完Applications/后，输入In 按 tab 健后即可出来）</p>
+<br />
+
+<p class="title">十，Mac 系统的临时目录（相当于 Windows 的 %temp%；Linux 的 /tmp）</p>
+
+<p>
+    <a href="images/article/article17.02.png" data-fancybox>
+        <img src="images/article/article17.02.png" width="835" />
+    </a>
+</p>
+<br />
+                <h4>2021-11-05 16:20:27</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -61,7 +197,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
