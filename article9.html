@@ -29,7 +29,6 @@
             <div id="articleDetail">
                 <h2>GitLab 的安装与配置</h2>
                 <p class="title">一，Linux CentOS 6 安装 GitLab（参考官网：<a href="https://about.gitlab.com/install/#centos-6" target="_blank">https://about.gitlab.com/install/#centos-6</a>）</p>
-
 <p>1，安装依赖：yum -y install curl openssh-server openssh-clients postfix cronie</p>
 <p>2，启动邮件服务：service postfix start</p>
 <p>3，邮件服务开机启动：chkconfig postfix on</p>
@@ -48,9 +47,8 @@
 <p>11，服务的状态、启动、停止或重启：gitlab-ctl status/stop/start/restart</p>
 <br />
 
-<p class="title">
-二，Linux CentOS 7 安装 GitLab（参考官网：<a href="https://about.gitlab.com/install/#centos-7" target="_blank">https://about.gitlab.com/install/#centos-7</a>）
-</p>
+
+<p class="title">二，Linux CentOS 7 安装 GitLab（参考官网：<a href="https://about.gitlab.com/install/#centos-7" target="_blank">https://about.gitlab.com/install/#centos-7</a>）</p>
 <p>1，yum install -y curl policycoreutils-python openssh-server</p>
 <p>2，systemctl enable sshd</p>
 <p>3，systemctl start sshd</p>
@@ -108,7 +106,7 @@
 <p>2，停止数据服务2：gitlab-ctl stop sidekiq</p>
 <p>3，恢复：gitlab-rake gitlab:backup:restore BACKUP=139*** （这里的139***是之前备份的时间戳）</p>
 <p>4，恢复服务：gitlab-ctl start</p>
-                <h4>2021-11-05 15:36:33</h4>
+                <h4>2021-11-06 16:50:33</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
