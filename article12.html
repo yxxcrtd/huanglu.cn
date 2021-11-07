@@ -49,7 +49,7 @@
 <br />
 
 
-<p class="title">三，安装 Nginx</p>
+<p class="title">三，Linux CentOS 6 安装 Nginx</p>
 <div class="code">
     <p>1，下载：wget http://nginx.org/download/nginx-1.16.1.tar.gz</p>
     <p>2，解压：tar zxvf nginx-1.16.1.tar.gz</p>
@@ -64,7 +64,7 @@
 <br />
 
 
-<p class="title">四，CentOS 7 安装 Nginx</p>
+<p class="title">四，Linux CentOS 7 安装 Nginx</p>
 <div class="code">
     <p>1，添加 yum 源：rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</p>
     <p>2，安装：yum -y install nginx</p>
@@ -78,7 +78,28 @@
 <br />
 
 
-<p class="title">五，配置</p>
+<p class="title">五，Docker 安装 Nginx</p>
+<p>1，Docker 下载镜像</p>
+<p><div class="code"><p>docker pull nginx</p></div></p>
+
+<p>2，在宿主机上创建 Nginx 配置需要的4个文件夹和 nginx.conf 文件</p>
+<p><div class="code"><p>mkdir -pv /home/docker/nginx/{conf,conf.d,html,log} -m 777</p></div></p>
+
+
+<p>3，使用 Docker 启动 Nginx</p>
+<p>
+    <div class="code">
+        <p>docker run --name nginx --restart always -dp 80:80 -v /home/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /home/docker/nginx/log:/var/log/nginx -v /home/docker/nginx/html:<span class="red">/etc/nginx/html/</span> nginx</p>
+        <p><span class="comment">注意1：run 创建并运行一个容器</span></p>
+        <p><span class="comment">注意2：--name nginx 使用的镜像名称</span></p>
+        <p><span class="comment">注意3：最后的 nginx 是容器名称</span></p>
+        <p><span class="comment">注意4：静态文件夹映射的地址不是：/usr/share/nginx/html/</span></p>
+    </div>
+</p>
+<br />
+
+
+<p class="title">六，配置</p>
 <p>1，启动服务：/usr/local/nginx/sbin/nginx</p>
 <p>2，关闭服务：/usr/local/nginx/sbin/nginx -s stop</p>
 <p>3，重启服务：/usr/local/nginx/sbin/nginx -s reload</p>
@@ -111,7 +132,7 @@
 <br />
 
 
-<p class="title">六，最精简的 nginx.conf</p>
+<p class="title">七，最精简的 nginx.conf</p>
 <p>
     <a href="images/article/article12.01.png" data-fancybox>
         <img src="images/article/article12.01.png" width="800" />
@@ -120,7 +141,7 @@
 <br />
 
 
-<p class="title">七，Nginx 负载均衡配置：</p>
+<p class="title">八，Nginx 负载均衡配置：</p>
 <div class="code">
     <p>upstream test {</p>
     <p class="indent">server localhost:8080;</p>
@@ -150,7 +171,7 @@
 <br />
 
 
-<p class="title">八，Nginx 升级到 Tengine：</p>
+<p class="title">九，Nginx 升级到 Tengine：</p>
 <p>1，下载：wget -c http://tengine.taobao.org/download/tengine-1.2.1.tar.gz</p>
 <p>2，解压：tar -zxvf tengine-1.2.1.tar.gz</p>
 <p>3，进入：cd tengine-1.2.1</p>
@@ -173,14 +194,14 @@
 <br />
 
 
-<p class="title">九，配置 https - 1，申请 https 证书</p>
+<p class="title">十，配置 https - 1，申请 https 证书</p>
 <p>1，腾讯云上申请</p>
 <p>2，需要备案好的域名</p>
 <p>3，需要注册域名的邮箱</p>
 <br />
 
 
-<p class="title">九，配置 https - 2，在云服务器上打开443端口</p>
+<p class="title">十，配置 https - 2，在云服务器上打开443端口</p>
 <p>1，添加一个<span class="red">入站</span>规则</p>
 <p style="text-align: center;">
     <a href="images/article/article12.02.png" data-fancybox>
@@ -189,7 +210,7 @@
 </p>
 <br />
 
-<p class="title">九，配置 https - 3，配置 Nginx</p>
+<p class="title">十，配置 https - 3，配置 Nginx</p>
 <p>1，将 域名.crt 和 域名.key 拷贝到 服务器上固定目录，推荐Nginx配置文件的目录（以后用绝对路径引用）</p>
 <p>2，Nginx 配置文件位置：
     <div class="code">
@@ -211,11 +232,11 @@
 <br />
 
 
-<p class="title">九，配置 https - 4，其他配置：</p>
+<p class="title">十，配置 https - 4，其他配置：</p>
 <p>1，重启 Nginx：<div class="code"><p>systemctl restart nginx</p></div></p>
 <p>2，添加防火墙规则：<div class="code"><p>firewall-cmd --zone=public --add-port=443/tcp --permanent</p></div></p>
 <br />
-                <h4>2021-11-07 10:14:00</h4>
+                <h4>2021-11-07 10:55:31</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
