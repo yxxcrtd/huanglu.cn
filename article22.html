@@ -164,14 +164,26 @@
 
 
 
-<p class="title">六，备份与还原</p>
+<p class="title">六，Docker 下安装 MySQL</p>
+<p>1，安装：<div class="code"><p>docker pull mysql</p></div></p>
+<p>2，创建需要的文件目录：<div class="code"><p>mkdir /home/docker/mysql/{conf.d,data,log} -pv -m 777</p></div></p>
+<p>3，启动：
+<div class="code">
+        <p>docker run -p 13306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /home/docker/mysql/data:/var/lib/mysql:rw -v /home/docker/mysql/log:/var/log/mysql:rw -v /home/docker/mysql/config/my.cnf:/etc/mysql/my.cnf:rw -v /etc/localtime:/etc/localtime:ro --name mysql --restart=always -d mysql</p>
+    </div>
+</p>
+<br />
+
+
+
+<p class="title">七，备份与还原</p>
 <p>1，备份：mysqldump -h127.0.0.1 -u root -p mysql > /root/Desktop/db.sql;</p>
 <p>2，还原：source /root/Desktop/db.sql;</p>
 <br />
 
 
 
-<p class="title">七，忘记密码</p>
+<p class="title">八，忘记密码</p>
 <p>1，关闭服务：service mysqld stop</p>
 <p>2，进入安全模式：mysqld_safe --user=root --skip-grant-tables</p>
 <p>3，进入数据库：msyql -u root -p</p>
@@ -182,31 +194,31 @@
 
 
 
-<p class="title">八，让MySQL不区分大小写</p>
+<p class="title">九，让MySQL不区分大小写</p>
 <p>1，检查：show variables like "%case%"; lower_case_table_names = 0 区分；1/2 不区分（1-Windows；2-Mac）</p>
 <p>2，设置：vim /etc/my.cnf，添加：lower_case_table_names=1</p>
 <br />
 
 
 
-<p class="title">九，设置远程登录</p>
+<p class="title">十，设置远程登录</p>
 <p>1，grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;</p>
 <p>2，flush privileges;</p>
 <br />
 
 
 
-<p class="title">十，创建数据库</p>
+<p class="title">十一，创建数据库</p>
 <p>1，CREATE DATABASE jira DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci</p>
 <p>2，验证：show create database jira; 如果出现utf8mb4，OK。</p>
 <br />
 
 
 
-<p class="title">十一，MySQL 5.6 修改密码</p>
+<p class="title">十二，MySQL 5.6 修改密码</p>
 <p>1，update user set password=password(‘123456’) where user=’root’;</p>
 <p>2，flush privileges;</p>
-                <h4>2021-11-07 07:52:08</h4>
+                <h4>2021-11-07 11:20:31</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
