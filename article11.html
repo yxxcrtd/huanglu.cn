@@ -75,8 +75,15 @@
 <p>4，关闭：redis-cli shutdown</p>
 <br />
 
+<p class="title">五，Docker 安装 Redis</p>
+<p>1，安装：docker pull redis</p>
+<p>2，启动：docker run --name redis -p 6379:6379 --restart=always -d redis redis-server --appendonly yes --requirepass "123456"</p>
+<p>3，启动第<span class="red">N</span>个：docker run --name <span class="red">redis6380</span> -p <span class="red">6380</span>:6379 --restart=always -d redis redis-server --appendonly yes --requirepass "123456"</p>
+<p>4，进入容器：docker exec -it "容器ID" /bin/bash</p>
+<br />
 
-<p class="title">五，基本操作</p>
+
+<p class="title">六，基本操作</p>
 <p>1，设置：set a 123</p>
 <p>2，获取：get a，显示：123</p>
 <p>3，多值设置：mset a1 1 a2 2 a3 3</p>
@@ -104,7 +111,7 @@
 <br />
 
 
-<p class="title">六，Redis 一主N从配置，主从概述</p>
+<p class="title">七，Redis 一主N从配置，主从概述</p>
 <p>1，Redis 的复制功能是支持多个 Redis 之间的数据同步。一类是主数据库（master）一类是从数据库（slave），主数据库可以进行读写操作，当发生写操作的时候自动将数据同步到从数据库，而从数据库一般是只读的，并接收主数据库同步过来的数据，一个主数据库可以有多个从数据库，而一个从数据库只能有一个主数据库；</p>
 
 <p>2，通过 Redis 的复制功能可以很好的实现数据库的读写分离，提高服务器的负载能力。主数据库主要进行写操作，而从数据库负责读操作；</p>
@@ -113,7 +120,7 @@
 <br />
 
 
-<p class="title">七，Redis 一主N从配置，同步过程：</p>
+<p class="title">八，Redis 一主N从配置，同步过程：</p>
 <p>1，当一个从数据库启动时，会向主数据库发送sync命令；</p>
 
 <p>2，主数据库接收到sync命令后会开始在后台保存快照（执行rdb操作），并将保存期间接收到的命令缓存起来；</p>
@@ -125,7 +132,7 @@
 
 
 
-<p class="title">八，Redis 一主N从配置，主从配置：</p>
+<p class="title">九，Redis 一主N从配置，主从配置：</p>
 <p>1，安装另一个 Redis，参考：单机安装部分；</p>
 
 <p>2，在复制到 /etc 目录下之前，添加一个 salve 配置：slaveof 192.168.90.82 6379；</p>
@@ -177,7 +184,7 @@
         <img src="images/article/article11.04.png" width="835" />
     </a>
 </p>
-                <h4>2021-11-07 10:32:08</h4>
+                <h4>2021-11-07 11:10:17</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
