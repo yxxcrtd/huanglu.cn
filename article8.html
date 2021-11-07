@@ -126,13 +126,31 @@ find . -name ".git"| xargs rm -Rf
 
 
 
-<p class="title">
-七，用户文件夹下的 Git 配置文件：.gitflow_export
+<p class="title">七，用户文件夹下的 Git 配置文件：.gitflow_export</p>
+<p>export FLAGS_GETOPT_CMD=/Applications/Sourcetree.app/Contents/Resources/bin/getopt</p>
+
+
+
+<br />
+<p style="text-align: center;">
+    <a href="images/article/article8.02.png" data-fancybox>
+        <img src="images/article/article8.02.png" width="835" />
+    </a>
 </p>
-<p>
-    export FLAGS_GETOPT_CMD=/Applications/Sourcetree.app/Contents/Resources/bin/getopt
-</p>
-                <h4>2021-11-07 07:50:28</h4>
+<br />
+
+
+<p class="title">八，SourceTree 中项目加入 Git Flow</p>
+<p>1，仓库初始化：点 SourceTree 中右上角的 Git Flow -> OK</p>
+<p>2，再点右上角的 Git Flow -> Start a New Feature -> 填写 Feature 名称（Feature 只与 develop 分支交互）</p>
+<p>3，Feature 完成后，先把 develop 合并到当前 Feature 分支（如果有冲突，要先解决冲突），再点右上角的 Git Flow -> 完成功能 -> 此时会合并到 develop（推荐勾选：删除当前 Feature 分支）</p>
+<br />
+
+
+<p class="title">九，Git Flow 在 完成功能的时候出现错误：fatal: could not read Username for 'https://gitee.com': No such file or directory</p>
+<p>1，进入命令行模式，执行：<div class="code"><p>git flow feature finish -k 功能名称</p></div></p>
+<br />
+                <h4>2021-11-07 10:44:31</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
