@@ -103,7 +103,80 @@
 <p>11，字符串截取：select substr('wabbit_duck_season', 7, 11); 输出：”_duck_seaso” </p>
 <p>12，前一周的周五：select current_date - cast(extract(dow from current_timestamp) as int2) - 2;  </p>
 <p>13，查看所有数据看：\l 或 select * from pg_database;</p>
-                <h4>2021-11-07 07:51:28</h4>
+<br />
+
+
+
+<p class="title">七，Docker 安装 PostgreSQL - 1，Docker 下载镜像</p>
+<p><div class="code"><p>docker pull postgres</p></div></p>
+<br />
+
+<p class="title">七，Docker 安装 PostgreSQL - 2，在宿主机上创建 Postgres 数据文件存储路径</p>
+<p><div class="code"><p>mkdir /home/docker/postgres/data -pv -m 777</p></div></p>
+<br />
+
+<p class="title">七，Docker 安装 PostgreSQL - 3，使用 Docker 启动 Postgres</p>
+<p>
+    <div class="code">
+        <p>docker run --name postgres --restart=always -v /home/docker/postgres/data:/home/data -e POSTGRES_PASSWORD=123456 -d -p 5432:5432 postgres</p>
+        <p><span class="comment">注意1：run 创建并运行一个容器</span></p>
+        <p><span class="comment">注意2：--name postgres 使用的镜像名称</span></p>
+        <p><span class="comment">注意3：/home/docker/postgres/data 是宿主机上的路径；/home/data 是容器自动的路径</span></p>
+    </div>
+</p>
+<br />
+
+<p class="title">七，Docker 安装 PostgreSQL - 4，进入 Docker容器，创建 confluence 数据库</p>
+<p>
+    <div class="code">
+        <p>docker exec -it postgres bash</p>
+        <p>psql -U postgres</p>
+        <p>CREATE DATABASE confluence WITH OWNER postgres;</p>
+    </div>
+</p>
+<br />
+
+
+
+
+
+
+
+
+
+
+<p class="title">一，系统出现： FATAL: remaining connection slots are reserved for non-replication superuser connections</p>
+<p>1，先检查连接数：在操作系统里：ps -ef | grep postgres，会出现很多的 postgres 进程，可以逐个 kill</p>
+<p>2，检查数据库默认的最大连接数：show max_connections;  默认是：100，根据实际业务改大，然后重启数据库服务；</p>
+<p>3，检查超级用户的连接数：show superuser_reserved_connections;</p>
+<p>4，使用 postgres 用户登录客户端查看数据库连接情况：select * from pg_stat_activity;</p>
+<p>5，可以使用 SQL 关闭某个连接：SELECT pg_terminate_backend(2428) FROM pg_stat_activity;</p>
+<br />
+
+
+<p class="title">二，主键子增序列从某一个固定值开始递增</p>
+<p>1，建表语句：</p>
+<div class="code">
+    <p>user_id                  serial                  not null,</p>
+</div>
+<p>2，主键定义：</p>
+<div class="code">
+    <p>@Id</p>
+    <p>@GeneratedValue(strategy = GenerationType.IDENTITY)</p>
+    <p>private Long userId;</p>
+</div>
+<p>3，数据库中设置 Sequence：</p>
+<div class="code">
+    <p>select setval('t_user_id_seq', 10000, false);</p>
+</div>
+<p>4，Sequence 函数：</p>
+<p>
+    <a href="images/article/article19.01.png" data-fancybox>
+        <img src="images/article/article19.01.png" width="835" />
+    </a>
+</p>
+<br />
+                <h4>2021-11-08 08:26:49</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

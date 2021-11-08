@@ -18,16 +18,16 @@
                 <div id="logo"></div>
                 <ul>
                     <li><a href="/">首页</a></li>
-                    <li><a href="history.html">黄麓历史</a></li>
-                    <li><a href="landscape.html">黄麓风景</a></li>
-                    <li><a href="about.html" class="current">关于作者</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
                 </ul>
             </nav>
         </header>
 
         <article>
             <div id="articleDetail">
-                <h2>Docker & Kubernetes（k8s）基础</h2>
+                <h2>Kubernetes（k8s）基础</h2>
                 <p class="title">一，安装 Docker Desktop</p>
 <p>1，Mac 下用 brew 安装，也可以下载安装：<a href="https://www.docker.com/products/docker-desktop" target="_blank">https://www.docker.com/products/docker-desktop</a></p>
 <div class="code">
@@ -45,8 +45,8 @@
 <p>3，拷贝自己的加速器地址：https://dxvyjtmi.mirror.aliyuncs.com</p>
 <p>4，回到 Docker Desktop 应用图标 -> Perferences，在左侧导航菜单选择 Docker Engine，将刚才复制的加速器地址配置到 json 文件："registry-mirrors": ["https://dxvyjtmi.mirror.aliyuncs.com"]，如下图：</p>
 <p>
-    <a href="images/article/article49.01.png" data-fancybox>
-        <img src="images/article/article49.01.png" width="835" />
+    <a href="images/article/article41.01.png" data-fancybox>
+        <img src="images/article/article41.01.png" width="835" />
     </a>
 </p>
 <p>5，<span class="red">重启 Docker Desktop</span></p>
@@ -69,8 +69,8 @@
 <p>5，回到系统，在任务栏点击 Docker Desktop 应用图标 -> Perferences，在左侧导航菜单选择 Kubernetes，勾选 Enable Kubernetes（这时就会使用本地缓存的镜像） -> Apply & Restart</p>
 <p>6，重启之后的 Docker Desktop 的 Perferences 页面如下：可以看到 Docker 和 Kubernetes 都是 <span class="green">绿色的 running</span></p>
 <p>
-    <a href="images/article/article49.02.png" data-fancybox>
-        <img src="images/article/article49.02.png" width="835" />
+    <a href="images/article/article41.02.png" data-fancybox>
+        <img src="images/article/article41.02.png" width="835" />
     </a>
 </p>
 
@@ -79,8 +79,8 @@
     <p>kubectl cluster-info</p>
     <p><span class="comment">出现下面2行即说明  Kubernetes 集群在运行状态</span></p>
     <p>
-        <a href="images/article/article49.03.png" data-fancybox>
-            <img src="images/article/article49.03.png" width="835" />
+        <a href="images/article/article41.03.png" data-fancybox>
+            <img src="images/article/article41.03.png" width="835" />
         </a>
     </p>
 </div>
@@ -89,8 +89,8 @@
 <div class="code">
     <p>kubectl get nodes</p>
     <p>
-        <a href="images/article/article49.04.png" data-fancybox>
-            <img src="images/article/article49.04.png" width="835" />
+        <a href="images/article/article41.04.png" data-fancybox>
+            <img src="images/article/article41.04.png" width="835" />
         </a>
     </p>
 </div>
@@ -100,8 +100,8 @@
 <div class="code">
     <p>kubectl create -f kubernetes-dashboard.yaml</p>
     <p>
-        <a href="images/article/article49.05.png" data-fancybox>
-            <img src="images/article/article49.05.png" width="835" />
+        <a href="images/article/article41.05.png" data-fancybox>
+            <img src="images/article/article41.05.png" width="835" />
         </a>
     </p>
 </div>
@@ -111,8 +111,8 @@
 <div class="code">
     <p>kubectl get pod -n kubernetes-dashboard</p>
     <p>
-        <a href="images/article/article49.06.png" data-fancybox>
-            <img src="images/article/article49.06.png" width="835" />
+        <a href="images/article/article41.06.png" data-fancybox>
+            <img src="images/article/article41.06.png" width="835" />
         </a>
     </p>
 </div>
@@ -122,8 +122,8 @@
 <div class="code">
     <p>kubectl proxy</p>
     <p>
-        <a href="images/article/article49.07.png" data-fancybox>
-            <img src="images/article/article49.07.png" width="835" />
+        <a href="images/article/article41.07.png" data-fancybox>
+            <img src="images/article/article41.07.png" width="835" />
         </a>
     </p>
 </div>
@@ -143,8 +143,8 @@
 
 <p>12，打开 Kubernetes 控制台：</p>
 <p>
-    <a href="images/article/article49.08.png" data-fancybox>
-        <img src="images/article/article49.08.png" width="835" />
+    <a href="images/article/article41.08.png" data-fancybox>
+        <img src="images/article/article41.08.png" width="835" />
     </a>
 </p>
 <br />
@@ -153,13 +153,13 @@
 <p class="title">四，更新 Docker Desktop 后 Kubernetes 无法启动的问题</p>
 <p>1，在 Docker Desktop 的 Dashboard 中的 Troubleshoot 中使用 Clean / Purge data 清除所有的配置和数据，然后重复上面的第二步和第三步！</p>
 <p>
-    <a href="images/article/article49.09.png" data-fancybox>
-        <img src="images/article/article49.09.png" width="835" />
+    <a href="images/article/article41.09.png" data-fancybox>
+        <img src="images/article/article41.09.png" width="835" />
     </a>
 </p>
 <p>2，注意第三步中的第2点：<span class="red">切换到 Docker Desktop 安装的 Kubernetes 版本号 的代码分支</span>，然后 git clone 或下载仓库文件</p>
 <br />
-                <h4>2020-11-12 08:19:04</h4>
+                <h4>2021-11-08 08:45:54</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -168,7 +168,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>
