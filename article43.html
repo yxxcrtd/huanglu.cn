@@ -18,9 +18,9 @@
                 <div id="logo"></div>
                 <ul>
                     <li><a href="/">首页</a></li>
-                    <li><a href="history.html">黄麓历史</a></li>
-                    <li><a href="landscape.html">黄麓风景</a></li>
-                    <li><a href="about.html" class="current">关于作者</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
                 </ul>
             </nav>
         </header>
@@ -36,7 +36,7 @@
 <br />
 
 
-<p class="title">二，激活：</p>
+<p class="title">二，Windows 10 LTSC的激活：</p>
 <p>
     1，使用管理员权限打开 cmd，然后依次执行下面的4步：
     <div class="code"><p>1，slmgr -ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D</p></div>
@@ -45,7 +45,17 @@
     <div class="code"><p>4，slmgr -dlv</p></div>
 </p>
 <br />
-                <h4>2020-11-12 08:22:04</h4>
+
+
+<p class="title">三，Windows 11 专业版的激活：</p>
+<p>
+    1，使用管理员权限打开 cmd，然后依次执行下面的3步：
+    <div class="code"><p>1，slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX</p></div>
+    <div class="code"><p>2，slmgr /skms kms.03k.org</p></div>
+    <div class="code"><p>3，slmgr /ato</p></div>
+</p>
+<br />
+                <h4>2021-11-09 21:16:09</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
@@ -54,7 +64,7 @@
 
         <footer id="footer"></footer>
 
-        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-3.6.0.js"></script>
         <script src="js/public.js"></script>
         <script src="js/jquery.fancybox.3.5.7.js"></script>
     </body>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>IDEA 远程调试</h2>
+                <p class="title">一，在本地配置 IDEA</p>
+<p>1，菜单栏 Run -> Edit Configurations</p>
+<p>2，添加一个：Remote</p>
+<p>3，<span class="red">修改 IP 地址</span>、端口号可以用默认的 5005</p>
+<p>4，拷贝命令行参数：<span class="red">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</span></p>
+<p>
+    <a href="images/article/article42.01.png" data-fancybox>
+        <img src="images/article/article42.01.png" width="835" />
+    </a>
+</p>
+<br />
+
+
+<p class="title">二，在服务端启动：远程服务</p>
+<div class="code">
+    <p>java -jar <span class="red">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</span> /home/test.jar</p>
+</div>
+<br />
+
+
+<p class="title">三，在本地启动 IDEA</p>
+<p>1，点 远程的 Unnamed 的 调试 按钮，控制台只输出一行：（如果有错误，在左下角会有错误提示）</p>
+<div class="code">
+    <p>Connected to the target VM, address: '192.168.3.203:5005', transport: 'socket'</p>
+</div>
+<br />
+
+
+<p class="title">四，本地浏览器访问</p>
+<div class="code">
+    <p>http://192.168.3.203:5005</p>
+    <p>1，如果服务端的 jar 包有端口，则继续用之前的端口</p>
+    <p>2，没有的话，则用 5005</p>
+</div>
+<br />
+
+
+<p class="title">五，Tomcat 7.0.70 配置远程调试</p>
+<div class="code">
+    <p>1，vim /home/apache-tomcat-7.0.70/bin/catalina.sh</p>
+    <p>2，添加：CATALINA_OPTS="-server -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"</p>
+</div>
+<br />
+                <h4>2021-11-09 21:05:17</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.6.0.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
