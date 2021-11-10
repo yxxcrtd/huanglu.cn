@@ -214,7 +214,53 @@
 <p>1，安装：</p><div class="code"><p>docker pull springcloud/eureka</p></div>
 <p>2，启动：</p><div class="code"><p>docker run -d -p 8761:8761 springcloud/eureka --restart=always --name=eureka</p></div>
 <br />
-                <h4>2021-11-09 21:35:57</h4>
+
+
+<p class="title">二十，Docker 安装：WebLogic 12</p>
+<p>1，获取镜像：<div class="code"><p>docker pull ismaleiva90/weblogic12</p></div></p>
+<p>2，启动：<div class="code"><p>docker run --name weblogic --restart=always -e base_domain_default_password=12345678 -d -p 7001:7001 -p 7002:7002 ismaleiva90/weblogic12</p></div></p>
+<p>3，查看启动日志：<div class="code"><p>docker logs -f weblogic11g</p></div></p>
+<p>4，访问：http://192.168.1.2:7001/console</p>
+<p>5，账户：weblogic</p>
+<p>6，密码：12345678</p>
+<br />
+
+
+<p class="title">二十一，Docker 安装：WebSphere 8.5.5.12</p>
+<p>1，获取镜像：<div class="code"><p>docker pull  ibmcom/websphere-traditional:8.5.5.12-profile</p></div></p>
+<p>2，启动：<div class="code"><p>docker run --name websphere --restart=always -e UPDATE_HOSTNAME=true -d -p 9043:9043 -p 9443:9443 ibmcom/websphere-traditional:8.5.5.12-profile （-e UPDATE_HOSTNAME=true    # 访问 websphere的ip不是localhost时需要此参数）</p></div></p>
+<p>3，查看生成登录的密码： <div class="code"><p>docker exec websphere cat /tmp/PASSWORD</p></div></p>
+<p>4，访问：https://192.168.1.2:9043/ibm/console</p>
+<p>5，账户：wsadmin</p>
+<p>6，密码：上面3生成的密码</p>
+<p>7，创建 websphere 的数据目录：<div class="code"><p>mkdir /home/docker/websphere/data -pv -m 777</p></div></p>
+<p>8，将容器内的DefaultCell01目录复制到宿主机上，用于映射：<div class="code"><p>docker cp ebd4ee2c2023:/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/config/cells/DefaultCell01 /home/docker/websphere/data</p></div></p>
+
+<p>9，查看 websphere 容器中 DefaultCell01 目录的所属者的uid：
+    <div class="code">
+        <p>进入容器：docker exec -it websphere /bin/bash</p>
+        <p>进入目录：cd  /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/config/cells/DefaultCell01</p>
+        <p>查看 DefaultCell01 目录下的所有文件的详细信息，会得知所属用户为 was：ll</p>
+        <p>查看用户was的详细信息，会得知was的uid为1000：id was</p>
+        <p>退出容器：exit</p>
+        <p>进入宿主机的DefaultCell01目录下，更改用户的uid为1000：/home/docker/websphere/data</p>
+        <p>将DefaultCell01文件夹下的所有文件以及子文件的所属者的uid都更改为1000：chown -R 1000:1000 DefaultCell01</p>
+        <p>再进入DefaultCell01目录：cd DefaultCell01</p>
+        <p>将nodes文件夹下的所有文件以及子文件的所属者的uid都更改为1000：chown -R 1000:1000 nodes</p>
+    </div>
+</p>
+
+<p>10，停止 websphere 容器：<div class="code"><p>docker stop websphere</p></div></p>
+
+<p>11，删除 websphere 容器：<div class="code"><p>docker rm websphere</p></div></p>
+
+<p>11，再启动：<div class="code"><p>docker run --name websphere --restart=always -e UPDATE_HOSTNAME=true -d -p 9043:9043 -p 9443:9443 -v /home/docker/websphere/data/DefaultCell01:/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/config/cells/DefaultCell01  ibmcom/websphere-traditional:8.5.5.12-profile</p></div></p>
+
+<p>12，访问：https://192.168.1.2:9043/ibm/console</p>
+
+<p>13，修改密码：Users and Groups -> Manage Users -> ...</p>
+<br />
+                <h4>2021-11-10 08:33:06</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
