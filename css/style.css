@@ -226,10 +226,12 @@ table tr td {
 }
 
 
+/* 文章详情页面摘要的字体颜色 */
 #summary {
     color: #aaaeb3;
-    padding-bottom: 2px;
 }
+
+/* 文章详情页面引号的字体大小 */
 .quote {
     font-size: 50px;
 }
