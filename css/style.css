@@ -226,6 +226,14 @@ table tr td {
 }
 
 
+#summary {
+    color: #aaaeb3;
+    padding-bottom: 2px;
+}
+.quote {
+    font-size: 50px;
+}
+
 
 
 #culture {
