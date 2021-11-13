@@ -130,6 +130,7 @@ article {
 }
 #articleDetail .code .comment {
     color: #797c80;
+    font-size: 14px;
 }
 
 /* 所有图片：有圆角和阴影 */
