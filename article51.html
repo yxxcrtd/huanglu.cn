@@ -28,7 +28,13 @@
         <article>
             <div id="articleDetail">
                 <h2>Oracle 基础</h2>
-                <p class="title">一，Docker 下载镜像</p>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        Oracle 是甲骨文公司开发的一款关系数据库管理系统，它是目前世界上流行的关系数据库管理系统，系统可移植性好、使用方便、功能强，适用于各类大、中、小微机环境。也是一种高效率的、可靠性好的、适应高吞吐量的数据库方案。
+                    </p>
+                </div>
+                <div><p class="title">一，Docker 下载镜像</p>
 <p><div class="code"><p>docker pull truevoly/oracle-12c</p></div></p>
 
 
@@ -82,10 +88,10 @@
         <p><span class="comment">由于 Oracle 没有库名，只有表空间。查询所有表空间：select * from v$tablespace;</span></p>
     </div>
 </p>
-<p>2，创建表空间：<div class="code"><p>create tablespace temp_data logging datafile 'temp_data.dbf' size 512m autoextend on next 512m maxsize 5120m extent management local;</p></div></p>
+<p>2，创建表空间：<div class="code"><p>create tablespace <span class="red">temp_data</span> logging datafile '<span class="red">temp_data</span>.dbf' size 512m autoextend on next 512m maxsize 5120m extent management local;</p></div></p>
 <p>3，创建用户：
     <div class="code">
-        <p>create user temp identified by 123456 default tablespace temp_data;</p>
+        <p>create user <span class="red">temp</span> identified by <span class="red">123456</span> default tablespace <span class="red">temp_data</span>;</p>
         <p><span class="comment">修改密码：alter user temp identified by 123456;</span></p>
     </div>
 </p>
@@ -135,8 +141,8 @@
         <p>commit;</p>
     </div>
 </p>
-<br />
-                <h4>2021-11-10 08:29:08</h4>
+<br /></div>
+                <h4>2021-11-15 14:09:18</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
