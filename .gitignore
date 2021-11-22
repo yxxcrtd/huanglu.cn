@@ -3,11 +3,14 @@ target/
 !**/src/main/**
 !**/src/test/**
 
-# Intellij IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
 
 # Mac
 .DS_Store
+
+
+# For VSCode
+.classpath
+.project
+bin/
+.settings
+.vscode
