@@ -28,7 +28,44 @@
         <article>
             <div id="articleDetail">
                 <h2>Mac 基础</h2>
-                <p class="title">一，常用命令：</p>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        Mac 环境下的 Java 开发
+                    </p>
+                </div>
+                <div><p class="title">一，新系统配置</p>
+<p>1，安装微信：打开 App Store ，搜索：微信</p>
+<p>2，Mac如何开启护眼模式：设置 -> Displays -> Night Shift</p>
+<p>3，安装 Homebrew：根据官网 <a href="https://brew.sh" target="_blank">https://brew.sh</a> 的提示安装：
+    <div class="code">
+        <p>/bin/bash -c "$(curl -fsSL http://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</p>
+        <p><div class="code"><p class="comment">可能需要安装：xcode-select --install</p></div></p>
+        <p>
+            <div class="code">
+                <p class="comment">如果出现：<br />curl: (7) Failed to connect to raw.githubusercontent.com port 80: Connection refuse</p>
+                <p class="comment">vim /etc/hosts，添加：199.232.68.133  raw.githubusercontent.com</p>
+            </div>
+        </p>
+        <p>
+            <div class="code">
+                <p class="comment">如果出现下面错误：<br />error: Not a valid ref: refs/remotes/origin/master <br /> fatal: ambiguous argument 'refs/remotes/origin/master': unknown revision or path not in the working tree.</p>
+                <p class="comment">删除 .git 目录：rm -rf /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/.git/</p>
+            </div>
+        </p>
+    </div>
+</p>
+<p style="text-align: center;">
+    <a href="images/article/article5.00.png" data-fancybox>
+        <img src="images/article/article5.00.png" width="835" />
+    </a>
+</p>
+<p>4，</p>
+<p>5，</p>
+<br />
+
+
+<p class="title">二，常用命令：</p>
 <p>1，查看文件大小：du -sh *</p>
 <p>2，下载：curl -L -O http://…….tar.gz（解压：tar -vxf …….tar.gz）</p>
 <p>3，上传单个文件到服务器：scp test.html root@1.2.3.4:/home</p>
@@ -47,7 +84,7 @@
 <br />
 
 
-<p class="title">二，SFTP 文件上传</p>
+<p class="title">三，SFTP 文件上传</p>
 <p>1，先在本地ls能看到的文件夹</p>
 <p>2，进入目标：sftp root@139.198.15.189:/home/file/legongzhulian.com</p>
 <p>3，将本地的文件夹拷贝到目标：put -r legongzhulian.com/.</p>
@@ -180,8 +217,8 @@
         <img src="images/article/article5.02.png" width="835" />
     </a>
 </p>
-<br />
-                <h4>2021-11-07 07:52:00</h4>
+<br /></div>
+                <h4>2021-11-27 19:31:07</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
