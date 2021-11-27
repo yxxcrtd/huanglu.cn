@@ -56,7 +56,7 @@
 <br />
 
 
-<p class="title">二，Docker 安装 SonarQube</p>
+<p class="title">三，Docker 安装 SonarQube</p>
 
 <p>1，安装：<div class="code"><p>docker pull sonarqube:community</p></div></p>
 
@@ -99,10 +99,69 @@
 <br />
 
 
-<p class="title">二，SonarQube 安装 中文语言包</p>
-<p>1，Administration -> Marketplace -> 搜索 chinese -> Install -> 浏览器中的 Restart</p>
+<p class="title">四，SonarQube 手动安装</p>
+<p>1，官网：<a href="https://www.sonarqube.org/downloads/" target="_blank">https://www.sonarqube.org/downloads/</a></p>
+<p>2，下载：<div class="code"><p>wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.2.0.49834.zip --no-check-certificate</p></div></p>
+<p>3，解压：<div class="code"><p>unzip sonarqube-9.2.0.49834.zip</p><p>mv sonarqube-9.2.0.49834 sonarqube-9.2.0</p></div></p>
+<p>4，添加用户并修改密码：<div class="code"><p>useradd sonarqube</p><p>passwd sonarqube</p></div></p>
+<p>5，将 sonarqube-9.2.0 所有文件放入刚刚建立的用户文件夹：sonarqube<div class="code"><p>mv sonarqube-9.2.0 sonarqube</p></div></p>
+<p>6，进入 sonarqube 用户：<div class="code"><p>su sonarqube</p></div></p>
+<p>7，修改配置文件：
+    <div class="code">
+        <p>vim /home/sonarqube/sonarqube-9.2.0/conf/sonar.properties</p>
+        <div class="code">
+            <p class="comment">打开以下注释，并做相应的修改：</p>
+            <p>sonar.jdbc.username=sonar</p>
+            <p>sonar.jdbc.password=sonar</p>
+            <p>sonar.jdbc.url=jdbc:postgresql://192.168.1.2:15432/sonar</p>
+            <p>sonar.web.port=9000</p>
+        </div>
+    </div>
+</p>
+<br />
+
+问题1:
+Error: Could not create the Java Virtual Machine.
+Unrecognized option: --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+
+wrapper.java.command=/home/jdk11/bin/java
+
+问题2：max number of threads [1024] for user [sonarqube] is too low, increase to at least [4096]
+
+解决：退出sonarqube 用户，用root用户编辑： vim /etc/security/limits.conf
+
+* soft nofile 65536
+* hard nofile 131072
+* soft nproc 4096
+* hard nproc 10240
+
+sonarqube soft nproc 4096
+
+然后进入 sonarqube 用户：su sonar，检查
+ulimit -Hu -- 这里应该是10240
+ulimit -Su -- 这里应该是4096
+
+
+问题3:You must address the points described in the following [1] lines before starting Elasticsearch.
+解决：vim /home/sonarqube/sonarqube-9.2.0/conf/sonar.properties，在最后添加：
+sonar.search.javaAdditionalOpts=-Dbootstrap.system_call_filter=false
+
+问题4：-Dcom.redhat.fips=false -Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError
+
+sonar.web.javaOpts=-Xmx3G -Xms3G -XX:+HeapDumpOnOutOfMemoryError
+sonar.ce.javaOpts=-Xmx3G -Xms3G -XX:+HeapDumpOnOutOfMemoryError
+
+
+
+
+
+
+<div class="code"><p>123</p></div>
+
+<p class="title">五，SonarQube 安装插件</p>
+<p>1，中文插件：Administration -> Marketplace -> 搜索 chinese -> Install -> 浏览器中的 Restart</p>
 <br /></div>
-                <h4>2021-11-13 17:01:55</h4>
+                <h4>2021-11-27 09:11:44</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

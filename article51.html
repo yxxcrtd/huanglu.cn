@@ -88,10 +88,10 @@
         <p><span class="comment">由于 Oracle 没有库名，只有表空间。查询所有表空间：select * from v$tablespace;</span></p>
     </div>
 </p>
-<p>2，创建表空间：<div class="code"><p>create tablespace <span class="red">temp_data</span> logging datafile '<span class="red">temp_data</span>.dbf' size 512m autoextend on next 512m maxsize 5120m extent management local;</p></div></p>
+<p>2，创建表空间：<div class="code"><p>create tablespace temp_data logging datafile 'temp_data.dbf' size 512m autoextend on next 512m maxsize 5120m extent management local;</p></div></p>
 <p>3，创建用户：
     <div class="code">
-        <p>create user <span class="red">temp</span> identified by <span class="red">123456</span> default tablespace <span class="red">temp_data</span>;</p>
+        <p>create user temp identified by 123456 default tablespace temp_data;</p>
         <p><span class="comment">修改密码：alter user temp identified by 123456;</span></p>
     </div>
 </p>
@@ -105,7 +105,9 @@
         <p><span class="comment">验证授权：sqlplus temp/123456;</span></p>
     </div>
 </p>
+<p>5，修改密码：<div class="code"><p>alter user test identified by 123456;</p></div></p>
 <br />
+
 
 
 <p class="title">三，使用 imp 命令把本地的数据库 dmp 文件导入到本地或远程的 Oracle 数据库中</p>
@@ -142,7 +144,7 @@
     </div>
 </p>
 <br /></div>
-                <h4>2021-11-15 19:09:18</h4>
+                <h4>2021-11-22 17:57:09</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
