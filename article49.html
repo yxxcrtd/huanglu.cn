@@ -34,7 +34,35 @@
                         SonarQube (以前叫 Sonar ) 是一个开源的代码质量管理平台, 专用于持续集成分析和测量技术质量，从项目的组合到方法。
                     </p>
                 </div>
-                <div><p class="title">一，配置 PostgreSQL 数据库</p>
+                <div><p class="title">一，Linux CentOS7 下安装 SonarQube 7.8（SonarQube 从 7.9 开始需要 Java 11 且不支持 MySQL 了）</p>
+<p>1，官网：<a href="https://www.sonarqube.org/downloads/" target="_blank">https://www.sonarqube.org/downloads/</a></p>
+<p>2，下载：<div class="code"><p>wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip --no-check-certificate</p></div></p>
+<p>3，解压：<div class="code"><p>unzip sonarqube-7.8.zip</p></div></p>
+<p>4，添加用户并修改密码：<div class="code"><p>useradd sonar</p><p>passwd sonar</p></div></p>
+<p>5，将 sonarqube-7.8 移到刚刚建立的用户文件夹：sonar<div class="code"><p>mv sonarqube-7.8 sonar</p></div></p>
+<p>6，授权：<div class="code"><p>chown -R sonar:sonar /home/sonar</p></div></p>
+<p>7，进入 sonar 用户：<div class="code"><p>su sonar</p></div></p>
+<p>8，修改配置文件：
+    <div class="code">
+        <p>vim /home/sonarqube/sonarqube-9.2.0/conf/sonar.properties</p>
+        <div class="code">
+            <p class="comment">打开以下注释，并做相应的修改：</p>
+            <p>sonar.jdbc.username=sonar</p>
+            <p>sonar.jdbc.password=sonar</p>
+            <p>sonar.jdbc.url=jdbc:postgresql://192.168.1.2:15432/sonar</p>
+            <p>sonar.web.port=9000</p>
+        </div>
+    </div>
+</p>
+<br />
+
+
+
+
+
+
+
+<p class="title">一，配置 PostgreSQL 数据库</p>
 <p>1，创建登录的用户和角色（含密码）</p>
 <div class="code">
     <p>DROP USER IF EXISTS sonar;</p>
@@ -99,26 +127,6 @@
 <br />
 
 
-<p class="title">四，SonarQube 手动安装</p>
-<p>1，官网：<a href="https://www.sonarqube.org/downloads/" target="_blank">https://www.sonarqube.org/downloads/</a></p>
-<p>2，下载：<div class="code"><p>wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.2.0.49834.zip --no-check-certificate</p></div></p>
-<p>3，解压：<div class="code"><p>unzip sonarqube-9.2.0.49834.zip</p><p>mv sonarqube-9.2.0.49834 sonarqube-9.2.0</p></div></p>
-<p>4，添加用户并修改密码：<div class="code"><p>useradd sonarqube</p><p>passwd sonarqube</p></div></p>
-<p>5，将 sonarqube-9.2.0 所有文件放入刚刚建立的用户文件夹：sonarqube<div class="code"><p>mv sonarqube-9.2.0 sonarqube</p></div></p>
-<p>6，进入 sonarqube 用户：<div class="code"><p>su sonarqube</p></div></p>
-<p>7，修改配置文件：
-    <div class="code">
-        <p>vim /home/sonarqube/sonarqube-9.2.0/conf/sonar.properties</p>
-        <div class="code">
-            <p class="comment">打开以下注释，并做相应的修改：</p>
-            <p>sonar.jdbc.username=sonar</p>
-            <p>sonar.jdbc.password=sonar</p>
-            <p>sonar.jdbc.url=jdbc:postgresql://192.168.1.2:15432/sonar</p>
-            <p>sonar.web.port=9000</p>
-        </div>
-    </div>
-</p>
-<br />
 
 问题1:
 Error: Could not create the Java Virtual Machine.
@@ -161,7 +169,7 @@ sonar.ce.javaOpts=-Xmx3G -Xms3G -XX:+HeapDumpOnOutOfMemoryError
 <p class="title">五，SonarQube 安装插件</p>
 <p>1，中文插件：Administration -> Marketplace -> 搜索 chinese -> Install -> 浏览器中的 Restart</p>
 <br /></div>
-                <h4>2021-11-27 09:13:21</h4>
+                <h4>2021-11-29 20:51:26</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

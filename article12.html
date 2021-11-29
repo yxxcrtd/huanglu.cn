@@ -28,7 +28,13 @@
         <article>
             <div id="articleDetail">
                 <h2>Nginx 基础</h2>
-                <p class="title">一，Linux 6,7 下的安装依赖</p>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        Nginx("engine x")是一款是由俄罗斯的程序设计师 Igor Sysoev 所开发高性能的 Web 和 反向代理 服务器，它的特点：安装简单、配置文件简洁、Bug 少、启动容易、几乎7*24不间断运行、几乎不需要重启。
+                    </p>
+                </div>
+                <div><p class="title">一，Linux 6,7 下的安装依赖</p>
 <div class="code">
     <p>yum -y install pcre-devel openssl openssl-devel libssl-dev gcc-c++</p>
 </div>
@@ -138,6 +144,12 @@
         <img src="images/article/article12.01.png" width="800" />
     </a>
 </p>
+<p>2，CentOS 7 配置文件服务器</p>
+<div class="code">
+    <p>vim /etc/nginx/conf.d/default.conf</p>
+    <div class="code"><p class="comment">在 location 中增加3个：autoindex 配置，并修改 root 的目录</p><p>autoindex on;</p><p>autoindex_exact_size on;</p><p>autoindex_localtime on;</p><p>root   /home/wwwfile</p></div>
+    <div class="code"><p class="comment">关闭 SElinux</p><p>setenforce 0</p></div>
+</div>
 <br />
 
 
@@ -235,8 +247,8 @@
 <p class="title">十，配置 https - 4，其他配置：</p>
 <p>1，重启 Nginx：<div class="code"><p>systemctl restart nginx</p></div></p>
 <p>2，添加防火墙规则：<div class="code"><p>firewall-cmd --zone=public --add-port=443/tcp --permanent</p></div></p>
-<br />
-                <h4>2021-11-07 10:55:31</h4>
+<br /></div>
+                <h4>2021-11-29 20:51:32</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
