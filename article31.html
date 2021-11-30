@@ -28,7 +28,13 @@
         <article>
             <div id="articleDetail">
                 <h2>DB2 基础</h2>
-                <p class="title">一，Linux 下安装 DB2</p>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        DB2 是 IBM开发的一种大型关系型数据库平台。它以拥有一个非常完备的查询优化器而著称，其外部连接改善了查询性能，并支持多任务并行查询。具有很好的网络支持能力，对大型分布式应用系统尤为适用。
+                    </p>
+                </div>
+                <div><p class="title">一，Linux 下安装 DB2</p>
 <p>1，root 用户下创建用户组、用户以及修改密码：
     <div class="code">
         <p class="comment">1.1，创建用户组：
@@ -275,6 +281,7 @@
     <div class="code"><p>db2 drop db test</p></div>
     <p>成功会显示：DB20000I  The DROP DATABASE command completed successfully.</p>
 </p>
+<p>4，显示所有数据库：<div class="code"><p>db2 drop db TICMDB</p></div></p>
 <br />
 
 
@@ -354,8 +361,8 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p class="title">十，数据库超过最大的连接数200，报错：待定于协议的错误代码 数据不足[ibm][db2][jcc][t4][2030][11211] ERRORCODE=-4499, SQLSTATE=08001</p>
 <p>1，查看指定数据库配置（为了前后对比）：<div class="code"><p>db2 get db cfg for yourdb</p></div></p>
 <p>2，修改数据库连接：<div class="code"><p>db2 update db cfg for yourdb using MAXAPPLS 1000</p></div></p>
-<br />
-                <h4>2021-11-07 09:55:53</h4>
+<br /></div>
+                <h4>2021-11-30 10:21:03</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
