@@ -147,7 +147,7 @@
 <p>2，CentOS 7 配置文件服务器</p>
 <div class="code">
     <p>vim /etc/nginx/conf.d/default.conf</p>
-    <div class="code"><p class="comment">在 location 中增加3个：autoindex 配置，并修改 root 的目录</p><p>autoindex on;</p><p>autoindex_exact_size on;</p><p>autoindex_localtime on;</p><p>root   /home/wwwfile</p></div>
+    <div class="code"><p class="comment">1，在 location 中增加3个：autoindex 配置；2，修改 root 的目录</p><p>autoindex on;</p><p>autoindex_exact_size on;</p><p>autoindex_localtime on;</p><p>root   /home/wwwfile</p></div>
     <div class="code"><p class="comment">关闭 SElinux</p><p>setenforce 0</p></div>
 </div>
 <br />
@@ -248,7 +248,7 @@
 <p>1，重启 Nginx：<div class="code"><p>systemctl restart nginx</p></div></p>
 <p>2，添加防火墙规则：<div class="code"><p>firewall-cmd --zone=public --add-port=443/tcp --permanent</p></div></p>
 <br /></div>
-                <h4>2021-11-29 20:51:32</h4>
+                <h4>2021-11-30 07:22:55</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
