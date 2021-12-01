@@ -242,8 +242,9 @@
 <p>4，强制关闭所有数据库实例：<div class="code"><p>db2 force application all</p></div></p>
 <p>5，<span class="red">快速</span>执行下面的备份命令，否则数据库会自动重连：
     <div class="code">
-        <p>db2 backup db dbbak to /home/backup</p>
-        <p>备份成功后会显示：Backup successful. The timestamp for this backup image is : 20200401160847</p>
+        <p>db2 backup db dbbak to /home/db2inst1</p>
+        <p class="comment"> dbbak：是当前数据库的名称</p>
+        <p class="comment">备份成功后会显示：Backup successful. The timestamp for this backup image is : 20200401160847</p>
     </div>
 </p>
 <br />
@@ -254,12 +255,20 @@
 <p>
     2，还原：
     <div class="code">
-        <p>db2 restore db dbbak from /home/backup taken at <span class="red">20200401160847</span> into dbbak01</p>
+        <p>db2 restore db <span class="red">dbbak</span> from <span class="red">/home/db2inst1</span> taken at <span class="red">20200401160847</span> into dbbak01</p>
         <p class="comment">注意1：必须在数据库用户下：su - db2inst1</p>
-        <p class="comment">注意2：db2用户必须要有数据库恢复文件的权限：chmod 777 /home/backup -R</p>
+        <p class="comment">注意2：dbbak 是备份库的名称</p>
         <p class="comment">注意3：其中的 <span class="red">20200401160847</span> 是要还原的数据库文件</p>
         <p class="comment">注意4：dbbak01 是新库名称（<span class="red">名称不能超过8个字符</span>）</p>
         <p class="comment">注意5：还原成功后会显示：DB20000I  The RESTORE DATABASE command completed successfully.</p>
+    </div>
+</p>
+<p>
+    3，还原其他备份的库：
+    <div class="code">
+        <p>chown -R db2inst1:db2iadm1 数据库备份文件</p>
+        <p class="comment">注意1：备份文件拷贝到：/home/db2inst1</p>
+        <p class="comment">注意2：改变备份文件的用户权限组</p>
     </div>
 </p>
 <br />
@@ -362,7 +371,7 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p>1，查看指定数据库配置（为了前后对比）：<div class="code"><p>db2 get db cfg for yourdb</p></div></p>
 <p>2，修改数据库连接：<div class="code"><p>db2 update db cfg for yourdb using MAXAPPLS 1000</p></div></p>
 <br /></div>
-                <h4>2021-11-30 10:24:03</h4>
+                <h4>2021-11-30 11:20:15</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>

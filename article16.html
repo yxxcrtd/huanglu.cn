@@ -28,7 +28,13 @@
         <article>
             <div id="articleDetail">
                 <h2>Jenkins 基础</h2>
-                <p class="title">一，Linux CentOS 6 下安装 Jenkins</p>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        Jenkins 是开源 CI&CD 软件领导者， 提供超过1000个插件来支持构建、部署、自动化， 满足任何项目的需要。
+                    </p>
+                </div>
+                <div><p class="title">一，Linux CentOS 6 下安装 Jenkins</p>
 <p>1，下载repo仓库：wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo<span class="red">（如果无法下载：则添加：--no-check-certificate）</span></p>
 <p>2，导入公钥：rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</p>
 <p>3，安装：yum -y install jenkins</p>
@@ -101,7 +107,7 @@
 
 <p class="title">五，Jenkins 运行</p>
 <p>1，启动一：<div class="code"><p>service jenkins start --httpPort=8081</p></div></p>
-<p>2，启动二：<div class="code"><p>java -jar /usr/lib/jenkins/jenkins.war --httpPort=8081</p></div></p>
+<p>2，启动二：<div class="code"><p>nohup java -jar /usr/lib/jenkins/jenkins.war --httpPort=8081 &</p></div></p>
 <br />
 
 
@@ -273,8 +279,8 @@
 <p>，</p>
 <p>，</p>
 <p>，</p>
-<br />
-                <h4>2021-11-07 07:51:50</h4>
+<br /></div>
+                <h4>2021-12-01 08:21:47</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
