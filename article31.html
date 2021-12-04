@@ -269,6 +269,7 @@
         <p>chown -R db2inst1:db2iadm1 数据库备份文件</p>
         <p class="comment">注意1：备份文件拷贝到：/home/db2inst1</p>
         <p class="comment">注意2：改变备份文件的用户权限组</p>
+        <p class="comment">注意3：如果出现：SQL1051N  The path "***" does not exist or is not valid. ，则需要创建相应的目录，然后将备份文件拷贝进去，然后授权：chown -R db2inst1:db2iadm1 备份文件，还需要给之前的用户授权：</p>
     </div>
 </p>
 <br />
@@ -322,7 +323,12 @@ EOF <br />
 
 <p>2，将 shell 脚本加入到系统的定时任务中，在终端执行：<span class="red">crontab -e</span>，每天凌晨1点执行 shell 脚本<div class="code"><p>0 1 * * * /root/backup.sh</p></div></p>
 
-<p>3，重启系统的定时任务，在终端执行：<div class="code"><p>service crond restart</p></div></p>
+<p>3，重启系统的定时任务，在终端执行：
+    <div class="code">
+        <p><span  class="comment">CentOS 6：</span><br />service crond restart</p>
+        <p><span  class="comment">CentOS 7：</span><br />systemctl restart crond</p>
+    </div>
+</p>
 <br />
 
 
@@ -345,9 +351,11 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
     <div class="code"><p>0 2 * * * /home/delbackup.sh</p></div>
 </p>
 
-<p>
-    3，重启系统的定时任务，在终端执行：
-    <div class="code"><p>service crond restart</p></div>
+<p>3，重启系统的定时任务，在终端执行：
+    <div class="code">
+        <p><span  class="comment">CentOS 6：</span><br />service crond restart</p>
+        <p><span  class="comment">CentOS 7：</span><br />systemctl restart crond</p>
+    </div>
 </p>
 <br />
 
@@ -371,7 +379,7 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p>1，查看指定数据库配置（为了前后对比）：<div class="code"><p>db2 get db cfg for yourdb</p></div></p>
 <p>2，修改数据库连接：<div class="code"><p>db2 update db cfg for yourdb using MAXAPPLS 1000</p></div></p>
 <br /></div>
-                <h4>2021-11-30 11:20:15</h4>
+                <h4>2021-12-03 16:11:59</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
