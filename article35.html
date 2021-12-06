@@ -28,7 +28,13 @@
         <article>
             <div id="articleDetail">
                 <h2>Docker 安装 Jmeter + InfluxDB + Grafana</h2>
-                <p class="title">一，创建InfluxDB的宿主目录文件夹：</p>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        InfluxDB 是一个由 InfluxData 开发的开源时序型数据库，专注于海量时序数据的高性能读、高性能写、高效存储与实时分析等，广泛应用于DevOps监控、IoT监控、实时分析等场景。
+                    </p>
+                </div>
+                <div><p class="title">一，创建InfluxDB的宿主目录文件夹：</p>
 <p><div class="code"><p>mkdir -pv /home/docker/influxdb -m 777</p></div></p>
 <br />
 
@@ -116,11 +122,11 @@
 <br />
 
 
-<p class="title">十，JMeter 配置使用</p>
+<p class="title">十，Windows 下 JMeter 5.4.1 配置使用</p>
 <p>
     <div class="code">
-        <p>1，Windows 下启动：打开 bin 目录下的 jmeter.bat</p>
-        <p>2，界面中文配置：选项  -> 选择语言</p>
+        <p>1，Windows 下不用配置环境变量，直接打开 bin 目录下的 jmeter.bat</p>
+        <p>2，中文配置：修改 /bin/jmeter.properties，将 39 行的 language 注释打开，将 en 改成：zh_CN</p>
         <p>3，JMeter 响应数据乱码：vim /jmeter/bin/jmeter.properties，将 sampleresult.default.encoding 注释打开，改成utf-8，重启 Jmeter</p>
         <p>4，</p>
         <p>5，</p>
@@ -140,8 +146,8 @@
     <a href="images/article/article35.02.png" data-fancybox>
         <img src="images/article/article35.02.png" width="835" />
     </a>
-</p>
-                <h4>2021-11-08 07:54:02</h4>
+</p></div>
+                <h4>2021-12-06 21:03:29</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
