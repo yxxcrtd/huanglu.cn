@@ -304,8 +304,9 @@
 #!/bin/sh <br />
  <br />
 # Delete 30 days before <br />
-find /home/backup/ -mtime +30 -name "*.001" -exec rm -rf {} \; <br /> <br />
+find /home/db2backup/ -mtime +30 -name "*.001" -exec rm -rf {} \; <br /> <br />
 
+# Backup database
 su - db2inst1 &lt;&lt;EOF <br />
 db2 force application all <br />
 db2 backup db RBDB to /home/backup <br />
@@ -316,6 +317,18 @@ else <br />
    &nbsp;&nbsp;&nbsp;&nbsp;echo 'Backup Successful!' <br />
 fi <br />
 EOF <br />
+<br />
+
+# scp <br />
+var_date=$(date "+%Y%m%d") <br />
+# scp /home/db2backup/数据库名称.0.db2inst1.DBPART000.$var_date* root@192.168.1.2:/home/db2backup <br />
+<br />
+
+# ftp （提前安装 lftp：yum -y install lftp）<br />
+lftp ftp用户名:ftp密码@192.168.1.2 &lt;&lt;EOF <br />
+cd /backup <br />
+mput /home/db2backup/* <br />
+EOF
 
 </p>
     </div>
@@ -379,7 +392,7 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p>1，查看指定数据库配置（为了前后对比）：<div class="code"><p>db2 get db cfg for yourdb</p></div></p>
 <p>2，修改数据库连接：<div class="code"><p>db2 update db cfg for yourdb using MAXAPPLS 1000</p></div></p>
 <br /></div>
-                <h4>2021-12-05 08:55:01</h4>
+                <h4>2021-12-08 07:56:56</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
