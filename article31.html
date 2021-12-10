@@ -177,17 +177,9 @@
             </div>
         </p>
 
-        <p class="comment">8.3，修改密码：
-            <div class="code">
-                <p>passwd <span class="red">test</span></p>
-            </div>
-        </p>
+        <p class="comment">8.3，修改密码：<div class="code"><p>passwd <span class="red">test</span></p></div></p>
 
-        <p class="comment">8.4，修改用户的访问权限：
-            <div class="code">
-                <p>chmod 777 /home/db2inst1/ -R</p>
-            </div>
-        </p>
+        <p class="comment">8.4，修改用户的访问权限：<div class="code"><p>chmod 777 /home/db2inst1/ -R</p></div></p>
 
         <p class="comment">8.5，切换用户，查看有没有访问权限：
             <div class="code">
@@ -213,21 +205,27 @@
             </div>
         </p>
 
-        <p class="comment">9.2，查看所有数据库：
+        <p class="comment">9.2，创建 schema：
             <div class="code">
-                <p>db2 list db directory</p>
+                <p>create schema <span class="red">myschema</span></p>
             </div>
         </p>
 
-        <p class="comment">9.3，连接数据库：
+        <p class="comment">9.3，查看所有数据库：
             <div class="code">
-                <p>db2 connect to <span class="red">testdb</span> user <span class="red">test</span> using <span class="red">123456</span></p>
+                <p>db2 list db directory</p>
             </div>
         </p>
 
         <p class="comment">9.4，查看所有表：
             <div class="code">
                 <p>db2 list tables</p>
+            </div>
+        </p>
+
+        <p class="comment">9.5，连接数据库：
+            <div class="code">
+                <p>db2 connect to <span class="red">testdb</span> user <span class="red">test</span> using <span class="red">123456</span></p>
             </div>
         </p>
     </div>
@@ -391,8 +389,13 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p class="title">十，数据库超过最大的连接数200，报错：待定于协议的错误代码 数据不足[ibm][db2][jcc][t4][2030][11211] ERRORCODE=-4499, SQLSTATE=08001</p>
 <p>1，查看指定数据库配置（为了前后对比）：<div class="code"><p>db2 get db cfg for yourdb</p></div></p>
 <p>2，修改数据库连接：<div class="code"><p>db2 update db cfg for yourdb using MAXAPPLS 1000</p></div></p>
+<br />
+
+
+<p class="title">十一，如果表的日志空间满了</p>
+<p><div class="code"><p>db2 update db cfg for 数据库名称 using LOGFILSIZ 10240;</p></div></p>
 <br /></div>
-                <h4>2021-12-08 07:56:56</h4>
+                <h4>2021-12-10 15:33:07</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
