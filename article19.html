@@ -60,41 +60,37 @@
 <br />
 
 
-<p class="title">三，MacOS 安装 PostgreSQL 数据库</p>
+
+<p class="title">三，Mac 安装 PostgreSQL 数据库</p>
 <p>1，安装：brew install postgresql，安装之后默认服务是启动的，无需启动，启动方法：brew services start/stop/restart postgresql</p>
 <p>2，查看版本：pg_ctl -V</p>
-<p>3，登录终端：（当前用户就是超级用户，类似默认的：postgres）：psql -U young -h localhost -d postgres -p 15432</p>
-<p>4，修改密码：\password（localhost-young-123456-postgres；localhost-home-123456-home）</p>
-<p>5，安装位置：/usr/local/var/postgres</p>
-<p>6，配置文件：/usr/local/var/postgres/postgresql.conf</p>
-<p>7，启动：/usr/local/var/postgres start</p>
-<p>8，退出终端：\q</p>
+<p>3，登录终端：（当前用户就是超级用户，相当于默认的：postgres）：psql -U yxx -h localhost -d postgres -p 15432</p>
+<p>4，修改密码：\password</p>
+<p>5，退出终端：\q</p>
+<p>6，打开数据库连接监听地址和端口的注释：vim /usr/local/var/postgres/postgresql.conf</p>
+<p>7，增加访问权限：vim /usr/local/var/postgres/pg_hba.conf，在 ipv4下添加：host 	all 		all 		0.0.0.0/0		md5</p>
+<p>8，修改以上2个配置后需要重启数据库服务：brew services restart postgresql</p>
+<p>9，使用客户端连接</p>
+<p>10，使用管理员账号（当前系统登录用户就是超级用户）创建一个空的数据库，详见每个项目的数据库脚本</p>
 <br />
 
 
-<p class="title">四，MacOS 备份 PostgreSQL 数据库</p>
-<p>1，终端直接执行：
-    <div class="code">
-        <p>pg_dump -p 15432 -C home > /Users/young/Desktop/20211113.sql</p>
-        <p><span class="comment"> home：数据库名称</span></p>
-    </div>
-</p>
-<br />
-
-
-<p class="title">五，Linux 下 PostgreSQL 数据库备份</p>
+<p class="title">四，PostgreSQL 数据库备份</p>
 <p>1，进入 postgres 用户：<div class="code"><p>su - postgres</p></div></p>
 <p>2，备份：
     <div class="code">
         <p>pg_dump -p 端口号 -C 数据库名称 > 备份文件名.sql</p>
-        <p><span class="comment">备份文件位置：/var/lib/pgsql/</span></p>
+        <p>
+            <span class="comment">默认备份文件位置：/var/lib/pgsql/</span><br/>
+            <span class="comment">Mac下范例：pg_dump -p 15432 -C home > /Users/yxx/Desktop/20211216.sql</span>
+        </p>
     </div>
 </p>
 <p>3，其他备份方式：<div class="code"><p>/usr/pgsql-10/bin/pg_dump -h 1.2.3.4 -p 9839 -U pgis pgis > 181.bak</p></div></p>
 <br />
 
 
-<p class="title">六，PostgreSQL 数据库还原</p>
+<p class="title">五，PostgreSQL 数据库还原</p>
 <div class="code">
     <p>1，进入 postgres 用户：su - postgres</p>
     <p>2，Mac下还原Linux备份的数据库：psql -p 15432 -e zjasset < zjasset20210401.sql  <span class="comment">（先进入sql所在的文件夹）</span></p>
@@ -102,7 +98,9 @@
 <br />
 
 
-<p class="title">七，基础查询</p>
+
+
+<p class="title">六，基础查询</p>
 <p>1，数据库版本：select version(); 输出：”PostgreSQL 8.4.0, compiled by Visual C++ build 1400, 32-bit” </p>
 <p>2，当前日期：select current_date; 输出：”2020-02-07” </p>
 <p>3，当前时间：select now(); 输出：”2009-11-28 21:49:18.125+08” </p>
@@ -189,7 +187,7 @@
     </a>
 </p>
 <br /></div>
-                <h4>2021-11-13 17:01:36</h4>
+                <h4>2021-12-16 08:55:40</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
