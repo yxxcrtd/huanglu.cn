@@ -45,7 +45,7 @@
 
 <p class="title">二，常用设置</p>
 <p>1，隐藏某些文件：Settings -> 输入：file exclude -> 当个文件是：.idea；文件夹是：**/out</p>
-<p>2，禁用/启用小地图：Settings -> Text Editor -> Minimap -> Enabled</p>
+<p>2，禁用/启用小地图：Settings -> Text Editor -> Minimap -> Enabled  或 菜单栏 view -> Show Minimap</p>
 <p>3，设置微调与建议：Settings -> Text Editor -> Suggestions</p>
 <p>4，遥测技术影响性能：Settings -> Preferences -> Text Editor -> Telemetry</p>
 <p>5，禁用/启用代码透镜：Settings -> Preferences -> Text Editor -> Code lens</p>
@@ -57,43 +57,44 @@
 <p>2，Spring Boot Extension Pack</p>
 <p>3，Lombok</p>
 <p>4，Gradle Extension Pack</p>
-<p>5，Live Server Preview</p>
+<p>5，Git History</p>
 <br />
 
 
-<p class="title">四，配置 JDK</p>
-<p>问题：VSCode 升级后会弹出：很抱歉，激活面向 Java 的 IntelliCode 支持时遇到问题。有关详细信息，请查看“针对 Java 的语言支持”和 “VS IntelliCode” 输出窗口</p>
-<p>4，将插件：Language Support for Java by Red Hat 退到  0.64.1 版本</p>
+<p class="title">四，配置 settings.json</p>
+<p>1，macOS 系统下的配置</p>
+<p style="text-align: center;">
+    <a href="images/article/article50.01.png" data-fancybox>
+        <img src="images/article/article50.01.png" width="835" />
+    </a>
+</p>
+<p>2，Windows 系统下的配置</p>
+<p style="text-align: center;">
+    <a href="images/article/article50.02.png" data-fancybox>
+        <img src="images/article/article50.02.png" width="835" />
+    </a>
+</p>
 <br />
 
 
-<p class="title">五，</p>
-<p></p>
+<p class="title">五，Maven 项目更新（代码更新、jar包导入报错等）</p>
+<p>1，Shift + Command + P -> Maven: Execute Commands... -> 回车 -> 项目名称 -> 回车 -> <span class="red">clean</span></p>
+<p>2，Shift + Command + P -> Maven: Execute Commands... -> 回车 -> 项目名称 -> 回车 -> <span class="red">compile</span></p>
+<p>3，或者终端运行：<div class="code"><p><span class="red">mvnd</span> clean compile -Dquickly</p></div></p>
 <br />
 
 
-<p class="title">六，打开 vscode 创建一个普通的 Java Project</p>
-<p>1，安装插件：Java Extension Pack</p>
-<p>2，设置 JDK：Code -> Preferences -> Settings -> User -> Extensions -> Java -> 找到 Edit in settings.json，添加 Java 的安装地址：</p>
-    <div class="code">
-        <p>
-            <p class="indent">{</p>
-                <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;"java.home": "/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home"</p>
-            <p class="indent">}</p>
-        </p>
-    </div>
-<p>3，创建项目：command + shift + p，输入 creat  -> Create Java Project  -> 选择  -> No build tools  -> 选择存储路径  -> 输入项目名称  -> 重新打开一个窗口  -> 打开项目中 src 下的 App.java</p>
-<p>4，运行 Hello World！</p>
+<p class="title">六，Gradle 项目更新（代码更新、jar包导入报错等）</p>
+<p>方法1，在 EXPLORER 的 JAVA PROJECTS 后面点3个点中找：Clean Workspace -> 右下角点 Restart and delete</p>
+<p>方法2，TODO</p>
 <br />
 
 
-<p class="title">七，配置 Maven</p>
-<p>1，设置中搜索：Java.Configuration.Maven，在 User Settings 中填写 settings.xml 的全路径</p>
-<p>2，file exclude</p>
-<p>，</p>
-<p>，</p>
+<p class="title">七，其他问题</p>
+<p>问题1，VSCode 升级后会弹出：很抱歉，激活面向 Java 的 IntelliCode 支持时遇到问题。有关详细信息，请查看“针对 Java 的语言支持”和 “VS IntelliCode” 输出窗口 ...... <br />
+解决1：将插件：Language Support for Java by Red Hat 退到  0.64.1 版本</p>
 <br /></div>
-                <h4>2021-12-10 15:42:39</h4>
+                <h4>2021-12-31 15:26:22</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
