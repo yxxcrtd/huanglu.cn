@@ -210,7 +210,7 @@
 <p>4，如果说Java 的编辑级别太低，是之前没有删除低版本的Java，先删除：yum -y remove java*。然后编辑：/etc/init.d/jenkins，在之前的Java前加一个自己配置的 java 路径：在 candidates 第一行添加：/home/jdk/bin/java。最后重启 Jenkins 服务即可。</p>
 
 
-<p>5，如果启动的时候显示：Jenkins bash: /usr/bin/java: No such file or directory，建一个软连接：ln -s /home/JDK8/bin/java /usr/bin/java（检查软链接有没有生效： which java）</p>
+<p>5，如果启动的时候显示：Jenkins bash: /usr/bin/java: No such file or directory，建一个软连接：ln -s /home/JDK8/bin/java /usr/bin/java（检查软链接有没有生效： which java）或者编辑：vim /etc/init.d/jenkins，在 candidates="" 的第一行增加：/home/jdk/bin/java</p>
 <br />
 
 
@@ -280,7 +280,7 @@
 <p>，</p>
 <p>，</p>
 <br /></div>
-                <h4>2021-12-01 08:21:47</h4>
+                <h4>2022-01-04 15:59:10</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
