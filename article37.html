@@ -53,30 +53,30 @@
 
 <p>3，增加 Redis 缓存配置类，添加 @Configuration  注解注入配置，让 Spring 自动扫描注入</p>
 <p style="text-align: center;">
-    <a href="images/article/article37.02.png" data-fancybox>
-        <img src="images/article/article37.02.png" width="835" />
+    <a href="images/article/article37.03.png" data-fancybox>
+        <img src="images/article/article37.03.png" width="835" />
+    </a>
+</p>
+
+
+<p>4，在启动类上添加 @EnableCaching 注解，开启 Spring Cache 功能</p>
+<p style="text-align: center;">
+    <a href="images/article/article37.04.png" data-fancybox>
+        <img src="images/article/article37.04.png" width="835" />
+    </a>
+</p>
+
+
+<p>5，在方法上添加 @Cacheable("user")  注解即可</p>
+<p style="text-align: center;">
+    <a href="images/article/article37.05.png" data-fancybox>
+        <img src="images/article/article37.05.png" width="835" />
     </a>
 </p>
 
 
 
 
-package com.example.demo;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-
-@Configuration //使用注解注入配置，必须要添加，这样application.properties中的配置才能在redis中生效，添加@Configuration之后，spring 会自动扫描注入
-public class RedisConf {
-    @Bean //声明一个Bean 这样其他地方可以通过@Autowired获取到生成的 RedisTemplate 对象
-    public RedisTemplate rt(RedisConnectionFactory factory) {
-        RedisTemplate template = new RedisTemplate();
-        template.setConnectionFactory(factory);// 配置连接工厂　　　　　　//设置键值默认序列化方式　　　　 RedisSerializer stringSerializer = new StringRedisSerializer(); //RedisTemplate有自己的默认序列化的方式，不过使用默认方式，会在redis客户端查看的时候出现乱码，不便与使用，我们这里用falstjson库　　　　 template.setDefaultSerializer(stringSerializer);
-        return template;
-    }
-}
 
 
 
@@ -109,7 +109,7 @@ Jedis在实现上是直连redis server，多线程环境下非线程安全（即
 </p>
 
 <br /></div>
-                <h4>Posted: 2022-02-04 17:32:25</h4>
+                <h4>Posted: 2022-02-04 17:54:01</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
