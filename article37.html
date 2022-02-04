@@ -93,25 +93,28 @@
     <p>value：命名</p>
     <p>key：方法中的参数，双引号中以#开头</p>
     <p>unless：当 unless 指定的条件为 true ，方法的返回值就不会被缓存</p>
-    <p>condition：符合条件的才缓存</p>
+    <p>condition：在执行方法之前判断 condition，如果返回true，则查缓存</p>
     <p>sync：表示强制同步执行，同步的好处是后一个线程会读取到前一个缓存的缓存数据，不用再查库了；缺点是：可能会导致死锁。建议高并发下开启！</p>
 </div>
 
 <p>2，@CachePut 缓存更新</p>
 <div class="code">
-    <p>replace</p>
+    <p>condition：在执行完方法后判断 condition，如果返回true，则放入缓存</p>
+    <p>unless：在执行完方法后判断unless，如果返回false，则放入缓存；（即跟condition相反）</p>
 </div>
 
 <p>3，@CacheEvict 缓存删除</p>
 <div class="code">
     <p>allEntries=true 删除全部缓存</p>
+     <p>beforeInvocation=false表示在方法执行之后调用,判断condition，如果返回true，则移除缓存；</p>
 </div>
 
 <p>4，@Caching 复杂的缓存</p>
 <div class="code">
-    <p>replace</p>
+    <p>组合多个Cache注解使用</p>
+    <p>比如新增用户成功后，我们要添加：id -> user；username -> user；email -> user的缓存</p>
 </div></div>
-                <h4>Posted: 2022-02-04 20:15:08</h4>
+                <h4>Posted: 2022-02-04 20:46:33</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
