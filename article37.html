@@ -34,12 +34,14 @@
                         Spring Boot 2.x 整合 Redis
                     </p>
                 </div>
-                <div><p>Spring Boot 2.x 默认使用 Lettuce 连接 redis。Lettuce 在多线程下是线程安全，它基于 Netty 的连接实例（StatefulRedisConnection），可以在多个线程间并发访问，且线程安全，满足多线程环境下的并发访问（即多个线程公用一个连接实例，线程安全），同时它是可伸缩的设计，一个连接实例不够的情况也可以按需增加连接实例。同时支持异步操作。</p>
+                <div><p class="title">一，介绍</p>
+<p class="indent">Spring Boot 2.x 默认使用 Lettuce 连接 redis。Lettuce 在多线程下是线程安全，它基于 Netty 的连接实例（StatefulRedisConnection），可以在多个线程间并发访问，且线程安全，满足多线程环境下的并发访问（即多个线程公用一个连接实例，线程安全），同时它是可伸缩的设计，一个连接实例不够的情况也可以按需增加连接实例。同时支持异步操作。</p>
 
-<p>Jedis 在实现上是直连 redis，在多线程下是非线程安全的（即多个线程对一个连接实例操作，是线程不安全的），除非使用连接池，为每个 Jedis 实例增加物理连接（不支持异步操作），适用 Spring Boot 1.x</p>
+<p class="indent">Jedis 在实现上是直连 redis，在多线程下是非线程安全的（即多个线程对一个连接实例操作，是线程不安全的），除非使用连接池，为每个 Jedis 实例增加物理连接（不支持异步操作），适用 Spring Boot 1.x</p>
 <br />
 
 
+<p class="title">二，配置</p>
 <p>1，添加依赖</p>
 <p class="indent">可以不需要 commons-pool2 依赖（参见官网说明：）</p>
 <p style="text-align: center;">
@@ -65,7 +67,7 @@
 </p>
 
 
-<p>4，在启动类上添加 @EnableCaching 注解，开启 Spring Cache 功能</p>
+<p>4，在启动类上添加 @EnableCaching 注解，开启基于注解的缓存</p>
 <p style="text-align: center;">
     <a href="images/article/article37.04.png" data-fancybox>
         <img src="images/article/article37.04.png" width="835" />
@@ -79,14 +81,37 @@
         <img src="images/article/article37.05.png" width="835" />
     </a>
 </p>
+<br />
 
 
 
+<p class="title">三，注解</p>
+<p>1，@Cacheable 缓存</p>
+<div class="code">
+    <p>将返回值缓存</p>
+    <p>既可应用于方法级别，也可用于类级别</p>
+    <p>value：命名</p>
+    <p>key：方法中的参数，双引号中以#开头</p>
+    <p>unless：当 unless 指定的条件为 true ，方法的返回值就不会被缓存</p>
+    <p>condition：符合条件的才缓存</p>
+    <p>sync：表示强制同步执行，同步的好处是后一个线程会读取到前一个缓存的缓存数据，不用再查库了；缺点是：可能会导致死锁。建议高并发下开启！</p>
+</div>
 
+<p>2，@CachePut 缓存更新</p>
+<div class="code">
+    <p>replace</p>
+</div>
 
+<p>3，@CacheEvict 缓存删除</p>
+<div class="code">
+    <p>allEntries=true 删除全部缓存</p>
+</div>
 
-<br /></div>
-                <h4>Posted: 2022-02-04 18:14:16</h4>
+<p>4，@Caching 复杂的缓存</p>
+<div class="code">
+    <p>replace</p>
+</div></div>
+                <h4>Posted: 2022-02-04 20:15:08</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
