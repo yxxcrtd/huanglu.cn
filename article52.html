@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>Redis 集群</h2>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        Redis 集群是 Redis 提供的分布式 数据库 方案，集群通过分片 (sharding)来实现数据共享，并提供复制和故障转移。
+                    </p>
+                </div>
+                <div><p class="title">一，环境搭建</p>
+<p>1，Redis 集群至少需要3个主节点，3个从节点。生产环境推荐使用6台服务器。</p>
+<p>2，安装参考：<a href="http://huanglu.cn/article11" target="_blank">Redis 基础</a></p>
+<p>3，编辑6个配置文件：vim redis.conf，修改3个配置即可</p>
+<div class="code">
+    <p>#bind 127.0.0.1</p>
+    <p>protected-mode no</p>
+    <p>cluster-enabled yes</p>
+</div>
+<p>4，启动6个redis：<div class="code"><p>/home/redis/src/redis-server /home/redis/redis.conf &</p></div></p>
+<p>5，至此6个节点没有关联，创建集群：<div class="code"><p>redis-cli --cluster create --cluster-replicas 1 192.168.90.82:6379 192.168.90.83:6379 192.168.90.84:6379 192.168.90.219:6379 192.168.70.207:6379 192.168.70.208:6379</p><p><span class="comment">如果有密码，可以通过-a传参</span></p></div></p>
+<p style="text-align: center;">
+    <a href="images/article/article52.01.png" data-fancybox>
+        <img src="images/article/article52.01.png" width="835" />
+    </a>
+</p>
+<br /></div>
+                <h4>Posted: 2022-03-16 20:50:00</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.6.0.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
