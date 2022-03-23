@@ -400,16 +400,16 @@ find /home/backup/ -mtime +7 -name "*.001" -exec rm -rf {} \;<br />
 <p class="title">十二，数据库系统信号量超过限制，出现：SQL0902C  A system error occurred. Subsequent SQL statements cannot be processed. IBM software support reason code: "".  SQLSTATE=58005</p>
 <p>
     <div class="code">
-        <p class="comment">使用下面命令查看当前的信号量：会显示：132 或 260（128 + 4 或 256 + 4）</p>
-        <p>ipcs -s | wc -l</p>
-        <p class="comment">限制的信号量：</p>
+        <p class="comment">查看系统总信号量：（max number of arrays = ？）</p>
         <p>ipcs -l</p>
-        <p class="comment">解决办法：重启db2服务器，使用下面的命令释放信号量：</p>
-        <p>sysctl -w kernel.sem="250 32000 100 <span class='red'> 256</span>"</p>
+        <p class="comment">查看系统当前信号量：</p>
+        <p>ipcs -s | wc -l</p>
+        <p class="comment">如果：当前信号量 > 系统总信号量：</p>
+        <p>sysctl -w kernel.sem="250 32000 100 <span class='red'> 512</span>"</p>
     </div>
 </p>
 <br /></div>
-                <h4>Posted: 2022-03-21 21:38:11</h4>
+                <h4>Posted: 2022-03-23 08:53:38</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
