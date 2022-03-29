@@ -28,7 +28,13 @@
         <article>
             <div id="articleDetail">
                 <h2>MySQL 基础</h2>
-                <p class="title">一，Linux CentOS 6 下的安装</p>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        MySQL是一个关系型数据库管理系统，由瑞典 MySQL AB 公司开发，是最流行的关系型数据库管理系统之一。
+                    </p>
+                </div>
+                <div><p class="title">一，Linux CentOS 6 下的安装</p>
 <p>1，安装：yum -y install mysql mysql-server mysql-devel</p>
 <p>2，修改字符集：vim /etc/my.cnf，在[mysqld]中添加：default-character-set=utf8</p>
 <p>3，设置开机启动：chkconfig mysqld on</p>
@@ -211,14 +217,16 @@
 <p class="title">十一，创建数据库</p>
 <p>1，CREATE DATABASE jira DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci</p>
 <p>2，验证：show create database jira; 如果出现utf8mb4，OK。</p>
+<p>3，创建新用户，并授权只能访问刚刚创建的数据库：grant all privileges on test.* to 'test'@'%' identified by '123456' with grant option;</p>
+<p>4，flush privileges;</p>
 <br />
 
 
 
 <p class="title">十二，MySQL 5.6 修改密码</p>
 <p>1，update user set password=password(‘123456’) where user=’root’;</p>
-<p>2，flush privileges;</p>
-                <h4>2021-11-07 11:20:31</h4>
+<p>2，flush privileges;</p></div>
+                <h4>Posted: 2022-03-29 09:53:30</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
