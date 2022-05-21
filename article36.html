@@ -28,7 +28,13 @@
         <article>
             <div id="articleDetail">
                 <h2>Linux CentOS 8.2 新服务器配置（dnf 方式安装 Nginx + PostgreSQL 13 + Git）</h2>
-                <p class="title">一，Linux CentOS 8.2 基本操作</p>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        PostgreSQL13兼具NoSQL特性，支持两种JSON数据类型：json和jsonb，并自带流复制的实时备份和读写分离功能。
+                    </p>
+                </div>
+                <div><p class="title">一，Linux CentOS 8.2 基本操作</p>
 <p>1，更新系统</p>
 <div class="code">
     <p>dnf -y update</p>
@@ -259,15 +265,6 @@ API URL ：保持：https://api.github.com
 
 
 
-
-
-
-
-
-
-
-
-
 <p class="title">七，配置 Jenkins</p>
 <p>1，新建一个：Freestyle project 的项目</p>
 <p>2，丢弃构建，时间越短越好</p>
@@ -278,7 +275,24 @@ API URL ：保持：https://api.github.com
     </a>
 </p>
 <br />
-                <h4>2021-11-08 08:08:00</h4>
+
+
+
+
+<p class="title">八，yum 更新的时候出现：<br />
+CentOS-8 - AppStream 70 B/s | 38 B 00:00 <br />
+Error: Failed to download metadata for repo 'AppStream': Cannot prepare internal mirrorlist: No URLs in mirrorlist</p>
+<div class="code">
+    <p>cd /etc/yum.repos.d/</p>
+</div>
+<div class="code">
+    <p>sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*</p>
+</div>
+<div class="code">
+    <p>sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*</p>
+</div>
+<br /></div>
+                <h4>Posted: 2022-05-21 08:41:03</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
