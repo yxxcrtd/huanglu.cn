@@ -64,7 +64,7 @@
 <p>14，监控2：monitor</p>
 <br />
 
-<p class="title">三，Linux CentOS 7 下的安装</p>
+<p class="title">三.1，Linux CentOS 7 下的安装</p>
 <p>1，wget  http://download.redis.io/releases/redis-5.0.8.tar.gz</p>
 <p>2，tar -zxvf redis-5.0.8.tar.gz</p>
 <p>3，cd redis-5.0.8</p>
@@ -72,6 +72,15 @@
 <p>5，make install</p>
 <p>6，修改配置文件：vim redis.conf</p>
 <p>7，加入系统服务：vim /etc/rc.local，添加：/home/redis-5.0.8/src/redis-server /home/redis-5.0.8/redis.conf &</p>
+<br />
+
+<p class="title">三.2，Linux CentOS 8 下的安装</p>
+<p>1，yum -y install gcc</p>
+<p>2，yum -y install redis</p>
+<p>3，chkconfig redis on</p>
+<p>4，vim /etc/redis.conf</p>
+<p>5，systemctl start/restart redis</p>
+<p>6，redis-cli -p 15439</p>
 <br />
 
 <p class="title">四，Mac 下 Redis 的安装</p>
@@ -207,7 +216,7 @@
     <p>2，config set stop-writes-on-bgsave-error no</p>
 </div>
 <br /></div>
-                <h4>Posted: 2022-04-29 07:54:29</h4>
+                <h4>Posted: 2022-05-21 08:30:21</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
