@@ -60,8 +60,8 @@
         <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MINIO_ROOT_USER: minio</p>
         <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MINIO_ROOT_PASSWORD: 123456</p>
         <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; volumes:</p>
-        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - /hublot/minio/data:/data</p>
-        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - /hublot/minio/config:/root/.minio/</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - /home/minio/data:/data</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - /home/minio/config:/root/.minio/</p>
         <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; command: server /data --console-address ':9001'</p>
         <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; privileged: true</p>
 </div>
@@ -75,7 +75,7 @@
 <p class="title">三，Docker 安装 MinIO（指定版本：minio/minio:RELEASE.2021-06-17T00-10-46Z）</p>
 <p>
         <div class="code">
-                <p>docker run --name minio -d --restart=always -p 9000:9000 -p 9001:9001 -v /hublot/minio/data:/data -e MINIO_ROOT_USER="minio" -e MINIO_ROOT_PASSWORD="123456" minio/minio:RELEASE.2021-06-17T00-10-46Z server /data</p>
+                <p>docker run --name minio -d --restart=always -p 9000:9000 -p 9001:9001 -v /home/minio/data:/data -e MINIO_ROOT_USER="minio" -e MINIO_ROOT_PASSWORD="123456" minio/minio:RELEASE.2021-06-17T00-10-46Z server /data</p>
         </div>
 </p>
 <br />
@@ -93,7 +93,7 @@
 <p>3，设置存储桶的权限，增加一个 Bucket Policy (bucket1)：Read and Write</p>
 <p style="text-align: center;">
     <a href="images/article/article53.02.png" data-fancybox>
-        <img src="images/article/article53.02.png" width="835" />
+        <img src="images/article/article53.02.png" width="535" />
     </a>
 </p>
 <p style="text-align: center;">
@@ -109,7 +109,7 @@
 <p class="title">五，项目中使用</p>
 <p>1，TODO</p>
 <br /></div>
-                <h4>Posted: 2023-05-26 10:35:13</h4>
+                <h4>Posted: 2023-05-26 11:24:59</h4>
             </div>
             <div id="articleAside">
                 <div id="category"></div>
