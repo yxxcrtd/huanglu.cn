@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="all" />
+        <meta name="keywords" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <meta name="description" content="黄麓、黄麓镇、书香黄麓、黄麓家园、黄麓网站" />
+        <title>书香黄麓</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.3.5.7.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 页面自适应 -->
+    </head>
+
+    <body>
+        <header id="header">
+            <nav>
+                <div id="logo"></div>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="history">黄麓历史</a></li>
+                    <li><a href="landscape">黄麓风景</a></li>
+                    <li><a href="about" class="current">关于作者</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <div id="articleDetail">
+                <h2>MinIO 基础</h2>
+                <div id="summary">
+                    <p>
+                        <span class="quote">“</span>
+                        MinIO 是一款高性能、分布式的对象存储系统，提供高性能、与 S3 兼容的对象存储，让你自己能够构建自己的云储存服务，它适用于AI的高性能对象存储，是世界上最快的对象存储，没有之一。
+                    </p>
+                </div>
+                <div><p class="title">一，前置：</p>
+<p>1，官网：<a href="https://min.io" target="_blank">https://min.io</a></p>
+<p>2，由于最新版本上传文件后，资源无法展示，所以选择了低版本的 Docker Images：minio/minio:RELEASE.2021-06-17T00-10-46Z</p>
+<p>3，由于 Docker Compose 无法启动：RELEASE.2021-06-17T00-10-46Z，所以只能使用Docker命令安装</p>
+<br />
+
+
+
+<p class="title">二，Docker Compose 安装 MinIO （适用于最新版本）</p>
+<p>
+
+<div class="code">
+
+<p>version: '3.1'</p>
+<p>services: </p>
+        <p class="indent">minio:</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; image: 'minio/minio'</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; container_name: minio</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; restart: always</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ports:</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  - "9000:9000"</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - "9001:9001"</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; environment:</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MINIO_ROOT_USER: minio</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MINIO_ROOT_PASSWORD: 123456</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; volumes:</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - /hublot/minio/data:/data</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - /hublot/minio/config:/root/.minio/</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; command: server /data --console-address ':9001'</p>
+        <p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; privileged: true</p>
+</div>
+</p>
+
+<p>启动：<div class="code"><p>docker-compose up</p></div></p>
+<br />
+
+
+
+<p class="title">三，Docker 安装 MinIO（指定版本：minio/minio:RELEASE.2021-06-17T00-10-46Z）</p>
+<p>
+        <div class="code">
+                <p>docker run --name minio -d --restart=always -p 9000:9000 -p 9001:9001 -v /hublot/minio/data:/data -e MINIO_ROOT_USER="minio" -e MINIO_ROOT_PASSWORD="123456" minio/minio:RELEASE.2021-06-17T00-10-46Z server /data</p>
+        </div>
+</p>
+<br />
+
+
+
+<p class="title">四，访问与配置</p>
+<p>1，访问：http://127.0.0.1:9000（minio/123456）</p>
+<p style="text-align: center;">
+    <a href="images/article/article53.01.png" data-fancybox>
+        <img src="images/article/article53.01.png" width="835" />
+    </a>
+</p>
+<p>2，创建一个存储桶：bucket1</p>
+<p>3，设置存储桶的权限，增加一个 Bucket Policy (bucket1)：Read and Write</p>
+<p style="text-align: center;">
+    <a href="images/article/article53.02.png" data-fancybox>
+        <img src="images/article/article53.02.png" width="835" />
+    </a>
+</p>
+<p style="text-align: center;">
+    <a href="images/article/article53.03.png" data-fancybox>
+        <img src="images/article/article53.03.png" width="835" />
+    </a>
+</p>
+<br />
+
+
+
+
+<p class="title">五，项目中使用</p>
+<p>1，TODO</p>
+<br /></div>
+                <h4>Posted: 2023-05-26 10:35:13</h4>
+            </div>
+            <div id="articleAside">
+                <div id="category"></div>
+            </div>
+        </article>
+
+        <footer id="footer"></footer>
+
+        <script src="js/jquery-3.6.0.js"></script>
+        <script src="js/public.js"></script>
+        <script src="js/jquery.fancybox.3.5.7.js"></script>
+    </body>
+</html>
