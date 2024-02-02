@@ -70,126 +70,126 @@
                     </p>
 
 
-<p>8，进入 sonar 用户：<div class="code"><p>su sonar</p></div></p>
+                    <p>8，进入 sonar 用户：<div class="code"><p>su sonar</p></div></p>
 
-<p>9，修改配置文件：
-    <div class="code">
-        <p>vim /home/sonar/conf/sonar.properties</p>
+                    <p>9，修改配置文件：
+                        <div class="code">
+                            <p>vim /home/sonar/conf/sonar.properties</p>
 
-        <div class="code">
-            <p class="comment">打开以下注释，并做相应的修改：</p>
-            <p>sonar.jdbc.username=sonar</p>
-            <p>sonar.jdbc.password=sonar</p>
-            <p>sonar.jdbc.url=jdbc:postgresql://192.168.1.2:15432/sonar</p>
-            <p>sonar.web.javaOpts=-Xmx5120m -Xms2048m -XX:+HeapDumpOnOutOfMemoryError</p>
-            <p>sonar.web.port=9000</p>
-            <p>sonar.ce.javaOpts=-Xmx5120m -Xms2048m -XX:+HeapDumpOnOutOfMemoryError</p>
-            <p>sonar.search.javaOpts=-Xms5120m -Xmx5120m -XX:+HeapDumpOnOutOfMemoryError</p>
-        </div>
+                            <div class="code">
+                                <p class="comment">打开以下注释，并做相应的修改：</p>
+                                <p>sonar.jdbc.username=sonar</p>
+                                <p>sonar.jdbc.password=sonar</p>
+                                <p>sonar.jdbc.url=jdbc:postgresql://192.168.1.2:15432/sonar</p>
+                                <p>sonar.web.javaOpts=-Xmx5120m -Xms2048m -XX:+HeapDumpOnOutOfMemoryError</p>
+                                <p>sonar.web.port=9000</p>
+                                <p>sonar.ce.javaOpts=-Xmx5120m -Xms2048m -XX:+HeapDumpOnOutOfMemoryError</p>
+                                <p>sonar.search.javaOpts=-Xms5120m -Xmx5120m -XX:+HeapDumpOnOutOfMemoryError</p>
+                            </div>
 
-        <p>配置文件 wrapper.conf 中的 wrapper.java.command=java 如果是 java8 则默认不修改；如果是 Java8+，则要修改为：<div class="code"><p>wrapper.java.command=/home/jdk11/bin/java</p></div></p>
-    </div>
-</p>
+                            <p>配置文件 wrapper.conf 中的 wrapper.java.command=java 如果是 java8 则默认不修改；如果是 Java8+，则要修改为：<div class="code"><p>wrapper.java.command=/home/jdk11/bin/java</p></div></p>
+                        </div>
+                    </p>
 
-<p>10，启动：（第一次启动要加控制台参数，方便查看启动信息，没问题了，再将 console 替换成 start 启动）<div class="code"><p>/home/sonar/bin/linux-x86-64/sonar.sh <span class="red">console</span></p></div></p>
+                    <p>10，启动：（第一次启动要加控制台参数，方便查看启动信息，没问题了，再将 console 替换成 start 启动）<div class="code"><p>/home/sonar/bin/linux-x86-64/sonar.sh <span class="red">console</span></p></div></p>
 
-<p>11，下载中文插件：（注意版本对应关系，参考：https://github.com/xuhuisheng/sonar-l10n-zh/releases）
-    <div class="code">
-        <p>wget https://github.com/xuhuisheng/sonar-l10n-zh/releases/download/sonar-l10n-zh-plugin-1.28/sonar-l10n-zh-plugin-1.28.jar</p>
-        <p>chmod -R sonar:sonar /home/sonar/extensions/plugins/sonar-l10n-zh-plugin-1.28.jar</p>
-    </div>
-</p>
-<br />
-
-
-<p class="title">二，安装 sonar-scanner</p>
-<p>1，下载：<div class="code"><p>wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip --no-check-certificate</p></div></p>
-<p>2，解压：<div class="code"><p>unzip sonar-scanner-cli-4.6.2.2472-linux.zip</p></div></p>
-<p>3，文件夹重命名：<div class="code"><p>mv sonar-scanner-4.6.2.2472-linux/ /home/sonar-scanner</p></div></p>
-<p>4，配置环境变量，增加：<div class="code"><p>export PATH=$PATH:/home/sonar-scanner/bin</p></div></p>
-<p>5，使环境变量生效：<div class="code"><p>source /etc/profile</p></div></p>
-<p>6，验证：<div class="code"><p>sonar-scanner -v</p></div></p>
-<br />
+                    <p>11，下载中文插件：（注意版本对应关系，参考：https://github.com/xuhuisheng/sonar-l10n-zh/releases）
+                        <div class="code">
+                            <p>wget https://github.com/xuhuisheng/sonar-l10n-zh/releases/download/sonar-l10n-zh-plugin-1.28/sonar-l10n-zh-plugin-1.28.jar</p>
+                            <p>chmod -R sonar:sonar /home/sonar/extensions/plugins/sonar-l10n-zh-plugin-1.28.jar</p>
+                        </div>
+                    </p>
+                    <br />
 
 
-<p class="title">三，Jenkins 中的 Maven 项目使用 sonar</p>
-<p>1，在 Build 下的 Goals and options 中追加：
-    <div class="code">
-        <p>clean install -Dmaven.test.skip -e -U  <span class="red">sonar:sonar -Dsonar.projectKey=项目名称 -Dsonar.host.url=http://192.168.1.2:9000 -Dsonar.login=token</span></p>
-        <p class="comment">红色是追加的部分，注意修改其中相应的参数！</p>
-    </div>
-</p>
-<br />
+                    <p class="title">二，安装 sonar-scanner</p>
+                    <p>1，下载：<div class="code"><p>wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip --no-check-certificate</p></div></p>
+                    <p>2，解压：<div class="code"><p>unzip sonar-scanner-cli-4.6.2.2472-linux.zip</p></div></p>
+                    <p>3，文件夹重命名：<div class="code"><p>mv sonar-scanner-4.6.2.2472-linux/ /home/sonar-scanner</p></div></p>
+                    <p>4，配置环境变量，增加：<div class="code"><p>export PATH=$PATH:/home/sonar-scanner/bin</p></div></p>
+                    <p>5，使环境变量生效：<div class="code"><p>source /etc/profile</p></div></p>
+                    <p>6，验证：<div class="code"><p>sonar-scanner -v</p></div></p>
+                    <br />
 
 
-<p class="title">三，配置 PostgreSQL 数据库</p>
-<p>1，创建登录的用户和角色（含密码）</p>
-<div class="code">
-    <p>DROP USER IF EXISTS sonar;</p>
-    <p>CREATE ROLE sonar WITH LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD 'sonar';</p>
-</div>
-<p>2，创建数据库</p>
-<div class="code">
-    <p>DROP DATABASE IF EXISTS sonar;</p>
-    <p>CREATE DATABASE sonar WITH OWNER = sonar ENCODING = 'UTF8' CONNECTION LIMIT = -1;</p>
-</div>
-<br />
+                    <p class="title">三，Jenkins 中的 Maven 项目使用 sonar</p>
+                    <p>1，在 Build 下的 Goals and options 中追加：
+                        <div class="code">
+                            <p>clean install -Dmaven.test.skip -e -U  <span class="red">sonar:sonar -Dsonar.projectKey=项目名称 -Dsonar.host.url=http://192.168.1.2:9000 -Dsonar.login=token</span></p>
+                            <p class="comment">红色是追加的部分，注意修改其中相应的参数！</p>
+                        </div>
+                    </p>
+                    <br />
 
 
-<p class="title">四，Linux 设置</p>
-<div class="code"><p>sysctl -w vm.max_map_count=262144</p></div>
-<div class="code"><p>sysctl -w fs.file-max=65536</p></div>
-<div class="code"><p>ulimit -n 65536</p></div>
-<div class="code"><p>ulimit -u 4096</p></div>
-<br />
+                    <p class="title">三，配置 PostgreSQL 数据库</p>
+                    <p>1，创建登录的用户和角色（含密码）</p>
+                    <div class="code">
+                        <p>DROP USER IF EXISTS sonar;</p>
+                        <p>CREATE ROLE sonar WITH LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD 'sonar';</p>
+                    </div>
+                    <p>2，创建数据库</p>
+                    <div class="code">
+                        <p>DROP DATABASE IF EXISTS sonar;</p>
+                        <p>CREATE DATABASE sonar WITH OWNER = sonar ENCODING = 'UTF8' CONNECTION LIMIT = -1;</p>
+                    </div>
+                    <br />
 
 
-<p class="title">五，Docker 安装 SonarQube</p>
-
-<p>1，安装：<div class="code"><p>docker pull sonarqube:community</p></div></p>
-
-<p>2，创建映射文件夹：<div class="code"><p>mkdir -pv /home/docker/sonar/{conf,data,extensions,logs} -m 777</p></div></p>
-
-<p>3，启动 SonarQube：<div class="code"><p>docker run --name sonarqube  --restart=always --link postgres -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonar -p 19000:9000 -v /home/docker/sonar/data:/opt/sonarqube/data -v /home/docker/sonar/extensions:/opt/sonarqube/extensions -v /home/docker/sonar/logs:/opt/sonarqube/logs -v /home/docker/sonar/conf:/opt/sonarqube/conf -d sonarqube:community</p></div></p>
-
-<p>4，通过查看日志：
-<div class="code"><p>tailf /home/docker/sonar/logs/es.log</p></div>
-<p>发现的错误：</p>
-<div class="code"><p>max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</p></div>
-</p>
-
-<p>5，解决办法：<div class="code"><p>vim /etc/sysctl.conf</p></div></p>
-
-<p>6，在 /etc/sysctl.conf 文件最后添加一行：<div class="code"><p>vm.max_map_count=262144</p></div></p>
-
-<p>7，验证：
-    <div class="code">
-        <p>sysctl -a | grep vm.max_map_count</p>
-        <p><span class="comment">会显示：vm.max_map_count = 262144</span></p>
-    </div>
-</p>
-
-<p>8，再次启动：
-    <div class="code">
-        <p>docker start '容器ID'</p>
-        <p><span class="comment">通过查看启动日志：tailf /home/docker/sonar/logs/sonar.log，会出现：</span></p>
-        <p><span class="red">SonarQube is up</span></p>
-    </div>
-</p>
-
-<p>9，浏览器访问：
-    <div class="code">
-        <p>http://192.168.1.2:<span class="red">19000</span></p>
-        <p><span class="comment">账户：admin</span></p>
-        <p><span class="comment">密码：admin</span></p>
-    </div>
-</p>
-<br />
+                    <p class="title">四，Linux 设置</p>
+                    <div class="code"><p>sysctl -w vm.max_map_count=262144</p></div>
+                    <div class="code"><p>sysctl -w fs.file-max=65536</p></div>
+                    <div class="code"><p>ulimit -n 65536</p></div>
+                    <div class="code"><p>ulimit -u 4096</p></div>
+                    <br />
 
 
-<p class="title">六，SonarQube 安装插件</p>
-<p>1，中文插件：Administration -> Marketplace -> 搜索 chinese -> Install -> 浏览器中的 Restart</p>
-<br /></div>
+                    <p class="title">五，Docker 安装 SonarQube</p>
+
+                    <p>1，安装：<div class="code"><p>docker pull sonarqube:community</p></div></p>
+
+                    <p>2，创建映射文件夹：<div class="code"><p>mkdir -pv /home/docker/sonar/{conf,data,extensions,logs} -m 777</p></div></p>
+
+                    <p>3，启动 SonarQube：<div class="code"><p>docker run --name sonarqube  --restart=always --link postgres -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonar -p 19000:9000 -v /home/docker/sonar/data:/opt/sonarqube/data -v /home/docker/sonar/extensions:/opt/sonarqube/extensions -v /home/docker/sonar/logs:/opt/sonarqube/logs -v /home/docker/sonar/conf:/opt/sonarqube/conf -d sonarqube:community</p></div></p>
+
+                    <p>4，通过查看日志：
+                    <div class="code"><p>tailf /home/docker/sonar/logs/es.log</p></div>
+                    <p>发现的错误：</p>
+                    <div class="code"><p>max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</p></div>
+                    </p>
+
+                    <p>5，解决办法：<div class="code"><p>vim /etc/sysctl.conf</p></div></p>
+
+                    <p>6，在 /etc/sysctl.conf 文件最后添加一行：<div class="code"><p>vm.max_map_count=262144</p></div></p>
+
+                    <p>7，验证：
+                        <div class="code">
+                            <p>sysctl -a | grep vm.max_map_count</p>
+                            <p><span class="comment">会显示：vm.max_map_count = 262144</span></p>
+                        </div>
+                    </p>
+
+                    <p>8，再次启动：
+                        <div class="code">
+                            <p>docker start '容器ID'</p>
+                            <p><span class="comment">通过查看启动日志：tailf /home/docker/sonar/logs/sonar.log，会出现：</span></p>
+                            <p><span class="red">SonarQube is up</span></p>
+                        </div>
+                    </p>
+
+                    <p>9，浏览器访问：
+                        <div class="code">
+                            <p>http://192.168.1.2:<span class="red">19000</span></p>
+                            <p><span class="comment">账户：admin</span></p>
+                            <p><span class="comment">密码：admin</span></p>
+                        </div>
+                    </p>
+                    <br />
+
+
+                    <p class="title">六，SonarQube 安装插件</p>
+                    <p>1，中文插件：Administration -> Marketplace -> 搜索 chinese -> Install -> 浏览器中的 Restart</p>
+                    <br /></div>
                 <h4>2021-11-30 08:45:07</h4>
             </div>
             <div id="articleAside">
