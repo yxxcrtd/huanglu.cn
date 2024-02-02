@@ -42,32 +42,32 @@
                     <p>5，将 sonarqube-7.8 移到刚刚建立的用户文件夹：sonar<div class="code"><p>mv sonarqube-7.8 sonar</p></div></p>
                     <p>6，授权：<div class="code"><p>chown -R sonar:sonar /home/sonar</p></div></p>
 
-<p>7，提前配置：（避免出现：max file descriptors [4096] for elasticsearch process is too low, increase to at least [65535]）
-    <div class="code">
-        <div class="code">
-            <p>vim /etc/sysctl.conf</p>
-            <p class="comment">在最后追加下面2行：</p>
-            <p>vm.max_map_count=262144</p>
-            <p>fs.file-max=65536</p>
-        </div>
-        <div class="code">
-            <p>vim /etc/security/limits.conf</p>
-            <p class="comment">在最后追加下面5行：</p>
-            <p>* soft nofile 65536</p>
-            <p>* hard nofile 131072</p>
-            <p>* soft nproc 4096</p>
-            <p>* hard nproc 10240</p>
-            <p>sonar soft nproc 4096</p>
-        </div>
-        <div class="code">
-            <p class="comment">验证：</p>
-            <p>ulimit -Hu</p>
-            <p class="comment">这里应该是10240</p>
-            <p>ulimit -Su</p>
-            <p class="comment">这里应该是4096</p>
-        </div>
-    </div>
-</p>
+                    <p>7，提前配置：（避免出现：max file descriptors [4096] for elasticsearch process is too low, increase to at least [65535]）
+                        <div class="code">
+                            <div class="code">
+                                <p>vim /etc/sysctl.conf</p>
+                                <p class="comment">在最后追加下面2行：</p>
+                                <p>vm.max_map_count=262144</p>
+                                <p>fs.file-max=65536</p>
+                            </div>
+                            <div class="code">
+                                <p>vim /etc/security/limits.conf</p>
+                                <p class="comment">在最后追加下面5行：</p>
+                                <p>* soft nofile 65536</p>
+                                <p>* hard nofile 131072</p>
+                                <p>* soft nproc 4096</p>
+                                <p>* hard nproc 10240</p>
+                                <p>sonar soft nproc 4096</p>
+                            </div>
+                            <div class="code">
+                                <p class="comment">验证：</p>
+                                <p>ulimit -Hu</p>
+                                <p class="comment">这里应该是10240</p>
+                                <p>ulimit -Su</p>
+                                <p class="comment">这里应该是4096</p>
+                            </div>
+                        </div>
+                    </p>
 
 
 <p>8，进入 sonar 用户：<div class="code"><p>su sonar</p></div></p>
