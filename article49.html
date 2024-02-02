@@ -35,12 +35,12 @@
                     </p>
                 </div>
                 <div><p class="title">一，Linux CentOS7 下安装 SonarQube 7.8（SonarQube 从 7.9 开始需要 Java 11 且不支持 MySQL 了）</p>
-<p>1，官网：<a href="https://www.sonarqube.org/downloads/" target="_blank">https://www.sonarqube.org/downloads/</a></p>
-<p>2，下载：<div class="code"><p>wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip --no-check-certificate</p></div></p>
-<p>3，解压：<div class="code"><p>unzip sonarqube-7.8.zip</p></div></p>
-<p>4，添加用户并修改密码：<div class="code"><p>useradd sonar</p><p>passwd sonar</p></div></p>
-<p>5，将 sonarqube-7.8 移到刚刚建立的用户文件夹：sonar<div class="code"><p>mv sonarqube-7.8 sonar</p></div></p>
-<p>6，授权：<div class="code"><p>chown -R sonar:sonar /home/sonar</p></div></p>
+                    <p>1，官网：<a href="https://www.sonarqube.org/downloads/" target="_blank">https://www.sonarqube.org/downloads/</a></p>
+                    <p>2，下载：<div class="code"><p>wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip --no-check-certificate</p></div></p>
+                    <p>3，解压：<div class="code"><p>unzip sonarqube-7.8.zip</p></div></p>
+                    <p>4，添加用户并修改密码：<div class="code"><p>useradd sonar</p><p>passwd sonar</p></div></p>
+                    <p>5，将 sonarqube-7.8 移到刚刚建立的用户文件夹：sonar<div class="code"><p>mv sonarqube-7.8 sonar</p></div></p>
+                    <p>6，授权：<div class="code"><p>chown -R sonar:sonar /home/sonar</p></div></p>
 
 <p>7，提前配置：（避免出现：max file descriptors [4096] for elasticsearch process is too low, increase to at least [65535]）
     <div class="code">
